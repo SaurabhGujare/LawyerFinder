@@ -1,18 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Business.Abstract;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public abstract class User {
     private String password;
     private String userName;
-    private String role;
+    private final String role;
 
     public User(String password, String userName, String role) {
         this.password = password;
