@@ -49,6 +49,7 @@ public class LoginScreen extends javax.swing.JPanel {
         txtPword1 = new javax.swing.JPasswordField();
 
         btnSubmit.setFont(new java.awt.Font("Tahoma", 1, 19)); // NOI18N
+        btnSubmit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UserInterface/icons/Ok_40px.png"))); // NOI18N
         btnSubmit.setText("Login");
         btnSubmit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
