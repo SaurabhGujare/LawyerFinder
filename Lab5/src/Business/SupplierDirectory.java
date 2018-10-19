@@ -6,13 +6,12 @@
 package Business;
 
 import Business.Abstract.User;
-import Business.Users.Supplier;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class SupplierDirectory {
     

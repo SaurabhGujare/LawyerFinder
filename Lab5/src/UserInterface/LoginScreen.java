@@ -6,8 +6,6 @@
 package UserInterface;
 
 import Business.Abstract.User;
-import Business.Users.Customer;
-import Business.Users.Supplier;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -15,16 +13,16 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class LoginScreen extends javax.swing.JPanel {
 
     /**
      * Creates new form LoginScreen
      */
-    private List<User> list;
-    private JPanel panelRight;
-    private String screenTitle;
+    private final List<User> list;
+    private final JPanel panelRight;
+    private final String screenTitle;
     
     public LoginScreen(JPanel panelRight, List<User> list, String screenTitle) {
         initComponents();
@@ -179,7 +177,6 @@ public class LoginScreen extends javax.swing.JPanel {
         }
         else{
             JOptionPane.showMessageDialog(this, "Invalid Credentials!");
-            return;
         }
         
     }//GEN-LAST:event_LoginBtnActionPerformed

@@ -18,15 +18,15 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class AdminMainScreen extends javax.swing.JPanel {
 
     /**
      * Creates new form AdminMainScreen
      */
-    private JPanel panelRight;
-    private Admin admin;
+    private final JPanel panelRight;
+    private final Admin admin;
     public AdminMainScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
@@ -36,7 +36,6 @@ public class AdminMainScreen extends javax.swing.JPanel {
             @Override
             public void componentShown(ComponentEvent ce) {
                 super.componentShown(ce); 
-                //Populate Table with Data
                 populate();
             }
             

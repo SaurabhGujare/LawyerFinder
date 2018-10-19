@@ -1,31 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UserInterface;
 
 import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
+import Common.CommonUtils;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class AdminCreateScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminScreen
-     */
     private final JPanel panelRight;
     private final Admin admin;
+
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
@@ -259,12 +251,13 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         }
         
         //Verifying Password
-        if(!passwordPatternCorrect(new String(txtPword.getPassword()))){
+        if(!CommonUtils.passwordPatternCorrect(new String(txtPword.getPassword()))){
             JOptionPane.showMessageDialog(this, "Password must contain Alphanumeric characters and only '+','_','$' special characters");
             return;
         }
         
-        if(!comparePasswords(txtPword.getPassword(), txtRePword.getPassword())){
+        //Verify same password is entered
+        if(!CommonUtils.comparePasswords(txtPword.getPassword(), txtRePword.getPassword())){
             JOptionPane.showMessageDialog(this,"Passwords don't match");
             return;
         }
@@ -278,13 +271,15 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private void createUser(String userName, String password, String role){
         
-        if(role.equals("CUSTOMER")){
-            admin.getCustDir().getCustomerList().add(new Customer(password, userName));
-            JOptionPane.showMessageDialog(this, "Customer created succesfully");
-        }
-        else if(role.equals("SUPPLIER")){
-            admin.getSuppDir().getSupplierList().add(new Supplier(password, userName));
-            JOptionPane.showMessageDialog(this, "Supplier created succesfully");
+        switch (role) {
+            case "CUSTOMER":
+                admin.getCustDir().getCustomerList().add(new Customer(password, userName));
+                JOptionPane.showMessageDialog(this, "Customer created succesfully");
+                break;
+            case "SUPPLIER":
+                admin.getSuppDir().getSupplierList().add(new Supplier(password, userName));
+                JOptionPane.showMessageDialog(this, "Supplier created succesfully");
+                break;
         }
         
     }
@@ -295,36 +290,20 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    private boolean checkUserName(String username){
-        String input = "^([A-Za-z0-9])([A-Za-z0-9\\.\\-\\_\\$\\_])*\\@([A-Za-z0-9_\\-])+\\.([A-Za-z]{2,4})$";
-        if(username==null || username.equals(""))
-            return true;
-        return Pattern.matches(input, username);
-    }
     private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
-        boolean isSame = comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
+        boolean isSame = CommonUtils.comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
         txtRePword.setBackground(isSame?Color.white:Color.red);
-        btnCreate.setEnabled(isSame && checkAllValuesGiven());
+        btnCreate.setEnabled(isSame && allValuesGiven());
     }//GEN-LAST:event_txtPwordKeyTyped
 
     private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
-        boolean usernameValid = checkUserName(txtUser.getText()); 
+        boolean usernameValid = CommonUtils.checkUserName(txtUser.getText()); 
         txtUser.setBackground(usernameValid?Color.white:Color.red);
-        btnCreate.setEnabled(usernameValid&&checkAllValuesGiven());
+        btnCreate.setEnabled(usernameValid && allValuesGiven());
     }//GEN-LAST:event_txtUserKeyReleased
 
-    private boolean checkAllValuesGiven(){
+    private boolean allValuesGiven(){
         return txtRePword.getPassword().length!=0 && txtPword.getPassword().length!=0 && !txtUser.getText().isEmpty();
-    }
-    
-    private boolean comparePasswords(char[] pwd, char[] pwd1){
-        return new String(pwd).equals(new String(pwd1));
-    }
-    
-    private boolean passwordPatternCorrect(String pwd){
-        Pattern pat = Pattern.compile("([A-Za-z0-9+_$])*");
-        Matcher mat = pat.matcher(pwd);
-        return mat.matches();
     }
       
     // Variables declaration - do not modify//GEN-BEGIN:variables

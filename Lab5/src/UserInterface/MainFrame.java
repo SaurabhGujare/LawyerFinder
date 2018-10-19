@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UserInterface;
 
-import Business.Abstract.User;
 import Business.Users.Admin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -14,15 +8,11 @@ import java.awt.Toolkit;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MainFrame
-     */
-    
-    private Admin adminUser;
+    private final Admin adminUser;
     public MainFrame() {
         initComponents();
         adminUser = new Admin();
