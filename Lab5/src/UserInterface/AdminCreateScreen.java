@@ -13,7 +13,7 @@ import javax.swing.JPanel;
  *
  * @author Ninad, Akshay, Saurabh
  */
-public class AdminCreateScreen extends javax.swing.JPanel {
+public class AdminCreateScreen extends CustomPanel {
 
     private final JPanel panelRight;
     private final Admin admin;
@@ -274,9 +274,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         
         //Creating User
         createUser(txtUser.getText(), new String(txtPword.getPassword()), roleGroup.getSelection().getActionCommand());
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight);
+        removeAndGoBack(panelRight);
     }//GEN-LAST:event_btnCreateActionPerformed
 
     private void createUser(String userName, String password, String role){
@@ -295,9 +293,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     }
     
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.remove(this);
-        layout.previous(panelRight);
+        removeAndGoBack(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped

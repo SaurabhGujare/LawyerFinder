@@ -10,7 +10,6 @@ import Business.Abstract.User;
 import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
-import java.awt.CardLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JPanel;
@@ -20,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Ninad, Akshay, Saurabh
  */
-public class AdminMainScreen extends javax.swing.JPanel {
+public class AdminMainScreen extends CustomPanel {
 
     /**
      * Creates new form AdminMainScreen
@@ -116,10 +115,7 @@ public class AdminMainScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
-        CardLayout layout = (CardLayout)panelRight.getLayout();
-        panelRight.add(new AdminCreateScreen(panelRight, admin));
-        layout.next(panelRight);
+        goTo(panelRight, new AdminCreateScreen(panelRight, admin));
     }//GEN-LAST:event_btnCreateActionPerformed
 
 
