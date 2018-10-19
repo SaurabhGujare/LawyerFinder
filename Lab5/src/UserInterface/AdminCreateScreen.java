@@ -17,12 +17,15 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private final JPanel panelRight;
     private final Admin admin;
+    private static final Color ERROR_COLOR = new Color(255,102,102);
 
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
         this.admin = admin;
         btnCreate.setEnabled(false);
+        userInfoLbl.setVisible(false);
+        pwdInfoLbl.setVisible(false);
     }
 
     /**
@@ -119,52 +122,59 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         radioSupplier.setText("Supplier");
         radioSupplier.setActionCommand("SUPPLIER");
 
+        userInfoLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        userInfoLbl.setForeground(new java.awt.Color(255, 102, 102));
+        userInfoLbl.setText("Enter a valid Email ID");
+
+        pwdInfoLbl.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        pwdInfoLbl.setForeground(new java.awt.Color(255, 102, 102));
+        pwdInfoLbl.setText("Only alphanumeric and $, +, _ characters allowed");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(66, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
-                                .addGap(92, 92, 92)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtPword, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
-                                    .addComponent(txtUser)))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtRePword)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(userInfoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(pwdInfoLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(91, 91, 91)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radioCustomer)
-                            .addComponent(radioSupplier))))
+                            .addComponent(radioSupplier)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(txtPword)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(txtRePword, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pwdInfoLbl)
+                            .addComponent(userInfoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(72, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
                     .addComponent(userInfoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel2))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
                     .addComponent(pwdInfoLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -176,7 +186,7 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                     .addComponent(radioCustomer))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radioSupplier)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnBack.setFont(new java.awt.Font("Tahoma", 0, 19)); // NOI18N
@@ -225,8 +235,8 @@ public class AdminCreateScreen extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -234,9 +244,9 @@ public class AdminCreateScreen extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -292,13 +302,16 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
         boolean isSame = CommonUtils.comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
-        txtRePword.setBackground(isSame?Color.white:Color.red);
+        txtRePword.setBackground(isSame?Color.white:ERROR_COLOR);
         btnCreate.setEnabled(isSame && allValuesGiven());
+        
+        pwdInfoLbl.setVisible(!CommonUtils.passwordPatternCorrect(new String(txtPword.getPassword())));
     }//GEN-LAST:event_txtPwordKeyTyped
 
     private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
         boolean usernameValid = CommonUtils.checkUserName(txtUser.getText()); 
-        txtUser.setBackground(usernameValid?Color.white:Color.red);
+        userInfoLbl.setVisible(!usernameValid);
+        txtUser.setBackground(usernameValid?Color.white:ERROR_COLOR);
         btnCreate.setEnabled(usernameValid && allValuesGiven());
     }//GEN-LAST:event_txtUserKeyReleased
 
