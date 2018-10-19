@@ -10,15 +10,10 @@ import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
@@ -29,12 +24,13 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     /**
      * Creates new form AdminScreen
      */
-    private JPanel panelRight;
-    private Admin admin;
+    private final JPanel panelRight;
+    private final Admin admin;
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
         this.admin = admin;
+        btnCreate.setEnabled(false);
     }
 
     /**
@@ -255,30 +251,49 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
+        
         //Verify Username
         if(txtUser.getText()==null || txtUser.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Username required.");
             return;
         }
         
+        //Verifying Password
+        if(!passwordPatternCorrect(new String(txtPword.getPassword()))){
+            JOptionPane.showMessageDialog(this, "Password must contain Alphanumeric characters and only '+','_','$' special characters");
+            return;
+        }
+        
+        if(!comparePasswords(txtPword.getPassword(), txtRePword.getPassword())){
+            JOptionPane.showMessageDialog(this,"Passwords don't match");
+            return;
+        }
+        
+        //Creating User
+        createUser(txtUser.getText(), new String(txtPword.getPassword()), roleGroup.getSelection().getActionCommand());
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioCustomerActionPerformed
-
+    private void createUser(String userName, String password, String role){
+        
+        if(role.equals("CUSTOMER")){
+            admin.getCustDir().getCustomerList().add(new Customer(password, userName));
+            JOptionPane.showMessageDialog(this, "Customer created succesfully");
+        }
+        else if(role.equals("SUPPLIER")){
+            admin.getSuppDir().getSupplierList().add(new Supplier(password, userName));
+            JOptionPane.showMessageDialog(this, "Supplier created succesfully");
+        }
+        
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.remove(this);
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
-        // TODO add your handling code here:
-        txtUser.setBackground(checkUserName(txtUser.getText())?Color.white:Color.red);
-    }//GEN-LAST:event_txtUserKeyReleased
 
     private boolean checkUserName(String username){
         String input = "^([A-Za-z0-9])([A-Za-z0-9\\.\\-\\_\\$\\_])*\\@([A-Za-z0-9_\\-])+\\.([A-Za-z]{2,4})$";
@@ -286,11 +301,32 @@ public class AdminCreateScreen extends javax.swing.JPanel {
             return true;
         return Pattern.matches(input, username);
     }
-	
-	private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
-       
+    private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
+        boolean isSame = comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
+        txtRePword.setBackground(isSame?Color.white:Color.red);
+        btnCreate.setEnabled(isSame && checkAllValuesGiven());
     }//GEN-LAST:event_txtPwordKeyTyped
+
+    private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
+        boolean usernameValid = checkUserName(txtUser.getText()); 
+        txtUser.setBackground(usernameValid?Color.white:Color.red);
+        btnCreate.setEnabled(usernameValid&&checkAllValuesGiven());
+    }//GEN-LAST:event_txtUserKeyReleased
+
+    private boolean checkAllValuesGiven(){
+        return txtRePword.getPassword().length!=0 && txtPword.getPassword().length!=0 && !txtUser.getText().isEmpty();
+    }
     
+    private boolean comparePasswords(char[] pwd, char[] pwd1){
+        return new String(pwd).equals(new String(pwd1));
+    }
+    
+    private boolean passwordPatternCorrect(String pwd){
+        Pattern pat = Pattern.compile("([A-Za-z0-9+_$])*");
+        Matcher mat = pat.matcher(pwd);
+        return mat.matches();
+    }
+      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
