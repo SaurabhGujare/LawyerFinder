@@ -12,6 +12,26 @@ import java.util.Date;
  *
  * @author harshalneelkamal
  */
-public class Customer {
+public class Customer extends User {
+    private Date dateCreated;
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
+    }
     
+    public Customer(String password, String userName) {
+        super(password, userName,"CUSTOMER");
+        dateCreated = new Date();
+    }
+
+    @Override
+    public boolean verify(String password) {
+        if(password.equals(getPassword()))
+            return true;
+        return false;
+    }
 }
