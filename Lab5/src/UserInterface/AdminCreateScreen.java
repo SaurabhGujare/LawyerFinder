@@ -64,6 +64,12 @@ public class AdminCreateScreen extends javax.swing.JPanel {
             }
         });
 
+        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtUserKeyReleased(evt);
+            }
+        });
+
         jLabel1.setText("username:");
 
         jLabel2.setText("password:");
@@ -143,6 +149,11 @@ public class AdminCreateScreen extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
+        //Verify Username
+        if(txtUser.getText()==null || txtUser.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Username required.");
+            return;
+        }
         
     }//GEN-LAST:event_btnCreateActionPerformed
 
@@ -157,7 +168,17 @@ public class AdminCreateScreen extends javax.swing.JPanel {
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
 
-    
+    private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
+        // TODO add your handling code here:
+        txtUser.setBackground(checkUserName(txtUser.getText())?Color.white:Color.red);
+    }//GEN-LAST:event_txtUserKeyReleased
+
+    private boolean checkUserName(String username){
+        String input = "^([A-Za-z0-9])([A-Za-z0-9\\.\\-\\_\\$\\_])*\\@([A-Za-z0-9_\\-])+\\.([A-Za-z]{2,4})$";
+        if(username==null || username.equals(""))
+            return true;
+        return Pattern.matches(input, username);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
