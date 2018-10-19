@@ -1,40 +1,28 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package UserInterface;
 
 import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
+import Common.CommonUtils;
 import java.awt.CardLayout;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad, Akshay, Saurabh
  */
 public class AdminCreateScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form AdminScreen
-     */
-    private JPanel panelRight;
-    private Admin admin;
+    private final JPanel panelRight;
+    private final Admin admin;
+
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
         this.admin = admin;
+        btnCreate.setEnabled(false);
     }
 
     /**
@@ -255,42 +243,69 @@ public class AdminCreateScreen extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
-        // TODO add your handling code here:
+        
         //Verify Username
         if(txtUser.getText()==null || txtUser.getText().equals("")){
             JOptionPane.showMessageDialog(this, "Username required.");
             return;
         }
         
+        //Verifying Password
+        if(!CommonUtils.passwordPatternCorrect(new String(txtPword.getPassword()))){
+            JOptionPane.showMessageDialog(this, "Password must contain Alphanumeric characters and only '+','_','$' special characters");
+            return;
+        }
+        
+        //Verify same password is entered
+        if(!CommonUtils.comparePasswords(txtPword.getPassword(), txtRePword.getPassword())){
+            JOptionPane.showMessageDialog(this,"Passwords don't match");
+            return;
+        }
+        
+        //Creating User
+        createUser(txtUser.getText(), new String(txtPword.getPassword()), roleGroup.getSelection().getActionCommand());
+        CardLayout layout = (CardLayout)panelRight.getLayout();
+        panelRight.remove(this);
+        layout.previous(panelRight);
     }//GEN-LAST:event_btnCreateActionPerformed
 
-    private void radioCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCustomerActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioCustomerActionPerformed
-
+    private void createUser(String userName, String password, String role){
+        
+        switch (role) {
+            case "CUSTOMER":
+                admin.getCustDir().getCustomerList().add(new Customer(password, userName));
+                JOptionPane.showMessageDialog(this, "Customer created succesfully");
+                break;
+            case "SUPPLIER":
+                admin.getSuppDir().getSupplierList().add(new Supplier(password, userName));
+                JOptionPane.showMessageDialog(this, "Supplier created succesfully");
+                break;
+        }
+        
+    }
+    
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-
         CardLayout layout = (CardLayout)panelRight.getLayout();
         panelRight.remove(this);
         layout.previous(panelRight);
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
+        boolean isSame = CommonUtils.comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
+        txtRePword.setBackground(isSame?Color.white:Color.red);
+        btnCreate.setEnabled(isSame && allValuesGiven());
+    }//GEN-LAST:event_txtPwordKeyTyped
+
     private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
-        // TODO add your handling code here:
-        txtUser.setBackground(checkUserName(txtUser.getText())?Color.white:Color.red);
+        boolean usernameValid = CommonUtils.checkUserName(txtUser.getText()); 
+        txtUser.setBackground(usernameValid?Color.white:Color.red);
+        btnCreate.setEnabled(usernameValid && allValuesGiven());
     }//GEN-LAST:event_txtUserKeyReleased
 
-    private boolean checkUserName(String username){
-        String input = "^([A-Za-z0-9])([A-Za-z0-9\\.\\-\\_\\$\\_])*\\@([A-Za-z0-9_\\-])+\\.([A-Za-z]{2,4})$";
-        if(username==null || username.equals(""))
-            return true;
-        return Pattern.matches(input, username);
+    private boolean allValuesGiven(){
+        return txtRePword.getPassword().length!=0 && txtPword.getPassword().length!=0 && !txtUser.getText().isEmpty();
     }
-	
-	private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
-       
-    }//GEN-LAST:event_txtPwordKeyTyped
-    
+      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
