@@ -5,11 +5,14 @@
  */
 package UserInterface;
 
+import Common.CommonUtils;
 import Business.Abstract.User;
 import Business.Users.Admin;
 import Business.Users.Customer;
 import Business.Users.Supplier;
 import java.awt.CardLayout;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,7 +31,18 @@ public class AdminMainScreen extends javax.swing.JPanel {
         initComponents();
         this.panelRight = panelRight;
         this.admin = admin;
-        populate();
+        ComponentAdapter adapter = new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent ce) {
+                super.componentShown(ce); 
+                //Populate Table with Data
+                populate();
+            }
+            
+        };
+        
+        this.addComponentListener(adapter);
     }
 
     /**
@@ -80,23 +94,25 @@ public class AdminMainScreen extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 634, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnCreate)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(17, 17, 17)
                 .addComponent(btnCreate)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -108,7 +124,7 @@ public class AdminMainScreen extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCreateActionPerformed
 
 
-    public void populate(){
+    private void populate(){
         DefaultTableModel dtm = (DefaultTableModel)tableSup.getModel();
         dtm.setRowCount(0);
         for(User u : admin.getSuppDir().getSupplierList()){
@@ -116,6 +132,16 @@ public class AdminMainScreen extends javax.swing.JPanel {
             Object[] row = new Object[dtm.getColumnCount()];
             row[0]=s;
             row[1]=s.getDirectory().getProductList().size();
+            dtm.addRow(row);
+        }
+        
+        dtm = (DefaultTableModel)tableCust.getModel();
+        dtm.setRowCount(0);
+        for(User u : admin.getCustDir().getCustomerList()){
+            Customer c = (Customer)u;
+            Object[] row = new Object[dtm.getColumnCount()];
+            row[0]=c;
+            row[1]=CommonUtils.formatDateTime(c.getDateCreated());
             dtm.addRow(row);
         }
 
