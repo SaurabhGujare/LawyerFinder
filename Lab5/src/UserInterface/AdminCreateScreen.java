@@ -18,7 +18,10 @@ public class AdminCreateScreen extends CustomPanel {
     private final JPanel panelRight;
     private final Admin admin;
     private static final Color ERROR_COLOR = new Color(255,102,102);
-
+    private static boolean isSame;
+    private static boolean usernameValid ;
+    private static boolean isPwdPatternValid;
+    
     public AdminCreateScreen(JPanel panelRight, Admin admin) {
         initComponents();
         this.panelRight = panelRight;
@@ -261,7 +264,7 @@ public class AdminCreateScreen extends CustomPanel {
         }
         
         //Verifying Password
-        if(!CommonUtils.passwordPatternCorrect(new String(txtPword.getPassword()))){
+        if(!CommonUtils.checkPwdPattern(new String(txtPword.getPassword()))){
             JOptionPane.showMessageDialog(this, "Password must contain Alphanumeric characters and only '+','_','$' special characters");
             return;
         }
@@ -297,20 +300,23 @@ public class AdminCreateScreen extends CustomPanel {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void txtPwordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPwordKeyTyped
-        boolean isSame = CommonUtils.comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
+        isSame = CommonUtils.comparePasswords(txtPword.getPassword(),txtRePword.getPassword()); 
+        isPwdPatternValid = CommonUtils.checkPwdPattern(new String(txtPword.getPassword()));
+        pwdInfoLbl.setVisible(!isPwdPatternValid);
         txtRePword.setBackground(isSame?Color.white:ERROR_COLOR);
-        btnCreate.setEnabled(isSame && allValuesGiven());
-        
-        pwdInfoLbl.setVisible(!CommonUtils.passwordPatternCorrect(new String(txtPword.getPassword())));
+        toggelCreateBtn();
     }//GEN-LAST:event_txtPwordKeyTyped
 
     private void txtUserKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyReleased
-        boolean usernameValid = CommonUtils.checkUserName(txtUser.getText()); 
+        usernameValid = CommonUtils.checkUserName(txtUser.getText()); 
         userInfoLbl.setVisible(!usernameValid);
         txtUser.setBackground(usernameValid?Color.white:ERROR_COLOR);
-        btnCreate.setEnabled(usernameValid && allValuesGiven());
+        toggelCreateBtn();
     }//GEN-LAST:event_txtUserKeyReleased
 
+    private void toggelCreateBtn(){
+        btnCreate.setEnabled(isSame && usernameValid && isPwdPatternValid && allValuesGiven());
+    }
     private boolean allValuesGiven(){
         return txtRePword.getPassword().length!=0 && txtPword.getPassword().length!=0 && !txtUser.getText().isEmpty();
     }
