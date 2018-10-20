@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 public class CommonUtils {
     
     private static final SimpleDateFormat MMddyyyyhhmm = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-    private static final String EMAIL_REGEX = "^([A-Za-z0-9])([A-Za-z0-9\\.\\-\\_\\$\\_])*\\@([A-Za-z0-9_\\-])+\\.([A-Za-z]{2,4})$";
+    private static final String EMAIL_REGEX = "^([A-Za-z0-9])([A-Za-z0-9_])*\\@([A-Za-z0-9])+\\.([A-Za-z]{2,4})$";
     private static final String PASSWORD_REGEX = "([A-Za-z0-9+_$])*";
     private static final String BLANK = "";
     
@@ -23,7 +23,7 @@ public class CommonUtils {
         return (username==null || username.equals(""))?true:Pattern.matches(EMAIL_REGEX, username);
     }
     
-    public static boolean passwordPatternCorrect(String pwd){
+    public static boolean checkPwdPattern(String pwd){
         return Pattern.compile(PASSWORD_REGEX).matcher(pwd).matches();
     }
     
