@@ -15,7 +15,7 @@ import javax.swing.JPanel;
  *
  * @author Ninad, Akshay, Saurabh
  */
-public class LoginScreen extends javax.swing.JPanel {
+public class LoginScreen extends CustomPanel {
 
     /**
      * Creates new form LoginScreen
@@ -171,9 +171,7 @@ public class LoginScreen extends javax.swing.JPanel {
         
         String password = new String(txtPword.getPassword());
         if(user.verify(password)){
-            CardLayout layout = (CardLayout)panelRight.getLayout();
-            panelRight.add(new SuccessScreen(user));
-            layout.next(panelRight);
+            goTo(panelRight, new SuccessScreen(user));
         }
         else{
             JOptionPane.showMessageDialog(this, "Invalid Credentials!");
