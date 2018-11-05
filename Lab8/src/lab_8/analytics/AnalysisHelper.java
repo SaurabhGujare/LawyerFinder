@@ -31,7 +31,7 @@ public class AnalysisHelper {
         for(User user : users.values()){
             for(Comment c: user.getComments()){
                 int likes = 0;
-                if(userLikeAccount.containsKey(user.getId()));
+                if(userLikeAccount.containsKey(user.getId()))
                     likes = userLikeAccount.get(user.getId());
                 likes += c.getLikes();
                 userLikeAccount.put(user.getId(), likes);
@@ -53,15 +53,9 @@ public class AnalysisHelper {
     public void getFiveMostLikedComment(){
         
         Map<Integer, Comment> comments = DataStore.getInstance().getComments();
-        List<Comment> commentList = (List<Comment>) comments.values();
+        List<Comment> commentList = new ArrayList<Comment>(comments.values());
         
-        Collections.sort(commentList, new Comparator<Comment>(){
-            
-            @Override
-            public int compare(Comment o1, Comment o2){
-                return o2.getLikes() - o1.getLikes();
-            }
-        });
+        Collections.sort(commentList, new LikesComparator());
         
         System.out.println("5 most liked comments:");
         for(int i = 0;i<commentList.size() && i<5;i++){
