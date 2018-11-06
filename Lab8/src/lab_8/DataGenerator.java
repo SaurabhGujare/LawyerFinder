@@ -85,9 +85,6 @@ public class DataGenerator {
                 e.printStackTrace();
             }
         }
-        
-        
-        
     }
     
     private void generateCommentColumns() throws IOException{
@@ -101,7 +98,7 @@ public class DataGenerator {
             while(iterations > 0){
                 int likeCount = rand.nextInt(likeRange);
                 int commentingUserId = rand.nextInt(userIdsRange);
-                String comment = "Some Random Commen with Id "+commentId;
+                String comment = "Some Random Comment with Id "+commentId;
                 
                 String column = commentId+","+postId+","+postingUserId+","+likeCount+","+commentingUserId+","+comment;
                 
@@ -114,8 +111,7 @@ public class DataGenerator {
             
             postingUserId = rand.nextInt(postIdsRange);
             postId++;
-        }
-        
+        }      
     }
     
     private void generateUserFile() throws IOException{
@@ -146,8 +142,6 @@ public class DataGenerator {
                 e.printStackTrace();
             }
         }
-        
-        
     }
     
     private void generateUserColumns() throws IOException{

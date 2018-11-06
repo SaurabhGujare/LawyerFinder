@@ -17,6 +17,7 @@ public class Post {
     private int postId;
     private int userId;
     private List<Comment> comments;
+    private int likes;
 
     public Post(int postId, int userId) {
         this.postId = postId;
@@ -24,6 +25,10 @@ public class Post {
         this.comments = new ArrayList<>();
     }
 
+    public int getLikes() {
+        return likes;
+    }
+    
     public int getPostId() {
         return postId;
     }
@@ -36,6 +41,10 @@ public class Post {
         return comments;
     }
 
+    public void setLikes(int likes) {
+        this.likes = likes;
+    }
+    
     public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
@@ -48,4 +57,8 @@ public class Post {
         this.postId = postId;
     }
     
+    @Override
+    public String toString() {
+        return "Post{" + "id = " + postId + ", likes = " + likes + '}';
+    }
 }

@@ -63,4 +63,28 @@ public class AnalysisHelper {
         }
     }
     
+    public void postWithMostLikedComments(){
+    
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        List<Post> postlist = new ArrayList<Post>(posts.values());
+        
+        Collections.sort(postlist, new Comparator<Post>(){
+        
+            @Override
+            public int compare(Post p1, Post p2){
+            
+                    int firstpostlikes = 0;
+                    int secondpostlikes = 0;
+               
+                    for(Comment com: p1.getComments())
+                            firstpostlikes+=  com.getLikes();
+                
+                    for(Comment com1: p2.getComments())
+                            secondpostlikes += com1.getLikes();
+                    
+                    return firstpostlikes-secondpostlikes;         
+            }
+    });
+        System.out.println("Post with the most liked Comments: "+ postlist.get(0).getPostId());  
+    }
 }
