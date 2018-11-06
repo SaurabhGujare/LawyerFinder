@@ -59,6 +59,6 @@ public class Post {
     
     @Override
     public String toString() {
-        return "Post{" + "id = " + postId + ", likes = " + likes + '}';
+        return "\nPost{" + "id = " + postId + ", Number of Comments = " + this.comments.size() + '}';
     }
 }

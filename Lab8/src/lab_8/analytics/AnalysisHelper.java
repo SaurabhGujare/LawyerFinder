@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import lab_8.entities.Comment;
 import lab_8.entities.Post;
@@ -201,5 +202,21 @@ public class AnalysisHelper {
         return getNumberOfPostsForUser(user)+
                 getNumberOfCommentsForUser(user)+
                 getNumberOfLikesForCommentsOfUser(user);
+    }
+    
+    //Post with most comments.    
+    public void getPostWithMostComments(){
+        
+        //Store PostID and corresponding comments count into the postCommentCount
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        Set<Map.Entry<Integer,Post>> values = posts.entrySet();
+        Post maxPost = null;
+        for(Map.Entry<Integer,Post> e: values){
+            if(maxPost == null || maxPost.getComments().size() < e.getValue().getComments().size()){
+                maxPost = e.getValue();
+            }
+        }
+        
+        System.out.println("\nPost with most comments:"+maxPost);
     }
 }
