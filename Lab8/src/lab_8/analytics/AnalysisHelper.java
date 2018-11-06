@@ -226,12 +226,8 @@ public class AnalysisHelper {
         
         Map<Integer, User> users = DataStore.getInstance().getUsers();
         Set<Map.Entry<Integer,User>> values = users.entrySet();
-        int commentsCount = 0; 
         for(Map.Entry<Integer,User> f: values){
-            for(int j =0;j<(users.get(f.getKey()).getComments()).size();j++)
-                commentsCount++;
-            userCommentCount.put(users.get(f.getKey()).getId(), commentsCount);
-            commentsCount = 0;
+            userCommentCount.put(users.get(f.getKey()).getId(), (users.get(f.getKey()).getComments()).size());
         }
         
         //convert Set to List
