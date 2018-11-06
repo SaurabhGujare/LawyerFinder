@@ -219,4 +219,36 @@ public class AnalysisHelper {
         
         System.out.println("\nPost with most comments:"+maxPost);
     }
+    
+    //Top 5 inactive users based on comments.    
+    public void inactiveUsersCommentBased(){
+        Map<Integer, Integer> userCommentCount = new HashMap<Integer, Integer>();
+        
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        Set<Map.Entry<Integer,User>> values = users.entrySet();
+        int commentsCount = 0; 
+        for(Map.Entry<Integer,User> f: values){
+            for(int j =0;j<(users.get(f.getKey()).getComments()).size();j++)
+                commentsCount++;
+            userCommentCount.put(users.get(f.getKey()).getId(), commentsCount);
+            commentsCount = 0;
+        }
+        
+        //convert Set to List
+        List<Map.Entry<Integer, Integer>> listOfEntries = new ArrayList<>(userCommentCount.entrySet());
+        
+        //sort the HashMap by values  
+        Collections.sort(listOfEntries, new Comparator<Map.Entry<Integer, Integer>>(){
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                if(o1.getValue()>o2.getValue()) return 1;
+                else return -1;
+            }
+        });
+        
+        System.out.println("\nTop 5 inactive users by comments");
+        for(int i =0; i<5;i++){
+            System.out.println(users.get(listOfEntries.get(i).getKey()));
+        }
+    }
 }
