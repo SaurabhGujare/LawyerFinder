@@ -12,6 +12,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
 import lab_8.entities.Comment;
 import lab_8.entities.Post;
@@ -86,5 +87,168 @@ public class AnalysisHelper {
             }
     });
         System.out.println("Post with the most liked Comments: "+ postlist.get(0).getPostId());  
+    }
+    public void avgNumLikesPerComments(){
+        
+        double totalLikes = 0;
+        Map<Integer, Comment> comments = DataStore.getInstance().getComments();
+        List<Comment> commentList = new ArrayList<Comment>(comments.values());
+        
+        
+        for(Comment c: commentList){
+            totalLikes += c.getLikes();
+        }
+        
+        double avg = totalLikes/commentList.size();
+        System.out.println("Average Number Of Likes per Comment:"+ String.format("%.2f", avg));
+    }
+    
+    public void top5InactiveUsersByPosts(){
+        
+        Map<Integer, Integer> userMap = new HashMap<>();
+        
+        Map<Integer,Post> postMap = DataStore.getInstance().getPosts();
+        
+        for(Post p : postMap.values()){
+            int postCount = 0;
+            if(userMap.containsKey(p.getUserId())){
+                postCount = userMap.get(p.getUserId());
+            }
+            userMap.put(p.getUserId(), postCount+1);
+        }
+        
+        
+        List<Map.Entry<Integer,Integer>> list = new ArrayList<>(userMap.entrySet());
+        
+        Collections.sort(list, new Comparator<Map.Entry<Integer, Integer>>() {
+
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                return o2.getValue()-o1.getValue();
+            }
+        });
+        
+        System.out.println("Top 5 inactive users by posts");
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        for(int i =0; i<5;i++){
+            System.out.println(users.get(list.get(i).getKey()));
+        }
+        
+    }
+    
+    public void topFiveInActiveUsersOverall(){
+        
+        Map<Integer, User> userMap = DataStore.getInstance().getUsers();
+        List<Map.Entry<Integer,User>> userList = new ArrayList<>(userMap.entrySet());
+        
+        Collections.sort(userList,new OverallComparator());
+        
+        System.out.println("Top 5 inactive users Overall");
+        for(int i=0;i<5;i++){
+            System.out.println(userList.get(i).getValue() + 
+                    " Posts:"+getNumberOfPostsForUser(userList.get(i).getValue()) +
+                    " Comments:"+getNumberOfCommentsForUser(userList.get(i).getValue())+
+                    " Likes:"+getNumberOfLikesForCommentsOfUser(userList.get(i).getValue())+
+                    " Total:"+getOverAllScore(userList.get(i).getValue()));
+        }
+    }
+    
+    public void topFiveActiveUsersOverall(){
+        
+        Map<Integer, User> userMap = DataStore.getInstance().getUsers();
+        List<Map.Entry<Integer,User>> userList = new ArrayList<>(userMap.entrySet());
+        
+        Collections.sort(userList,new OverallComparator());
+        
+        System.out.println("Top 5 active users Overall");
+        for(int i=0;i<5;i++){
+            System.out.println(userList.get(userList.size()-1-i).getValue() + 
+                    " Posts:"+getNumberOfPostsForUser(userList.get(userList.size()-1-i).getValue()) +
+                    " Comments:"+getNumberOfCommentsForUser(userList.get(userList.size()-1-i).getValue())+
+                    " Likes:"+getNumberOfLikesForCommentsOfUser(userList.get(userList.size()-1-i).getValue())+
+                    " Total:"+getOverAllScore(userList.get(userList.size()-1-i).getValue()));
+        }
+    }
+    
+    
+    public static int getNumberOfPostsForUser(User user){
+        Map<Integer,Post> postsMap = DataStore.getInstance().getPosts();
+        
+        int count = 0;
+        for(Post p: postsMap.values()){
+            if(p.getUserId() == user.getId()){
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    public static int getNumberOfLikesForCommentsOfUser(User user){
+        int count =0;
+        
+        for(Comment c: user.getComments()){
+            count += c.getLikes();
+        }
+        
+        return count;
+    }
+    
+    public static int getNumberOfCommentsForUser(User user){
+        return user.getComments().size();
+    }
+    
+    public static int getOverAllScore(User user){
+        return getNumberOfPostsForUser(user)+
+                getNumberOfCommentsForUser(user)+
+                getNumberOfLikesForCommentsOfUser(user);
+    }
+    
+    //Post with most comments.    
+    public void getPostWithMostComments(){
+        
+        //Store PostID and corresponding comments count into the postCommentCount
+        Map<Integer, Post> posts = DataStore.getInstance().getPosts();
+        Set<Map.Entry<Integer,Post>> values = posts.entrySet();
+        Post maxPost = null;
+        for(Map.Entry<Integer,Post> e: values){
+            if(maxPost == null || maxPost.getComments().size() < e.getValue().getComments().size()){
+                maxPost = e.getValue();
+            }
+        }
+        
+        System.out.println("\nPost with most comments:"+maxPost);
+    }
+    
+    //Top 5 inactive users based on comments.    
+    public void inactiveUsersCommentBased(){
+        Map<Integer, Integer> userCommentCount = new HashMap<Integer, Integer>();
+        
+        Map<Integer, User> users = DataStore.getInstance().getUsers();
+        Set<Map.Entry<Integer,User>> values = users.entrySet();
+        int commentsCount = 0; 
+        for(Map.Entry<Integer,User> f: values){
+            for(int j =0;j<(users.get(f.getKey()).getComments()).size();j++)
+                commentsCount++;
+            userCommentCount.put(users.get(f.getKey()).getId(), commentsCount);
+            commentsCount = 0;
+        }
+        
+        //convert Set to List
+        List<Map.Entry<Integer, Integer>> listOfEntries = new ArrayList<>(userCommentCount.entrySet());
+        
+        //sort the HashMap by values  
+        Collections.sort(listOfEntries, new Comparator<Map.Entry<Integer, Integer>>(){
+            @Override
+            public int compare(Map.Entry<Integer, Integer> o1, Map.Entry<Integer, Integer> o2) {
+                if(o1.getValue()>o2.getValue()) return 1;
+                else return -1;
+            }
+        });
+        
+        System.out.println("\nTop 5 inactive users by comments");
+        for(int i =0; i<5;i++){
+            System.out.println(users.get(listOfEntries.get(i).getKey()));
+        }
     }
 }
