@@ -88,9 +88,7 @@ public class Lab_8 {
         helper.userWithMostLikes();
         helper.getFiveMostLikedComment();
         helper.postWithMostLikedComments();
-        //helper.userWithMostLikes();
-        //helper.getFiveMostLikedComment();
-        //helper.avgNumLikesPerComments();
+        helper.avgNumLikesPerComments();
         helper.top5InactiveUsersByPosts();
     }
     
