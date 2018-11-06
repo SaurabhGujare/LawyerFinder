@@ -135,4 +135,71 @@ public class AnalysisHelper {
         
     }
     
+    public void topFiveInActiveUsersOverall(){
+        
+        Map<Integer, User> userMap = DataStore.getInstance().getUsers();
+        List<Map.Entry<Integer,User>> userList = new ArrayList<>(userMap.entrySet());
+        
+        Collections.sort(userList,new OverallComparator());
+        
+        System.out.println("Top 5 inactive users Overall");
+        for(int i=0;i<5;i++){
+            System.out.println(userList.get(i).getValue() + 
+                    " Posts:"+getNumberOfPostsForUser(userList.get(i).getValue()) +
+                    " Comments:"+getNumberOfCommentsForUser(userList.get(i).getValue())+
+                    " Likes:"+getNumberOfLikesForCommentsOfUser(userList.get(i).getValue())+
+                    " Total:"+getOverAllScore(userList.get(i).getValue()));
+        }
+    }
+    
+    public void topFiveActiveUsersOverall(){
+        
+        Map<Integer, User> userMap = DataStore.getInstance().getUsers();
+        List<Map.Entry<Integer,User>> userList = new ArrayList<>(userMap.entrySet());
+        
+        Collections.sort(userList,new OverallComparator());
+        
+        System.out.println("Top 5 active users Overall");
+        for(int i=0;i<5;i++){
+            System.out.println(userList.get(userList.size()-1-i).getValue() + 
+                    " Posts:"+getNumberOfPostsForUser(userList.get(userList.size()-1-i).getValue()) +
+                    " Comments:"+getNumberOfCommentsForUser(userList.get(userList.size()-1-i).getValue())+
+                    " Likes:"+getNumberOfLikesForCommentsOfUser(userList.get(userList.size()-1-i).getValue())+
+                    " Total:"+getOverAllScore(userList.get(userList.size()-1-i).getValue()));
+        }
+    }
+    
+    
+    public static int getNumberOfPostsForUser(User user){
+        Map<Integer,Post> postsMap = DataStore.getInstance().getPosts();
+        
+        int count = 0;
+        for(Post p: postsMap.values()){
+            if(p.getUserId() == user.getId()){
+                count++;
+            }
+        }
+        
+        return count;
+    }
+    
+    public static int getNumberOfLikesForCommentsOfUser(User user){
+        int count =0;
+        
+        for(Comment c: user.getComments()){
+            count += c.getLikes();
+        }
+        
+        return count;
+    }
+    
+    public static int getNumberOfCommentsForUser(User user){
+        return user.getComments().size();
+    }
+    
+    public static int getOverAllScore(User user){
+        return getNumberOfPostsForUser(user)+
+                getNumberOfCommentsForUser(user)+
+                getNumberOfLikesForCommentsOfUser(user);
+    }
 }
