@@ -93,6 +93,7 @@ public class Lab_8 {
         helper.topFiveInActiveUsersOverall();
         helper.topFiveActiveUsersOverall();
         helper.getPostWithMostComments();
+        helper.inactiveUsersCommentBased();
     }
     
 }
