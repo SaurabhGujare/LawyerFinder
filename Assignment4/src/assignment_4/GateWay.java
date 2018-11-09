@@ -5,6 +5,7 @@
  */
 package assignment_4;
 
+import assignment_4.analytics.AnalysisHelper;
 import assignment_4.analytics.DataStore;
 import assignment_4.entities.interfaces.Mapper;
 import assignment_4.entities.mappers.CustomerMapper;
@@ -54,7 +55,7 @@ public class GateWay {
     }
 
     private static void doAnalytics() {
-        
+        AnalysisHelper.getTotalRevenueForYear();
     }
     
 }

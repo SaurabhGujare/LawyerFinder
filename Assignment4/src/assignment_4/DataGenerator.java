@@ -48,8 +48,8 @@ public class DataGenerator {
     
     private final String PROD_CAT_PATH = "./ProductCatalogue.csv";
     private final String ORDER_FILE_PATH = "./SalesData.csv";
-    private final String CUSTOMER_DIR_PATH = "./CustomerDirectory";
-    private final String SALESPERSON_DIR_PATH = "./SalesPersonDirectory";
+    private final String CUSTOMER_DIR_PATH = "./CustomerDirectory.csv";
+    private final String SALESPERSON_DIR_PATH = "./SalesPersonDirectory.csv";
     
     private DataGenerator() throws IOException {
         
