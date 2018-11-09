@@ -96,7 +96,8 @@ for first 3 entries in rankMap{
 //Our total revenue for the year
 total =0;
 for each order in order map{
-	total = total + order.item.quantity*order.item.salesprice;
+	
+	total = total + order.item.quantity * (order.item.salesprice - productMap.get(order.item.productId).min);
 }
 
 print total;
