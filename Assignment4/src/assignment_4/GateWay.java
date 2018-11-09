@@ -5,11 +5,18 @@
  */
 package assignment_4;
 
+import assignment_4.analytics.DataStore;
+import assignment_4.entities.interfaces.Mapper;
+import assignment_4.entities.mappers.OrderMapper;
+import assignment_4.entities.mappers.ProductMapper;
 import java.io.IOException;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Ninad
  */
 public class GateWay {
     
@@ -17,29 +24,29 @@ public class GateWay {
         
         DataGenerator generator = DataGenerator.getInstance();
         
-        //Below is the sample for how you can use reader. you might wanna 
-        //delete it once you understood.
-        
         DataReader orderReader = new DataReader(generator.getOrderFilePath());
-        String[] orderRow;
-        printRow(orderReader.getFileHeader());
-        while((orderRow = orderReader.getNextRow()) != null){
-            printRow(orderRow);
-        }
-        System.out.println("_____________________________________________________________");
+        populateMap(DataStore.getInstance().getOrders(), orderReader, new OrderMapper());
+
         DataReader productReader = new DataReader(generator.getProductCataloguePath());
-        String[] prodRow;
-        printRow(productReader.getFileHeader());
-        while((prodRow = productReader.getNextRow()) != null){
-            printRow(prodRow);
-        }
+        populateMap(DataStore.getInstance().getProductCatalog(), productReader, new ProductMapper());
+        
+        doAnalytics();
     }
     
-    public static void printRow(String[] row){
-        for (String row1 : row) {
-            System.out.print(row1 + ", ");
+    public static void populateMap(Map map,DataReader reader,Mapper mapper) {
+        
+        String[] row;
+        try {
+            while((row = reader.getNextRow()) != null){
+                map.put(mapper.getKey(row), mapper.mapToObject(row));
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GateWay.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("");
+    }
+
+    private static void doAnalytics() {
+        
     }
     
 }
