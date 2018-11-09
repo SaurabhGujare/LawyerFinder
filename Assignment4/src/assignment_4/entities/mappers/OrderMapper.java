@@ -18,7 +18,7 @@ public class OrderMapper implements Mapper<Order>{
     @Override
     public Order mapToObject(String[] row) {
         
-        Item item = new Item(Integer.parseInt(row[2]), Integer.parseInt(row[6]), Integer.parseInt(row[4]));
+        Item item = new Item(Integer.parseInt(row[2]), Integer.parseInt(row[6]), Integer.parseInt(row[3]));
         Order order = new Order(Integer.parseInt(row[0]), Integer.parseInt(row[4]), Integer.parseInt(row[5]), item);
         return order;
         
