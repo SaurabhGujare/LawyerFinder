@@ -7,8 +7,10 @@ package assignment_4;
 
 import assignment_4.analytics.DataStore;
 import assignment_4.entities.interfaces.Mapper;
+import assignment_4.entities.mappers.CustomerMapper;
 import assignment_4.entities.mappers.OrderMapper;
 import assignment_4.entities.mappers.ProductMapper;
+import assignment_4.entities.mappers.SalesPersonMapper;
 import java.io.IOException;
 import java.util.Map;
 import java.util.logging.Level;
@@ -29,6 +31,12 @@ public class GateWay {
 
         DataReader productReader = new DataReader(generator.getProductCataloguePath());
         populateMap(DataStore.getInstance().getProductCatalog(), productReader, new ProductMapper());
+        
+        DataReader customerReader = new DataReader(generator.getCUSTOMER_DIR_PATH());
+        populateMap(DataStore.getInstance().getCustomerDir(), customerReader, new CustomerMapper());
+        
+        DataReader salesReader = new DataReader(generator.getSALESPERSON_DIR_PATH());
+        populateMap(DataStore.getInstance().getSalesPersonDir(), salesReader, new SalesPersonMapper());
         
         doAnalytics();
     }

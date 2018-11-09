@@ -5,4 +5,7 @@ package assignment_4.analytics;
  */
 public class AnalysisHelper {
     
+    public void getTotalRevenueForYear(){
+        
+    }
 }
