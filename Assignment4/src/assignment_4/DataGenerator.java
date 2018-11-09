@@ -40,10 +40,16 @@ public class DataGenerator {
 
     private final String ORDER_HEADER = "Order-Id,Item-id,Product-Id,Quantity,Sales-Id,Customer-Id,Sales-Price-Per-Prod";
     private final String PRODUCT_HEADER = "Product-Id,Min-Price,Max-Price,Target-Price";
+    private final String CUSTOMER_HEADER = "Customer-Id,First-Name,Last-Name";
+
+    
+    private final String SALESPERSON_HEADER = "SalesPerson-Id,First-Name,Last-Name";
     private final String LINE_BREAK = "\n";
     
     private final String PROD_CAT_PATH = "./ProductCatalogue.csv";
     private final String ORDER_FILE_PATH = "./SalesData.csv";
+    private final String CUSTOMER_DIR_PATH = "./CustomerDirectory";
+    private final String SALESPERSON_DIR_PATH = "./SalesPersonDirectory";
     
     private DataGenerator() throws IOException {
         
@@ -63,6 +69,8 @@ public class DataGenerator {
         
         generateProductsFile();
         generateOrdersFile();
+        generateCustomerFile();
+        generateSalesPersonFile();
         
     }
     
@@ -199,6 +207,83 @@ public class DataGenerator {
     public String getProductCataloguePath(){
         return PROD_CAT_PATH;
     }
+
+    private void generateCustomerFile() throws IOException{
+         try {
+            
+            file = new File(CUSTOMER_DIR_PATH);
+            if(file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
+            System.out.println("New Customer Directory Created");
+            writer = new FileWriter(file);
+        
+            writer.append(CUSTOMER_HEADER);
+            writer.append(LINE_BREAK);
+        
+            generateCustomerColumns();   
+            
+        }finally{
+            
+            try {
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("Error while flushing/closing fileWriter !!!");
+                e.printStackTrace();
+            }
+        }
+        
+    }
+
+    private void generateSalesPersonFile() throws IOException {
+        try {
+            
+            file = new File(SALESPERSON_DIR_PATH);
+            if(file.exists()){
+                file.delete();
+            }
+            file.createNewFile();
+            System.out.println("New Sales Person Directory Created");
+            writer = new FileWriter(file);
+        
+            writer.append(SALESPERSON_HEADER);
+            writer.append(LINE_BREAK);
+        
+            generateSalesPersonColumns();   
+            
+        }finally{
+            
+            try {
+                writer.flush();
+                writer.close();
+            } catch (IOException e) {
+                System.out.println("Error while flushing/closing fileWriter !!!");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void generateCustomerColumns() throws IOException {
+        int custId = 0;
+        while(custId < customerIdsRange){
+            String column = custId+",FirstName"+custId+",LastName"+custId;
+            writer.append(column);
+            writer.append(LINE_BREAK);
+            custId++;
+        }
+    }
+
+    private void generateSalesPersonColumns() throws IOException {
+        int salesId = 0;
+        while(salesId < customerIdsRange){
+            String column = salesId+",FirstName"+salesId+",LastName"+salesId;
+            writer.append(column);
+            writer.append(LINE_BREAK);
+            salesId++;
+        }
+    }
  
     private class productExample {
         int min;
@@ -213,4 +298,11 @@ public class DataGenerator {
         
     }
     
+    public String getCUSTOMER_DIR_PATH() {
+        return CUSTOMER_DIR_PATH;
+    }
+
+    public String getSALESPERSON_DIR_PATH() {
+        return SALESPERSON_DIR_PATH;
+    }
 }

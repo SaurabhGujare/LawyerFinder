@@ -5,8 +5,10 @@
  */
 package assignment_4.analytics;
 
+import assignment_4.entities.Customer;
 import assignment_4.entities.Order;
 import assignment_4.entities.Product;
+import assignment_4.entities.SalesPerson;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,10 +22,14 @@ public class DataStore {
 
     private final Map<Integer, Order> orders;
     private final Map<Integer, Product> productCatalog;
+    private final Map<Integer, Customer> customerDir;
+    private final Map<Integer, SalesPerson> salesPersonDir;
 
     private DataStore() {
         orders = new HashMap<>();
         productCatalog = new HashMap<>();
+        customerDir = new HashMap<>();
+        salesPersonDir = new HashMap<>();
     }
 
     public static DataStore getInstance() {
@@ -41,4 +47,12 @@ public class DataStore {
         return productCatalog;
     }
 
+    public Map<Integer, Customer> getCustomerDir() {
+        return customerDir;
+    }
+
+    public Map<Integer, SalesPerson> getSalesPersonDir() {
+        return salesPersonDir;
+    }
+    
 }
