@@ -55,7 +55,9 @@ public class GateWay {
     }
 
     private static void doAnalytics() {
+        AnalysisHelper.getTop3MostPopularProduct();
         AnalysisHelper.getTotalRevenueForYear();
+        AnalysisHelper.threeBestCustomers();
     }
     
 }

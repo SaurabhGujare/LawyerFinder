@@ -29,32 +29,98 @@ public class AnalysisHelper {
         System.out.println("The total revenue for the year:"+total);
     }
     
-    public void threeBestCustomers(){
+    public static void threeBestCustomers(){
     
         int custId = 0;
         int totalPrice = 0;
         
-        Map<Integer, Integer>revmap = new HashMap<>() ;
+        Map<Integer, Integer>revmap = new HashMap<>() ;        
         Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
-        Map<Integer, Customer> custmap= DataStore.getInstance().getCustomerDir();
-        //TreeMap<Integer, ArrayList>rankmap= new TreeMap<>Com
-        
+        Map<Integer, ArrayList>rankmap= new TreeMap<>();
+      
         for(Order order: orderMap.values()){
-        
             custId= order.getCustomerId();
             totalPrice = (order.getItem().getQuantity())*(order.getItem().getSalesPrice());
             if(revmap.containsKey(custId)){
                     revmap.put(custId,revmap.get(custId)+totalPrice);                                   
             }
             else{
-            
                 revmap.put(custId,totalPrice);
+            }  
+        }
+            
+        for(Map.Entry<Integer, Integer> entry: revmap.entrySet()){
+            if(rankmap.containsKey(entry.getKey())){
+                    rankmap.get(entry.getValue()).add(entry.getKey()); 
             }
+            else{
+                    ArrayList<Integer> custIdArrayList = new ArrayList<Integer>();
+                    custIdArrayList.add(entry.getKey());
+                    rankmap.put(entry.getValue(), custIdArrayList);
+            }
+        }    
+         List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(rankmap.entrySet());
+         
+        System.out.println("Our 3 best Customers: ");
+        
+        for(int i = 0;i<printlist.size() && i<3;i++){
+                for(int j=0;j<printlist.get(i).getValue().size();j++){
+                
+                    System.out.println("CustomerID: "+ printlist.get(i).getValue().get(j));
+                }
+        }        
+    }
+    
+    //1. Our top 3 most popular product sorted from high to low
+    
+    public static void getTop3MostPopularProduct(){
+        /*Stores the prod id and its count corresponding to no og orders into the countMap*/
+        Map<Integer,Integer> countMap = new HashMap<>();
+        Map<Integer,Order> orderMap = DataStore.getInstance().getOrders();
+        
+        for(Order order: orderMap.values()){
+            int prodId = order.getItem().getProductId();
+            if(countMap.containsKey(prodId))
+                countMap.put(prodId, countMap.get(prodId)+1);
+            else
+                countMap.put(prodId, 1);   
         }
         
+        /*Swap key and values of countMap into the rankMap*/
+        Map<Integer, ArrayList> rankMap = new HashMap<>();
+        for(Map.Entry<Integer,Integer> entry: countMap.entrySet()){
+            if(rankMap.containsValue(entry.getValue()))
+                rankMap.get(entry.getValue()).add(entry.getKey());
+            else{
+               ArrayList<Integer> arrList = new ArrayList<Integer>();
+               arrList.add(entry.getKey());
+               rankMap.put(entry.getValue(), arrList);
+            }        
+        }
+        //Sort the rankMap in descending order of its key
+        Comparator<Map.Entry<Integer, ArrayList>> com = new Comparator<Map.Entry<Integer, ArrayList>>(){
+
+            @Override
+            public int compare(Map.Entry<Integer, ArrayList> o1, Map.Entry<Integer, ArrayList> o2) {
+                return o2.getKey().compareTo(o1.getKey());
+            }
+            
+        };
         
+        //Convert HashMap into the List
+        List<Map.Entry<Integer, ArrayList>> rankMapList = new ArrayList<>(rankMap.entrySet());
         
+        //call sort method
+        Collections.sort(rankMapList, com);
         
+        //Print the prod id and its total order
+        System.out.println("\nTop 3 Most Popular Products are\n");
+        for(int i=0;i<rankMapList.size();i++){
+            for(int j=0;j<rankMapList.get(i).getValue().size();j++){
+                System.out.println("prod Id "+rankMapList.get(i).getValue().get(j)+" Total Orders "+rankMapList.get(i).getKey());
+            }
+        System.out.println("*********");
+        }
         
-    }
+    } 
 }
