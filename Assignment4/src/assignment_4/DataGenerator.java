@@ -14,7 +14,7 @@ import java.util.Random;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Akshay, Ninad, Saurabh
  */
 public class DataGenerator {
     
