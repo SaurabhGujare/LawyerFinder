@@ -108,6 +108,8 @@ public class GateWay {
         }
 
         
+        AnalysisHelper.getTop3MostPopularProduct();
+        AnalysisHelper.getTotalRevenueForYear();
     }
 
 }
