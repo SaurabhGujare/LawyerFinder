@@ -81,6 +81,7 @@ public class GateWay {
             switch (selectedOption) {
                 case 1: {
                     AnalysisHelper.getTop3MostPopularProduct();
+                    AnalysisHelper.getTop3MostPopularProductRev();
                     break;
                 }
                 case 2: {
