@@ -3,8 +3,13 @@ package assignment_4.analytics;
 import assignment_4.entities.Customer;
 import assignment_4.entities.Order;
 import assignment_4.entities.Product;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  *
@@ -31,7 +36,8 @@ public class AnalysisHelper {
         
         Map<Integer, Integer>revmap = new HashMap<>() ;
         Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
-        
+        Map<Integer, Customer> custmap= DataStore.getInstance().getCustomerDir();
+        //TreeMap<Integer, ArrayList>rankmap= new TreeMap<>Com
         
         for(Order order: orderMap.values()){
         
@@ -45,6 +51,9 @@ public class AnalysisHelper {
                 revmap.put(custId,totalPrice);
             }
         }
+        
+        
+        
         
         
     }
