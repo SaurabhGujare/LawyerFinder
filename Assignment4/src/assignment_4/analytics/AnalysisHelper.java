@@ -17,8 +17,16 @@ import java.util.TreeMap;
  */
 public class AnalysisHelper {
     
-    public void getTotalRevenueForYear(){
+    public static void getTotalRevenueForYear(){
+        int total = 0;
+        Map<Integer,Order> orderMap = DataStore.getInstance().getOrders();
+        Map<Integer,Product> prodMap = DataStore.getInstance().getProductCatalog();
+        for(Order order: orderMap.values()){
+            total = total + order.getItem().getQuantity() * 
+                    (order.getItem().getSalesPrice()-prodMap.get(order.getItem().getProductId()).getMin());
+        }
         
+        System.out.println("The total revenue for the year:"+total);
     }
     
     //1. Our top 3 most popular product sorted from high to low

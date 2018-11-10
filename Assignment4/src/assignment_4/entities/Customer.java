@@ -7,7 +7,7 @@ package assignment_4.entities;
 
 /**
  *
- * @author harshalneelkamal
+ * @author Akshay, Ninad, Saurabh
  */
 public class Customer {
     private int customerId;
