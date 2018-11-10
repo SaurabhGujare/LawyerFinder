@@ -33,7 +33,7 @@ for first 3 entries in rankMap{
 Map revMap;
 for each order in order map{
 	customerId = order->customerId
-	totalPrice = order.item.quantity*order.item.salesprice;
+	totalPrice = order.item.quantity*(order.item.salesprice - prodMap(order.item.prodId).min);
 	revMap.contains(customerId){
 		revMap.put(customerId,revMap.get(customerId)+totalPrice);
 	}
@@ -66,7 +66,7 @@ for first 3 entries in rankMap{
 Map revMap;
 for each order in order map{
 	supplierId = order->supplierId
-	totalPrice = order.item.quantity*order.item.salesprice;
+	totalPrice = order.item.quantity*(order.item.salesprice - prodMap(order.item.prodId).min);
 	revMap.contains(supplierId){
 		revMap.put(supplierId,revMap.get(supplierId)+totalPrice);
 	}

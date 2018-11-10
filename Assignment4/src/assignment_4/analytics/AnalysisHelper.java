@@ -19,6 +19,6 @@ public class AnalysisHelper {
                     (order.getItem().getSalesPrice()-prodMap.get(order.getItem().getProductId()).getMin());
         }
         
-        System.out.println("The total revenue for the year:"+total);
+        System.out.println("The total revenue for the year is "+total);
     }
 }
