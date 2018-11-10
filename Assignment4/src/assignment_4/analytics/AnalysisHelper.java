@@ -36,11 +36,12 @@ public class AnalysisHelper {
         
         Map<Integer, Integer>revmap = new HashMap<>() ;        
         Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
+        Map<Integer, Product> productMap = DataStore.getInstance().getProductCatalog();
         Map<Integer, ArrayList>rankmap= new TreeMap<>();
       
         for(Order order: orderMap.values()){
             custId= order.getCustomerId();
-            totalPrice = (order.getItem().getQuantity())*(order.getItem().getSalesPrice());
+            totalPrice = (order.getItem().getQuantity())*(order.getItem().getSalesPrice()-productMap.get(order.getItem().getProductId()).getMin());
             if(revmap.containsKey(custId)){
                     revmap.put(custId,revmap.get(custId)+totalPrice);                                   
             }
@@ -50,11 +51,11 @@ public class AnalysisHelper {
         }
             
         for(Map.Entry<Integer, Integer> entry: revmap.entrySet()){
-            if(rankmap.containsKey(entry.getKey())){
+            if(rankmap.containsKey(entry.getValue())){
                     rankmap.get(entry.getValue()).add(entry.getKey()); 
             }
             else{
-                    ArrayList<Integer> custIdArrayList = new ArrayList<Integer>();
+                    ArrayList<Integer> custIdArrayList = new ArrayList<>();
                     custIdArrayList.add(entry.getKey());
                     rankmap.put(entry.getValue(), custIdArrayList);
             }
@@ -64,10 +65,51 @@ public class AnalysisHelper {
         System.out.println("Our 3 best Customers: ");
         
         for(int i = 0;i<printlist.size() && i<3;i++){
-                for(int j=0;j<printlist.get(i).getValue().size();j++){
-                
-                    System.out.println("CustomerID: "+ printlist.get(i).getValue().get(j));
-                }
+            for(Integer id : (ArrayList<Integer>)printlist.get(printlist.size()-1-i).getValue()){
+                System.out.println("CustomerID: "+ id);
+            }
+        }        
+    }
+    
+    public static void threeBestSalesPeople(){
+    
+        int supplierId = 0;
+        int totalProfit = 0;
+        
+        Map<Integer, Integer>revmap = new HashMap<>() ;        
+        Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
+        Map<Integer, Product> productMap = DataStore.getInstance().getProductCatalog();
+        Map<Integer, ArrayList>rankmap= new TreeMap<>();
+      
+        for(Order order: orderMap.values()){
+            supplierId= order.getSupplierId();
+            totalProfit = (order.getItem().getQuantity())*(order.getItem().getSalesPrice()-productMap.get(order.getItem().getProductId()).getMin());
+            if(revmap.containsKey(supplierId)){
+                    revmap.put(supplierId,revmap.get(supplierId)+totalProfit);                                   
+            }
+            else{
+                revmap.put(supplierId,totalProfit);
+            }  
+        }
+            
+        for(Map.Entry<Integer, Integer> entry: revmap.entrySet()){
+            if(rankmap.containsKey(entry.getValue())){
+                    rankmap.get(entry.getValue()).add(entry.getKey()); 
+            }
+            else{
+                    ArrayList<Integer> custIdArrayList = new ArrayList<>();
+                    custIdArrayList.add(entry.getKey());
+                    rankmap.put(entry.getValue(), custIdArrayList);
+            }
+        }    
+         List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(rankmap.entrySet());
+         
+        System.out.println("Our 3 best Sales People: ");
+        
+        for(int i = 0;i<printlist.size() && i<3;i++){
+            for(Integer id : (ArrayList<Integer>)printlist.get(printlist.size()-1-i).getValue()){
+                System.out.println("Supplier ID: "+ id);
+            }
         }        
     }
     
