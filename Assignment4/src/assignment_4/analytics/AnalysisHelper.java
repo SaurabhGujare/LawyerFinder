@@ -30,7 +30,8 @@ public class AnalysisHelper {
         int totalPrice = 0;
         
         Map<Integer, Integer>revmap = new HashMap<>() ;
-        Map<Integer,Order> orderMap = DataStore.getInstance().getOrders();
+        Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
+        
         
         for(Order order: orderMap.values()){
         
@@ -44,5 +45,7 @@ public class AnalysisHelper {
                 revmap.put(custId,totalPrice);
             }
         }
+        
+        
     }
 }
