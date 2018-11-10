@@ -80,7 +80,7 @@ public class GateWay {
 
             switch (selectedOption) {
                 case 1: {
-
+                    AnalysisHelper.getTop3MostPopularProduct();
                     break;
                 }
                 case 2: {
@@ -107,9 +107,6 @@ public class GateWay {
 
         }
 
-        
-        AnalysisHelper.getTop3MostPopularProduct();
-        AnalysisHelper.getTotalRevenueForYear();
     }
 
 }
