@@ -5,7 +5,10 @@
  */
 package assignment_4.analytics.Analyzers;
 
+import assignment_4.analytics.DataStore;
+import assignment_4.entities.Customer;
 import assignment_4.entities.Order;
+import assignment_4.entities.SalesPerson;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +24,12 @@ public class TopThreeSalesPersonAnalyzer extends TopThreeAnalyzer{
         List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(((Map)result).entrySet());
          
         System.out.println("Our 3 best Sales People: ");
-        
+        Map<Integer,SalesPerson> salesMap = DataStore.getInstance().getSalesPersonDir();
         for(int i = 0;i<printlist.size() && i<3;i++){
             for(Integer id : (ArrayList<Integer>)printlist.get(printlist.size()-1-i).getValue()){
-                System.out.println("Supplier ID: "+ id);
+                System.out.println(i+1+") Supplier ID: "+ id+
+                        " Name: "+salesMap.get(id).getFname()+" "+salesMap.get(id).getLname()+
+                        " revenue: $" + printlist.get(printlist.size()-1-i).getKey());
             }
         }   
     }

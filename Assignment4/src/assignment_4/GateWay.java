@@ -7,6 +7,7 @@ package assignment_4;
 
 import assignment_4.analytics.AnalysisHelper;
 import assignment_4.analytics.Analyzers.Analyzer;
+import assignment_4.analytics.Analyzers.AnalyzerFactory;
 import assignment_4.analytics.DataStore;
 import assignment_4.entities.interfaces.Mapper;
 import assignment_4.entities.mappers.CustomerMapper;
@@ -62,26 +63,33 @@ public class GateWay {
         int selectedOption = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        while (selectedOption != AnalysisHelper.EXIT_CASE) {
-            System.out.println("\n---Analytics---");
+        while (selectedOption != AnalyzerFactory.EXIT.ordinal()) {
+            System.out.println("---Analytics---");
             System.out.println("Please select an option from below:");
-            System.out.println("1. Top 3 most popular product by revenue");
-            System.out.println("2. Top 3 most popular product by occurence");
-            System.out.println("3. Top 3 best customers");
-            System.out.println("4. Top 3 best sales people");
-            System.out.println("5. Total revenue for the year");
-            System.out.println("6. Exit");
+            
+            for(AnalyzerFactory a : AnalyzerFactory.values()){
+                System.out.println(a.getMenuDisplay());
+            }
+            
             System.out.print("Enter your option here:");
 
             try {
-                selectedOption = Integer.parseInt(reader.readLine());
+                selectedOption = Integer.parseInt(reader.readLine()) - 1;
             } catch (IOException | NumberFormatException e) {
                 System.out.println("***Invalid input. Please select a number.***");
                 continue;
             }
-            Analyzer analyzer = AnalysisHelper.getAnalyzer(selectedOption);
-            if(analyzer != null)
-                analyzer.analyze(DataStore.getInstance());
+            
+            if(selectedOption >= 0 && selectedOption < AnalyzerFactory.values().length){
+                Analyzer analyzer = AnalyzerFactory.values()[selectedOption].getAnalyzer();
+                if(analyzer != null)
+                    analyzer.analyze(DataStore.getInstance());
+            }
+            else{
+                System.out.println("***Invalid Option.***");
+            }
+            
+            
         }
 
     }
