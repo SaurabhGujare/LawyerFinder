@@ -85,11 +85,11 @@ public class GateWay {
                     break;
                 }
                 case 2: {
-
+                    AnalysisHelper.threeBestCustomers();
                     break;
                 }
                 case 3: {
-
+                AnalysisHelper.threeBestSalesPeople();
                     break;
                 }
                 case 4: {
