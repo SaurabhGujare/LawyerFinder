@@ -35,11 +35,12 @@ public class AnalysisHelper {
         int custId = 0;
         int totalPrice = 0;
         
-        Map<Integer, Integer>revmap = new HashMap<>() ;        
-        Map<Integer, Order> orderMap = DataStore.getInstance().getOrders();
-        Map<Integer, Product> productMap = DataStore.getInstance().getProductCatalog();
-        Map<Integer, ArrayList>rankmap= new TreeMap<>();
+        Map<Integer, Integer>revmap = new HashMap<>() ;    // Map to get the customer ID and corresponding total profit against selected person    
+        Map<Integer, Order> orderMap = DataStore.getInstance().getOrders(); // Map of Orders
+        Map<Integer, Product> productMap = DataStore.getInstance().getProductCatalog(); // Map of Products
+        Map<Integer, ArrayList>rankmap= new TreeMap<>(); // TreeMap to tackel the condition of same total price for different customers.
       
+        // Traversing the order map to get the customer and total price
         for(Order order: orderMap.values()){
             custId= order.getCustomerId();
             totalPrice = (order.getItem().getQuantity())*(order.getItem().getSalesPrice()-productMap.get(order.getItem().getProductId()).getMin());
@@ -50,7 +51,8 @@ public class AnalysisHelper {
                 revmap.put(custId,totalPrice);
             }  
         }
-            
+          
+        // traversing the TreeMap
         for(Map.Entry<Integer, Integer> entry: revmap.entrySet()){
             if(rankmap.containsKey(entry.getValue())){
                     rankmap.get(entry.getValue()).add(entry.getKey()); 
@@ -63,6 +65,7 @@ public class AnalysisHelper {
         }    
          List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(rankmap.entrySet());
          
+         // printing the 1st three  CustomerIDs 
         System.out.println("Our 3 best Customers: ");
         
         for(int i = 0;i<printlist.size() && i<3;i++){
