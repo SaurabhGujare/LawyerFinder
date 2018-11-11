@@ -5,6 +5,8 @@
  */
 package assignment_4.analytics.Analyzers;
 
+import assignment_4.analytics.DataStore;
+import assignment_4.entities.Customer;
 import assignment_4.entities.Order;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +26,12 @@ public class TopThreeCustomersAnalyzer extends TopThreeAnalyzer{
         List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(((Map)result).entrySet());
          
         System.out.println("Our 3 best Customers: ");
-        
+        Map<Integer,Customer> customerMap = DataStore.getInstance().getCustomerDir();
         for(int i = 0;i<printlist.size() && i<3;i++){
             for(Integer id : (ArrayList<Integer>)printlist.get(printlist.size()-1-i).getValue()){
-                System.out.println("CustomerID: "+ id);
+                System.out.println(i+1+") CustomerID: "+ id+
+                        " Name: "+customerMap.get(id).getFname()+" "+customerMap.get(id).getLname()+
+                        " revenue: $" + printlist.get(printlist.size()-1-i).getKey());
             }
         } 
     }

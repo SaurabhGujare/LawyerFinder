@@ -26,11 +26,10 @@ public class TopThreeProductAnalyzerByOccurence extends TopThreeProductsAnalyzer
     protected void displayAnalytics(Object result) {
         List<Map.Entry<Integer, ArrayList>> rankMapList = new ArrayList<>(((Map) result).entrySet());
          
-        //Print the prod-id and its total order 
         System.out.println("Top 3 Most Popular Products are");
-        for(int i=(rankMapList.size()-1);i>=(rankMapList.size()-3);i--){ //since TreeMap is in ascending order of keys
-            for(int j=0;j<rankMapList.get(i).getValue().size();j++){
-                System.out.println("Prodouct Id: "+rankMapList.get(i).getValue().get(j)+" with total occurances: "+rankMapList.get(i).getKey());
+        for(int i=0;i < 3 && i < rankMapList.size();i--){
+            for(int prodId :(ArrayList<Integer>)rankMapList.get(i).getValue()){
+                System.out.println(i+1+") Product Id: "+prodId+" with total occurances: "+rankMapList.get(i).getKey());
             }
         }
     }
