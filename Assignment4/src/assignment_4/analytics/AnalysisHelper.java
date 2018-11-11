@@ -114,9 +114,7 @@ public class AnalysisHelper {
         }        
     }
     
-    //1. Our top 3 most popular product sorted from high to low
-    
-    //1.1 Our top 3 most popular product sorted from high to low w.r.t Orders
+     //1.1 Our top 3 most popular product sorted from high to low w.r.t Orders
     
     public static void getTop3MostPopularProduct(){
         /*Stores the prod id and its count corresponding to no og orders into the countMap*/
@@ -157,7 +155,7 @@ public class AnalysisHelper {
         
     }
     
-    // //1.2 Our top 3 most popular product sorted from high to low w.r.t Revenue
+    //1.2 Our top 3 most popular product sorted from high to low w.r.t Revenue
     
     public static void getTop3MostPopularProductRev(){
        Map<Integer,Integer> countMap = new HashMap<>();
