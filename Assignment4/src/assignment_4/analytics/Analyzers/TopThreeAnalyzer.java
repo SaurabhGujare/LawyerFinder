@@ -20,6 +20,7 @@ import java.util.TreeMap;
  */
 public abstract class TopThreeAnalyzer implements Analyzer{
     
+    protected static final int MAX_RECORDS = 3;
     protected abstract Integer getID(Order order);
     protected abstract void displayAnalytics(Object result);
     
