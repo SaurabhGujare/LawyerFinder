@@ -26,7 +26,7 @@ public class TopThreeProductsAnalyzer extends TopThreeAnalyzer{
         List<Map.Entry<Integer, ArrayList>> rankMapList = new ArrayList<>(((Map) result).entrySet());
          
         System.out.println("Top 3 Most Popular Products are");
-        for(int i=0;i < 3 && i < rankMapList.size();i++){ 
+        for(int i=0;i < MAX_RECORDS && i < rankMapList.size();i++){ 
             for(int prodId :(ArrayList<Integer>)rankMapList.get(rankMapList.size()-1-i).getValue()){
                 System.out.println(i+1+") Product Id: "+prodId+
                         " with Total Revenue: $"+rankMapList.get(rankMapList.size()-1-i).getKey());

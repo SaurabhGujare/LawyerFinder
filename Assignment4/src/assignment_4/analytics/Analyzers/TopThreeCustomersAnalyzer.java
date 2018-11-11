@@ -18,16 +18,18 @@ import java.util.Map;
  */
 public class TopThreeCustomersAnalyzer extends TopThreeAnalyzer{
 
+    @Override
     protected Integer getID(Order order){
         return order.getCustomerId();
     }
     
+    @Override
     protected void displayAnalytics(Object result){
         List<Map.Entry<Integer, ArrayList>> printlist = new ArrayList<>(((Map)result).entrySet());
          
         System.out.println("Our 3 best Customers: ");
         Map<Integer,Customer> customerMap = DataStore.getInstance().getCustomerDir();
-        for(int i = 0;i<printlist.size() && i<3;i++){
+        for(int i = 0;i<printlist.size() && i<MAX_RECORDS;i++){
             for(Integer id : (ArrayList<Integer>)printlist.get(printlist.size()-1-i).getValue()){
                 System.out.println(i+1+") CustomerID: "+ id+
                         " Name: "+customerMap.get(id).getFname()+" "+customerMap.get(id).getLname()+
