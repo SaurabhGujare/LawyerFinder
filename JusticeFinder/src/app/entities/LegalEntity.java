@@ -15,9 +15,27 @@ public class LegalEntity {
     
     private String firstName, middleName, lastName;
     private Date dob;
-    Address priamryAddress;
-    ContactDetails primaryContact;
+    private Address priamryAddress;
+    private ContactDetails primaryContact;
+    private String ssn;
+    private String email;
 
+    public String getSsn() {
+        return ssn;
+    }
+
+    public void setSsn(String ssn) {
+        this.ssn = ssn;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     public String getFirstName() {
         return firstName;
     }
