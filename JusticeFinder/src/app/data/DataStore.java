@@ -7,6 +7,7 @@ package app.data;
 
 import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
+import app.entities.Lawyer;
 import app.entities.LegalEntity;
 import app.entities.UserAccount;
 import java.util.logging.Level;
@@ -21,6 +22,7 @@ public class DataStore {
     private static DataStore store;
     private static final Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
     private static final Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
+    private static final Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
     
     private DataStore(){
         
