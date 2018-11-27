@@ -9,7 +9,7 @@ package app.entities;
  *
  * @author saurabhgujare
  */
-public class lawyer {
+public class Lawyer extends UserAccount {
     private String firstName, middleName, lastName;
     private Address address;
     private ContactDetails workContact;
