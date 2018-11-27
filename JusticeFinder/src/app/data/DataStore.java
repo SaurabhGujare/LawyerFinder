@@ -9,8 +9,6 @@ import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
 import app.entities.LegalEntity;
 import app.entities.UserAccount;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
