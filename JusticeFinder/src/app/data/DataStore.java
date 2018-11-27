@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package app.data;
+
+import app.data.directories.Directory;
+import app.data.directories.UserAccountDirectory;
+import app.entities.UserAccount;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Ninad Subhedar (NUID : 001472377)
+ */
+public class DataStore {
+
+    private static DataStore store;
+    private static final Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
+    
+    private DataStore(){
+        
+    }
+    
+    public static DataStore getInstance(){
+        
+        store = DBUtil.getInstance().retrieveSystem();
+        if(store == null){
+            store = new DataStore();
+            DBUtil.getInstance().storeSystem(store);
+        }
+        initValues();
+        return store;
+    }
+
+    public Directory<String, UserAccount> getUSER_ACCOUNTS() {
+        return USER_ACCOUNTS;
+    }
+    
+    private static void initValues(){
+        try {
+            USER_ACCOUNTS.addNew(new UserAccount("sys", "sys")); //super Admin
+        } catch (Exception ex) {
+            //super Admin present
+        }
+    }
+    
+}
