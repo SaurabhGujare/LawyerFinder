@@ -13,9 +13,10 @@ import java.util.TreeMap;
 /**
  *
  * @author Ninad Subhedar (NUID : 001472377)
- * @param <T>
+ * @param <K> Key
+ * @param <E> Entry
  */
-public abstract class Directory<K,E extends DirectoryEntry> {
+public class Directory<K,E extends DirectoryEntry<K>> {
     
     protected final Map<K,E> map = new TreeMap<>();
     
@@ -27,7 +28,7 @@ public abstract class Directory<K,E extends DirectoryEntry> {
     }
     
     public void addNew(E entry) throws Exception{
-        map.put((K)entry.getKey(),entry);
+        map.put(entry.getKey(),entry);
     }
     
     public void merge(Directory<K,E> directory){
