@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class LegalEntity {
+public class LegalEntity extends UserAccount{
     
     private String firstName, middleName, lastName;
     private Date dob;
@@ -82,6 +82,11 @@ public class LegalEntity {
 
     public void setPrimaryContact(ContactDetails primaryContact) {
         this.primaryContact = primaryContact;
+    }
+
+    @Override
+    public String getKey() {
+        return ssn;
     }
             
 }
