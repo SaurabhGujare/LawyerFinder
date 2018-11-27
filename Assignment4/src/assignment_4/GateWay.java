@@ -6,6 +6,8 @@
 package assignment_4;
 
 import assignment_4.analytics.AnalysisHelper;
+import assignment_4.analytics.Analyzers.Analyzer;
+import assignment_4.analytics.Analyzers.AnalyzerFactory;
 import assignment_4.analytics.DataStore;
 import assignment_4.entities.interfaces.Mapper;
 import assignment_4.entities.mappers.CustomerMapper;
@@ -61,51 +63,33 @@ public class GateWay {
         int selectedOption = 0;
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        while (selectedOption != 5) {
-            System.out.println("\n---Analytics---");
+        while (selectedOption != AnalyzerFactory.EXIT.ordinal()) {
+            System.out.println("---Analytics---");
             System.out.println("Please select an option from below:");
-            System.out.println("1. Top 3 most popular product sorted from high to low");
-            System.out.println("2. Top 3 best customers");
-            System.out.println("3. Top 3 best sales people");
-            System.out.println("4. Total revenue for the year");
-            System.out.println("5. Exit");
+            
+            for(AnalyzerFactory a : AnalyzerFactory.values()){
+                System.out.println(a.getMenuDisplay());
+            }
+            
             System.out.print("Enter your option here:");
 
             try {
-                selectedOption = Integer.parseInt(reader.readLine());
-            } catch (Exception e) {
+                selectedOption = Integer.parseInt(reader.readLine()) - 1;
+            } catch (IOException | NumberFormatException e) {
                 System.out.println("***Invalid input. Please select a number.***");
                 continue;
             }
-
-            switch (selectedOption) {
-                case 1: {
-                    AnalysisHelper.getTop3MostPopularProduct();
-                    AnalysisHelper.getTop3MostPopularProductRev();
-                    break;
-                }
-                case 2: {
-
-                    break;
-                }
-                case 3: {
-
-                    break;
-                }
-                case 4: {
-                    AnalysisHelper.getTotalRevenueForYear();
-                    break;
-                }
-                case 5: {
-                    System.out.println("***Thank you!***");
-                    break;
-                }
-                default: {
-                    System.out.println("***Invalid Option Selected!***");
-                    break;
-                }
+            
+            if(selectedOption >= 0 && selectedOption < AnalyzerFactory.values().length){
+                Analyzer analyzer = AnalyzerFactory.values()[selectedOption].getAnalyzer();
+                if(analyzer != null)
+                    analyzer.analyze(DataStore.getInstance());
             }
-
+            else{
+                System.out.println("***Invalid Option.***");
+            }
+            
+            
         }
 
     }
