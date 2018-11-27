@@ -16,6 +16,10 @@ public class UserAccount implements DirectoryEntry<String>{
     private String username;
     private String password;
 
+    public UserAccount(){
+        
+    }
+    
     public UserAccount(String username, String password) {
         this.username = username;
         this.password = password;
