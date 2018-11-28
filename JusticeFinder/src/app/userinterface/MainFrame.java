@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Toolkit;
+import javax.swing.JPanel;
 
 /**
  *
@@ -24,7 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         initComponents();
         initFrame();
-        loadLoginPage();
+        //loadLoginPage();
     }
 
     private void initFrame() throws HeadlessException {
@@ -37,6 +38,10 @@ public class MainFrame extends javax.swing.JFrame {
         
         this.setLocation(newLocation);
         this.setPreferredSize(new Dimension(1024, 768));
+        
+        BasePanel basePanel = new BasePanel();
+        basePanel.loadPage(new LoginPanel());
+        this.add(basePanel);
     }
 
     /**
@@ -48,32 +53,10 @@ public class MainFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        basePanel = new javax.swing.JPanel();
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Justice Finder");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1024, 768));
-
-        basePanel.setOpaque(false);
-        basePanel.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(basePanel, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        setPreferredSize(new java.awt.Dimension(1025, 769));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -114,12 +97,15 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel basePanel;
     // End of variables declaration//GEN-END:variables
 
-    private void loadLoginPage() {
-        CardLayout layout = (CardLayout)basePanel.getLayout();
-        basePanel.add(new LoginPanel(), "loginPanel");
-        layout.show(basePanel, "loginPanel");
+    /*private void loadLoginPage() {
+        loadPage(new LoginPanel());
     }
+    
+    public void loadPage(JPanel panel) {
+        CardLayout layout = (CardLayout)basePanel.getLayout();
+        basePanel.add(panel, panel.getClass().getName());
+        layout.show(basePanel, panel.getClass().getName());
+    }*/
 }

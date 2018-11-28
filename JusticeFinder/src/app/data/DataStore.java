@@ -7,11 +7,11 @@ package app.data;
 
 import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
+import app.entities.Admin;
 import app.entities.Lawyer;
 import app.entities.LegalEntity;
+import app.entities.StateBarAssociation;
 import app.entities.UserAccount;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -23,7 +23,7 @@ public class DataStore {
     private static final Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
     private static final Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
     private static final Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
-    
+    private static final Directory<String, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
     private DataStore(){
         
     }
@@ -46,13 +46,25 @@ public class DataStore {
     public static Directory<String, LegalEntity> getLEGAL_ENTITY_DIRECTORY() {
         return LEGAL_ENTITY_DIRECTORY;
     }
+
+    public static Directory<String, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
+        return STATEBARASSOCIATION_DIRECTORY;
+    }
+
+    public static Directory<String, Lawyer> getLAWYER_DIRECTORY() {
+        return LAWYER_DIRECTORY;
+    }
     
     private static void initValues(){
         try {
-            USER_ACCOUNTS.addNew(new UserAccount("sys", "sys")); //super Admin
+            USER_ACCOUNTS.addNew(new Admin("admin", "admin")); //super Admin
         } catch (Exception ex) {
             //super Admin present
         }
+    }
+
+    public static Directory<String, Lawyer> getLAWYER_DIRECTORY() {
+        return LAWYER_DIRECTORY;
     }
     
 }

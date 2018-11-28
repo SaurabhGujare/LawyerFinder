@@ -1,0 +1,23 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package app.entities;
+
+import app.entities.UserAccount;
+import app.entities.roles.Roles;
+import app.entities.roles.Roles;
+
+/**
+ *
+ * @author Ninad Subhedar (NUID : 001472377)
+ */
+public class Admin extends UserAccount{
+
+    public Admin(String username, String password) {
+        super(username, password);
+        this.role = Roles.ADMIN;
+    }
+    
+}
