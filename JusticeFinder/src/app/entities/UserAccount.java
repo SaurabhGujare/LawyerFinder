@@ -6,15 +6,26 @@
 package app.entities;
 
 import app.data.directories.interfaces.DirectoryEntry;
+import app.entities.roles.Role;
+import app.entities.roles.Roles;
 
 /**
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class UserAccount implements DirectoryEntry<String>{
+public abstract class UserAccount implements DirectoryEntry<String>{
     
     private String username;
     private String password;
+    protected Roles role;
+
+    public Roles getRole() {
+        return role;
+    }
+
+    public void setRole(Roles role) {
+        this.role = role;
+    }
 
     public UserAccount(){
         
