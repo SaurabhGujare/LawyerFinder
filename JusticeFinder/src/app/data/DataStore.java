@@ -10,8 +10,6 @@ import app.data.directories.UserAccountDirectory;
 import app.entities.Lawyer;
 import app.entities.LegalEntity;
 import app.entities.UserAccount;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
