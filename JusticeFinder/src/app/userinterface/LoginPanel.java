@@ -224,12 +224,24 @@ public class LoginPanel extends javax.swing.JPanel {
         UserAccount userAccount = loginAction.login(userNameTxt.getText(), passwordTxt.getText());
         if(userAccount!=null){
             JOptionPane.showMessageDialog(this, "Login Success");
+            
+            ((BasePanel)this.getParent()).loadPage(userAccount.getRole().getType().getNewWorkspace());
         }
         else{
             JOptionPane.showMessageDialog(this, "Login Failed");
         }
     }//GEN-LAST:event_loginBtnActionPerformed
 
+    @Override
+    public void setVisible(boolean aFlag) {
+        super.setVisible(aFlag); //To change body of generated methods, choose Tools | Templates.
+        resetPage();
+    }
+
+    private void resetPage(){
+        userNameTxt.setText("");
+        passwordTxt.setText("");
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Body;

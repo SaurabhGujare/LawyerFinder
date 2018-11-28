@@ -5,6 +5,7 @@
  */
 package app.entities;
 
+import app.entities.roles.Roles;
 import java.util.Date;
 
 /**
@@ -20,6 +21,11 @@ public class LegalEntity extends UserAccount{
     private String ssn;
     private String email;
 
+    public LegalEntity() {
+        this.role = Roles.LEGAL_ENTITY;
+    }
+
+    
     public String getSsn() {
         return ssn;
     }
