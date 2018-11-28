@@ -62,9 +62,5 @@ public class DataStore {
             //super Admin present
         }
     }
-
-    public static Directory<String, Lawyer> getLAWYER_DIRECTORY() {
-        return LAWYER_DIRECTORY;
-    }
     
 }
