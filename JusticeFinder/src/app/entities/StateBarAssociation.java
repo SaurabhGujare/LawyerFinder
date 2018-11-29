@@ -17,6 +17,33 @@ import javax.swing.JPanel;
 public class StateBarAssociation extends User implements DirectoryEntry<String>{
     private String stateBarAssociationName;
     private String stateBarAssociationID;
+    private Address workaddress;
+    private ContactDetails workphone;
+    private String email;
+
+    public Address getWorkaddress() {
+        return workaddress;
+    }
+
+    public void setWorkaddress(Address workaddress) {
+        this.workaddress = workaddress;
+    }
+
+    public ContactDetails getWorkphone() {
+        return workphone;
+    }
+
+    public void setWorkphone(ContactDetails workphone) {
+        this.workphone = workphone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public String getStateBarAssociationName() {
         return stateBarAssociationName;
@@ -41,10 +68,6 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
 
     public StateBarAssociation() {
         super(Roles.STATE_BAR_ASSOCIATION);
-    }
-
-    
-    
-    
+    }    
     
 }
