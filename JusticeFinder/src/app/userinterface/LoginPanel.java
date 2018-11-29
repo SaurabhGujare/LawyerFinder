@@ -235,7 +235,9 @@ public class LoginPanel extends javax.swing.JPanel {
     @Override
     public void setVisible(boolean aFlag) {
         super.setVisible(aFlag); //To change body of generated methods, choose Tools | Templates.
-        resetPage();
+        if(aFlag){
+            resetPage();
+        }
     }
 
     private void resetPage(){
