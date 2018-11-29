@@ -23,6 +23,7 @@ public  class UserAccount implements DirectoryEntry<String>{
         this.username = username;
         this.password = password;
         this.user = user;
+        user.setAccount(this);
     }
 
     public String getUsername() {

@@ -64,7 +64,9 @@ public class DataStore {
             //ex.printStackTrace();
         }
         try {
-            USER_ACCOUNTS.addNew(new UserAccount("akshay", "akshay", new StateBarAssociation())); // statebarassociation
+            StateBarAssociation sba = new StateBarAssociation();
+            USER_ACCOUNTS.addNew(new UserAccount("akshay", "akshay", sba)); // statebarassociation
+            STATEBARASSOCIATION_DIRECTORY.addNew(sba);
         } catch (Exception ex) {
             //super Admin present
             //ex.printStackTrace();
