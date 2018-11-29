@@ -225,7 +225,7 @@ public class LoginPanel extends javax.swing.JPanel {
         if(userAccount!=null){
             JOptionPane.showMessageDialog(this, "Login Success");
             
-            ((BasePanel)this.getParent()).loadPage(userAccount.getRole().getType().getNewWorkspace());
+            ((BasePanel)this.getParent()).loadPage(userAccount.getUser().getRole().getType().getNewWorkspace());
         }
         else{
             JOptionPane.showMessageDialog(this, "Login Failed");
