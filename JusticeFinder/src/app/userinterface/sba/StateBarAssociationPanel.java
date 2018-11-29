@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface;
+package app.userinterface.sba;
 
 import app.entities.StateBarAssociation;
+import app.userinterface.BasePanel;
 import app.userinterface.BasePanel;
 import com.db4o.User;
 import java.awt.CardLayout;
