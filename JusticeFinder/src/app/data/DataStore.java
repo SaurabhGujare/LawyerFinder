@@ -20,22 +20,23 @@ import app.entities.UserAccount;
 public class DataStore {
 
     private static DataStore store;
-    private static final Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
-    private static final Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
-    private static final Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
-    private static final Directory<String, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
+    private Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
+    private Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
+    private Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
+    private Directory<String, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
     private DataStore(){
-        
+        initValues();
     }
     
     public static DataStore getInstance(){
         
-        store = DBUtil.getInstance().retrieveSystem();
+        if(store == null){
+            store = DBUtil.getInstance().retrieveSystem();
+        }
         if(store == null){
             store = new DataStore();
             DBUtil.getInstance().storeSystem(store);
         }
-        initValues();
         return store;
     }
 
@@ -43,26 +44,37 @@ public class DataStore {
         return USER_ACCOUNTS;
     }
 
-    public static Directory<String, LegalEntity> getLEGAL_ENTITY_DIRECTORY() {
+    public Directory<String, LegalEntity> getLEGAL_ENTITY_DIRECTORY() {
         return LEGAL_ENTITY_DIRECTORY;
     }
 
-    public static Directory<String, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
+    public Directory<String, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
         return STATEBARASSOCIATION_DIRECTORY;
     }
 
-    public static Directory<String, Lawyer> getLAWYER_DIRECTORY() {
+    public Directory<String, Lawyer> getLAWYER_DIRECTORY() {
         return LAWYER_DIRECTORY;
     }
     
-    private static void initValues(){
+    private void initValues(){
         try {
-            USER_ACCOUNTS.addNew(new UserAccount("admin", "admin",new Admin())); //super Admin
-            USER_ACCOUNTS.addNew(new UserAccount("akshay","akshay",new StateBarAssociation())); // statebarassociation
-            USER_ACCOUNTS.addNew(new UserAccount("lawyer","lawyer",new Lawyer())); //Lawyer
+            USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin
         } catch (Exception ex) {
             //super Admin present
-            ex.printStackTrace();
+            //ex.printStackTrace();
         }
+        try {
+            USER_ACCOUNTS.addNew(new UserAccount("akshay", "akshay", new StateBarAssociation())); // statebarassociation
+        } catch (Exception ex) {
+            //super Admin present
+            //ex.printStackTrace();
+        }
+        try {
+            USER_ACCOUNTS.addNew(new UserAccount("lawyer", "lawyer", new Lawyer())); //Lawyer
+        } catch (Exception ex) {
+            //super Admin present
+            //ex.printStackTrace();
+        }
+
     }
 }
