@@ -5,6 +5,7 @@
  */
 package app.entities;
 
+import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.UserAccount;
 import app.entities.roles.Roles;
 import app.entities.roles.Roles;
@@ -13,11 +14,19 @@ import app.entities.roles.Roles;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class Admin extends UserAccount{
+public class Admin extends User implements DirectoryEntry<Integer>{
 
-    public Admin(String username, String password) {
-        super(username, password);
-        this.role = Roles.ADMIN;
+    private static int lastId = 0;
+    private int id;
+    public Admin() {
+        super(Roles.ADMIN);
+        id = lastId;
+        lastId++;
+    }
+
+    @Override
+    public Integer getKey() {
+        return id;
     }
     
 }

@@ -5,11 +5,14 @@
  */
 package app.entities;
 
+import app.data.directories.interfaces.DirectoryEntry;
+import app.entities.roles.Roles;
+
 /**
  *
  * @author saurabhgujare
  */
-public class Lawyer extends UserAccount {
+public class Lawyer extends User implements DirectoryEntry<String>{
     private String firstName, middleName, lastName;
     private Address address;
     private ContactDetails workContact;
@@ -19,6 +22,11 @@ public class Lawyer extends UserAccount {
     private String specialization;
     private String yearsOfPractice;
 
+    public Lawyer() {
+        super(Roles.LAWYER);
+    }
+
+    
     public String getFirstName() {
         return firstName;
     }
@@ -97,6 +105,11 @@ public class Lawyer extends UserAccount {
 
     public void setYearsOfPractice(String yearsOfPractice) {
         this.yearsOfPractice = yearsOfPractice;
+    }
+
+    @Override
+    public String getKey() {
+        return ssn;
     }
     
     

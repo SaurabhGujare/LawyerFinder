@@ -13,27 +13,16 @@ import app.entities.roles.Roles;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public abstract class UserAccount implements DirectoryEntry<String>{
+public  class UserAccount implements DirectoryEntry<String>{
     
     private String username;
     private String password;
-    protected Roles role;
-
-    public Roles getRole() {
-        return role;
-    }
-
-    public void setRole(Roles role) {
-        this.role = role;
-    }
-
-    public UserAccount(){
-        
-    }
+    private User user;
     
-    public UserAccount(String username, String password) {
+    public UserAccount(String username, String password,User user) {
         this.username = username;
         this.password = password;
+        this.user = user;
     }
 
     public String getUsername() {
@@ -50,6 +39,14 @@ public abstract class UserAccount implements DirectoryEntry<String>{
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
