@@ -5,13 +5,16 @@
  */
 package app.userinterface;
 
-import java.awt.CardLayout;
+import app.data.DBUtil;
+import app.data.DataStore;
+import app.data.Session;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Toolkit;
-import javax.swing.JPanel;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 /**
  *
@@ -42,8 +45,28 @@ public class MainFrame extends javax.swing.JFrame {
         BasePanel basePanel = new BasePanel();
         basePanel.loadPage(new LoginPanel());
         this.add(basePanel);
+    
+        addWindowListener( new WindowAdapter() {
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                saveApp();
+            }
+        
+        });
+        
     }
 
+    private static void saveApp(){
+        
+        try {
+            Session.clearSession();
+            DBUtil.getInstance().storeSystem(DataStore.getInstance());
+            System.out.println("Application Saved");
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

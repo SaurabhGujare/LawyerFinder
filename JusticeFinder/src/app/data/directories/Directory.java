@@ -54,4 +54,8 @@ public class Directory<K,E extends DirectoryEntry<K>> {
     public boolean contains(K key){
         return map.containsKey(key);
     }
+    
+    public boolean contains(DirectoryEntry entry){
+        return map.containsKey(entry.getKey());
+    }
 }

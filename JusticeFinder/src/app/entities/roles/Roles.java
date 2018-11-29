@@ -6,7 +6,7 @@
 package app.entities.roles;
 
 import app.entities.Lawyer;
-import app.userinterface.AdminPanel;
+import app.userinterface.admin.AdminPanel;
 import app.userinterface.LawyerPanel;
 import app.userinterface.StateBarAssociationPanel;
 

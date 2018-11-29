@@ -6,9 +6,7 @@
 package app.entities;
 
 import app.data.directories.interfaces.DirectoryEntry;
-import app.entities.roles.Role;
 import app.entities.roles.Roles;
-import javax.swing.JPanel;
 
 /**
  *
@@ -41,6 +39,11 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
 
     public StateBarAssociation() {
         super(Roles.STATE_BAR_ASSOCIATION);
+    }
+
+    @Override
+    public String toString() {
+        return stateBarAssociationID;
     }
 
     
