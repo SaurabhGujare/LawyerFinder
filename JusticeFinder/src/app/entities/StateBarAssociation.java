@@ -5,11 +5,16 @@
  */
 package app.entities;
 
+import app.data.directories.interfaces.DirectoryEntry;
+import app.entities.roles.Role;
+import app.entities.roles.Roles;
+import javax.swing.JPanel;
+
 /**
  *
  * @author arele
  */
-public class StateBarAssociation extends UserAccount{
+public class StateBarAssociation extends User implements DirectoryEntry<String>{
     private String stateBarAssociationName;
     private String stateBarAssociationID;
 
@@ -33,6 +38,13 @@ public class StateBarAssociation extends UserAccount{
     public String getKey() {
         return stateBarAssociationID;
     }
+
+    public StateBarAssociation() {
+        super(Roles.STATE_BAR_ASSOCIATION);
+    }
+
+    
+    
     
     
 }

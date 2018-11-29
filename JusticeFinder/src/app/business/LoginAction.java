@@ -7,6 +7,7 @@ package app.business;
 
 import app.business.interfaces.Actions;
 import app.data.DataStore;
+import app.data.Session;
 import app.entities.UserAccount;
 
 /**
@@ -18,7 +19,8 @@ public class LoginAction implements Actions{
     DataStore DATA_STORE = DataStore.getInstance();
     
     public UserAccount login(String username, String password){
-        return DATA_STORE.getUSER_ACCOUNTS().getEntry(username);
+        Session.createNewSession(DATA_STORE.getUSER_ACCOUNTS().getEntry(username));
+        return Session.getUserAccount();
     }
     
     

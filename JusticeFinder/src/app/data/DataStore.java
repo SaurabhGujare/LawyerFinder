@@ -57,10 +57,11 @@ public class DataStore {
     
     private static void initValues(){
         try {
-            USER_ACCOUNTS.addNew(new Admin("admin", "admin")); //super Admin
+            USER_ACCOUNTS.addNew(new UserAccount("admin", "admin",new Admin())); //super Admin
+            USER_ACCOUNTS.addNew(new UserAccount("akshay","akshay",new StateBarAssociation())); // statebarassociation
         } catch (Exception ex) {
             //super Admin present
+            ex.printStackTrace();
         }
     }
-    
 }

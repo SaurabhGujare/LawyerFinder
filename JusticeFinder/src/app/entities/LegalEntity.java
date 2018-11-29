@@ -5,6 +5,7 @@
  */
 package app.entities;
 
+import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class LegalEntity extends UserAccount{
+public class LegalEntity extends User implements DirectoryEntry<String>{
     
     private String firstName, middleName, lastName;
     private Date dob;
@@ -22,7 +23,7 @@ public class LegalEntity extends UserAccount{
     private String email;
 
     public LegalEntity() {
-        this.role = Roles.LEGAL_ENTITY;
+        super(Roles.LEGAL_ENTITY);
     }
 
     
