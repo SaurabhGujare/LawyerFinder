@@ -5,9 +5,7 @@
  */
 package app.entities;
 
-import app.entities.roles.Role;
 import app.entities.roles.Roles;
-import javax.swing.JPanel;
 
 /**
  *
@@ -16,6 +14,15 @@ import javax.swing.JPanel;
 public abstract class User {
     
     Roles role;
+    UserAccount account;
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
+    }
 
     public User(Roles role) {
         this.role = role;
