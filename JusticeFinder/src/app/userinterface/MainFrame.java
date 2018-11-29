@@ -8,7 +8,6 @@ package app.userinterface;
 import app.data.DBUtil;
 import app.data.DataStore;
 import app.data.Session;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.HeadlessException;
@@ -16,9 +15,6 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-import javax.swing.JPanel;
 
 /**
  *

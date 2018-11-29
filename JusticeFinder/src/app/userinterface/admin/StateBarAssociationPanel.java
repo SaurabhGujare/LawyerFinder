@@ -5,25 +5,46 @@
  */
 package app.userinterface.admin;
 
-import app.data.DataStore;
+import app.data.directories.Directory;
 import app.entities.StateBarAssociation;
 import app.entities.UserAccount;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import app.userinterface.interfaces.HasTable;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class StateBarAssociationPanel extends javax.swing.JPanel {
+public class StateBarAssociationPanel extends javax.swing.JPanel implements HasTable {
 
-    DataStore store = DataStore.getInstance();
+    Directory<String , StateBarAssociation> stateBarDir;
+    Directory<String, UserAccount> userAccDir;
     private StateBarAssociation association;
     /**
      * Creates new form StateBarAssociationPanel
+     * @param stateBarDir
+     * @param userAccDir
      */
-    public StateBarAssociationPanel() {
+    public StateBarAssociationPanel(Directory<String , StateBarAssociation> stateBarDir,Directory<String, UserAccount> userAccDir) {
         initComponents();
+        this.stateBarDir = stateBarDir;
+        this.userAccDir = userAccDir;
+        
+        ComponentAdapter adapter = new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent ce) {
+                super.componentShown(ce); 
+                populateTableData();
+            }
+            
+        };
+        
+        this.addComponentListener(adapter);
+        populateTableData();
     }
 
     /**
@@ -36,7 +57,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        recordsTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
@@ -55,7 +76,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        recordsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -63,8 +84,8 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
                 "ID", "Name", "UserName"
             }
         ));
-        jTable1.setPreferredSize(new java.awt.Dimension(300, 60));
-        jScrollPane1.setViewportView(jTable1);
+        recordsTable.setPreferredSize(new java.awt.Dimension(300, 60));
+        jScrollPane1.setViewportView(recordsTable);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(434, 235));
 
@@ -255,10 +276,22 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         UserAccount account = new UserAccount(userNameTxt.getText(), passwordTxt.getText(), association);
         
         try {
-            store.getSTATEBARASSOCIATION_DIRECTORY().addNew(association);
-            store.getUSER_ACCOUNTS().addNew(account);
+            userAccDir.addNew(account);
         } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.out.println(ex.getMessage());
+            return;
         }
+        try {
+            if(stateBarDir.contains(association)){
+                JOptionPane.showMessageDialog(this, "State Bar Asscociation with this name already present");
+                return;
+            }
+            stateBarDir.addNew(association);
+        } catch (Exception ex) {
+            
+        }
+        populateTableData();
     }//GEN-LAST:event_saveBtnActionPerformed
 
 
@@ -276,11 +309,25 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField passwordTxt;
+    private javax.swing.JTable recordsTable;
     private javax.swing.JButton saveBtn;
     private javax.swing.JTextField userNameTxt;
     private javax.swing.JButton viewUpdateBtn;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void populateTableData() {
+        
+        DefaultTableModel model = (DefaultTableModel) recordsTable.getModel();
+        model.setRowCount(0);
+        for(StateBarAssociation s: stateBarDir.getAllEntries()){
+            Object[] row = new Object[3];
+            row[0] = s;
+            row[1] = s.getStateBarAssociationName();
+            row[2] = s.getAccount().getUsername();
+            model.addRow(row);
+        }
+    }
 }

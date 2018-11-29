@@ -6,6 +6,7 @@
 package app.userinterface.admin;
 
 import app.business.LoginAction;
+import app.data.DataStore;
 import app.data.Session;
 import app.entities.Admin;
 import app.userinterface.BasePanel;
@@ -21,6 +22,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private Admin admin;
     CardLayout layout;
     LoginAction loginAction = new LoginAction();
+    DataStore dataStore = DataStore.getInstance();
     /**
      * Creates new form LegalEntityPanel
      */
@@ -29,7 +31,7 @@ public class AdminPanel extends javax.swing.JPanel {
         admin = (Admin)Session.getUserAccount().getUser();
         userNameLbl.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
-        containerPanel.add(new StateBarAssociationPanel(),StateBarAssociationPanel.class.getName());
+        containerPanel.add(new StateBarAssociationPanel(dataStore.getSTATEBARASSOCIATION_DIRECTORY(),dataStore.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(),CourtPanel.class.getName());
         
         layout = (CardLayout) containerPanel.getLayout();
