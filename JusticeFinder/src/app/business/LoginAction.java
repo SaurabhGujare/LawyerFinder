@@ -6,6 +6,7 @@
 package app.business;
 
 import app.business.interfaces.Actions;
+import app.data.DBUtil;
 import app.data.DataStore;
 import app.data.Session;
 import app.entities.UserAccount;
@@ -16,12 +17,15 @@ import app.entities.UserAccount;
  */
 public class LoginAction implements Actions{
     
-    DataStore DATA_STORE = DataStore.getInstance();
+    private static final DataStore DATA_STORE = DataStore.getInstance();
     
     public UserAccount login(String username, String password){
         Session.createNewSession(DATA_STORE.getUSER_ACCOUNTS().getEntry(username));
         return Session.getUserAccount();
     }
     
-    
+    public void logout(){
+        Session.clearSession();
+        DBUtil.getInstance().storeSystem(DATA_STORE);
+    }
 }
