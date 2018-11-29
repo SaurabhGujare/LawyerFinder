@@ -21,8 +21,8 @@ public class AdminPanel extends javax.swing.JPanel {
      */
     public AdminPanel() {
         initComponents();
-        admin = (Admin)Session.getUserAccount();
-        userNameLbl.setText(admin.getUsername());
+        admin = (Admin)Session.getUserAccount().getUser();
+        userNameLbl.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
     }
 
