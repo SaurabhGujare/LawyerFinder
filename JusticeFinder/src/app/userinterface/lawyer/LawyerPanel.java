@@ -3,13 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface;
+package app.userinterface.lawyer;
+import app.business.LoginAction;
+import app.userinterface.BasePanel;
+import app.userinterface.lawyer.LawyerProfilePanel;
 
 /**
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
 public class LawyerPanel extends javax.swing.JPanel {
+    private Object userAccount;
 
     /**
      * Creates new form LawyerPanel
@@ -29,7 +33,11 @@ public class LawyerPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        lawyerContainer = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        checkProfileButton = new javax.swing.JButton();
+        checkConsultaionRequestButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -45,7 +53,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(731, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addContainerGap())
         );
@@ -57,18 +65,52 @@ public class LawyerPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jSplitPane1.setDividerLocation(200);
+
+        lawyerContainer.setBackground(new java.awt.Color(255, 255, 255));
+        lawyerContainer.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(lawyerContainer);
+
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        checkProfileButton.setText("Check Profile");
+        checkProfileButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkProfileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkProfileButtonActionPerformed(evt);
+            }
+        });
+
+        checkConsultaionRequestButton.setText("Check Consultation Requests");
+        checkConsultaionRequestButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkConsultaionRequestButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkConsultaionRequestButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(checkConsultaionRequestButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(checkProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 577, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(checkProfileButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(checkConsultaionRequestButton)
+                .addContainerGap(462, Short.MAX_VALUE))
         );
+
+        jSplitPane1.setLeftComponent(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -77,8 +119,8 @@ public class LawyerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -86,8 +128,8 @@ public class LawyerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -97,10 +139,24 @@ public class LawyerPanel extends javax.swing.JPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void checkProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileButtonActionPerformed
+        // TODO add your handling code here:
+       ((BasePanel)this.getParent()).loadPage(new LawyerProfilePanel());
+    }//GEN-LAST:event_checkProfileButtonActionPerformed
+
+    private void checkConsultaionRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConsultaionRequestButtonActionPerformed
+        // TODO add your handling code here:
+        ((BasePanel)this.getParent()).loadPage(new ConsultationRequestPanel());
+    }//GEN-LAST:event_checkConsultaionRequestButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton checkConsultaionRequestButton;
+    private javax.swing.JButton checkProfileButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JPanel lawyerContainer;
     private javax.swing.JButton logoutButton;
     // End of variables declaration//GEN-END:variables
 }

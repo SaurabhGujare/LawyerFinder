@@ -131,7 +131,7 @@ public class AdminPanel extends javax.swing.JPanel {
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 249, Short.MAX_VALUE)
             .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+                .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 249, Short.MAX_VALUE)
                 .addComponent(courtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         mainMenuLayout.setVerticalGroup(
