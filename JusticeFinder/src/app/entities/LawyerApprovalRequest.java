@@ -5,18 +5,28 @@
  */
 package app.entities;
 
+import app.entities.workqueues.WorkItem;
 import java.util.Date;
 
 /**
  *
  * @author Akshay Relekar
  */
-public class LawyerApprovalRequest {
+public class LawyerApprovalRequest implements WorkItem{
     
     private Lawyer lawyer;
     private String requestmessage;
     private int requestid;
     private Date requestdate;
+    private String status = "PENDING";
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public Lawyer getLawyer() {
         return lawyer;
@@ -49,5 +59,11 @@ public class LawyerApprovalRequest {
     public void setRequestdate(Date requestdate) {
         this.requestdate = requestdate;
     }
+
+    @Override
+    public String toString() {
+        return requestid+"";
+    }
+    
     
 }
