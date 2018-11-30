@@ -9,12 +9,12 @@ package app.userinterface.lawyer;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class LawyerProfilePanel extends javax.swing.JPanel {
+public class ViewLawyerProfilePanel extends javax.swing.JPanel {
 
     /**
      * Creates new form LawyerProfilePanel
      */
-    public LawyerProfilePanel() {
+    public ViewLawyerProfilePanel() {
         initComponents();
     }
 
