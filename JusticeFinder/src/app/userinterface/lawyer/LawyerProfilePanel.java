@@ -63,7 +63,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 14, 150));
+        jLabel2.setForeground(new java.awt.Color(9, 18, 102));
         jLabel2.setText("Matt Damon");
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 15)); // NOI18N
@@ -83,7 +83,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Al Bayan", 0, 15)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 14, 150));
+        jTextField1.setForeground(new java.awt.Color(9, 18, 102));
         jTextField1.setText("Law School - Samford University Cumberland School of ");
         jTextField1.setBorder(null);
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Al Bayan", 0, 15)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 14, 150));
+        jTextField2.setForeground(new java.awt.Color(9, 18, 102));
         jTextField2.setText("Birmingham");
         jTextField2.setBorder(null);
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +156,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         jTextField7.setEditable(false);
         jTextField7.setFont(new java.awt.Font("Al Bayan", 0, 15)); // NOI18N
-        jTextField7.setForeground(new java.awt.Color(0, 14, 150));
+        jTextField7.setForeground(new java.awt.Color(9, 18, 102));
         jTextField7.setText(" All Alabama Counties");
         jTextField7.setBorder(null);
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
@@ -170,7 +170,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         jTextField6.setEditable(false);
         jTextField6.setFont(new java.awt.Font("Al Bayan", 0, 15)); // NOI18N
-        jTextField6.setForeground(new java.awt.Color(0, 14, 150));
+        jTextField6.setForeground(new java.awt.Color(9, 18, 102));
         jTextField6.setText("Law Bar Admission - 9/24/1993");
         jTextField6.setBorder(null);
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
@@ -277,7 +277,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jPanel2);
 
-        jPanel1.setBackground(new java.awt.Color(0, 14, 150));
+        jPanel1.setBackground(new java.awt.Color(9, 18, 102));
 
         jLabel11.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
