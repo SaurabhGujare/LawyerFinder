@@ -16,10 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class AdminAction implements Actions{
     
-    /*public void saveStateBarAsso(StateBarAssociation association){
+   /* public void saveStateBarAsso(UserAccount userAccount){
         
-        
-        UserAccount account = new UserAccount(userNameTxt.getText(), passwordTxt.getText(), association);
         
         try {
             userAccDir.addNew(account);
