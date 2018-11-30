@@ -23,7 +23,7 @@ public class LawyerPanel extends javax.swing.JPanel {
     public LawyerPanel() {
         initComponents();
         lawyerContainer.add(new LawyerProfilePanel(),LawyerProfilePanel.class.getName());
-        lawyerContainer.add(new ConsultationRequestPanel(),ConsultationRequestPanel.class.getName());
+        lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
         layout = (CardLayout)lawyerContainer.getLayout();
     }
 

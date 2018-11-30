@@ -6,6 +6,8 @@
 package app.userinterface.lawyer;
 
 import app.userinterface.BasePanel;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
 
 
 /**
@@ -17,8 +19,14 @@ public class ConsultationRequestPanel extends javax.swing.JPanel {
     /**
      * Creates new form LawyerConsultationRequest
      */
-    public ConsultationRequestPanel() {
+    CardLayout layout;
+    JPanel lawyerContainer;
+    public ConsultationRequestPanel(CardLayout layout,JPanel lawyerContainer) {
         initComponents();
+        this.layout = layout;
+        this.lawyerContainer = lawyerContainer;
+        lawyerContainer.add(new ViewRequestPanel(),ViewRequestPanel.class.getName());
+        this.layout = (CardLayout)lawyerContainer.getLayout();
     }
 
     /**
@@ -41,6 +49,14 @@ public class ConsultationRequestPanel extends javax.swing.JPanel {
 
         consulatationRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -130,6 +146,7 @@ public class ConsultationRequestPanel extends javax.swing.JPanel {
 
     private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
         // TODO add your handling code here:
+        layout.show(lawyerContainer, ViewRequestPanel.class.getName());
     }//GEN-LAST:event_viewButtonActionPerformed
 
 
