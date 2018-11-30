@@ -8,6 +8,7 @@ package app.userinterface.login;
 import app.data.DataStore;
 import app.entities.Lawyer;
 import app.entities.LawyerApprovalRequest;
+import app.entities.StateBarAssociation;
 import app.entities.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
@@ -207,6 +208,10 @@ public class NewLawyerPanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        
+        StateBarAssociation sba = (StateBarAssociation) sbaList.getSelectedItem();
+        LawyerApprovalRequest item = (LawyerApprovalRequest)sba.getWorkrequest().createNewWorkItem();
+        
         Lawyer lawyer = new Lawyer();
         lawyer.setFirstName(nameTxt.getText());
         lawyer.setEmail(emailTxt.getText());
@@ -221,11 +226,10 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             return;
         }
         
-        LawyerApprovalRequest request = new LawyerApprovalRequest();
-        request.setLawyer(lawyer);
-        request.setRequestdate(new Date());
-
-        JOptionPane.showMessageDialog(this, "Lawyer Created");
+        item.setRequestdate(new Date());
+        item.setLawyer(lawyer);
+        
+        JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
         ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
     }//GEN-LAST:event_saveBtnActionPerformed
 

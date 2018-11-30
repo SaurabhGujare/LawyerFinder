@@ -5,6 +5,7 @@
  */
 package app.userinterface.sba;
 
+import app.data.Session;
 import app.entities.StateBarAssociation;
 import app.userinterface.BasePanel;
 import app.userinterface.BasePanel;
@@ -14,6 +15,8 @@ import java.awt.CardLayout;
 import javax.swing.table.DefaultTableModel;
 import app.data.directories.Directory;
 import app.entities.Lawyer;
+import app.entities.LawyerApprovalRequest;
+import app.entities.workqueues.WorkItem;
 
 /**
  *
@@ -23,12 +26,15 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
 
    Directory<String , Lawyer> lawyerDir;
    CardLayout layout;
+   StateBarAssociation sba;
     
     public StateBarAssociationPanel() {
         initComponents();
-         containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
-         layout = (CardLayout) containerpanel.getLayout();
-         populateTable();
+        sba = (StateBarAssociation) Session.getUserAccount().getUser();
+        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
+        layout = (CardLayout) containerpanel.getLayout();
+        populateTable();
+         
     }
 
     /**
@@ -179,11 +185,12 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) RequestTable.getModel();
         model.setRowCount(0);
-        for(Lawyer l: lawyerDir.getAllEntries()){
+        for(WorkItem i: sba.getWorkrequest().getWorkList()){
+            LawyerApprovalRequest request = (LawyerApprovalRequest) i;
             Object[] row = new Object[3];
-           // row[0] = s;
-            row[1] = l.getFirstName()+" "+l.getLastName();
-            //row[2] = s.getAccount().getUsername();
+            row[0] = request;
+            row[1] = request.getLawyer().getFirstName();
+            row[2] = request.getStatus();
             model.addRow(row);
         }
     }

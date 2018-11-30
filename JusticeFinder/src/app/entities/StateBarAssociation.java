@@ -5,9 +5,10 @@
  */
 package app.entities;
 
+import app.entities.workqueues.WorkQueue;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
-import java.util.List;
+import app.entities.workqueues.StateBarAssoWorkQueue;
 
 /**
  *
@@ -19,14 +20,10 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
-    private List<LawyerApprovalRequest>workrequest;
+    private WorkQueue<LawyerApprovalRequest> workrequest;
 
-    public List<LawyerApprovalRequest> getWorkrequest() {
+    public WorkQueue<LawyerApprovalRequest> getWorkrequest() {
         return workrequest;
-    }
-
-    public void setWorkrequest(List<LawyerApprovalRequest> workrequest) {
-        this.workrequest = workrequest;
     }
 
     public Address getWorkaddress() {
@@ -76,6 +73,7 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
 
     public StateBarAssociation() {
         super(Roles.STATE_BAR_ASSOCIATION);
+        workrequest = new StateBarAssoWorkQueue();
     }
 
     @Override

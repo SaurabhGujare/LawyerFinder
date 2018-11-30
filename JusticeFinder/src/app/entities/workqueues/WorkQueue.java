@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.entities;
+package app.entities.workqueues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,13 +15,13 @@ import java.util.List;
  */
 public abstract class WorkQueue<I extends WorkItem> {
     
-    private final List<I> workList;
+    private final List<WorkItem> workList;
 
     public WorkQueue() {
         workList = new ArrayList<>();
     }
 
-    public List<I> getWorkList() {
+    public List<WorkItem> getWorkList() {
         return workList;
     }
     
@@ -29,13 +29,13 @@ public abstract class WorkQueue<I extends WorkItem> {
         this.workList.add(item);
     }
     
-    public I createNewWorkItem(){
-        I item = getNewItem();
+    public WorkItem createNewWorkItem(){
+        WorkItem item = this.getNewItem();
         workList.add(item);
         return item;
     }
     
-    protected abstract I getNewItem();
+    protected abstract WorkItem getNewItem();
     
     public void removeItem(I item){
         this.workList.remove(item);
