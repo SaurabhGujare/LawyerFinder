@@ -24,6 +24,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         initComponents();
         lawyerContainer.add(new ViewLawyerProfilePanel(),ViewLawyerProfilePanel.class.getName());
         lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
+        lawyerContainer.add(new CreateLawyerProfilePanel(),CreateLawyerProfilePanel.class.getName());
         layout = (CardLayout)lawyerContainer.getLayout();
     }
 
@@ -155,7 +156,7 @@ public class LawyerPanel extends javax.swing.JPanel {
 
     private void checkProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileButtonActionPerformed
         // TODO add your handling code here:
-        layout.show(lawyerContainer, ViewLawyerProfilePanel.class.getName());
+        layout.show(lawyerContainer, CreateLawyerProfilePanel.class.getName());
     }//GEN-LAST:event_checkProfileButtonActionPerformed
 
     private void checkConsultaionRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConsultaionRequestButtonActionPerformed
