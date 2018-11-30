@@ -8,8 +8,12 @@ package app.userinterface.sba;
 import app.entities.StateBarAssociation;
 import app.userinterface.BasePanel;
 import app.userinterface.BasePanel;
+import app.userinterface.admin.CourtPanel;
 import com.db4o.User;
 import java.awt.CardLayout;
+import javax.swing.table.DefaultTableModel;
+import app.data.directories.Directory;
+import app.entities.Lawyer;
 
 /**
  *
@@ -17,12 +21,14 @@ import java.awt.CardLayout;
  */
 public class StateBarAssociationPanel extends javax.swing.JPanel {
 
+   Directory<String , Lawyer> lawyerDir;
    CardLayout layout;
     
     public StateBarAssociationPanel() {
         initComponents();
-         containerpanel.add(new SBAPendingRequests(),SBAPendingRequests.class.getName());
+         containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
          layout = (CardLayout) containerpanel.getLayout();
+         populateTable();
     }
 
     /**
@@ -37,11 +43,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         bodypanel = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         menupanel = new javax.swing.JPanel();
-        gotorequestsbtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         containerpanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        RequestTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
@@ -49,38 +55,43 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         setMaximumSize(new java.awt.Dimension(1108, 714));
         setPreferredSize(new java.awt.Dimension(1108, 714));
 
-        jSplitPane2.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
+        jSplitPane2.setDividerLocation(250);
         jSplitPane2.setMinimumSize(new java.awt.Dimension(7, 3));
         jSplitPane2.setPreferredSize(new java.awt.Dimension(256, 712));
 
-        gotorequestsbtn.setText("Go to the pending requests");
-        gotorequestsbtn.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("View Request");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gotorequestsbtnActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jButton1.setText("View Request");
+        jButton2.setText("Main Screen");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout menupanelLayout = new javax.swing.GroupLayout(menupanel);
         menupanel.setLayout(menupanelLayout);
         menupanelLayout.setHorizontalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menupanelLayout.createSequentialGroup()
+            .addGroup(menupanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
-                .addComponent(gotorequestsbtn)
-                .addContainerGap())
+                .addGroup(menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         menupanelLayout.setVerticalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menupanelLayout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gotorequestsbtn)
-                    .addComponent(jButton1))
-                .addContainerGap())
+                .addComponent(jButton1)
+                .addGap(65, 65, 65)
+                .addComponent(jButton2)
+                .addGap(500, 500, 500))
         );
 
         jSplitPane2.setTopComponent(menupanel);
@@ -88,18 +99,15 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         containerpanel.setRequestFocusEnabled(false);
         containerpanel.setLayout(new java.awt.CardLayout());
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        RequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "ApprovalRequest", "From Lawyer", "Decision"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(RequestTable);
 
         containerpanel.add(jScrollPane1, "card2");
 
@@ -113,7 +121,9 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         );
         bodypanelLayout.setVerticalGroup(
             bodypanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 746, Short.MAX_VALUE)
+            .addGroup(bodypanelLayout.createSequentialGroup()
+                .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 682, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 64, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
@@ -135,8 +145,9 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 421, Short.MAX_VALUE)
-                .addComponent(logoutButton))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
+                .addComponent(logoutButton)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,27 +175,43 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void gotorequestsbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotorequestsbtnActionPerformed
-        // TODO add your handling code here:
-        gotorequestsbtn.setEnabled(false);
-        layout.show(containerpanel,SBAPendingRequests.class.getName());
-    }//GEN-LAST:event_gotorequestsbtnActionPerformed
-
+        public void populateTable() {
+        
+        DefaultTableModel model = (DefaultTableModel) RequestTable.getModel();
+        model.setRowCount(0);
+        for(Lawyer l: lawyerDir.getAllEntries()){
+            Object[] row = new Object[3];
+           // row[0] = s;
+            row[1] = l.getFirstName()+" "+l.getLastName();
+            //row[2] = s.getAccount().getUsername();
+            model.addRow(row);
+        }
+    }
+    
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         // TODO add your handling code here:
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerpanel,ViewSBARequestsPanel.class.getName());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable RequestTable;
     private javax.swing.JPanel bodypanel;
     private javax.swing.JPanel containerpanel;
-    private javax.swing.JButton gotorequestsbtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel menupanel;
     // End of variables declaration//GEN-END:variables
