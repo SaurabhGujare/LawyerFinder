@@ -7,6 +7,7 @@ package app.entities;
 
 import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
+import java.util.List;
 
 /**
  *
@@ -18,6 +19,15 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
+    private List<LawyerApprovalRequest>workrequest;
+
+    public List<LawyerApprovalRequest> getWorkrequest() {
+        return workrequest;
+    }
+
+    public void setWorkrequest(List<LawyerApprovalRequest> workrequest) {
+        this.workrequest = workrequest;
+    }
 
     public Address getWorkaddress() {
         return workaddress;
@@ -72,6 +82,4 @@ public class StateBarAssociation extends User implements DirectoryEntry<String>{
     public String toString() {
         return stateBarAssociationID;
     }
-
-    
 }
