@@ -31,7 +31,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
     public StateBarAssociationPanel() {
         initComponents();
         sba = (StateBarAssociation) Session.getUserAccount().getUser();
-        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
+//        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
         layout = (CardLayout) containerpanel.getLayout();
         populateTable();
          
@@ -202,6 +202,8 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        LawyerApprovalRequest req = (LawyerApprovalRequest) RequestTable.getValueAt(RequestTable.getSelectedRow(),0);
+        containerpanel.add(new ViewSBARequestsPanel(req),ViewSBARequestsPanel.class.getName());
         layout.show(containerpanel,ViewSBARequestsPanel.class.getName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
