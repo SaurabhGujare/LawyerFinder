@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Akshay Relekar
  */
-public class LawyerApprovalRequest {
+public class LawyerApprovalRequest implements WorkItem{
     
     private Lawyer lawyer;
     private String requestmessage;

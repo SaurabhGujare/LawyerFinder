@@ -7,9 +7,12 @@ package app.userinterface.login;
 
 import app.data.DataStore;
 import app.entities.Lawyer;
+import app.entities.LawyerApprovalRequest;
 import app.entities.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,6 +27,8 @@ public class NewLawyerPanel extends javax.swing.JPanel {
      */
     public NewLawyerPanel() {
         initComponents();
+        
+        sbaList.setModel(new DefaultComboBoxModel(DataStore.getInstance().getSTATEBARASSOCIATION_DIRECTORY().getAllEntries().toArray()));
     }
 
     /**
@@ -48,6 +53,8 @@ public class NewLawyerPanel extends javax.swing.JPanel {
         passwordTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ssnTxt = new javax.swing.JTextField();
+        sbaList = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
@@ -81,6 +88,8 @@ public class NewLawyerPanel extends javax.swing.JPanel {
 
         jLabel6.setText("SSN");
 
+        jLabel7.setText("State Bar Association");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -92,9 +101,11 @@ public class NewLawyerPanel extends javax.swing.JPanel {
                     .addComponent(jLabel4)
                     .addComponent(jLabel3)
                     .addComponent(jLabel2)
+                    .addComponent(jLabel7)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sbaList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nameTxt)
                     .addComponent(emailTxt)
                     .addComponent(usernameTxt)
@@ -117,7 +128,11 @@ public class NewLawyerPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(sbaList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -126,7 +141,7 @@ public class NewLawyerPanel extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         backBtn.setText("Back");
@@ -176,9 +191,9 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -205,12 +220,10 @@ public class NewLawyerPanel extends javax.swing.JPanel {
         catch(Exception e){
             return;
         }
-        try{
-            DataStore.getInstance().getLAWYER_DIRECTORY().addNew(lawyer);
-        }
-        catch(Exception e){
-            return;
-        }
+        
+        LawyerApprovalRequest request = new LawyerApprovalRequest();
+        request.setLawyer(lawyer);
+        request.setRequestdate(new Date());
 
         JOptionPane.showMessageDialog(this, "Lawyer Created");
         ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
@@ -226,12 +239,14 @@ public class NewLawyerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTextField passwordTxt;
     private javax.swing.JButton saveBtn;
+    private javax.swing.JComboBox sbaList;
     private javax.swing.JTextField ssnTxt;
     private javax.swing.JTextField usernameTxt;
     // End of variables declaration//GEN-END:variables
