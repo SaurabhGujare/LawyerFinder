@@ -201,9 +201,9 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        UserAccount userAccount = loginAction.login(userNameTxt.getText(), passwordTxt.getPassword().toString());
+        UserAccount userAccount = loginAction.login(userNameTxt.getText(), new String(passwordTxt.getPassword()));
         if(userAccount!=null){
-            JOptionPane.showMessageDialog(this, "Login Success");
+            //JOptionPane.showMessageDialog(this, "Login Success");
             
             ((BasePanel)this.getParent()).loadPage(userAccount.getUser().getRole().getType().getNewWorkspace());
         }

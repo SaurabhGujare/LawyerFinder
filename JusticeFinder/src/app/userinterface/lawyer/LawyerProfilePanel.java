@@ -41,6 +41,9 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         sbaList.setModel(model);
         sbaNeedApprovalList= new ArrayList<>();
         sbaAvailableList.setModel(new DefaultComboBoxModel(Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().toArray()));
+        
+        fnameTxt.setText(lawyer.getFirstName());
+        lnameTxt.setText(lawyer.getLastName());
     }
 
     /**

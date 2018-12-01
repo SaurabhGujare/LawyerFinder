@@ -20,8 +20,13 @@ public class LoginAction implements Actions{
     private static final Network DATA_STORE = Network.getInstance();
     
     public UserAccount login(String username, String password){
-        Session.createNewSession(DATA_STORE.getUSER_ACCOUNTS().getEntry(username));
-        return Session.getUserAccount();
+        UserAccount acc = DATA_STORE.getUSER_ACCOUNTS().getEntry(username);
+        if(acc.getPassword().equals(password)){
+            Session.createNewSession(acc);
+            return Session.getUserAccount();
+        }
+        else
+            return null;
     }
     
     public void logout(){
