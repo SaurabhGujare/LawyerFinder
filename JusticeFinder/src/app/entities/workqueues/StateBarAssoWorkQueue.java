@@ -5,7 +5,7 @@
  */
 package app.entities.workqueues;
 
-import app.entities.LawyerApprovalRequest;
+import app.entities.user.UserAccount;
 
 /**
  *
@@ -14,8 +14,8 @@ import app.entities.LawyerApprovalRequest;
 public class StateBarAssoWorkQueue extends WorkQueue<LawyerApprovalRequest>{
 
     @Override
-    protected LawyerApprovalRequest getNewItem() {
-        return new LawyerApprovalRequest();
+    protected WorkItem getNewItem(UserAccount sender, UserAccount receiver, String message) {
+        return new LawyerApprovalRequest(message, sender, receiver);
     }
     
 }

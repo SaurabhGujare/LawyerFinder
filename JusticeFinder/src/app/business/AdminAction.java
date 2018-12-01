@@ -6,8 +6,8 @@
 package app.business;
 
 import app.business.interfaces.Actions;
-import app.entities.StateBarAssociation;
-import app.entities.UserAccount;
+import app.entities.user.StateBarAssoAdmin;
+import app.entities.user.UserAccount;
 import javax.swing.JOptionPane;
 
 /**

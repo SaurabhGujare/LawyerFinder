@@ -5,7 +5,7 @@
  */
 package app.data;
 
-import app.entities.UserAccount;
+import app.entities.user.UserAccount;
 
 /**
  *

@@ -6,9 +6,9 @@
 package app.userinterface.sba;
 
 import app.data.DataStore;
-import app.entities.LawyerApprovalRequest;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import app.data.org.Organization;
+import app.data.org.StateBarAssociation;
+import app.entities.workqueues.LawyerApprovalRequest;
 
 /**
  *
@@ -17,13 +17,15 @@ import java.util.logging.Logger;
 public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     LawyerApprovalRequest request;
+    StateBarAssociation association;
             
     /**
      * Creates new form SBAPendingRequests
      */
-    public ViewSBARequestsPanel(LawyerApprovalRequest request) {
+    public ViewSBARequestsPanel(LawyerApprovalRequest request,StateBarAssociation association) {
         initComponents();
         this.request = request;
+        this.association= association;
         populateForm();
     }
 
@@ -237,7 +239,8 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         try {
-            DataStore.getInstance().getLAWYER_DIRECTORY().addNew(request.getLawyer());
+            association.getDirectory().addNew(request.getLawyer());
+            request.getLawyer().getAllowedStateBars().addNew(association);
         } catch (Exception ex) {
             
         }
@@ -266,8 +269,8 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateForm() {
-        reqNumTxt.setText(request.getRequestid()+"");
+        reqNumTxt.setText(request.getId()+"");
         reqByTxt.setText(request.getLawyer().getFirstName());
-        reqDate.setText(request.getRequestdate().toString());
+        reqDate.setText(request.getRequestDate().toString());
     }
 }

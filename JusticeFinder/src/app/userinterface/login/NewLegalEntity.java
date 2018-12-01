@@ -6,8 +6,8 @@
 package app.userinterface.login;
 
 import app.data.DataStore;
-import app.entities.LegalEntity;
-import app.entities.UserAccount;
+import app.entities.user.LegalEntity;
+import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;

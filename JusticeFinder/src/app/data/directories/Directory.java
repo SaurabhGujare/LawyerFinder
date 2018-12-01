@@ -18,7 +18,7 @@ import java.util.TreeMap;
  */
 public class Directory<K,E extends DirectoryEntry<K>> {
     
-    protected final Map<K,E> map = new TreeMap<>();
+    protected Map<K,E> map = new TreeMap<>();
     
     public ArrayList<E> getAllEntries(){
         return new ArrayList<>(map.values());

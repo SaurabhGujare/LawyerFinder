@@ -6,13 +6,13 @@
 package app.userinterface.login;
 
 import app.data.DataStore;
-import app.entities.Lawyer;
-import app.entities.LawyerApprovalRequest;
-import app.entities.StateBarAssociation;
-import app.entities.UserAccount;
+import app.data.org.StateBarAssociation;
+import app.entities.user.Lawyer;
+import app.entities.workqueues.LawyerApprovalRequest;
+import app.entities.user.UserAccount;
+import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
-import java.util.Date;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -209,8 +209,7 @@ public class NewLawyerPanel extends javax.swing.JPanel {
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         
-        StateBarAssociation sba = (StateBarAssociation) sbaList.getSelectedItem();
-        LawyerApprovalRequest item = (LawyerApprovalRequest)sba.getWorkrequest().createNewWorkItem();
+       
         
         Lawyer lawyer = new Lawyer();
         lawyer.setFirstName(nameTxt.getText());
@@ -226,7 +225,9 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             return;
         }
         
-        item.setRequestdate(new Date());
+        StateBarAssociation sba = (StateBarAssociation) sbaList.getSelectedItem();
+        LawyerApprovalRequest item = (LawyerApprovalRequest) ((StateBarAssoWorkQueue)sba.getWorkQueue())
+                .createNewWorkItem(account, sba.getAdmin().getAccount(), "Request For New Lawyer.");
         item.setLawyer(lawyer);
         
         JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");

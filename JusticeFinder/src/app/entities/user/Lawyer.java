@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.entities;
+package app.entities.user;
 
+import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
+import app.data.org.StateBarAssociation;
 import app.entities.roles.Roles;
 
 /**
@@ -21,6 +23,15 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private String qualification;
     private String specialization;
     private String yearsOfPractice;
+    private Directory<Integer, StateBarAssociation> allowedStateBars;
+
+    public Directory<Integer, StateBarAssociation> getAllowedStateBars() {
+        return allowedStateBars;
+    }
+
+    public void setAllowedStateBars(Directory<Integer, StateBarAssociation> allowedStateBars) {
+        this.allowedStateBars = allowedStateBars;
+    }
 
     public Lawyer() {
         super(Roles.LAWYER);
