@@ -8,7 +8,7 @@ package app.userinterface.admin;
 import app.business.LoginAction;
 import app.data.DataStore;
 import app.data.Session;
-import app.entities.Admin;
+import app.entities.user.Admin;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -105,7 +105,7 @@ public class AdminPanel extends javax.swing.JPanel {
         jSplitPane1.setOpaque(false);
 
         menuPanel.setOpaque(false);
-        menuPanel.setLayout(new java.awt.CardLayout());
+        menuPanel.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
         mainMenu.setOpaque(false);
 
@@ -129,24 +129,19 @@ public class AdminPanel extends javax.swing.JPanel {
         mainMenu.setLayout(mainMenuLayout);
         mainMenuLayout.setHorizontalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
-            .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 249, Short.MAX_VALUE)
-                .addComponent(courtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+            .addComponent(courtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainMenuLayout.setVerticalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
-            .addGroup(mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(mainMenuLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(courtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(566, Short.MAX_VALUE)))
+            .addGroup(mainMenuLayout.createSequentialGroup()
+                .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(courtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 234, Short.MAX_VALUE))
         );
 
-        menuPanel.add(mainMenu, "card2");
+        menuPanel.add(mainMenu);
 
         jSplitPane1.setLeftComponent(menuPanel);
 

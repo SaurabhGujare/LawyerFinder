@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface;
+package app.userinterface.login;
 
 import app.business.LoginAction;
-import app.entities.UserAccount;
+import app.data.DataStore;
+import app.entities.user.Lawyer;
+import app.entities.user.UserAccount;
+import app.userinterface.BasePanel;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -218,6 +221,7 @@ public class LoginPanel extends javax.swing.JPanel {
 
     private void registerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerBtnActionPerformed
         // TODO add your handling code here:
+        ((BasePanel)this.getParent()).loadPage(new RegisterPanel());
     }//GEN-LAST:event_registerBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed

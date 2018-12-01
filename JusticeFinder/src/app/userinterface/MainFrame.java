@@ -5,6 +5,7 @@
  */
 package app.userinterface;
 
+import app.userinterface.login.LoginPanel;
 import app.data.DBUtil;
 import app.data.DataStore;
 import app.data.Session;
