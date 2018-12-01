@@ -10,3 +10,4 @@
 /JusticeFinder/build/
 /JusticeFinder/Database.db4o
 /JusticeFinder/dist/
+*.gitignore
