@@ -112,9 +112,17 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ApprovalRequest", "From Lawyer", "Decision"
+                "ApprovalRequest", "From Lawyer", "Date", "Decision"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(RequestTable);
 
         containerpanel.add(jScrollPane1, "card2");
@@ -189,10 +197,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         for(WorkItem i: ((StateBarAssoWorkQueue) sba.getParent().getWorkQueue()).getWorkList()){
             LawyerApprovalRequest request = (LawyerApprovalRequest) i;
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getLawyer().getFirstName();
-            row[2] = request.getStatus();
+            row[2] = request.getRequestDate();
+            row[3] = request.getStatus();
             model.addRow(row);
         }
     }
