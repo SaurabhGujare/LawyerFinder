@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.entities;
+package app.entities.user;
 
+import app.data.org.Organization;
 import app.entities.roles.Roles;
 
 /**
@@ -13,8 +14,9 @@ import app.entities.roles.Roles;
  */
 public abstract class User {
     
-    Roles role;
-    UserAccount account;
+    private Roles role;
+    private UserAccount account;
+    private Organization parent;
 
     public UserAccount getAccount() {
         return account;

@@ -9,7 +9,7 @@ import app.business.interfaces.Actions;
 import app.data.DBUtil;
 import app.data.DataStore;
 import app.data.Session;
-import app.entities.UserAccount;
+import app.entities.user.UserAccount;
 
 /**
  *

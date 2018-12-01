@@ -18,11 +18,13 @@ public enum Roles {
 
     /**
      *
+     *//**
+     *
      */
     ADMIN(new Role(AdminPanel.class)),
     LEGAL_ENTITY(null),
     LAWYER(new Role(LawyerPanel.class)),
-    STATE_BAR_ASSOCIATION(new Role(StateBarAssociationPanel.class));
+    STATE_BAR_ASSO_ADMIN(new Role(StateBarAssociationPanel.class));
     private final Role type;
 
     private Roles(Role role) {

@@ -7,11 +7,14 @@ package app.data;
 
 import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
-import app.entities.Admin;
-import app.entities.Lawyer;
-import app.entities.LegalEntity;
-import app.entities.StateBarAssociation;
-import app.entities.UserAccount;
+import app.data.network.Network;
+import app.data.org.Organization;
+import app.data.org.StateBarAssociation;
+import app.entities.user.Admin;
+import app.entities.user.Lawyer;
+import app.entities.user.LegalEntity;
+import app.entities.user.StateBarAssoAdmin;
+import app.entities.user.UserAccount;
 
 /**
  *
@@ -23,7 +26,10 @@ public class DataStore {
     private Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
     private Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
     private Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
-    private Directory<String, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
+    private Directory<Integer, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
+
+    Network network = new Network(null , new Directory<Integer,Organization>());
+    
     private DataStore(){
         initValues();
     }
@@ -48,7 +54,7 @@ public class DataStore {
         return LEGAL_ENTITY_DIRECTORY;
     }
 
-    public Directory<String, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
+    public Directory<Integer, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
         return STATEBARASSOCIATION_DIRECTORY;
     }
 
@@ -59,20 +65,6 @@ public class DataStore {
     private void initValues(){
         try {
             USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin
-        } catch (Exception ex) {
-            //super Admin present
-            //ex.printStackTrace();
-        }
-        try {
-            StateBarAssociation sba = new StateBarAssociation();
-            USER_ACCOUNTS.addNew(new UserAccount("akshay", "akshay", sba)); // statebarassociation
-            STATEBARASSOCIATION_DIRECTORY.addNew(sba);
-        } catch (Exception ex) {
-            //super Admin present
-            //ex.printStackTrace();
-        }
-        try {
-            USER_ACCOUNTS.addNew(new UserAccount("lawyer", "lawyer", new Lawyer())); //Lawyer
         } catch (Exception ex) {
             //super Admin present
             //ex.printStackTrace();

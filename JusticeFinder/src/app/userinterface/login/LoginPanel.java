@@ -7,8 +7,8 @@ package app.userinterface.login;
 
 import app.business.LoginAction;
 import app.data.DataStore;
-import app.entities.Lawyer;
-import app.entities.UserAccount;
+import app.entities.user.Lawyer;
+import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -228,13 +228,6 @@ public class LoginPanel extends javax.swing.JPanel {
         UserAccount userAccount = loginAction.login(userNameTxt.getText(), passwordTxt.getText());
         if(userAccount!=null){
             JOptionPane.showMessageDialog(this, "Login Success");
-            
-            if(userAccount.getUser() instanceof Lawyer){
-                if(!DataStore.getInstance().getLAWYER_DIRECTORY().contains((Lawyer)userAccount.getUser())){
-                    JOptionPane.showMessageDialog(this, "Lawyer not yet approved");
-                    return;
-                }
-            }
             
             ((BasePanel)this.getParent()).loadPage(userAccount.getUser().getRole().getType().getNewWorkspace());
         }

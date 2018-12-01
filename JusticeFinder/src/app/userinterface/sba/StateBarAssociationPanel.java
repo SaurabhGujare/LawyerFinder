@@ -6,7 +6,7 @@
 package app.userinterface.sba;
 
 import app.data.Session;
-import app.entities.StateBarAssociation;
+import app.entities.user.StateBarAssoAdmin;
 import app.userinterface.BasePanel;
 import app.userinterface.BasePanel;
 import app.userinterface.admin.CourtPanel;
@@ -14,8 +14,10 @@ import com.db4o.User;
 import java.awt.CardLayout;
 import javax.swing.table.DefaultTableModel;
 import app.data.directories.Directory;
-import app.entities.Lawyer;
-import app.entities.LawyerApprovalRequest;
+import app.data.org.StateBarAssociation;
+import app.entities.user.Lawyer;
+import app.entities.workqueues.LawyerApprovalRequest;
+import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
 
 /**
@@ -26,11 +28,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
 
    Directory<String , Lawyer> lawyerDir;
    CardLayout layout;
-   StateBarAssociation sba;
+   StateBarAssoAdmin sba;
     
     public StateBarAssociationPanel() {
         initComponents();
-        sba = (StateBarAssociation) Session.getUserAccount().getUser();
+        sba = (StateBarAssoAdmin) Session.getUserAccount().getUser();
 //        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
         layout = (CardLayout) containerpanel.getLayout();
         populateTable();
@@ -185,7 +187,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) RequestTable.getModel();
         model.setRowCount(0);
-        for(WorkItem i: sba.getWorkrequest().getWorkList()){
+        for(WorkItem i: ((StateBarAssoWorkQueue) sba.getParent().getWorkQueue()).getWorkList()){
             LawyerApprovalRequest request = (LawyerApprovalRequest) i;
             Object[] row = new Object[3];
             row[0] = request;
@@ -203,7 +205,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         LawyerApprovalRequest req = (LawyerApprovalRequest) RequestTable.getValueAt(RequestTable.getSelectedRow(),0);
-        containerpanel.add(new ViewSBARequestsPanel(req),ViewSBARequestsPanel.class.getName());
+        containerpanel.add(new ViewSBARequestsPanel(req,(StateBarAssociation)sba.getParent()),ViewSBARequestsPanel.class.getName());
         layout.show(containerpanel,ViewSBARequestsPanel.class.getName());
     }//GEN-LAST:event_jButton1ActionPerformed
 
