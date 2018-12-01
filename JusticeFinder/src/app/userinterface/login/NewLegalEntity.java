@@ -5,11 +5,13 @@
  */
 package app.userinterface.login;
 
-import app.data.DataStore;
+import app.data.Network;
+import app.data.org.PublicDomain;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,6 +26,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
      */
     public NewLegalEntity() {
         initComponents();
+        domains.setModel(new DefaultComboBoxModel(Network.getInstance().getPUBLIC_DOMAIN().getAllEntries().toArray()));
     }
 
     /**
@@ -48,9 +51,15 @@ public class NewLegalEntity extends javax.swing.JPanel {
         passwordTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         ssnTxt = new javax.swing.JTextField();
+        domains = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
+
+        setOpaque(false);
+
+        jPanel1.setOpaque(false);
 
         jLabel1.setText("New Legal Entity");
 
@@ -71,6 +80,8 @@ public class NewLegalEntity extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jPanel2.setOpaque(false);
+
         jLabel2.setText("Name");
 
         jLabel3.setText("Username");
@@ -81,20 +92,24 @@ public class NewLegalEntity extends javax.swing.JPanel {
 
         jLabel6.setText("SSN");
 
+        jLabel7.setText("Domain");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(domains, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(nameTxt)
                     .addComponent(emailTxt)
                     .addComponent(usernameTxt)
@@ -105,7 +120,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(ssnTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -117,7 +132,11 @@ public class NewLegalEntity extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(domains, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -126,8 +145,10 @@ public class NewLegalEntity extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
                             .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
+
+        jPanel3.setOpaque(false);
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +197,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -200,11 +221,12 @@ public class NewLegalEntity extends javax.swing.JPanel {
         UserAccount account = new UserAccount(usernameTxt.getText(), passwordTxt.getText(), legalEntity);
         
         try{
-            DataStore.getInstance().getUSER_ACCOUNTS().addNew(account);
+            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
         }
         catch(Exception e){}
         try{
-            DataStore.getInstance().getLEGAL_ENTITY_DIRECTORY().addNew(legalEntity);
+            PublicDomain domain = (PublicDomain) domains.getSelectedItem();
+            domain.getDirectory().addNew(legalEntity);
         }
         catch(Exception e){}
         
@@ -215,6 +237,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JComboBox<String> domains;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -222,6 +245,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

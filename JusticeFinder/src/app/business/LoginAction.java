@@ -7,7 +7,7 @@ package app.business;
 
 import app.business.interfaces.Actions;
 import app.data.DBUtil;
-import app.data.DataStore;
+import app.data.Network;
 import app.data.Session;
 import app.entities.user.UserAccount;
 
@@ -17,7 +17,7 @@ import app.entities.user.UserAccount;
  */
 public class LoginAction implements Actions{
     
-    private static final DataStore DATA_STORE = DataStore.getInstance();
+    private static final Network DATA_STORE = Network.getInstance();
     
     public UserAccount login(String username, String password){
         Session.createNewSession(DATA_STORE.getUSER_ACCOUNTS().getEntry(username));

@@ -30,6 +30,7 @@ public class RegisterPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        setOpaque(false);
         setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
 

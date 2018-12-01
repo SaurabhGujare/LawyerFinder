@@ -7,7 +7,7 @@ package app.userinterface;
 
 import app.userinterface.login.LoginPanel;
 import app.data.DBUtil;
-import app.data.DataStore;
+import app.data.Network;
 import app.data.Session;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -62,7 +62,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         try {
             Session.clearSession();
-            DBUtil.getInstance().storeSystem(DataStore.getInstance());
+            DBUtil.getInstance().storeSystem(Network.getInstance());
             System.out.println("Application Saved");
         } catch (Exception ex) {
             ex.printStackTrace();
