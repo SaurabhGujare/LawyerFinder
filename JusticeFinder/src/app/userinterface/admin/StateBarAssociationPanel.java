@@ -9,6 +9,7 @@ import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.UserAccount;
 import app.userinterface.interfaces.HasTable;
+import java.awt.CardLayout;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import javax.swing.JOptionPane;
@@ -46,6 +47,10 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         
         this.addComponentListener(adapter);
         populateTableData();
+        nameTxt.setEnabled(false);
+        emailTxt.setEnabled(false);
+        userNameTxt.setEnabled(false);
+        passwordTxt.setEnabled(false);
     }
 
     /**
@@ -259,9 +264,16 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {                                       
         // TODO add your handling code here:
+        nameTxt.setEnabled(true);
         nameTxt.setText("");
+        
+        emailTxt.setEnabled(true);
         emailTxt.setText("");
+        
+        userNameTxt.setEnabled(true);
         userNameTxt.setText("");
+        
+        passwordTxt.setEnabled(true);
         passwordTxt.setText("");
         association = null;
     }                                      
@@ -294,6 +306,13 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         } catch (Exception ex) {
             
         }
+        
+        JOptionPane.showMessageDialog(this, "State Bar Association Added Successfully!");
+        nameTxt.setEnabled(false);
+        emailTxt.setEnabled(false);
+        userNameTxt.setEnabled(false);
+        passwordTxt.setEnabled(false);
+        
         populateTableData();
         nameTxt.setText("");
         emailTxt.setText("");
@@ -302,6 +321,25 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         association = null;
     }                                       
 
+    private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt){
+    
+      int selectedRow= recordsTable.getSelectedRow();
+      
+      if(selectedRow >= 0){
+        StateBarAssociation sba;
+        nameTxt.setEnabled(true);
+        emailTxt.setEnabled(true);
+        userNameTxt.setEnabled(true);
+        passwordTxt.setEnabled(true);
+        
+        sba= (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
+        nameTxt.setText(String.valueOf(sba.getStateBarAssociationName()));
+        userNameTxt.setText(String.valueOf(sba.getAdmin().getAccount().getUsername()));
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+        }
+    }
 
     // Variables declaration - do not modify                     
     private javax.swing.JButton addBtn;
