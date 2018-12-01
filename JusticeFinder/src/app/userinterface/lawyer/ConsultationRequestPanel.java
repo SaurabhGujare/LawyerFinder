@@ -25,6 +25,7 @@ public class ConsultationRequestPanel extends javax.swing.JPanel {
         initComponents();
         this.layout = layout;
         this.lawyerContainer = lawyerContainer;
+        lawyerContainer.add(new WelcomePanel(),WelcomePanel.class.getName());
         lawyerContainer.add(new ViewRequestPanel(),ViewRequestPanel.class.getName());
         this.layout = (CardLayout)lawyerContainer.getLayout();
     }
@@ -87,7 +88,7 @@ public class ConsultationRequestPanel extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(viewButton)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
