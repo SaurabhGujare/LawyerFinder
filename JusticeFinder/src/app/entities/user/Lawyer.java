@@ -35,6 +35,7 @@ public class Lawyer extends User implements DirectoryEntry<String>{
 
     public Lawyer() {
         super(Roles.LAWYER);
+        allowedStateBars= new Directory<>();
     }
 
     

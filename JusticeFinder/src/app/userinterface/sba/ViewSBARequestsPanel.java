@@ -5,8 +5,6 @@
  */
 package app.userinterface.sba;
 
-import app.data.DataStore;
-import app.data.org.Organization;
 import app.data.org.StateBarAssociation;
 import app.entities.workqueues.LawyerApprovalRequest;
 
@@ -235,12 +233,14 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
+        request.setStatus("REJECTED");
     }//GEN-LAST:event_rejectBtnActionPerformed
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         try {
             association.getDirectory().addNew(request.getLawyer());
             request.getLawyer().getAllowedStateBars().addNew(association);
+            request.setStatus("APPROVED");
         } catch (Exception ex) {
             
         }

@@ -6,7 +6,7 @@
 package app.userinterface.admin;
 
 import app.business.LoginAction;
-import app.data.DataStore;
+import app.data.Network;
 import app.data.Session;
 import app.entities.user.Admin;
 import app.userinterface.BasePanel;
@@ -22,7 +22,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private Admin admin;
     CardLayout layout;
     LoginAction loginAction = new LoginAction();
-    DataStore dataStore = DataStore.getInstance();
+    Network network = Network.getInstance();
     /**
      * Creates new form LegalEntityPanel
      */
@@ -31,8 +31,9 @@ public class AdminPanel extends javax.swing.JPanel {
         admin = (Admin)Session.getUserAccount().getUser();
         userNameLbl.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
-        containerPanel.add(new StateBarAssociationPanel(dataStore.getSTATEBARASSOCIATION_DIRECTORY(),dataStore.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
+        containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(),CourtPanel.class.getName());
+        containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
         
         layout = (CardLayout) containerPanel.getLayout();
     }
@@ -56,6 +57,7 @@ public class AdminPanel extends javax.swing.JPanel {
         mainMenu = new javax.swing.JPanel();
         stateBarAssoBtn = new javax.swing.JButton();
         courtBtn = new javax.swing.JButton();
+        publicDomainBtn = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
         setOpaque(false);
@@ -125,12 +127,20 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        publicDomainBtn.setText("Public Domains");
+        publicDomainBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publicDomainBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu);
         mainMenu.setLayout(mainMenuLayout);
         mainMenuLayout.setHorizontalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
             .addComponent(courtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(publicDomainBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         mainMenuLayout.setVerticalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +148,9 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(courtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 234, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(publicDomainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 175, Short.MAX_VALUE))
         );
 
         menuPanel.add(mainMenu);
@@ -190,6 +202,10 @@ public class AdminPanel extends javax.swing.JPanel {
         layout.show(containerPanel,CourtPanel.class.getName());
     }//GEN-LAST:event_courtBtnActionPerformed
 
+    private void publicDomainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicDomainBtnActionPerformed
+        layout.show(containerPanel,PublicDomainPanel.class.getName());
+    }//GEN-LAST:event_publicDomainBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
@@ -201,6 +217,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainMenu;
     private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton publicDomainBtn;
     private javax.swing.JButton stateBarAssoBtn;
     private javax.swing.JLabel userNameLbl;
     // End of variables declaration//GEN-END:variables

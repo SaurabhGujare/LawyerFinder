@@ -7,7 +7,6 @@ package app.userinterface.admin;
 
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
-import app.entities.user.StateBarAssoAdmin;
 import app.entities.user.UserAccount;
 import app.userinterface.interfaces.HasTable;
 import java.awt.CardLayout;
@@ -285,6 +284,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         if(association==null){
             association = new StateBarAssociation();
         }
+        association.setId(stateBarDir.getAllEntries().size());
         association.setStateBarAssociationName(nameTxt.getText());
         association.setStateBarAssociationID(emailTxt.getText());
         
@@ -314,6 +314,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         passwordTxt.setEnabled(false);
         
         populateTableData();
+        nameTxt.setText("");
+        emailTxt.setText("");
+        userNameTxt.setText("");
+        passwordTxt.setText("");
+        association = null;
     }                                       
 
     private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt){

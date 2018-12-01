@@ -71,5 +71,10 @@ public class StateBarAssociation extends Organization{
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return stateBarAssociationName;
+    }
+
     
 }

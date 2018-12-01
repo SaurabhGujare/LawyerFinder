@@ -33,7 +33,7 @@ public class DBUtil {
             config.common().activationDepth(Integer.MAX_VALUE);
             config.common().updateDepth(Integer.MAX_VALUE);
 
-            config.common().objectClass(DataStore.class).cascadeOnUpdate(true);
+            config.common().objectClass(Network.class).cascadeOnUpdate(true);
 
             ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
@@ -43,17 +43,17 @@ public class DBUtil {
         return null;
     }
 
-    public synchronized void storeSystem(DataStore store) {
+    public synchronized void storeSystem(Network store) {
         ObjectContainer conn = createConnection();
         conn.store(store);
         conn.commit();
         conn.close();
     }
     
-    public DataStore retrieveSystem(){
+    public Network retrieveSystem(){
         ObjectContainer conn = createConnection();
-        ObjectSet<DataStore> systems = conn.query(DataStore.class);
-        DataStore system = null;
+        ObjectSet<Network> systems = conn.query(Network.class);
+        Network system = null;
         if (systems.size() > 0){
             system = systems.get(systems.size() - 1);
         }

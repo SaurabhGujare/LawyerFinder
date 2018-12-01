@@ -7,40 +7,34 @@ package app.data;
 
 import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
-import app.data.network.Network;
-import app.data.org.Organization;
+import app.data.org.PublicDomain;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Admin;
-import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
-import app.entities.user.StateBarAssoAdmin;
 import app.entities.user.UserAccount;
 
 /**
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class DataStore {
+public class Network {
 
-    private static DataStore store;
+    private static Network store;
     private Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
-    private Directory<String, LegalEntity> LEGAL_ENTITY_DIRECTORY = new Directory();
-    private Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
-    private Directory<Integer, StateBarAssociation> STATEBARASSOCIATION_DIRECTORY = new Directory();
-
-    Network network = new Network(null , new Directory<Integer,Organization>());
+    private Directory<Integer, PublicDomain> PUBLIC_DOMAIN = new Directory();
+    private Directory<Integer, StateBarAssociation> STATE_BAR_ASSOCIATIONS = new Directory();
     
-    private DataStore(){
+    private Network(){
         initValues();
     }
     
-    public static DataStore getInstance(){
+    public static Network getInstance(){
         
         if(store == null){
             store = DBUtil.getInstance().retrieveSystem();
         }
         if(store == null){
-            store = new DataStore();
+            store = new Network();
             DBUtil.getInstance().storeSystem(store);
         }
         return store;
@@ -50,22 +44,18 @@ public class DataStore {
         return USER_ACCOUNTS;
     }
 
-    public Directory<String, LegalEntity> getLEGAL_ENTITY_DIRECTORY() {
-        return LEGAL_ENTITY_DIRECTORY;
+    public Directory<Integer, PublicDomain> getPUBLIC_DOMAIN() {
+        return PUBLIC_DOMAIN;
     }
 
-    public Directory<Integer, StateBarAssociation> getSTATEBARASSOCIATION_DIRECTORY() {
-        return STATEBARASSOCIATION_DIRECTORY;
+    public Directory<Integer, StateBarAssociation> getSTATE_BAR_ASSOCIATIONS() {
+        return STATE_BAR_ASSOCIATIONS;
     }
 
-    public Directory<String, Lawyer> getLAWYER_DIRECTORY() {
-        return LAWYER_DIRECTORY;
-    }
     
     private void initValues(){
         try {
             USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin
-            USER_ACCOUNTS.addNew(new UserAccount("lawyer", "lawyer", new Lawyer()));
         } catch (Exception ex) {
             //super Admin present
             //ex.printStackTrace();
