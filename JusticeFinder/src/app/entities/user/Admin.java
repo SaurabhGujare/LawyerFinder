@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.entities;
+package app.entities.user;
 
 import app.data.directories.interfaces.DirectoryEntry;
-import app.entities.UserAccount;
+import app.entities.user.UserAccount;
 import app.entities.roles.Roles;
 import app.entities.roles.Roles;
 

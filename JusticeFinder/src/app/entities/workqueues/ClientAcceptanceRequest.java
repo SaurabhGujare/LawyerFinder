@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.entities;
+package app.entities.workqueues;
 
+import app.entities.user.LegalEntity;
 import java.util.Date;
 
 /**

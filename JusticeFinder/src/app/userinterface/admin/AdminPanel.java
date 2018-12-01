@@ -8,7 +8,7 @@ package app.userinterface.admin;
 import app.business.LoginAction;
 import app.data.DataStore;
 import app.data.Session;
-import app.entities.Admin;
+import app.entities.user.Admin;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;

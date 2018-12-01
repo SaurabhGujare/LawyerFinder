@@ -6,8 +6,9 @@
 package app.userinterface.admin;
 
 import app.data.directories.Directory;
-import app.entities.StateBarAssociation;
-import app.entities.UserAccount;
+import app.data.org.StateBarAssociation;
+import app.entities.user.StateBarAssoAdmin;
+import app.entities.user.UserAccount;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -20,15 +21,16 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StateBarAssociationPanel extends javax.swing.JPanel implements HasTable {
 
-    Directory<String , StateBarAssociation> stateBarDir;
+    Directory<Integer , StateBarAssociation> stateBarDir;
     Directory<String, UserAccount> userAccDir;
     private StateBarAssociation association;
+    
     /**
      * Creates new form StateBarAssociationPanel
      * @param stateBarDir
      * @param userAccDir
      */
-    public StateBarAssociationPanel(Directory<String , StateBarAssociation> stateBarDir,Directory<String, UserAccount> userAccDir) {
+    public StateBarAssociationPanel(Directory<Integer , StateBarAssociation> stateBarDir,Directory<String, UserAccount> userAccDir) {
         initComponents();
         this.stateBarDir = stateBarDir;
         this.userAccDir = userAccDir;
@@ -267,13 +269,14 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {                                        
         // TODO add your handling code here:
+        
         if(association==null){
             association = new StateBarAssociation();
         }
         association.setStateBarAssociationName(nameTxt.getText());
         association.setStateBarAssociationID(emailTxt.getText());
         
-        UserAccount account = new UserAccount(userNameTxt.getText(), passwordTxt.getText(), association);
+        UserAccount account = new UserAccount(userNameTxt.getText(), passwordTxt.getText(), association.getAdmin());
         
         try {
             userAccDir.addNew(account);
@@ -326,7 +329,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
             Object[] row = new Object[3];
             row[0] = s;
             row[1] = s.getStateBarAssociationName();
-            row[2] = s.getAccount().getUsername();
+            row[2] = s.getAdmin().getAccount().getUsername();
             model.addRow(row);
         }
     }

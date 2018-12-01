@@ -5,6 +5,7 @@
  */
 package app.entities.workqueues;
 
+import app.entities.user.UserAccount;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public abstract class WorkQueue<I extends WorkItem> {
     
-    private final List<WorkItem> workList;
+    private List<WorkItem> workList;
 
     public WorkQueue() {
         workList = new ArrayList<>();
@@ -29,13 +30,13 @@ public abstract class WorkQueue<I extends WorkItem> {
         this.workList.add(item);
     }
     
-    public WorkItem createNewWorkItem(){
-        WorkItem item = this.getNewItem();
+    public WorkItem createNewWorkItem(UserAccount sender, UserAccount receiver, String message){
+        WorkItem item = this.getNewItem(sender, receiver, message);
         workList.add(item);
         return item;
     }
     
-    protected abstract WorkItem getNewItem();
+    protected abstract WorkItem getNewItem(UserAccount sender, UserAccount receiver, String message);
     
     public void removeItem(I item){
         this.workList.remove(item);

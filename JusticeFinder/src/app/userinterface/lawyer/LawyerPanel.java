@@ -6,6 +6,7 @@
 package app.userinterface.lawyer;
 import app.business.LoginAction;
 import app.userinterface.BasePanel;
+import app.userinterface.lawyer.ViewLawyerProfilePanel;
 import java.awt.CardLayout;
 
 /**
@@ -21,8 +22,8 @@ public class LawyerPanel extends javax.swing.JPanel {
      */
     public LawyerPanel() {
         initComponents();
+        lawyerContainer.add(new ViewLawyerProfilePanel(),ViewLawyerProfilePanel.class.getName());
         lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
-        lawyerContainer.add(new LawyerProfilePanel(),LawyerProfilePanel.class.getName());
         layout = (CardLayout)lawyerContainer.getLayout();
     }
 
@@ -154,7 +155,7 @@ public class LawyerPanel extends javax.swing.JPanel {
 
     private void checkProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileButtonActionPerformed
         // TODO add your handling code here:
-        layout.show(lawyerContainer, LawyerProfilePanel.class.getName());
+        layout.show(lawyerContainer, ViewLawyerProfilePanel.class.getName());
     }//GEN-LAST:event_checkProfileButtonActionPerformed
 
     private void checkConsultaionRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConsultaionRequestButtonActionPerformed
