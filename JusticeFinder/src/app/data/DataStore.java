@@ -65,6 +65,7 @@ public class DataStore {
     private void initValues(){
         try {
             USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin
+            USER_ACCOUNTS.addNew(new UserAccount("lawyer", "lawyer", new Lawyer()));
         } catch (Exception ex) {
             //super Admin present
             //ex.printStackTrace();
