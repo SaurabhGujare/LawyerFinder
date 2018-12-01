@@ -16,9 +16,12 @@ import javax.swing.table.DefaultTableModel;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
+import app.entities.user.UserAccount;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
+import javax.swing.JOptionPane;
+import app.userinterface.sba.ViewSBARequestsPanel;
 
 /**
  *
@@ -35,7 +38,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         sba = (StateBarAssoAdmin) Session.getUserAccount().getUser();
 //        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
         layout = (CardLayout) containerpanel.getLayout();
+        mainscreenbtn.setEnabled(false);
+        welcomelabel.setText("Welcome to the State Bar Association");
+        usernamelabel.setText(Session.getUserAccount().getUsername());
         populateTable();
+        
          
     }
 
@@ -51,14 +58,15 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         bodypanel = new javax.swing.JPanel();
         jSplitPane2 = new javax.swing.JSplitPane();
         menupanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        viewrequestbtn = new javax.swing.JButton();
+        mainscreenbtn = new javax.swing.JButton();
         containerpanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         RequestTable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        welcomelabel = new javax.swing.JLabel();
         logoutButton = new javax.swing.JButton();
+        usernamelabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1108, 714));
         setPreferredSize(new java.awt.Dimension(1108, 714));
@@ -67,17 +75,17 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         jSplitPane2.setMinimumSize(new java.awt.Dimension(7, 3));
         jSplitPane2.setPreferredSize(new java.awt.Dimension(256, 712));
 
-        jButton1.setText("View Request");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewrequestbtn.setText("View Request");
+        viewrequestbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewrequestbtnActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Main Screen");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        mainscreenbtn.setText("Main Screen");
+        mainscreenbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                mainscreenbtnActionPerformed(evt);
             }
         });
 
@@ -85,21 +93,17 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         menupanel.setLayout(menupanelLayout);
         menupanelLayout.setHorizontalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menupanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(28, Short.MAX_VALUE))
+            .addComponent(viewrequestbtn, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
+            .addComponent(mainscreenbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menupanelLayout.setVerticalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menupanelLayout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jButton1)
-                .addGap(65, 65, 65)
-                .addComponent(jButton2)
-                .addGap(500, 500, 500))
+                .addContainerGap()
+                .addComponent(viewrequestbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(mainscreenbtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(563, Short.MAX_VALUE))
         );
 
         jSplitPane2.setTopComponent(menupanel);
@@ -144,8 +148,9 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("WELCOME TO THE STATE BAR ASSOCIATION");
+        welcomelabel.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        welcomelabel.setForeground(new java.awt.Color(204, 204, 204));
+        welcomelabel.setText("WELCOME TO THE STATE BAR ASSOCIATION");
 
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -154,14 +159,19 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
             }
         });
 
+        usernamelabel.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        usernamelabel.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 400, Short.MAX_VALUE)
+                .addComponent(welcomelabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 485, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addContainerGap())
         );
@@ -169,9 +179,11 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(57, 57, 57)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(logoutButton))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(welcomelabel)
+                        .addComponent(logoutButton)))
                 .addContainerGap())
         );
 
@@ -211,28 +223,43 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void viewrequestbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewrequestbtnActionPerformed
         // TODO add your handling code here:
-        LawyerApprovalRequest req = (LawyerApprovalRequest) RequestTable.getValueAt(RequestTable.getSelectedRow(),0);
-        containerpanel.add(new ViewSBARequestsPanel(req,(StateBarAssociation)sba.getParent()),ViewSBARequestsPanel.class.getName());
-        layout.show(containerpanel,ViewSBARequestsPanel.class.getName());
-    }//GEN-LAST:event_jButton1ActionPerformed
+        int selectedrow= RequestTable.getSelectedRow();
+        mainscreenbtn.setEnabled(true);
+        if(selectedrow>=0){
+            LawyerApprovalRequest req = (LawyerApprovalRequest) RequestTable.getValueAt(RequestTable.getSelectedRow(),0);
+            containerpanel.add(new ViewSBARequestsPanel(req,(StateBarAssociation)sba.getParent()),ViewSBARequestsPanel.class.getName());
+            layout.show(containerpanel,ViewSBARequestsPanel.class.getName());
+        }
+        else
+        {
+           JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+           mainscreenbtn.setEnabled(false);
+        }
+    }//GEN-LAST:event_viewrequestbtnActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void mainscreenbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainscreenbtnActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        containerpanel.remove(this);
+        CardLayout layout = (CardLayout) containerpanel.getLayout();
+        layout.previous(containerpanel);
+        populateTable();
+        mainscreenbtn.setEnabled(false);
+    }//GEN-LAST:event_mainscreenbtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable RequestTable;
     private javax.swing.JPanel bodypanel;
     private javax.swing.JPanel containerpanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JButton mainscreenbtn;
     private javax.swing.JPanel menupanel;
+    private javax.swing.JLabel usernamelabel;
+    private javax.swing.JButton viewrequestbtn;
+    private javax.swing.JLabel welcomelabel;
     // End of variables declaration//GEN-END:variables
 }

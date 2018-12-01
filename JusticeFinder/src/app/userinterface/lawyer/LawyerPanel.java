@@ -42,7 +42,6 @@ public class LawyerPanel extends javax.swing.JPanel {
         lawyerContainer = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         checkProfileButton = new javax.swing.JButton();
-        checkConsultaionRequestButton = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(9, 18, 102));
 
@@ -86,7 +85,7 @@ public class LawyerPanel extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        checkProfileButton.setText("Check Profile");
+        checkProfileButton.setText("View Profile");
         checkProfileButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         checkProfileButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,33 +93,18 @@ public class LawyerPanel extends javax.swing.JPanel {
             }
         });
 
-        checkConsultaionRequestButton.setText("Check Consultation Requests");
-        checkConsultaionRequestButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        checkConsultaionRequestButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkConsultaionRequestButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(checkConsultaionRequestButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(checkProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(checkProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(53, 53, 53)
-                .addComponent(checkProfileButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(checkConsultaionRequestButton)
-                .addContainerGap(461, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(checkProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(530, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -142,7 +126,7 @@ public class LawyerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addComponent(jSplitPane1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -157,14 +141,8 @@ public class LawyerPanel extends javax.swing.JPanel {
         layout.show(lawyerContainer, LawyerProfilePanel.class.getName());
     }//GEN-LAST:event_checkProfileButtonActionPerformed
 
-    private void checkConsultaionRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkConsultaionRequestButtonActionPerformed
-        // TODO add your handling code here:
-        layout.show(lawyerContainer, ConsultationRequestPanel.class.getName());
-    }//GEN-LAST:event_checkConsultaionRequestButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkConsultaionRequestButton;
     private javax.swing.JButton checkProfileButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
