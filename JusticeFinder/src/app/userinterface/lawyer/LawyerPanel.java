@@ -27,7 +27,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         initComponents();
         userAccount = Session.getUserAccount();
         lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
-        lawyerContainer.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),true),LawyerProfilePanel.class.getName());
+        lawyerContainer.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
         layout = (CardLayout)lawyerContainer.getLayout();
     }
 
