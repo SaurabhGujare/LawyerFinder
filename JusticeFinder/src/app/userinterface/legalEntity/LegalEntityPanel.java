@@ -5,6 +5,12 @@
  */
 package app.userinterface.legalEntity;
 
+import app.data.Session;
+import app.entities.user.LegalEntity;
+import app.entities.user.UserAccount;
+import app.userinterface.BasePanel;
+import java.awt.CardLayout;
+
 /**
  *
  * @author PC
@@ -14,8 +20,13 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     /**
      * Creates new form LegalEntityPanel
      */
+    UserAccount account ;
+    CardLayout layout;
     public LegalEntityPanel() {
         initComponents();
+        account = Session.getUserAccount();
+        containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser()),ViewLEProfilePanel.class.getName());
+        layout = (CardLayout) containerPanel.getLayout();
     }
 
     /**
@@ -29,15 +40,23 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        logoutBtn = new javax.swing.JButton();
         jSplitPane1 = new javax.swing.JSplitPane();
         containerPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        viewProfileBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("Legal Entity Page");
+
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -46,13 +65,17 @@ public class LegalEntityPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(385, 385, 385)
                 .addComponent(jLabel1)
-                .addContainerGap(426, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
+                .addComponent(logoutBtn)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addComponent(jLabel1)
+                .addGap(24, 24, 24)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(logoutBtn))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -63,8 +86,13 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
 
-        jButton1.setText("View Profile");
-        jPanel3.add(jButton1);
+        viewProfileBtn.setText("View Profile");
+        viewProfileBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewProfileBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(viewProfileBtn);
 
         jButton3.setText("Search Lawyer");
         jPanel3.add(jButton3);
@@ -83,7 +111,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(407, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -104,10 +132,19 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, ViewLEProfilePanel.class.getName());
+    }//GEN-LAST:event_viewProfileBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        // TODO add your handling code here:
+        ((BasePanel)this.getParent()).unloadPage(this);
+    }//GEN-LAST:event_logoutBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -115,5 +152,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton viewProfileBtn;
     // End of variables declaration//GEN-END:variables
 }

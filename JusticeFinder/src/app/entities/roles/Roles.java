@@ -8,6 +8,7 @@ package app.entities.roles;
 import app.userinterface.admin.AdminPanel;
 import app.userinterface.sba.StateBarAssociationPanel;
 import app.userinterface.lawyer.LawyerPanel;
+import app.userinterface.legalEntity.LegalEntityPanel;
 
 
 /**
@@ -22,7 +23,7 @@ public enum Roles {
      *
      */
     ADMIN(new Role(AdminPanel.class)),
-    LEGAL_ENTITY(null),
+    LEGAL_ENTITY(new Role(LegalEntityPanel.class)),
     LAWYER(new Role(LawyerPanel.class)),
     STATE_BAR_ASSO_ADMIN(new Role(StateBarAssociationPanel.class));
     private final Role type;

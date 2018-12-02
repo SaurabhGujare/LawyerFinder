@@ -21,7 +21,7 @@ public class LoginAction implements Actions{
     
     public UserAccount login(String username, String password){
         UserAccount acc = DATA_STORE.getUSER_ACCOUNTS().getEntry(username);
-        if(acc.getPassword().equals(password)){
+        if(acc!=null && acc.getPassword().equals(password)){
             Session.createNewSession(acc);
             return Session.getUserAccount();
         }
