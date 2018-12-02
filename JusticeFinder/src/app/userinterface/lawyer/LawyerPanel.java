@@ -106,6 +106,11 @@ public class LawyerPanel extends javax.swing.JPanel {
         jPanel2.add(viewRequestBtn);
 
         viewClientsBtn.setText("View Clients");
+        viewClientsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewClientsBtnActionPerformed(evt);
+            }
+        });
         jPanel2.add(viewClientsBtn);
 
         fileCaseBtn.setText("File Case");
@@ -162,6 +167,10 @@ public class LawyerPanel extends javax.swing.JPanel {
     private void viewRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestBtnActionPerformed
         layout.show(containerPanel, NewRequestPanel.class.getName());
     }//GEN-LAST:event_viewRequestBtnActionPerformed
+
+    private void viewClientsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientsBtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewClientsBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
