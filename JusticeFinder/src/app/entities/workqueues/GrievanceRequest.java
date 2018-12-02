@@ -28,4 +28,11 @@ public class GrievanceRequest extends WorkItem {
     public void setLegalEntity(LegalEntity legalEntity) {
         this.legalEntity = legalEntity;
     }    
+
+    @Override
+    public String toString() {
+        return id+"";
+    }
+    
+    
 }
