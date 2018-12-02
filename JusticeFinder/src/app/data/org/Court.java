@@ -8,7 +8,10 @@ package app.data.org;
 import app.data.directories.Directory;
 import app.entities.user.Address;
 import app.entities.user.ContactDetails;
+import app.entities.user.CourtAdmin;
+import app.entities.user.StateBarAssoAdmin;
 import app.entities.workqueues.CourtWorkQueue;
+import app.entities.workqueues.StateBarAssoWorkQueue;
 
 /**
  *
@@ -18,7 +21,7 @@ public class Court extends Organization{
     
     private static int count = 0;
     private String courtName;
-    private String courtID;
+    private String courtemailID;
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
@@ -26,6 +29,7 @@ public class Court extends Organization{
     public Court(){
     
         super(new CourtWorkQueue(), new Directory(),null);
+        super.admin = new CourtAdmin(this);
         count++;
         id = count;
     }
@@ -46,12 +50,12 @@ public class Court extends Organization{
         this.courtName = courtName;
     }
 
-    public String getCourtID() {
-        return courtID;
+    public String getCourtemailID() {
+        return courtemailID;
     }
 
-    public void setCourtID(String courtID) {
-        this.courtID = courtID;
+    public void setCourtemailID(String courtemailID) {
+        this.courtemailID = courtemailID;
     }
 
     public Address getWorkaddress() {

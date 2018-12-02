@@ -62,8 +62,6 @@ public class Network {
     public Directory<Integer, Court> getCOURT() {
         return COURT;
     }
-
-    
     private void initValues(){
         try {
             USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin

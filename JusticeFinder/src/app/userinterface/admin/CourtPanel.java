@@ -9,29 +9,31 @@ import app.data.directories.Directory;
 import app.data.org.Court;
 import app.data.org.StateBarAssociation;
 import app.entities.user.UserAccount;
+import app.userinterface.interfaces.HasTable;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author arele
  */
-public class CourtPanel extends javax.swing.JPanel {
+public class CourtPanel extends javax.swing.JPanel implements HasTable {
 
     /**
      * Creates new form CourtPanel1
      */
     Directory<Integer , Court> courtDir;
-    Directory<String, UserAccount> userAccDir;
+    Directory<String, UserAccount> userAccountDir;
     private Court court;
     
-    public CourtPanel(Directory<Integer , Court> courtDir,Directory<String, UserAccount> userAccDir) {
+    public CourtPanel(Directory<Integer , Court> courtDir,Directory<String, UserAccount> userAccountDir) {
         initComponents();
         
         this.courtDir = courtDir;
-        this.userAccDir = userAccDir;
+        this.userAccountDir = userAccountDir;
         
         ComponentAdapter adapter = new ComponentAdapter() {
 
@@ -53,6 +55,7 @@ public class CourtPanel extends javax.swing.JPanel {
         passwordtxt.setEnabled(false);
     }    
     
+    @Override
     public void populateTableData() {
         
         DefaultTableModel model = (DefaultTableModel) detailstbl.getModel();
@@ -224,6 +227,11 @@ public class CourtPanel extends javax.swing.JPanel {
         );
 
         savebtn.setText("Save");
+        savebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                savebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -288,6 +296,48 @@ public class CourtPanel extends javax.swing.JPanel {
         passwordtxt.setText("");
         court = null;
     }//GEN-LAST:event_addbtnActionPerformed
+
+    private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
+        // TODO add your handling code here:
+        if(court==null){
+            court = new Court();
+        }
+        court.setId(courtDir.size());//  getAllEntries().size());
+        court.setCourtName(nametxt.getText());
+        court.setCourtemailID(emailtxt.getText());
+        
+        UserAccount courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
+        
+        try {
+            userAccountDir.addNew(courtaccount);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            System.out.println(ex.getMessage());
+            return;
+        }
+        try {
+            if(courtDir.contains(court)){
+                JOptionPane.showMessageDialog(this, "Court with this name already present");
+                return;
+            }
+            courtDir.addNew(court);
+        } catch (Exception ex) {
+            
+        }
+        
+        JOptionPane.showMessageDialog(this, "Court Added Successfully!");
+        nametxt.setEnabled(false);
+        emailtxt.setEnabled(false);
+        usernametxt.setEnabled(false);
+        passwordtxt.setEnabled(false);
+        
+        populateTableData();
+        nametxt.setText("");
+        emailtxt.setText("");
+        usernametxt.setText("");
+        passwordtxt.setText("");
+        court = null;
+    }//GEN-LAST:event_savebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
