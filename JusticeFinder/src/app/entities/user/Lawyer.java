@@ -9,6 +9,9 @@ import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.data.org.StateBarAssociation;
 import app.entities.roles.Roles;
+import app.entities.workqueues.GrievanceRequest;
+import app.entities.workqueues.GrievanceRequestWorkQueue;
+import app.entities.workqueues.WorkQueue;
 
 /**
  *
@@ -25,11 +28,13 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private String yearsOfPractice;
     private Directory<Integer, StateBarAssociation> allowedStateBars;
     private Directory<Integer, StateBarAssociation> requestedStateBars;
+    private WorkQueue workqueue;
 
     public Lawyer(Roles role) {
         super(role);
         this.requestedStateBars = new Directory<>();
         this.allowedStateBars = new Directory<>();
+        this.workqueue = new GrievanceRequestWorkQueue();
     }
 
     public Directory<Integer, StateBarAssociation> getRequestedStateBars() {
@@ -48,6 +53,14 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.allowedStateBars = allowedStateBars;
     }
 
+    public WorkQueue getWorkqueue() {
+        return workqueue;
+    }
+
+    public void setWorkqueue(WorkQueue workqueue) {
+        this.workqueue = workqueue;
+    }
+    
     public Lawyer() {
         super(Roles.LAWYER);
         allowedStateBars= new Directory<>();
