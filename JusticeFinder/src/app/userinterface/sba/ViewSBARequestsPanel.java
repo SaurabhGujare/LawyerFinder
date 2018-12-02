@@ -7,6 +7,11 @@ package app.userinterface.sba;
 
 import app.data.org.StateBarAssociation;
 import app.entities.workqueues.LawyerApprovalRequest;
+import app.userinterface.MainFrame;
+import app.userinterface.lawyer.LawyerProfilePanel;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -59,7 +64,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
         statusLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jButton4 = new javax.swing.JButton();
+        viewLawyerBtn = new javax.swing.JButton();
         approveBtn = new javax.swing.JButton();
         rejectBtn = new javax.swing.JButton();
 
@@ -133,8 +138,13 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        jButton4.setText("View Lawyer");
-        jPanel3.add(jButton4);
+        viewLawyerBtn.setText("View Lawyer");
+        viewLawyerBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewLawyerBtnActionPerformed(evt);
+            }
+        });
+        jPanel3.add(viewLawyerBtn);
 
         approveBtn.setText("Approve");
         approveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -203,15 +213,32 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
         try {
             association.getDirectory().addNew(request.getLawyer());
             request.getLawyer().getAllowedStateBars().addNew(association);
+            request.getLawyer().getRequestedStateBars().delete(association.getKey());
             request.setStatus("APPROVED");
         } catch (Exception ex) {
-            
+            ex.printStackTrace();
+            return;
         }
-        request.setStatus("APPROVED");
+        
         JOptionPane.showMessageDialog(null, "Request Approved!!");
         dialog.setVisible(false);
         saveBtnListner.actionPerformed(evt);
     }//GEN-LAST:event_approveBtnActionPerformed
+
+    private void viewLawyerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLawyerBtnActionPerformed
+        // TODO add your handling code here:
+        JDialog dialog = new JDialog(MainFrame.self, "Lawyer Details",true);
+        LawyerProfilePanel panel = new LawyerProfilePanel(request.getLawyer(), true);
+        dialog.getContentPane().add(panel);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 400,
+                middle.y - (dialog.getHeight() / 2) - 400);
+
+        dialog.setLocation(newLocation);
+        dialog.pack();
+        dialog.setVisible(true);
+    }//GEN-LAST:event_viewLawyerBtnActionPerformed
 
     public ActionListener getSaveBtnListner() {
         return saveBtnListner;
@@ -224,7 +251,6 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton approveBtn;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -239,6 +265,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
     private javax.swing.JTextField reqMsgTxt;
     private javax.swing.JTextField reqNumTxt;
     private javax.swing.JLabel statusLabel;
+    private javax.swing.JButton viewLawyerBtn;
     // End of variables declaration//GEN-END:variables
 
     private void populateForm() {
