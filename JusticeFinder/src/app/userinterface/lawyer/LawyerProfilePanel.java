@@ -27,13 +27,13 @@ import javax.swing.JOptionPane;
 public class LawyerProfilePanel extends javax.swing.JPanel {
 
     List<StateBarAssociation> sbaNeedApprovalList;
+    boolean readOnly;
     /**
      * Creates new form LawyerProfilePanel1
      */
-    public LawyerProfilePanel() {
+    public LawyerProfilePanel(Lawyer lawyer,boolean readOnly) {
         initComponents();
-        Lawyer lawyer = (Lawyer)Session.getUserAccount().getUser();
-        
+        this.readOnly = readOnly;
         DefaultListModel model = new DefaultListModel();
         for(StateBarAssociation s:lawyer.getAllowedStateBars().getAllEntries()){
             model.addElement(s);
@@ -133,27 +133,12 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         jTextField8.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         emailTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        emailTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailTxtActionPerformed(evt);
-            }
-        });
 
         jTextField3.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
         jTextField4.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
-            }
-        });
 
         jTextField6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
-            }
-        });
 
         jTextField5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
@@ -431,18 +416,6 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 694, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void emailTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailTxtActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailTxtActionPerformed
-
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
-
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:

@@ -30,9 +30,12 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        menuPanel = new javax.swing.JPanel();
-        viewProfile = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jLabel1.setText("Legal Entity Page");
 
@@ -55,26 +58,35 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
         jSplitPane1.setDividerLocation(200);
 
-        viewProfile.setText("View Profile");
-
-        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
-        menuPanel.setLayout(menuPanelLayout);
-        menuPanelLayout.setHorizontalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(viewProfile, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
-        );
-        menuPanelLayout.setVerticalGroup(
-            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menuPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(viewProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(585, Short.MAX_VALUE))
-        );
-
-        jSplitPane1.setLeftComponent(menuPanel);
-
         containerPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(containerPanel);
+
+        jPanel3.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
+
+        jButton1.setText("View Profile");
+        jPanel3.add(jButton1);
+
+        jButton3.setText("Search Lawyer");
+        jPanel3.add(jButton3);
+
+        jButton2.setText("View Cases");
+        jPanel3.add(jButton2);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(407, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,10 +107,13 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JPanel menuPanel;
-    private javax.swing.JButton viewProfile;
     // End of variables declaration//GEN-END:variables
 }

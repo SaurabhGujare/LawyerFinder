@@ -23,6 +23,7 @@ import java.awt.event.WindowEvent;
  */
 public class MainFrame extends javax.swing.JFrame {
 
+    public static MainFrame self;
     /**
      * Creates new form MainFrame
      */
@@ -30,6 +31,7 @@ public class MainFrame extends javax.swing.JFrame {
         initComponents();
         initFrame();
         //loadLoginPage();
+        self = this;
     }
 
     private void initFrame() throws HeadlessException {
