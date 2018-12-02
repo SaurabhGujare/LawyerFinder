@@ -10,8 +10,16 @@ import app.entities.user.Lawyer;
 import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkItem;
+import app.userinterface.MainFrame;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -117,7 +125,36 @@ public class NewRequestPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
-        
+
+        int selectedrow= reqTable.getSelectedRow();
+        if(selectedrow>=0){
+            GrievanceRequest req = (GrievanceRequest) reqTable.getValueAt(reqTable.getSelectedRow(),0);
+            
+            JDialog dialog = new JDialog(MainFrame.self, "Request Details",true);
+            ViewLegalEntityReqPanel panel = new ViewLegalEntityReqPanel(dialog); 
+            
+            panel.setSaveBtnListner(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    populateTable();
+                }
+            });
+            dialog.getContentPane().add(panel);
+            
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+            Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 200,
+                    middle.y - (dialog.getHeight() / 2) - 200);
+
+            dialog.setLocation(newLocation);
+            dialog.pack();
+            
+            panel.showDialog(req);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+        }        
     }//GEN-LAST:event_openBtnActionPerformed
 
 

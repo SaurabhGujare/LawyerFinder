@@ -23,7 +23,7 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
      */
     LegalEntity legalEntity;
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-    public ViewLEProfilePanel(LegalEntity legalEntity) {
+    public ViewLEProfilePanel(LegalEntity legalEntity,boolean readOnly) {
         initComponents();
         this.legalEntity = legalEntity;
         populateText(legalEntity);
