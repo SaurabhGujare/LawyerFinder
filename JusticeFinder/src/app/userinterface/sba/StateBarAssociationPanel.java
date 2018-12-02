@@ -9,7 +9,7 @@ import app.data.Session;
 import app.entities.user.StateBarAssoAdmin;
 import app.userinterface.BasePanel;
 import app.userinterface.BasePanel;
-import app.userinterface.admin.CourtPanel;
+import app.userinterface.admin.CourtPanel_Corrupt;
 import com.db4o.User;
 import java.awt.CardLayout;
 import javax.swing.table.DefaultTableModel;

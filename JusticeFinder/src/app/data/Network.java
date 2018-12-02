@@ -7,6 +7,7 @@ package app.data;
 
 import app.data.directories.Directory;
 import app.data.directories.UserAccountDirectory;
+import app.data.org.Court;
 import app.data.org.PublicDomain;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Admin;
@@ -25,6 +26,7 @@ public class Network {
     private Directory<Integer, PublicDomain> PUBLIC_DOMAIN = new Directory();
     private Directory<Integer, StateBarAssociation> STATE_BAR_ASSOCIATIONS = new Directory();
     private Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
+    private Directory<Integer, Court> COURT = new Directory();
     private Network(){
         initValues();
     }
@@ -55,6 +57,10 @@ public class Network {
 
     public Directory<String, Lawyer> getLAWYER_DIRECTORY() {
         return LAWYER_DIRECTORY;
+    }
+
+    public Directory<Integer, Court> getCOURT() {
+        return COURT;
     }
 
     
