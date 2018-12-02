@@ -7,6 +7,8 @@ package app.entities.user;
 
 import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
+import app.entities.workqueues.GrievanceRequestWorkQueue;
+import app.entities.workqueues.WorkQueue;
 import java.util.Date;
 
 /**
@@ -21,12 +23,14 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     private ContactDetails primaryContact;
     private String ssn;
     private String email;
+    private WorkQueue workqueue;
 
     public LegalEntity() {
         super(Roles.LEGAL_ENTITY);
         priamryAddress = new Address();
         primaryContact = new ContactDetails();
         dob = new Date();
+        this.workqueue = new GrievanceRequestWorkQueue();
     }
 
     
@@ -94,6 +98,15 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
         this.primaryContact = primaryContact;
     }
 
+    public WorkQueue getWorkqueue() {
+        return workqueue;
+    }
+
+    public void setWorkqueue(WorkQueue workqueue) {
+        this.workqueue = workqueue;
+    }
+    
+    
     @Override
     public String getKey() {
         return ssn;
