@@ -24,6 +24,9 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
 
     public LegalEntity() {
         super(Roles.LEGAL_ENTITY);
+        priamryAddress = new Address();
+        primaryContact = new ContactDetails();
+        dob = new Date();
     }
 
     
