@@ -137,6 +137,11 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
         jScrollPane1.setViewportView(detailstbl);
 
         updatebtn.setText("View/ Update");
+        updatebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updatebtnActionPerformed(evt);
+            }
+        });
 
         deletebtn.setText("Delete");
 
@@ -338,6 +343,27 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
         passwordtxt.setText("");
         court = null;
     }//GEN-LAST:event_savebtnActionPerformed
+
+    private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow= detailstbl.getSelectedRow();
+      
+      if(selectedRow >= 0){
+        Court court;
+        nametxt.setEnabled(true);
+        emailtxt.setEnabled(true);
+        usernametxt.setEnabled(true);
+        passwordtxt.setEnabled(true);
+        
+        court= (Court) detailstbl.getValueAt(selectedRow, 0);
+        nametxt.setText(String.valueOf(court.getCourtName()));
+        usernametxt.setText(String.valueOf(court.getAdmin().getAccount().getUsername()));
+        emailtxt.setText(String.valueOf(court.getCourtemailID()));
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+        }
+    }//GEN-LAST:event_updatebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
