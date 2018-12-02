@@ -5,6 +5,7 @@
  */
 package app.userinterface.sba;
 
+import app.data.Network;
 import app.data.org.StateBarAssociation;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
@@ -13,6 +14,7 @@ import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.util.Date;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -204,6 +206,8 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
         request.setStatus("REJECTED");
+        request.getLawyer().getRequestedStateBars().delete(association.getKey());
+        request.setResolveDate(new Date());
         JOptionPane.showMessageDialog(null, "Request Rejected!!");
         dialog.setVisible(false);
         saveBtnListner.actionPerformed(evt);
@@ -215,6 +219,8 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
             request.getLawyer().getAllowedStateBars().addNew(association);
             request.getLawyer().getRequestedStateBars().delete(association.getKey());
             request.setStatus("APPROVED");
+            request.setResolveDate(new Date());
+            Network.getInstance().getLAWYER_DIRECTORY().addNew(request.getLawyer());
         } catch (Exception ex) {
             ex.printStackTrace();
             return;
