@@ -5,6 +5,7 @@
  */
 package app.userinterface.legalEntity;
 
+import app.data.Session;
 import app.data.directories.Directory;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
@@ -51,7 +52,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         lawyerTbl = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        sendGreivanceRequestBtn = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -68,10 +69,10 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(lawyerTbl);
 
-        jButton1.setText("Request");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        sendGreivanceRequestBtn.setText("Send Request");
+        sendGreivanceRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                sendGreivanceRequestBtnActionPerformed(evt);
             }
         });
 
@@ -83,15 +84,15 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addComponent(sendGreivanceRequestBtn)
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
+                    .addComponent(sendGreivanceRequestBtn)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(154, Short.MAX_VALUE))
         );
@@ -114,16 +115,17 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void sendGreivanceRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendGreivanceRequestBtnActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
+        Lawyer lawyer = (Lawyer) lawyerTbl.getValueAt(lawyerTbl.getSelectedRow(), 0);
+        lawyer.getWorkqueue().createNewWorkItem(Session.getUserAccount(), lawyer.getAccount(), "Greivance Request");
+    }//GEN-LAST:event_sendGreivanceRequestBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable lawyerTbl;
+    private javax.swing.JButton sendGreivanceRequestBtn;
     // End of variables declaration//GEN-END:variables
 }
