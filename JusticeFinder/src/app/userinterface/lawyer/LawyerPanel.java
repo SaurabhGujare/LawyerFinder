@@ -5,6 +5,9 @@
  */
 package app.userinterface.lawyer;
 import app.business.LoginAction;
+import app.data.Session;
+import app.entities.user.Lawyer;
+import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
 
@@ -13,7 +16,8 @@ import java.awt.CardLayout;
  * @author Saurabh Gujare (NUID : 001424874)
  */
 public class LawyerPanel extends javax.swing.JPanel {
-    private Object userAccount;
+    
+    private UserAccount userAccount;
     CardLayout layout;
 
     /**
@@ -21,8 +25,9 @@ public class LawyerPanel extends javax.swing.JPanel {
      */
     public LawyerPanel() {
         initComponents();
+        userAccount = Session.getUserAccount();
         lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
-        lawyerContainer.add(new LawyerProfilePanel(),LawyerProfilePanel.class.getName());
+        lawyerContainer.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),true),LawyerProfilePanel.class.getName());
         layout = (CardLayout)lawyerContainer.getLayout();
     }
 
