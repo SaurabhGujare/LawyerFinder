@@ -26,9 +26,9 @@ public class LawyerPanel extends javax.swing.JPanel {
     public LawyerPanel() {
         initComponents();
         userAccount = Session.getUserAccount();
-        lawyerContainer.add(new ConsultationRequestPanel(layout,lawyerContainer),ConsultationRequestPanel.class.getName());
-        lawyerContainer.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
-        layout = (CardLayout)lawyerContainer.getLayout();
+        containerPanel.add(new NewRequestPanel(layout,containerPanel),NewRequestPanel.class.getName());
+        containerPanel.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
+        layout = (CardLayout)containerPanel.getLayout();
     }
 
     /**
@@ -42,13 +42,16 @@ public class LawyerPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         logoutButton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jSplitPane1 = new javax.swing.JSplitPane();
-        lawyerContainer = new javax.swing.JPanel();
+        containerPanel = new javax.swing.JPanel();
+        menuPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        checkProfileButton = new javax.swing.JButton();
+        checkProfileBtn = new javax.swing.JButton();
+        viewRequestBtn = new javax.swing.JButton();
+        viewClientsBtn = new javax.swing.JButton();
+        fileCaseBtn = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(9, 18, 102));
+        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
         logoutButton.setText("Logout");
         logoutButton.addActionListener(new java.awt.event.ActionListener() {
@@ -57,18 +60,12 @@ public class LawyerPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("You are now Signed-in.......");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 645, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(729, Short.MAX_VALUE)
                 .addComponent(logoutButton)
                 .addContainerGap())
         );
@@ -76,43 +73,54 @@ public class LawyerPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(logoutButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jSplitPane1.setDividerLocation(200);
 
-        lawyerContainer.setBackground(new java.awt.Color(255, 255, 255));
-        lawyerContainer.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(lawyerContainer);
+        containerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        containerPanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(containerPanel);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        menuPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        checkProfileButton.setText("View Profile");
-        checkProfileButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        checkProfileButton.addActionListener(new java.awt.event.ActionListener() {
+        jPanel2.setOpaque(false);
+        jPanel2.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
+
+        checkProfileBtn.setText("View Profile");
+        checkProfileBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        checkProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkProfileButtonActionPerformed(evt);
+                checkProfileBtnActionPerformed(evt);
             }
         });
+        jPanel2.add(checkProfileBtn);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(checkProfileButton, javax.swing.GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE)
+        viewRequestBtn.setText("View Requests");
+        jPanel2.add(viewRequestBtn);
+
+        viewClientsBtn.setText("View Clients");
+        jPanel2.add(viewClientsBtn);
+
+        fileCaseBtn.setText("File Case");
+        jPanel2.add(fileCaseBtn);
+
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(checkProfileButton, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(530, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(398, Short.MAX_VALUE))
         );
 
-        jSplitPane1.setLeftComponent(jPanel2);
+        jSplitPane1.setLeftComponent(menuPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -141,19 +149,22 @@ public class LawyerPanel extends javax.swing.JPanel {
         ((BasePanel)this.getParent()).unloadPage(this);     
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void checkProfileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileButtonActionPerformed
+    private void checkProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileBtnActionPerformed
         // TODO add your handling code here:
-        layout.show(lawyerContainer, LawyerProfilePanel.class.getName());
-    }//GEN-LAST:event_checkProfileButtonActionPerformed
+        layout.show(containerPanel, LawyerProfilePanel.class.getName());
+    }//GEN-LAST:event_checkProfileBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton checkProfileButton;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton checkProfileBtn;
+    private javax.swing.JPanel containerPanel;
+    private javax.swing.JButton fileCaseBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JPanel lawyerContainer;
     private javax.swing.JButton logoutButton;
+    private javax.swing.JPanel menuPanel;
+    private javax.swing.JButton viewClientsBtn;
+    private javax.swing.JButton viewRequestBtn;
     // End of variables declaration//GEN-END:variables
 }
