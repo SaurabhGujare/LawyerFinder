@@ -24,6 +24,21 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private String specialization;
     private String yearsOfPractice;
     private Directory<Integer, StateBarAssociation> allowedStateBars;
+    private Directory<Integer, StateBarAssociation> requestedStateBars;
+
+    public Lawyer(Roles role) {
+        super(role);
+        this.requestedStateBars = new Directory<>();
+        this.allowedStateBars = new Directory<>();
+    }
+
+    public Directory<Integer, StateBarAssociation> getRequestedStateBars() {
+        return requestedStateBars;
+    }
+
+    public void setRequestedStateBars(Directory<Integer, StateBarAssociation> requestedStateBars) {
+        this.requestedStateBars = requestedStateBars;
+    }
 
     public Directory<Integer, StateBarAssociation> getAllowedStateBars() {
         return allowedStateBars;

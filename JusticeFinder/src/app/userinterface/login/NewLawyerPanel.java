@@ -8,28 +8,39 @@ package app.userinterface.login;
 import app.data.Network;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
-import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.user.UserAccount;
-import app.entities.workqueues.StateBarAssoWorkQueue;
+import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
+import app.userinterface.lawyer.LawyerProfilePanel;
 import java.awt.CardLayout;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.Color;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Ninad Subhedar (NUID : 001472377)
+ * @author PC
  */
 public class NewLawyerPanel extends javax.swing.JPanel {
 
+    Lawyer lawyer = null;
+    CardLayout layout;
+    LawyerProfilePanel lawyerProfilePanel;
+    NewUserAccount newUserAccount;
     /**
      * Creates new form NewLawyerPanel
      */
     public NewLawyerPanel() {
         initComponents();
+        heading.setBackground(Color.decode("#37474f"));
+        lawyerProfilePanel = new LawyerProfilePanel(lawyer, false);
+        container.add(lawyerProfilePanel,LawyerProfilePanel.class.getName());
         
-        sbaList.setModel(new DefaultComboBoxModel(Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().toArray()));
+        newUserAccount = new NewUserAccount();
+        container.add(newUserAccount,NewUserAccount.class.getName());
+        layout = (CardLayout) container.getLayout();
     }
 
     /**
@@ -41,122 +52,42 @@ public class NewLawyerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        heading = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        emailTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        usernameTxt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        passwordTxt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        ssnTxt = new javax.swing.JTextField();
-        sbaList = new javax.swing.JComboBox();
-        jLabel7 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        container = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        nextBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        saveBtn = new javax.swing.JButton();
 
-        setOpaque(false);
-        setLayout(new java.awt.GridLayout(0, 1));
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("New Lawyer");
 
-        jPanel1.setOpaque(false);
-
-        jLabel1.setText("New Lawyer Entity");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout headingLayout = new javax.swing.GroupLayout(heading);
+        heading.setLayout(headingLayout);
+        headingLayout.setHorizontalGroup(
+            headingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headingLayout.createSequentialGroup()
+                .addContainerGap(344, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap(344, Short.MAX_VALUE))
+        );
+        headingLayout.setVerticalGroup(
+            headingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headingLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(256, Short.MAX_VALUE))
-        );
 
-        add(jPanel1);
+        container.setLayout(new java.awt.CardLayout());
 
-        jPanel2.setOpaque(false);
-
-        jLabel2.setText("Name");
-
-        jLabel3.setText("Username");
-
-        jLabel4.setText("Password");
-
-        jLabel5.setText("Email");
-
-        jLabel6.setText("SSN");
-
-        jLabel7.setText("State Bar Association");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sbaList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameTxt)
-                    .addComponent(emailTxt)
-                    .addComponent(usernameTxt)
-                    .addComponent(passwordTxt)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(56, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sbaList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-
-        add(jPanel2);
-
-        jPanel3.setOpaque(false);
+        nextBtn.setText("Next");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nextBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -165,91 +96,91 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             }
         });
 
-        saveBtn.setText("Save");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1052, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(saveBtn))
-                .addContainerGap())
+                .addComponent(backBtn)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(nextBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(nextBtn)
+                    .addComponent(backBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        add(jPanel3);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(heading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
+        // TODO add your handling code here:
+        if(lawyerProfilePanel.isVisible()){
+            lawyer = lawyerProfilePanel.validateandGetLawyer();
+            if(lawyer==null)
+                return;
+        }
+        if(newUserAccount.isVisible()){
+            UserAccount account = newUserAccount.getUser(lawyer);
+            try {
+                Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "User already present");
+                return;
+            }
+            
+            for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
+                LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                req.setLawyer(lawyer);
+            }
+            JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
+            ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
+        }
+        layout.next(container);
+    }//GEN-LAST:event_nextBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         // TODO add your handling code here:
-        JPanel parent = (JPanel) this.getParent();
-        CardLayout layout = (CardLayout) parent.getLayout();
-        layout.show(parent, SelectUserType.class.getName());
+        if(lawyerProfilePanel.isVisible()){
+            JPanel parent = (JPanel) this.getParent();
+            CardLayout layout = (CardLayout) parent.getLayout();
+            layout.show(parent, SelectUserType.class.getName());
+        }
+        else{
+            layout.previous(container);
+        }
     }//GEN-LAST:event_backBtnActionPerformed
-
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        // TODO add your handling code here:
-        
-       
-        
-        Lawyer lawyer = new Lawyer();
-        lawyer.setFirstName(nameTxt.getText());
-        lawyer.setEmail(emailTxt.getText());
-        lawyer.setSsn(ssnTxt.getText());
-
-        UserAccount account = new UserAccount(usernameTxt.getText(), passwordTxt.getText(), lawyer);
-
-        try{
-            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
-        }
-        catch(Exception e){
-            return;
-        }
-        
-        StateBarAssociation sba = (StateBarAssociation) sbaList.getSelectedItem();
-        LawyerApprovalRequest item = (LawyerApprovalRequest) ((StateBarAssoWorkQueue)sba.getWorkQueue())
-                .createNewWorkItem(account, sba.getAdmin().getAccount(), "Request For New Lawyer.");
-        item.setLawyer(lawyer);
-        
-        JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
-        ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
-    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JTextField emailTxt;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel container;
+    private javax.swing.JPanel heading;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField passwordTxt;
-    private javax.swing.JButton saveBtn;
-    private javax.swing.JComboBox sbaList;
-    private javax.swing.JTextField ssnTxt;
-    private javax.swing.JTextField usernameTxt;
+    private javax.swing.JButton nextBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -119,7 +119,7 @@ public class ApproveRejectRequestPanel extends javax.swing.JPanel {
         if(selectedrow>=0){
             LawyerApprovalRequest req = (LawyerApprovalRequest) RequestTable.getValueAt(RequestTable.getSelectedRow(),0);
             
-            JDialog dialog = new JDialog(MainFrame.self, "Create New Vital Sign",true);
+            JDialog dialog = new JDialog(MainFrame.self, "Request Details",true);
             ViewSBARequestsPanel panel = new ViewSBARequestsPanel(sba, dialog); 
             panel.setSaveBtnListner(new ActionListener() {
                 @Override
