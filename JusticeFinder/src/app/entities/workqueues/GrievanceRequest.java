@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class ClientAcceptanceRequest {
+public class GrievanceRequest {
     private LegalEntity legalEntity;
     private String requestMessage;
     private int requestId;
