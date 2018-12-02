@@ -5,6 +5,14 @@
  */
 package app.userinterface.legalEntity;
 
+import app.data.Session;
+import app.entities.user.Lawyer;
+import app.entities.user.LegalEntity;
+import app.entities.workqueues.GrievanceRequest;
+import app.entities.workqueues.GrievanceRequestWorkQueue;
+import app.entities.workqueues.WorkItem;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Saurabh Gujare (NUID : 001424874)
@@ -16,8 +24,23 @@ public class ViewSentRequest extends javax.swing.JPanel {
      */
     public ViewSentRequest() {
         initComponents();
+        populateTable();
     }
 
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) greivanceRequestTbl.getModel();
+        model.setRowCount(0);
+        Lawyer legalEntity = (Lawyer) Session.getUserAccount().getUser();
+        for(WorkItem i: ((GrievanceRequestWorkQueue) legalEntity.getWorkqueue()).getWorkList()){
+            GrievanceRequest request = (GrievanceRequest) i;
+            Object[] row = new Object[4];
+            row[0] = request;
+            row[1] = request.getRequestDate();
+            row[2] = request.getReceiver().getUsername();
+            row[3] = request.getStatus();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +52,7 @@ public class ViewSentRequest extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        greivanceRequestTbl = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         viewCase = new javax.swing.JButton();
 
@@ -37,7 +60,7 @@ public class ViewSentRequest extends javax.swing.JPanel {
 
         jPanel1.setOpaque(false);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        greivanceRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -45,10 +68,10 @@ public class ViewSentRequest extends javax.swing.JPanel {
                 {null, null, null, null}
             },
             new String [] {
-                "CaseID", "Date Requested", "Dare Accepted", "Updated On"
+                "CaseID", "Date Requested", "Lawyer Name", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(greivanceRequestTbl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -111,10 +134,10 @@ public class ViewSentRequest extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable greivanceRequestTbl;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton viewCase;
     // End of variables declaration//GEN-END:variables
 }
