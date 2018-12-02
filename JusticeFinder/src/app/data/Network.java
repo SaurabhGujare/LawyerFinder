@@ -10,6 +10,7 @@ import app.data.directories.UserAccountDirectory;
 import app.data.org.PublicDomain;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Admin;
+import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 
@@ -23,7 +24,7 @@ public class Network {
     private Directory<String, UserAccount> USER_ACCOUNTS = new UserAccountDirectory();
     private Directory<Integer, PublicDomain> PUBLIC_DOMAIN = new Directory();
     private Directory<Integer, StateBarAssociation> STATE_BAR_ASSOCIATIONS = new Directory();
-    
+    private Directory<String, Lawyer> LAWYER_DIRECTORY = new Directory();
     private Network(){
         initValues();
     }
@@ -50,6 +51,10 @@ public class Network {
 
     public Directory<Integer, StateBarAssociation> getSTATE_BAR_ASSOCIATIONS() {
         return STATE_BAR_ASSOCIATIONS;
+    }
+
+    public Directory<String, Lawyer> getLAWYER_DIRECTORY() {
+        return LAWYER_DIRECTORY;
     }
 
     
