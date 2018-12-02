@@ -32,7 +32,7 @@ public class AdminPanel extends javax.swing.JPanel {
         userNameLbl.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
         containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
-        containerPanel.add(new CourtPanel(),CourtPanel.class.getName());
+        containerPanel.add(new CourtPanel(network.getCOURT(),network.getUSER_ACCOUNTS()),CourtPanel.class.getName());
         containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
         
         layout = (CardLayout) containerPanel.getLayout();
@@ -56,8 +56,8 @@ public class AdminPanel extends javax.swing.JPanel {
         menuPanel = new javax.swing.JPanel();
         mainMenu = new javax.swing.JPanel();
         stateBarAssoBtn = new javax.swing.JButton();
-        courtBtn = new javax.swing.JButton();
         publicDomainBtn = new javax.swing.JButton();
+        courtbtn = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
         setOpaque(false);
@@ -85,7 +85,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(userNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 482, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
@@ -119,14 +119,6 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
-        courtBtn.setText("Courts");
-        courtBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        courtBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                courtBtnActionPerformed(evt);
-            }
-        });
-
         publicDomainBtn.setText("Public Domains");
         publicDomainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,23 +126,33 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
+        courtbtn.setText("Court");
+        courtbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                courtbtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu);
         mainMenu.setLayout(mainMenuLayout);
         mainMenuLayout.setHorizontalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-            .addComponent(courtBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 249, Short.MAX_VALUE)
             .addComponent(publicDomainBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(courtbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainMenuLayout.setVerticalGroup(
             mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainMenuLayout.createSequentialGroup()
                 .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(courtBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
+                .addComponent(courtbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(publicDomainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 175, Short.MAX_VALUE))
+                .addGap(0, 139, Short.MAX_VALUE))
         );
 
         menuPanel.add(mainMenu);
@@ -198,18 +200,19 @@ public class AdminPanel extends javax.swing.JPanel {
         layout.show(containerPanel, StateBarAssociationPanel.class.getName());
     }//GEN-LAST:event_stateBarAssoBtnActionPerformed
 
-    private void courtBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courtBtnActionPerformed
-        layout.show(containerPanel,CourtPanel.class.getName());
-    }//GEN-LAST:event_courtBtnActionPerformed
-
     private void publicDomainBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publicDomainBtnActionPerformed
         layout.show(containerPanel,PublicDomainPanel.class.getName());
     }//GEN-LAST:event_publicDomainBtnActionPerformed
 
+    private void courtbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courtbtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel,CourtPanel.class.getName());
+    }//GEN-LAST:event_courtbtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JButton courtBtn;
+    private javax.swing.JButton courtbtn;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
