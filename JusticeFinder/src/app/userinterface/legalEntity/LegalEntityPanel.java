@@ -5,7 +5,9 @@
  */
 package app.userinterface.legalEntity;
 
+import app.data.Network;
 import app.data.Session;
+import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
@@ -26,6 +28,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         initComponents();
         account = Session.getUserAccount();
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser()),ViewLEProfilePanel.class.getName());
+        containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());
         layout = (CardLayout) containerPanel.getLayout();
     }
 
@@ -95,6 +98,11 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         jPanel3.add(viewProfileBtn);
 
         jButton3.setText("Search Lawyer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel3.add(jButton3);
 
         jButton2.setText("View Cases");
@@ -141,6 +149,11 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutBtnActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, SearchLawyerPanel.class.getName());
+    }//GEN-LAST:event_jButton3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
