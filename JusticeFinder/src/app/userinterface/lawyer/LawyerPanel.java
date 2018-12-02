@@ -26,7 +26,7 @@ public class LawyerPanel extends javax.swing.JPanel {
     public LawyerPanel() {
         initComponents();
         userAccount = Session.getUserAccount();
-        containerPanel.add(new NewRequestPanel(layout,containerPanel),NewRequestPanel.class.getName());
+        containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
         layout = (CardLayout)containerPanel.getLayout();
     }
@@ -98,6 +98,11 @@ public class LawyerPanel extends javax.swing.JPanel {
         jPanel2.add(checkProfileBtn);
 
         viewRequestBtn.setText("View Requests");
+        viewRequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewRequestBtnActionPerformed(evt);
+            }
+        });
         jPanel2.add(viewRequestBtn);
 
         viewClientsBtn.setText("View Clients");
@@ -153,6 +158,10 @@ public class LawyerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         layout.show(containerPanel, LawyerProfilePanel.class.getName());
     }//GEN-LAST:event_checkProfileBtnActionPerformed
+
+    private void viewRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewRequestBtnActionPerformed
+        layout.show(containerPanel, NewRequestPanel.class.getName());
+    }//GEN-LAST:event_viewRequestBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

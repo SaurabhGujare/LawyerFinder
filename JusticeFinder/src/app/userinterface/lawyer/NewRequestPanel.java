@@ -5,8 +5,14 @@
  */
 package app.userinterface.lawyer;
 
-import java.awt.CardLayout;
-import javax.swing.JPanel;
+import app.data.Session;
+import app.entities.user.Lawyer;
+import app.entities.workqueues.GrievanceRequest;
+import app.entities.workqueues.GrievanceRequestWorkQueue;
+import app.entities.workqueues.WorkItem;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import javax.swing.table.DefaultTableModel;
 
 
 /**
@@ -18,15 +24,21 @@ public class NewRequestPanel extends javax.swing.JPanel {
     /**
      * Creates new form LawyerConsultationRequest
      */
-    CardLayout layout;
-    JPanel lawyerContainer;
-    public NewRequestPanel(CardLayout layout,JPanel lawyerContainer) {
+    public NewRequestPanel() {
         initComponents();
-        this.layout = layout;
-        this.lawyerContainer = lawyerContainer;
-        lawyerContainer.add(new WelcomePanel(),WelcomePanel.class.getName());
-        lawyerContainer.add(new ViewRequestPanel(),ViewRequestPanel.class.getName());
-        this.layout = (CardLayout)lawyerContainer.getLayout();
+        
+        ComponentAdapter adapter = new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent ce) {
+                super.componentShown(ce); 
+                populateTable();
+            }
+            
+        };
+        
+        this.addComponentListener(adapter);
+        populateTable();
     }
 
     /**
@@ -39,27 +51,19 @@ public class NewRequestPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        openBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        consulatationRequestTbl = new javax.swing.JTable();
-        viewButton = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
+        reqTable = new javax.swing.JTable();
+
+        setOpaque(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setOpaque(false);
 
-        consulatationRequestTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Sr No", "Date ", "Client Name", "Status"
-            }
-        ));
-        jScrollPane1.setViewportView(consulatationRequestTbl);
-
-        viewButton.setText("Open");
-        viewButton.addActionListener(new java.awt.event.ActionListener() {
+        openBtn.setText("Open");
+        openBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewButtonActionPerformed(evt);
+                openBtnActionPerformed(evt);
             }
         });
 
@@ -67,33 +71,28 @@ public class NewRequestPanel extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(viewButton)
+                .addComponent(openBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(viewButton)
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(openBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBackground(new java.awt.Color(153, 153, 153));
+        reqTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 681, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-        );
+            },
+            new String [] {
+                "Sr No", "Date ", "Client Name", "Status"
+            }
+        ));
+        jScrollPane1.setViewportView(reqTable);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -103,31 +102,44 @@ public class NewRequestPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(8, 8, 8)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewButtonActionPerformed
-        // TODO add your handling code here:
-        layout.show(lawyerContainer, ViewRequestPanel.class.getName());
-    }//GEN-LAST:event_viewButtonActionPerformed
+    private void openBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openBtnActionPerformed
+        
+    }//GEN-LAST:event_openBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTable consulatationRequestTbl;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton viewButton;
+    private javax.swing.JButton openBtn;
+    private javax.swing.JTable reqTable;
     // End of variables declaration//GEN-END:variables
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) reqTable.getModel();
+        model.setRowCount(0);
+        Lawyer lawyer = (Lawyer) Session.getUserAccount().getUser();
+        for(WorkItem i: ((GrievanceRequestWorkQueue) lawyer.getWorkqueue()).getWorkList()){
+            GrievanceRequest request = (GrievanceRequest) i;
+            Object[] row = new Object[4];
+            row[0] = request;
+            row[1] = request.getRequestDate();
+            row[2] = request.getSender().getUsername();
+            row[3] = request.getStatus();
+            model.addRow(row);
+        }
+    }
 }
