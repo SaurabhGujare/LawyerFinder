@@ -29,12 +29,14 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<Integer, StateBarAssociation> allowedStateBars;
     private Directory<Integer, StateBarAssociation> requestedStateBars;
     private WorkQueue workqueue;
+    private Directory<String, LegalEntity> clientList;
 
-    public Lawyer(Roles role) {
-        super(role);
-        this.requestedStateBars = new Directory<>();
-        this.allowedStateBars = new Directory<>();
-        this.workqueue = new GrievanceRequestWorkQueue();
+    public Directory<String, LegalEntity> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(Directory<String, LegalEntity> clientList) {
+        this.clientList = clientList;
     }
 
     public Directory<Integer, StateBarAssociation> getRequestedStateBars() {
@@ -63,7 +65,10 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     
     public Lawyer() {
         super(Roles.LAWYER);
-        allowedStateBars= new Directory<>();
+        this.allowedStateBars= new Directory<>();
+        this.requestedStateBars = new Directory<>();
+        this.workqueue = new GrievanceRequestWorkQueue();
+        this.clientList = new Directory<>();
     }
 
     
