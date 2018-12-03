@@ -5,17 +5,11 @@
  */
 package app.userinterface.lawyer;
 
-import app.userinterface.sba.*;
-import app.data.Network;
 import app.data.Session;
-import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
-import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
-import app.userinterface.lawyer.LawyerProfilePanel;
-import app.userinterface.legalEntity.LegalEntityPanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -66,9 +60,10 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
         reqNumTxt = new javax.swing.JTextField();
         reqByTxt = new javax.swing.JTextField();
         reqDate = new javax.swing.JTextField();
-        reqMsgTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         statusLabel = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        reqMsgTxt = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         viewClientBtn = new javax.swing.JButton();
@@ -87,9 +82,20 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Request Message:");
 
+        reqNumTxt.setEnabled(false);
+
+        reqByTxt.setEnabled(false);
+
+        reqDate.setEnabled(false);
+
         jLabel5.setText("Status:");
 
         statusLabel.setText("PENDING");
+
+        reqMsgTxt.setColumns(20);
+        reqMsgTxt.setRows(5);
+        reqMsgTxt.setEnabled(false);
+        jScrollPane1.setViewportView(reqMsgTxt);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -106,13 +112,12 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3)
                             .addComponent(jLabel2))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(reqNumTxt)
-                        .addComponent(reqByTxt)
-                        .addComponent(reqMsgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(reqDate, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(statusLabel))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(reqDate, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+                    .addComponent(statusLabel)
+                    .addComponent(jScrollPane1)
+                    .addComponent(reqNumTxt)
+                    .addComponent(reqByTxt))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -137,8 +142,8 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(reqMsgTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Actions", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 1, 18))); // NOI18N
@@ -195,7 +200,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +224,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         try {
-            ((Lawyer) Session.getUserAccount().getUser()).getClientList().addNew(request.getLegalEntity());
+            ((Lawyer) Session.getUserAccount().getUser()).getClientList().addNew((LegalEntity) request.getSender().getUser());
             request.setStatus("APPROVED");
             request.setResolveDate(new Date());
         } catch (Exception ex) {
@@ -234,8 +239,8 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
 
     private void viewClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientBtnActionPerformed
         // TODO add your handling code here:
-        JDialog dialog = new JDialog(MainFrame.self, "Lawyer Details",true);
-        ViewLEProfilePanel panel = new ViewLEProfilePanel(request.getLegalEntity(), true);
+        JDialog dialog = new JDialog(MainFrame.self, "Client Details",true);
+        ViewLEProfilePanel panel = new ViewLEProfilePanel((LegalEntity) request.getSender().getUser(), true);
         dialog.getContentPane().add(panel);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
@@ -266,10 +271,11 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton rejectBtn;
     private javax.swing.JTextField reqByTxt;
     private javax.swing.JTextField reqDate;
-    private javax.swing.JTextField reqMsgTxt;
+    private javax.swing.JTextArea reqMsgTxt;
     private javax.swing.JTextField reqNumTxt;
     private javax.swing.JLabel statusLabel;
     private javax.swing.JButton viewClientBtn;
@@ -279,6 +285,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
         reqNumTxt.setText(request.getId()+"");
         reqByTxt.setText(((LegalEntity)request.getSender().getUser()).getFirstName());
         reqDate.setText(request.getRequestDate().toString());
+        reqMsgTxt.setText(request.getMessage());
         statusLabel.setText(request.getStatus());
     }
     

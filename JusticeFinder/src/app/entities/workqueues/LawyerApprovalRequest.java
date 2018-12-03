@@ -14,21 +14,12 @@ import app.entities.user.UserAccount;
  */
 public class LawyerApprovalRequest extends WorkItem{
     
-    private Lawyer lawyer;
     private static int maxCount = 0;
     
     public LawyerApprovalRequest(String message, UserAccount sender, UserAccount receiver) {
         super(message, sender, receiver);
         maxCount++;
         id = maxCount;
-    }
-
-    public Lawyer getLawyer() {
-        return lawyer;
-    }
-
-    public void setLawyer(Lawyer lawyer) {
-        this.lawyer = lawyer;
     }
 
     @Override

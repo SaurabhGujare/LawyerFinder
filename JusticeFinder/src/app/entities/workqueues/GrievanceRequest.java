@@ -14,20 +14,11 @@ import java.util.Date;
  * @author Saurabh Gujare (NUID : 001424874)
  */
 public class GrievanceRequest extends WorkItem {
-    private LegalEntity legalEntity;
 
 
     public GrievanceRequest(String message, UserAccount sender, UserAccount receiver) {
         super(message, sender, receiver);
     }
-
-    public LegalEntity getLegalEntity() {
-        return legalEntity;
-    }
-
-    public void setLegalEntity(LegalEntity legalEntity) {
-        this.legalEntity = legalEntity;
-    }    
 
     @Override
     public String toString() {

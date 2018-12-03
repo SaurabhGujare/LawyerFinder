@@ -26,8 +26,11 @@ public class LawyerPanel extends javax.swing.JPanel {
     public LawyerPanel() {
         initComponents();
         userAccount = Session.getUserAccount();
-        containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
+        
         containerPanel.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
+        containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
+        containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
+        
         layout = (CardLayout)containerPanel.getLayout();
     }
 
@@ -170,6 +173,7 @@ public class LawyerPanel extends javax.swing.JPanel {
 
     private void viewClientsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientsBtnActionPerformed
         // TODO add your handling code here:
+        layout.show(containerPanel, ViewClientsPanel.class.getName());
     }//GEN-LAST:event_viewClientsBtnActionPerformed
 
 
