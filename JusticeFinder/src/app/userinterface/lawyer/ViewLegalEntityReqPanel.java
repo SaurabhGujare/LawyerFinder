@@ -219,7 +219,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         try {
-            ((Lawyer) Session.getUserAccount().getUser()).getClientList().addNew(request.getLegalEntity());
+            ((Lawyer) Session.getUserAccount().getUser()).getClientList().addNew((LegalEntity) request.getSender().getUser());
             request.setStatus("APPROVED");
             request.setResolveDate(new Date());
         } catch (Exception ex) {
@@ -234,7 +234,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
 
     private void viewClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientBtnActionPerformed
         // TODO add your handling code here:
-        JDialog dialog = new JDialog(MainFrame.self, "Lawyer Details",true);
+        JDialog dialog = new JDialog(MainFrame.self, "Client Details",true);
         ViewLEProfilePanel panel = new ViewLEProfilePanel(request.getLegalEntity(), true);
         dialog.getContentPane().add(panel);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

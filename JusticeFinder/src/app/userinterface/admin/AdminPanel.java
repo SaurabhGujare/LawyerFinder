@@ -111,9 +111,9 @@ public class AdminPanel extends javax.swing.JPanel {
         jSplitPane1.setOpaque(false);
 
         menuPanel.setOpaque(false);
-        menuPanel.setLayout(new java.awt.GridLayout(2, 1, 0, 5));
 
         mainMenu.setOpaque(false);
+        mainMenu.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
         stateBarAssoBtn.setText("State Bar Associations");
         stateBarAssoBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -122,6 +122,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 stateBarAssoBtnActionPerformed(evt);
             }
         });
+        mainMenu.add(stateBarAssoBtn);
 
         publicDomainBtn.setText("Public Domains");
         publicDomainBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -129,6 +130,7 @@ public class AdminPanel extends javax.swing.JPanel {
                 publicDomainBtnActionPerformed(evt);
             }
         });
+        mainMenu.add(publicDomainBtn);
 
         courtbtn.setText("Court");
         courtbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -136,30 +138,20 @@ public class AdminPanel extends javax.swing.JPanel {
                 courtbtnActionPerformed(evt);
             }
         });
+        mainMenu.add(courtbtn);
 
-        javax.swing.GroupLayout mainMenuLayout = new javax.swing.GroupLayout(mainMenu);
-        mainMenu.setLayout(mainMenuLayout);
-        mainMenuLayout.setHorizontalGroup(
-            mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 249, Short.MAX_VALUE)
-            .addComponent(publicDomainBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainMenuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(courtbtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+        javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
+        menuPanel.setLayout(menuPanelLayout);
+        menuPanelLayout.setHorizontalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
-        mainMenuLayout.setVerticalGroup(
-            mainMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainMenuLayout.createSequentialGroup()
-                .addComponent(stateBarAssoBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(courtbtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(publicDomainBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 139, Short.MAX_VALUE))
+        menuPanelLayout.setVerticalGroup(
+            menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menuPanelLayout.createSequentialGroup()
+                .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 419, Short.MAX_VALUE))
         );
-
-        menuPanel.add(mainMenu);
 
         jSplitPane1.setLeftComponent(menuPanel);
 
