@@ -5,17 +5,11 @@
  */
 package app.userinterface.lawyer;
 
-import app.userinterface.sba.*;
-import app.data.Network;
 import app.data.Session;
-import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
-import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
-import app.userinterface.lawyer.LawyerProfilePanel;
-import app.userinterface.legalEntity.LegalEntityPanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -235,7 +229,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
     private void viewClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientBtnActionPerformed
         // TODO add your handling code here:
         JDialog dialog = new JDialog(MainFrame.self, "Client Details",true);
-        ViewLEProfilePanel panel = new ViewLEProfilePanel(request.getLegalEntity(), true);
+        ViewLEProfilePanel panel = new ViewLEProfilePanel((LegalEntity) request.getSender().getUser(), true);
         dialog.getContentPane().add(panel);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
