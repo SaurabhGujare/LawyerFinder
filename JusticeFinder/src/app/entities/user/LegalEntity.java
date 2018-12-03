@@ -5,6 +5,7 @@
  */
 package app.entities.user;
 
+import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
@@ -24,6 +25,15 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     private String ssn;
     private String email;
     private WorkQueue workqueue;
+    private Directory<String, Lawyer> lawyers;
+
+    public Directory<String, Lawyer> getLawyers() {
+        return lawyers;
+    }
+
+    public void setLawyers(Directory<String, Lawyer> lawyers) {
+        this.lawyers = lawyers;
+    }
 
     public LegalEntity() {
         super(Roles.LEGAL_ENTITY);
@@ -31,6 +41,7 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
         primaryContact = new ContactDetails();
         dob = new Date();
         this.workqueue = new GrievanceRequestWorkQueue();
+        this.lawyers = new Directory<>();
     }
 
     

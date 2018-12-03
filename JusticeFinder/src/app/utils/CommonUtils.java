@@ -2,6 +2,8 @@ package app.utils;
 
 
 
+import app.data.directories.Directory;
+import app.entities.Rating;
 import java.awt.Image;
 import java.io.IOException;
 import java.text.ParseException;
@@ -47,5 +49,18 @@ public class CommonUtils {
         
     }
     
+    public static int calulateRating(Directory<String, Rating> ratings){
+        
+        if(ratings.size() == 0){
+            return 0;
+        }
+        
+        int total = 0;
+        for(Rating r: ratings.getAllEntries()){
+            total = total + r.getValue();
+        }
+        total = total / ratings.size();
+        return total;
+    }
     
 }
