@@ -7,6 +7,7 @@ package app.userinterface.sba;
 
 import app.data.Network;
 import app.data.org.StateBarAssociation;
+import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
 import app.userinterface.lawyer.LawyerProfilePanel;
@@ -206,7 +207,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
     private void rejectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejectBtnActionPerformed
         // TODO add your handling code here:
         request.setStatus("REJECTED");
-        request.getLawyer().getRequestedStateBars().delete(association.getKey());
+        ((Lawyer)request.getSender().getUser()).getRequestedStateBars().delete(association.getKey());
         request.setResolveDate(new Date());
         JOptionPane.showMessageDialog(null, "Request Rejected!!");
         dialog.setVisible(false);
@@ -215,12 +216,12 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         try {
-            association.getDirectory().addNew(request.getLawyer());
-            request.getLawyer().getAllowedStateBars().addNew(association);
-            request.getLawyer().getRequestedStateBars().delete(association.getKey());
+            association.getDirectory().addNew(((Lawyer)request.getSender().getUser()));
+            ((Lawyer)request.getSender().getUser()).getAllowedStateBars().addNew(association);
+            ((Lawyer)request.getSender().getUser()).getRequestedStateBars().delete(association.getKey());
             request.setStatus("APPROVED");
             request.setResolveDate(new Date());
-            Network.getInstance().getLAWYER_DIRECTORY().addNew(request.getLawyer());
+            Network.getInstance().getLAWYER_DIRECTORY().addNew(((Lawyer)request.getSender().getUser()));
         } catch (Exception ex) {
             ex.printStackTrace();
             return;
@@ -234,7 +235,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
     private void viewLawyerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewLawyerBtnActionPerformed
         // TODO add your handling code here:
         JDialog dialog = new JDialog(MainFrame.self, "Lawyer Details",true);
-        LawyerProfilePanel panel = new LawyerProfilePanel(request.getLawyer(), true);
+        LawyerProfilePanel panel = new LawyerProfilePanel(((Lawyer)request.getSender().getUser()), true);
         dialog.getContentPane().add(panel);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
@@ -276,7 +277,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
 
     private void populateForm() {
         reqNumTxt.setText(request.getId()+"");
-        reqByTxt.setText(request.getLawyer().getFirstName());
+        reqByTxt.setText(((Lawyer)request.getSender().getUser()).getFirstName());
         reqDate.setText(request.getRequestDate().toString());
         statusLabel.setText(request.getStatus());
     }

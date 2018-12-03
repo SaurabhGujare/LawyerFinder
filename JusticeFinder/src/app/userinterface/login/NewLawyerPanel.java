@@ -154,7 +154,6 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             
             for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
                 LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
-                req.setLawyer(lawyer);
             }
             JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());

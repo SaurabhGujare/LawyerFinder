@@ -12,6 +12,8 @@ import app.entities.roles.Roles;
 import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,6 +32,24 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<Integer, StateBarAssociation> requestedStateBars;
     private WorkQueue workqueue;
     private Directory<String, LegalEntity> clientList;
+    private Integer rating;
+    private List<String> areaOfPractice;
+
+    public List<String> getAreaOfPractice() {
+        return areaOfPractice;
+    }
+
+    public void setAreaOfPractice(List<String> areaOfPractice) {
+        this.areaOfPractice = areaOfPractice;
+    }
+
+    public Integer getRating() {
+        return rating;
+    }
+
+    public void setRating(Integer rating) {
+        this.rating = rating;
+    }
 
     public Directory<String, LegalEntity> getClientList() {
         return clientList;
@@ -69,6 +89,7 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.requestedStateBars = new Directory<>();
         this.workqueue = new GrievanceRequestWorkQueue();
         this.clientList = new Directory<>();
+        this.areaOfPractice = new ArrayList<>();
     }
 
     
