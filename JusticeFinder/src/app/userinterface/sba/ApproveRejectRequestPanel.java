@@ -6,6 +6,7 @@
 package app.userinterface.sba;
 
 import app.data.org.StateBarAssociation;
+import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
@@ -153,7 +154,7 @@ public class ApproveRejectRequestPanel extends javax.swing.JPanel {
             LawyerApprovalRequest request = (LawyerApprovalRequest) i;
             Object[] row = new Object[4];
             row[0] = request;
-            row[1] = request.getLawyer().getFirstName();
+            row[1] = ((Lawyer) request.getSender().getUser()).getFirstName();
             row[2] = request.getRequestDate();
             row[3] = request.getStatus();
             model.addRow(row);
