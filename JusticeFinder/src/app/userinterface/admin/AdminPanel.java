@@ -29,12 +29,13 @@ public class AdminPanel extends javax.swing.JPanel {
     public AdminPanel() {
         initComponents();
         admin = (Admin)Session.getUserAccount().getUser();
-        userNameLbl.setText(Session.getUserAccount().getUsername());
+        welcomelabel.setText("Welcome ");
+        usernamelabel.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
         containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(network.getCOURT(),network.getUSER_ACCOUNTS()),CourtPanel.class.getName());
-        containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
-        
+        containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());    
+     
         layout = (CardLayout) containerPanel.getLayout();
     }
 
@@ -49,8 +50,8 @@ public class AdminPanel extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         logoutBtn = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        userNameLbl = new javax.swing.JLabel();
+        welcomelabel = new javax.swing.JLabel();
+        usernamelabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         menuPanel = new javax.swing.JPanel();
@@ -72,9 +73,9 @@ public class AdminPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setText("User Name:");
+        welcomelabel.setText("Welcome");
 
-        userNameLbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        usernamelabel.setFont(new java.awt.Font("Tahoma", 3, 30)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,22 +83,25 @@ public class AdminPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(userNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                .addComponent(welcomelabel)
+                .addGap(7, 7, 7)
+                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(491, 491, 491)
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoutBtn)
-                    .addComponent(jLabel2)
-                    .addComponent(userNameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(welcomelabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -205,7 +209,6 @@ public class AdminPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton courtbtn;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
@@ -214,6 +217,7 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton publicDomainBtn;
     private javax.swing.JButton stateBarAssoBtn;
-    private javax.swing.JLabel userNameLbl;
+    private javax.swing.JLabel usernamelabel;
+    private javax.swing.JLabel welcomelabel;
     // End of variables declaration//GEN-END:variables
 }
