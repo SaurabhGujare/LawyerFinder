@@ -17,6 +17,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
     private List<String> areaOfPractice;
     private boolean readOnly;
     private Lawyer lawyer;
+    private File picFile;
     final JFileChooser fc = new JFileChooser();
     /**
      * Creates new form LawyerProfilePanel1
@@ -50,12 +52,6 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         sbaNeedApprovalList = new Directory<>();
         areaOfPractice = new ArrayList<>();
         
-        try {
-            CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        
         picPanel.addMouseListener(new MouseAdapter() {
 
             @Override
@@ -67,6 +63,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
                     try {
                         String picFileLoc = fc.getSelectedFile().getAbsolutePath();
                         CommonUtils.initPicPanel(picFileLoc, picPanel);
+                        picFile = fc.getSelectedFile();
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
@@ -103,6 +100,19 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             fnameTxt.setText(lawyer.getFirstName());
             lnameTxt.setText(lawyer.getLastName());
         }
+        
+        
+        try {
+            if(picFile==null){
+                CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
+            }
+            else{
+                CommonUtils.initPicPanel(picFile.getAbsolutePath(), picPanel);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
         sbaAvailableList.setModel(new DefaultComboBoxModel(Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().toArray()));
     }
     
@@ -582,7 +592,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         lawyer.setRequestedStateBars(sbaNeedApprovalList);
         lawyer.setSsn(ssnTxt.getText());
         lawyer.setAreaOfPractice(areaOfPractice);
-        
+        lawyer.setPicFile(picFile);
         return lawyer;
     }
 
