@@ -12,6 +12,7 @@ import app.entities.roles.Roles;
 import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,15 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<String, LegalEntity> clientList;
     private Integer rating;
     private List<String> areaOfPractice;
+    private File picFile;
+
+    public File getPicFile() {
+        return picFile;
+    }
+
+    public void setPicFile(File picFile) {
+        this.picFile = picFile;
+    }
 
     public List<String> getAreaOfPractice() {
         return areaOfPractice;
