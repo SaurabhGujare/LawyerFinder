@@ -29,6 +29,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         account = Session.getUserAccount();
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser(),false),ViewLEProfilePanel.class.getName());
         containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());
+        containerPanel.add(new RateLawyerPanel(),RateLawyerPanel.class.getName());
         layout = (CardLayout) containerPanel.getLayout();
     }
 
@@ -49,9 +50,9 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         viewProfileBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        searchLawyers = new javax.swing.JButton();
+        viewCases = new javax.swing.JButton();
+        rateLawyer = new javax.swing.JButton();
 
         jLabel1.setText("Legal Entity Page");
 
@@ -98,19 +99,24 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         });
         jPanel3.add(viewProfileBtn);
 
-        jButton3.setText("Search Lawyer");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        searchLawyers.setText("Search Lawyer");
+        searchLawyers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                searchLawyersActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton3);
+        jPanel3.add(searchLawyers);
 
-        jButton2.setText("View Cases");
-        jPanel3.add(jButton2);
+        viewCases.setText("View Cases");
+        jPanel3.add(viewCases);
 
-        jButton1.setText("Rate Lawyer");
-        jPanel3.add(jButton1);
+        rateLawyer.setText("Rate Lawyer");
+        rateLawyer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rateLawyerActionPerformed(evt);
+            }
+        });
+        jPanel3.add(rateLawyer);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -154,23 +160,28 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void searchLawyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLawyersActionPerformed
         // TODO add your handling code here:
         layout.show(containerPanel, SearchLawyerPanel.class.getName());
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_searchLawyersActionPerformed
+
+    private void rateLawyerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rateLawyerActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, RateLawyerPanel.class.getName());
+    }//GEN-LAST:event_rateLawyerActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton rateLawyer;
+    private javax.swing.JButton searchLawyers;
+    private javax.swing.JButton viewCases;
     private javax.swing.JButton viewProfileBtn;
     // End of variables declaration//GEN-END:variables
 }

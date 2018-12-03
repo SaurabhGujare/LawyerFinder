@@ -227,6 +227,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
             ((Lawyer) Session.getUserAccount().getUser()).getClientList().addNew((LegalEntity) request.getSender().getUser());
             request.setStatus("APPROVED");
             request.setResolveDate(new Date());
+            ((LegalEntity)request.getSender().getUser()).getLawyers().addNew(((Lawyer) Session.getUserAccount().getUser()));
         } catch (Exception ex) {
             ex.printStackTrace();
             return;
