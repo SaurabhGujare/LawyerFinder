@@ -6,6 +6,7 @@
 package app.userinterface.legalEntity;
 
 import app.data.Session;
+import app.data.analytics.RatingSortor;
 import app.data.directories.Directory;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
@@ -16,6 +17,10 @@ import app.userinterface.MainFrame;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,17 +36,30 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     public SearchLawyerPanel(Directory<String, Lawyer> LAWYER_DIRECTORY) {
         initComponents();
         this.LAWYER_DIRECTORY = LAWYER_DIRECTORY;
+        ComponentAdapter adapter = new ComponentAdapter() {
+
+            @Override
+            public void componentShown(ComponentEvent ce) {
+                super.componentShown(ce); 
+                populateTable(LAWYER_DIRECTORY);
+            }
+            
+        };
+        this.addComponentListener(adapter);
         populateTable(LAWYER_DIRECTORY);
         
     }
     private void populateTable(Directory<String, Lawyer> LAWYER_DIRECTORY){
         DefaultTableModel model = (DefaultTableModel) lawyerTbl.getModel();
         model.setRowCount(0);
-        for(Lawyer i: LAWYER_DIRECTORY.getAllEntries()){
-            Object[] row = new Object[3];
+        List<Lawyer> list = LAWYER_DIRECTORY.getAllEntries();
+        Collections.sort(list, new RatingSortor(true));
+        for(Lawyer i: list){
+            Object[] row = new Object[4];
             row[0] = i;
-            row[1] = i.getQualification();
-            row[2] = i.getSpecialization();
+            row[1] = i.getSpecialization();
+            row[2] = i.getRating();
+            row[3] = String.format("%.2f",i.getFees());
             model.addRow(row);
         }
     }
@@ -231,7 +249,6 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     private void sendRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestBtnActionPerformed
         // TODO add your handling code here:
         Lawyer lawyer = (Lawyer) lawyerTbl.getValueAt(lawyerTbl.getSelectedRow(), 0);
-        lawyer.getWorkqueue().createNewWorkItem(Session.getUserAccount(), lawyer.getAccount(), "Greivance Request");
         LawyerReqPanel dialog = new LawyerReqPanel(MainFrame.self, true, lawyer, (LegalEntity) Session.getUserAccount().getUser());
 
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

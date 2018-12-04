@@ -72,10 +72,10 @@ public class RatePanel extends javax.swing.JDialog {
         if(lawyer.getRatings().contains(givenBy.getKey())){
             rating = lawyer.getRatings().getEntry(givenBy.getKey());
         }
-        updateRating(lawyer.getRating());
+        updateRating(rating!=null?rating.getValue():0);
         nameTxt.setText(lawyer.toString());
-        feedBackTxt.setText(rating.getFeedBack());
-        finalRate = rating.getValue();
+        feedBackTxt.setText(rating!=null?rating.getFeedBack():"");
+        finalRate = rating!=null?rating.getValue():0;
     }
     
     private void updateRating(int rate){
