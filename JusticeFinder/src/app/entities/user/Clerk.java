@@ -5,13 +5,17 @@
  */
 package app.entities.user;
 
+import app.data.directories.interfaces.DirectoryEntry;
+import app.entities.roles.Roles;
+import app.entities.workqueues.CaseFileRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import java.util.Date;
 
 /**
  *
  * @author arele
  */
-public class Clerk {
+public class Clerk extends User implements DirectoryEntry<Integer> {
     
     private String name;
     private ContactDetails workContact;
@@ -19,6 +23,11 @@ public class Clerk {
     private WorkQueue workqueue;
     private int id = 0;
 
+    public Clerk() {
+        super(Roles.CLERK);
+        workContact = new ContactDetails();
+        this.workqueue = new CaseFileRequestWorkQueue();
+    }
     public String getName() {
         return name;
     }
@@ -49,5 +58,10 @@ public class Clerk {
 
     public void setWorkqueue(WorkQueue workqueue) {
         this.workqueue = workqueue;
+    }
+    
+    @Override
+    public Integer getKey(){
+        return id;
     }
 }
