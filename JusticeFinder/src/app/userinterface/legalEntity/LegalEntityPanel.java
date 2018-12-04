@@ -30,7 +30,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser(),false),ViewLEProfilePanel.class.getName());
         containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());
         containerPanel.add(new RateLawyerPanel(),RateLawyerPanel.class.getName());
-        
+        containerPanel.add(new ViewSentRequest(),ViewSentRequest.class.getName());
         layout = (CardLayout) containerPanel.getLayout();
     }
 
@@ -52,7 +52,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         viewProfileBtn = new javax.swing.JButton();
         searchLawyers = new javax.swing.JButton();
-        viewCases = new javax.swing.JButton();
+        ViewSentCases = new javax.swing.JButton();
         rateLawyer = new javax.swing.JButton();
 
         setOpaque(false);
@@ -117,8 +117,13 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         });
         jPanel3.add(searchLawyers);
 
-        viewCases.setText("View Cases");
-        jPanel3.add(viewCases);
+        ViewSentCases.setText("View Cases");
+        ViewSentCases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSentCasesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(ViewSentCases);
 
         rateLawyer.setText("Rate Lawyer");
         rateLawyer.addActionListener(new java.awt.event.ActionListener() {
@@ -180,8 +185,15 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         layout.show(containerPanel, RateLawyerPanel.class.getName());
     }//GEN-LAST:event_rateLawyerActionPerformed
 
+    private void ViewSentCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSentCasesActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, ViewSentRequest.class.getName());
+    }//GEN-LAST:event_ViewSentCasesActionPerformed
+                                                  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ViewSentCases;
     private javax.swing.JPanel containerPanel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -191,7 +203,6 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     private javax.swing.JButton logoutBtn;
     private javax.swing.JButton rateLawyer;
     private javax.swing.JButton searchLawyers;
-    private javax.swing.JButton viewCases;
     private javax.swing.JButton viewProfileBtn;
     // End of variables declaration//GEN-END:variables
 }
