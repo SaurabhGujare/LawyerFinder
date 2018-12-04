@@ -17,6 +17,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -33,6 +34,8 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     private File picFile;
     final JFileChooser fc = new JFileChooser();
+    private static final String EMAIL_REGEX = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
+    private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
     public ViewLEProfilePanel(LegalEntity legalEntity,boolean readOnly) {
         initComponents();
         this.legalEntity = legalEntity;
@@ -370,6 +373,31 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        
+        if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter tje first name");
+            return ;
+        }
+        if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the last name");
+            return ;
+        }
+        if(ssnTxt.getText()== null || ssnTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the social security number(xxx-xx-xxxx)");
+            return ;
+        }
+        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid SSN");
+            return ;
+        }
+        if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter an email address");
+            return ;
+        }
+        if(emailTxt.getText()!=null && !Pattern.matches(EMAIL_REGEX, emailTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid email address");
+            return ;
+        }
         legalEntity.setFirstName(fnameTxt.getText());
         legalEntity.setMiddleName(mnameTxt.getText());
         legalEntity.setLastName(lnameTxt.getText());
