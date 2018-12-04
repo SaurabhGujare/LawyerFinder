@@ -99,6 +99,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
             fnameTxt.setText(lawyer.getFirstName());
             lnameTxt.setText(lawyer.getLastName());
+            picFile = lawyer.getPicFile();
         }
         
         
@@ -107,7 +108,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
                 CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
             }
             else{
-                CommonUtils.initPicPanel(picFile.getAbsolutePath(), picPanel);
+                CommonUtils.initPicPanel(picFile.toString(), picPanel);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

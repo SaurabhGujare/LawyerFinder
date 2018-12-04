@@ -55,6 +55,10 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         viewCases = new javax.swing.JButton();
         rateLawyer = new javax.swing.JButton();
 
+        setOpaque(false);
+
+        jPanel1.setOpaque(false);
+
         jLabel1.setText("Legal Entity Page");
 
         logoutBtn.setText("Logout");
@@ -86,10 +90,15 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         );
 
         jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setOpaque(false);
 
+        containerPanel.setOpaque(false);
         containerPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(containerPanel);
 
+        jPanel2.setOpaque(false);
+
+        jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
 
         viewProfileBtn.setText("View Profile");
