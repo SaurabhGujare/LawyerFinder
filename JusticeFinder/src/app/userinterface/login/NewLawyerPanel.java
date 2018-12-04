@@ -139,7 +139,7 @@ public class NewLawyerPanel extends javax.swing.JPanel {
     private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
         if(lawyerProfilePanel.isVisible()){
-            lawyer = lawyerProfilePanel.validateandGetLawyer();
+            lawyer = lawyerProfilePanel.validateandGetLawyer(true);
             if(lawyer==null)
                 return;
         }
