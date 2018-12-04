@@ -7,12 +7,12 @@ package app.entities.roles;
 
 import app.userinterface.admin.AdminPanel;
 import app.userinterface.admin.CourtPanel;
-import app.userinterface.clerk.ClerkPanel;
 import app.userinterface.court.CourtWelcomePanel;
 import app.userinterface.judge.JudgePanel;
 import app.userinterface.sba.StateBarAssociationPanel;
 import app.userinterface.lawyer.LawyerPanel;
 import app.userinterface.legalEntity.LegalEntityPanel;
+import app.userinterface.clerk.Clerkpanel;
 
 
 /**
@@ -32,7 +32,7 @@ public enum Roles {
     STATE_BAR_ASSO_ADMIN(new Role(StateBarAssociationPanel.class)),
     COURT(new Role(CourtWelcomePanel.class)),
     JUDGE(new Role(JudgePanel.class)),
-    CLERK(new Role(ClerkPanel.class));
+    CLERK(new Role(Clerkpanel.class));
     private final Role type;
 
     private Roles(Role role) {
