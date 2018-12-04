@@ -12,7 +12,7 @@ package app.userinterface.clerk;
 public class Clerkpanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form clerkpanel
+     * Creates new form Clerkpanel
      */
     public Clerkpanel() {
         initComponents();
