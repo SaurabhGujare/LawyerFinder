@@ -30,7 +30,7 @@ public class ViewSentRequest extends javax.swing.JPanel {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) greivanceRequestTbl.getModel();
         model.setRowCount(0);
-        Lawyer legalEntity = (Lawyer) Session.getUserAccount().getUser();
+        LegalEntity legalEntity = (LegalEntity) Session.getUserAccount().getUser();
         for(WorkItem i: ((GrievanceRequestWorkQueue) legalEntity.getWorkqueue()).getWorkList()){
             GrievanceRequest request = (GrievanceRequest) i;
             Object[] row = new Object[4];

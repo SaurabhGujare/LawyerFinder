@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -119,6 +120,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Lawyer lawyer = (Lawyer) lawyerTbl.getValueAt(lawyerTbl.getSelectedRow(), 0);
         lawyer.getWorkqueue().createNewWorkItem(Session.getUserAccount(), lawyer.getAccount(), "Greivance Request");
+        JOptionPane.showMessageDialog(null, "REQUEST SENT TO "+lawyer.getFirstName()+" "+lawyer.getLastName());
     }//GEN-LAST:event_sendGreivanceRequestBtnActionPerformed
 
 
