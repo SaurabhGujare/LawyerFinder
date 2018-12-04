@@ -12,9 +12,7 @@ import app.entities.enums.ContactType;
  * @author Ninad Subhedar (NUID : 001472377)
  */
 public class ContactDetails {
-    
-    
-    
+
     private String contactNumber;
     private ContactType type;
 
