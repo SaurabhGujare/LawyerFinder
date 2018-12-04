@@ -50,18 +50,10 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         
     }
     private void populateTable(Directory<String, Lawyer> LAWYER_DIRECTORY){
-        DefaultTableModel model = (DefaultTableModel) lawyerTbl.getModel();
-        model.setRowCount(0);
-        List<Lawyer> list = LAWYER_DIRECTORY.getAllEntries();
-        Collections.sort(list, new RatingSortor(true));
-        for(Lawyer i: list){
-            Object[] row = new Object[4];
-            row[0] = i;
-            row[1] = i.getSpecialization();
-            row[2] = i.getRating();
-            row[3] = String.format("%.2f",i.getFees());
-            model.addRow(row);
-        }
+        
+        resultPanel.removeAll();
+        resultPanel.add(new searchResultPanel(LAWYER_DIRECTORY.getAllEntries()));
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +65,6 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        sendRequestBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -87,15 +78,8 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        lawyerTbl = new javax.swing.JTable();
-
-        sendRequestBtn.setText("Send Request");
-        sendRequestBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendRequestBtnActionPerformed(evt);
-            }
-        });
+        jScrollPane2 = new javax.swing.JScrollPane();
+        resultPanel = new javax.swing.JPanel();
 
         jButton1.setText("View Profile");
 
@@ -106,17 +90,13 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(sendRequestBtn)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(sendRequestBtn)
-                    .addComponent(jButton1))
+                .addComponent(jButton1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -175,7 +155,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,26 +191,19 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        lawyerTbl.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Name", "Specialization", "Rating", "Fees"
-            }
-        ));
-        jScrollPane1.setViewportView(lawyerTbl);
+        resultPanel.setLayout(new javax.swing.BoxLayout(resultPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jScrollPane2.setViewportView(resultPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 777, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -238,29 +211,13 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void sendRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendRequestBtnActionPerformed
-        // TODO add your handling code here:
-        Lawyer lawyer = (Lawyer) lawyerTbl.getValueAt(lawyerTbl.getSelectedRow(), 0);
-        LawyerReqPanel dialog = new LawyerReqPanel(MainFrame.self, true, lawyer, (LegalEntity) Session.getUserAccount().getUser());
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
-        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
-                middle.y - (dialog.getHeight() / 2) - 150);
-
-        dialog.setLocation(newLocation);
-        dialog.pack();
-
-        dialog.setVisible(true);
-    }//GEN-LAST:event_sendRequestBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -275,11 +232,10 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable lawyerTbl;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField priceFrom;
     private javax.swing.JTextField priceTo;
+    private javax.swing.JPanel resultPanel;
     private javax.swing.JButton searchBtn;
-    private javax.swing.JButton sendRequestBtn;
     // End of variables declaration//GEN-END:variables
 }

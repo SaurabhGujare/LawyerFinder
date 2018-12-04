@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface.legalEntity;
+package app.userinterface.lawyer;
 
+import app.userinterface.legalEntity.*;
 import app.data.Session;
+import app.entities.Rating;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
@@ -24,12 +26,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class RateLawyerPanel extends javax.swing.JPanel {
+public class ViewRatingPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RateLawyerPage
      */
-    public RateLawyerPanel() {
+    public ViewRatingPanel() {
         initComponents();
         ComponentAdapter adapter = new ComponentAdapter() {
 
@@ -55,24 +57,24 @@ public class RateLawyerPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        lawyerTbl = new javax.swing.JTable();
+        ratingTbl = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        viewBtn = new javax.swing.JButton();
 
-        lawyerTbl.setModel(new javax.swing.table.DefaultTableModel(
+        ratingTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Name"
+                "Given By", "Rating Given"
             }
         ));
-        jScrollPane1.setViewportView(lawyerTbl);
+        jScrollPane1.setViewportView(ratingTbl);
 
-        jButton1.setText("Rate");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                viewBtnActionPerformed(evt);
             }
         });
 
@@ -82,14 +84,14 @@ public class RateLawyerPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(viewBtn)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(viewBtn)
                 .addContainerGap())
         );
 
@@ -115,11 +117,11 @@ public class RateLawyerPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int selectedrow= lawyerTbl.getSelectedRow();
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        int selectedrow= ratingTbl.getSelectedRow();
         if(selectedrow>=0){
-            Lawyer lawyer = (Lawyer) lawyerTbl.getValueAt(lawyerTbl.getSelectedRow(),0);
-            RatePanel dialog = new RatePanel(lawyer, (LegalEntity) Session.getUserAccount().getUser(), MainFrame.self, true,false);
+            Rating rating = (Rating) ratingTbl.getValueAt(ratingTbl.getSelectedRow(),1);
+            RatePanel dialog = new RatePanel((Lawyer) Session.getUserAccount().getUser(), rating.getGivenBy(), MainFrame.self, true,true);
             Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
             Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
@@ -132,23 +134,24 @@ public class RateLawyerPanel extends javax.swing.JPanel {
         else{
             JOptionPane.showMessageDialog(null, "Please select a Record first!!");
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_viewBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable lawyerTbl;
+    private javax.swing.JTable ratingTbl;
+    private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) lawyerTbl.getModel();
+        DefaultTableModel model = (DefaultTableModel) ratingTbl.getModel();
         model.setRowCount(0);
-        LegalEntity legalEntity = (LegalEntity) Session.getUserAccount().getUser();
-        for(Lawyer i: legalEntity.getLawyers().getAllEntries()){
-            Object[] row = new Object[1];
-            row[0] = i;
+        Lawyer l = ((Lawyer)Session.getUserAccount().getUser());
+        for(Rating rating : l.getRatings().getAllEntries()){
+            Object[] row = new Object[2];
+            row[0] = rating.getGivenBy().getFirstName()+" "+rating.getGivenBy().getLastName();
+            row[1] = rating;
             model.addRow(row);
         }
     }
