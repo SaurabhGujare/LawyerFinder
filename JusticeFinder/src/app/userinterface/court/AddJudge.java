@@ -56,7 +56,7 @@ public class AddJudge extends javax.swing.JPanel {
         joiningdatetxt = new javax.swing.JTextField();
         usernametxt = new javax.swing.JTextField();
         passwordtxt = new javax.swing.JTextField();
-        savebtn = new javax.swing.JButton();
+        createjudgebtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(879, 608));
 
@@ -137,10 +137,10 @@ public class AddJudge extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        savebtn.setText("Create Profile");
-        savebtn.addActionListener(new java.awt.event.ActionListener() {
+        createjudgebtn.setText("Create Profile");
+        createjudgebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                savebtnActionPerformed(evt);
+                createjudgebtnActionPerformed(evt);
             }
         });
 
@@ -152,7 +152,7 @@ public class AddJudge extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(savebtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(createjudgebtn, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -161,7 +161,7 @@ public class AddJudge extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(savebtn)
+                .addComponent(createjudgebtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -178,7 +178,7 @@ public class AddJudge extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_passwordtxtActionPerformed
 
-    private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
+    private void createjudgebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createjudgebtnActionPerformed
         // TODO add your handling code here:
         
         Judge j = new Judge();
@@ -194,12 +194,13 @@ public class AddJudge extends javax.swing.JPanel {
         }
         catch(Exception e){}       
         JOptionPane.showMessageDialog(this, "Judge Created");
-    }//GEN-LAST:event_savebtnActionPerformed
+    }//GEN-LAST:event_createjudgebtnActionPerformed
 
 public void setSaveBtnListner(ActionListener saveBtnListner) {
         this.saveBtnListner = saveBtnListner;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton createjudgebtn;
     private javax.swing.JTextField emailtxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -210,7 +211,6 @@ public void setSaveBtnListner(ActionListener saveBtnListner) {
     private javax.swing.JTextField joiningdatetxt;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
-    private javax.swing.JButton savebtn;
     private javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables
 }
