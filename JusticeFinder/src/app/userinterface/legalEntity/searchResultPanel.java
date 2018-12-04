@@ -6,8 +6,8 @@
 package app.userinterface.legalEntity;
 
 import app.entities.user.Lawyer;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.List;
 
 /**
@@ -22,6 +22,7 @@ public class searchResultPanel extends javax.swing.JPanel {
      */
     public searchResultPanel(List<Lawyer> lawyerList) {
         initComponents();
+        resultPanel.setBackground(Color.WHITE);
         this.lawyerList = lawyerList;
         for(Lawyer l: lawyerList){
             searchRowPanel panel = new searchRowPanel(l);
@@ -41,6 +42,10 @@ public class searchResultPanel extends javax.swing.JPanel {
 
         resultPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setOpaque(false);
+
+        resultPanel.setBackground(new java.awt.Color(255, 255, 255));
         resultPanel.setAutoscrolls(true);
         resultPanel.setLayout(new javax.swing.BoxLayout(resultPanel, javax.swing.BoxLayout.PAGE_AXIS));
 
