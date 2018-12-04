@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,6 +70,7 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         emailTxt.setText(legalEntity.getEmail());
         ssnTxt.setText(legalEntity.getSsn());
         dobTxt.setText(legalEntity.getDob().toString());
+        picFile = legalEntity.getPicFile();
         }
         try {
             if(picFile==null){
@@ -200,7 +202,6 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(zipTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fnameTxt)
                     .addComponent(lnameTxt)
@@ -212,10 +213,10 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(phoneTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(dobTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                    .addComponent(emailTxt))
+                    .addComponent(phoneTxt)
+                    .addComponent(dobTxt)
+                    .addComponent(emailTxt)
+                    .addComponent(ssnTxt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -292,6 +293,11 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         jPanel4.setOpaque(false);
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -347,18 +353,22 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void fnameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameTxtActionPerformed
+        // TODO add your handling code here:       
+    }//GEN-LAST:event_fnameTxtActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
         legalEntity.setFirstName(fnameTxt.getText());
         legalEntity.setMiddleName(mnameTxt.getText());
@@ -370,12 +380,14 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         legalEntity.getPrimaryContact().setContactNumber(phoneTxt.getText());
         legalEntity.setEmail(emailTxt.getText());
         legalEntity.setSsn(ssnTxt.getText());
+        legalEntity.setPicFile(picFile);
         try {
             legalEntity.setDob(sdf.parse(dobTxt.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(ViewLEProfilePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_fnameTxtActionPerformed
+        JOptionPane.showMessageDialog(null, "Data has been saved successfully");
+    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -582,6 +582,9 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         if(lawyer==null){
             lawyer = new Lawyer();
         }
+        
+        
+        
         lawyer.setFirstName(fnameTxt.getText());
         lawyer.setLastName(lnameTxt.getText());
         lawyer.setEmail(emailTxt.getText());
