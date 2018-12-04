@@ -42,7 +42,7 @@ public class RatePanel extends javax.swing.JDialog {
         
     }
 
-    public RatePanel(Lawyer lawyer,LegalEntity givenBy, Frame owner, boolean modal) {
+    public RatePanel(Lawyer lawyer,LegalEntity givenBy, Frame owner, boolean modal,boolean readonly) {
         super(owner, modal);
         initComponents();
         
@@ -51,6 +51,7 @@ public class RatePanel extends javax.swing.JDialog {
             JLabel label = new JLabel();
             label.setPreferredSize(new Dimension(30,30));
             label.setToolTipText(count+"");
+            if(!readonly){
             label.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
@@ -62,9 +63,14 @@ public class RatePanel extends javax.swing.JDialog {
                 }
                 
             });
-            
+            }
             rateGrid.add(label);
             starList.add(label);
+            feedBackTxt.setEnabled(!readonly);
+            saveBtn.setVisible(!readonly);
+            jLabel1.setVisible(!readonly);
+            nameTxt.setVisible(!readonly);
+            viewProfileBtn.setVisible(!readonly);
         }
         
         this.lawyer = lawyer;
