@@ -31,6 +31,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
         containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
+        containerPanel.add(new FileCasePanel(),FileCasePanel.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
     }
@@ -119,6 +120,11 @@ public class LawyerPanel extends javax.swing.JPanel {
         jPanel2.add(viewClientsBtn);
 
         fileCaseBtn.setText("File Case");
+        fileCaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fileCaseBtnActionPerformed(evt);
+            }
+        });
         jPanel2.add(fileCaseBtn);
 
         viewFeedbackBtn.setText("View Feedback");
@@ -190,6 +196,11 @@ public class LawyerPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         layout.show(containerPanel, ViewRatingPanel.class.getName());
     }//GEN-LAST:event_viewFeedbackBtnActionPerformed
+
+    private void fileCaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileCaseBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, FileCasePanel.class.getName());
+    }//GEN-LAST:event_fileCaseBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

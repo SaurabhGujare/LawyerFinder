@@ -7,6 +7,7 @@ package app.data.org;
 
 import app.data.directories.Directory;
 import app.entities.user.Address;
+import app.entities.user.Clerk;
 import app.entities.user.ContactDetails;
 import app.entities.user.CourtAdmin;
 import app.entities.user.Judge;
@@ -28,6 +29,7 @@ public class Court extends Organization{
     private ContactDetails workphone;
     private String email;
     private Directory<Integer, Judge> judgeDirectory;
+    private Directory<Integer, Clerk> clerkDirectory;
     
     public Court(){
     
@@ -35,7 +37,8 @@ public class Court extends Organization{
         super.admin = new CourtAdmin(this);
         count++;
         id = count;
-        this.judgeDirectory=new Directory<>();
+        this.judgeDirectory= new Directory<>();
+        this.clerkDirectory= new Directory<>();
     }
 
     public static int getCount() {
@@ -93,6 +96,15 @@ public class Court extends Organization{
     public void setJudgeDirectory(Directory<Integer, Judge> judgeDirectory) {
         this.judgeDirectory = judgeDirectory;
     }
+
+    public Directory<Integer, Clerk> getClerkDirectory() {
+        return clerkDirectory;
+    }
+
+    public void setClerkDirectory(Directory<Integer, Clerk> clerkDirectory) {
+        this.clerkDirectory = clerkDirectory;
+    }
+    
     @Override
     public String toString() {
         return courtName;
