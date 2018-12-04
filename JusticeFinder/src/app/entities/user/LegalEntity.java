@@ -10,6 +10,7 @@ import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import java.io.File;
 import java.util.Date;
 
 /**
@@ -26,7 +27,8 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     private String email;
     private WorkQueue workqueue;
     private Directory<String, Lawyer> lawyers;
-
+    private File picFile;
+    
     public Directory<String, Lawyer> getLawyers() {
         return lawyers;
     }
@@ -116,8 +118,15 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     public void setWorkqueue(WorkQueue workqueue) {
         this.workqueue = workqueue;
     }
-    
-    
+
+    public File getPicFile() {
+        return picFile;
+    }
+
+    public void setPicFile(File picFile) {
+        this.picFile = picFile;
+    }
+
     @Override
     public String getKey() {
         return ssn;
