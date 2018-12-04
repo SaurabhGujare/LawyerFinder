@@ -5,9 +5,14 @@
  */
 package app.userinterface.legalEntity;
 
+import app.data.Session;
 import app.entities.user.Lawyer;
+import app.entities.user.LegalEntity;
+import app.userinterface.MainFrame;
 import app.utils.CommonUtils;
 import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +25,7 @@ import javax.swing.JLabel;
 public class searchRowPanel extends javax.swing.JPanel {
 
     private List<JLabel> starList;
+    Lawyer lawyer;
     /**
      * Creates new form searchRowPanel
      */
@@ -32,9 +38,17 @@ public class searchRowPanel extends javax.swing.JPanel {
             label.setPreferredSize(new Dimension(30,30));
             label.setToolTipText(count+"");
             starList.add(label);
+            rateGrid.add(label);
         }
         
-        updateRating(lawyer.getRating());
+        
+        updateRating(lawyer!=null?lawyer.getRating():3);
+        if(lawyer!=null){
+            lawyerTxt.setText(lawyer.toString());
+            sepTxt.setText(lawyer.getAreaOfPractice().toString());
+            feesTxt.setText(lawyer.getFees()+"");
+        }
+        this.lawyer = lawyer;
     }
 
     private void updateRating(int rate){
@@ -76,6 +90,8 @@ public class searchRowPanel extends javax.swing.JPanel {
         feesTxt = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         sendReqBtn = new javax.swing.JButton();
+
+        setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
         jLabel1.setText("Lawyer Name:");
 
@@ -119,7 +135,6 @@ public class searchRowPanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        rateGrid.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         rateGrid.setLayout(new java.awt.GridLayout(0, 5, 5, 0));
 
         jLabel4.setText("Rate:");
@@ -153,6 +168,11 @@ public class searchRowPanel extends javax.swing.JPanel {
         );
 
         sendReqBtn.setText("Send Request");
+        sendReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sendReqBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -188,8 +208,7 @@ public class searchRowPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -205,15 +224,31 @@ public class searchRowPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void sendReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendReqBtnActionPerformed
+        // TODO add your handling code here:
+        LawyerReqPanel dialog = new LawyerReqPanel(MainFrame.self, true, lawyer, (LegalEntity) Session.getUserAccount().getUser());
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
+                middle.y - (dialog.getHeight() / 2) - 150);
+
+        dialog.setLocation(newLocation);
+        dialog.pack();
+
+        dialog.setVisible(true);
+    }//GEN-LAST:event_sendReqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

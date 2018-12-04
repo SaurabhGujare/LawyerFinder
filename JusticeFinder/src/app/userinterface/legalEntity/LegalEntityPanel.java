@@ -30,6 +30,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser(),false),ViewLEProfilePanel.class.getName());
         containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());
         containerPanel.add(new RateLawyerPanel(),RateLawyerPanel.class.getName());
+        
         layout = (CardLayout) containerPanel.getLayout();
     }
 
