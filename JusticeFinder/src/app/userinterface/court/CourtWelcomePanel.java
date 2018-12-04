@@ -9,6 +9,7 @@ import app.business.LoginAction;
 import app.data.Session;
 import app.data.directories.Directory;
 import app.data.org.Court;
+import app.entities.user.Clerk;
 import app.entities.user.CourtAdmin;
 import app.entities.user.Judge;
 import app.entities.user.Lawyer;
@@ -61,6 +62,19 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             row[0] = j.getName();
             row[1] = j.getEmail();
             row[2] = j.getAccount().getUsername();
+            model.addRow(row);
+        }
+    }
+    
+    public void populateClerkTable(){
+    
+        DefaultTableModel model = (DefaultTableModel) clerktable.getModel();
+        model.setRowCount(0);
+        for(Clerk cl: c.getClerkDirectory().getAllEntries()){
+            Object[] row = new Object[3];
+            row[0] = cl.getName();
+            row[1] = cl.getEmail();
+            row[2] = cl.getAccount().getUsername();
             model.addRow(row);
         }
     }
@@ -289,7 +303,15 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
 
     private void addclerkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addclerkbtnActionPerformed
         // TODO add your handling code here:
-        JDialog dialog = new AddJudgePopUp(judgeDir,MainFrame.self,true);
+        AddClerkPopup dialog = new AddClerkPopup(c.getClerkDirectory(),MainFrame.self,true);
+        
+        dialog.setSaveBtnListner(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    populateClerkTable();
+                }
+            });
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
             Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
             Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 200,
