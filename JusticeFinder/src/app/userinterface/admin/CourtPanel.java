@@ -144,6 +144,11 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
         });
 
         deletebtn.setText("Delete");
+        deletebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deletebtnActionPerformed(evt);
+            }
+        });
 
         addbtn.setText("Add New");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -364,6 +369,22 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
             JOptionPane.showMessageDialog(null, "Please select a Record first!!");
         }
     }//GEN-LAST:event_updatebtnActionPerformed
+
+    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = detailstbl.getSelectedRow();
+        if(selectedRow>=0){
+            int selectionButton = JOptionPane.YES_NO_OPTION;
+            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??","Warning",selectionButton);
+            if(selectionResult == JOptionPane.YES_OPTION){
+                Court c = (Court)detailstbl.getValueAt(selectedRow, 0);
+                courtDir.delete(c.getId());
+                populateTableData();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_deletebtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

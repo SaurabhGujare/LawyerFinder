@@ -5,6 +5,11 @@
  */
 package app.entities.user;
 
+import app.data.directories.Directory;
+import app.data.directories.interfaces.DirectoryEntry;
+import app.entities.roles.Roles;
+import app.entities.workqueues.CaseFileRequestWorkQueue;
+import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
 import java.util.Date;
 
@@ -12,7 +17,7 @@ import java.util.Date;
  *
  * @author arele
  */
-public class Judge {
+public class Judge extends User implements DirectoryEntry<Integer> {
    
     private String name;
     private ContactDetails workContact;
@@ -20,6 +25,13 @@ public class Judge {
     private Date joiningdate;
     private WorkQueue workqueue;
     private int id = 0;
+    
+    public Judge() {
+        super(Roles.JUDGE);
+        workContact = new ContactDetails();
+        this.workqueue = new CaseFileRequestWorkQueue();
+        this.joiningdate = new Date();
+    }
 
     public String getName() {
         return name;
@@ -61,8 +73,8 @@ public class Judge {
         this.workqueue = workqueue;
     }
     
-//    @Override
-//    public Integer getKey() {
-//        return id;
-//    }
+    @Override
+    public Integer getKey(){
+        return id;
+    }
 }

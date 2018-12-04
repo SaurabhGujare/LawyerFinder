@@ -9,10 +9,25 @@ import app.business.LoginAction;
 import app.data.Session;
 import app.data.directories.Directory;
 import app.entities.user.CourtAdmin;
+import app.entities.user.Judge;
 import app.entities.user.Lawyer;
 import app.entities.user.StateBarAssoAdmin;
+import app.entities.workqueues.LawyerApprovalRequest;
+import app.entities.workqueues.StateBarAssoWorkQueue;
+import app.entities.workqueues.WorkItem;
 import app.userinterface.BasePanel;
+import app.userinterface.MainFrame;
+import app.userinterface.sba.ViewSBARequestsPanel;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,15 +39,32 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
      * Creates new form CourtPanelNew
      */
     CourtAdmin courtadmin;
+    Directory<Integer , Judge> judgeDir;
     
     public CourtWelcomePanel() {
         initComponents();
-        
+        //this.judge=judge;
         courtadmin = (CourtAdmin) Session.getUserAccount().getUser();
+        
         welcomelabel.setText("Welcome to the Court");
         usernamelabel.setText(Session.getUserAccount().getUsername());
 
     }
+    
+//    public void populateTable() {
+//        
+//        DefaultTableModel model = (DefaultTableModel) judgetable.getModel();
+//        model.setRowCount(0);
+//        for(Judge j: JudgeDir{
+//            LawyerApprovalRequest request = (LawyerApprovalRequest) i;
+//            Object[] row = new Object[4];
+//            row[0] = j;
+//            row[1] = j.getName();
+//            row[2] = j.getEmail();
+//            row[3] = ;
+//            model.addRow(row);
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -51,16 +83,16 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        judgetable = new javax.swing.JTable();
+        addjudgebtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        clerktable = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1210, 623));
+        setPreferredSize(new java.awt.Dimension(878, 623));
 
         welcomelabel.setText("Welcome");
 
@@ -80,9 +112,9 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addComponent(welcomelabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(655, 655, 655)
+                .addGap(291, 291, 291)
                 .addComponent(logoutBtn)
-                .addContainerGap())
+                .addGap(59, 59, 59))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +128,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        judgetable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -104,9 +136,14 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 "Judge Name", "Judge Email", "Judge Username"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(judgetable);
 
-        jButton1.setText("Add Judge to the Court");
+        addjudgebtn.setText("Add Judge to the Court");
+        addjudgebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addjudgebtnActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("View Judge Details");
 
@@ -117,12 +154,12 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1093, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1)))
+                        .addComponent(addjudgebtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -133,13 +170,13 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addGap(49, 49, 49)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
-                    .addComponent(jButton1))
+                    .addComponent(addjudgebtn))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Judges", jPanel3);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        clerktable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -147,7 +184,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 "Clerk Name", "Clerk Email", "Clerk Username"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(clerktable);
 
         jButton2.setText("Add Clerk to the Court");
 
@@ -157,16 +194,16 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap())
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jButton4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2)))
+                .addGap(351, 351, 351))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,7 +223,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         containerpanel.setLayout(containerpanelLayout);
         containerpanelLayout.setHorizontalGroup(
             containerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 819, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         containerpanelLayout.setVerticalGroup(
             containerpanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -204,7 +241,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(containerpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,10 +259,32 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
+    private void addjudgebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addjudgebtnActionPerformed
+        // TODO add your handling code here:
+                    
+            JDialog dialog = new AddJudgePopUp(judgeDir,MainFrame.self,true);
+//            panel.setSaveBtnListner(new ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent e) {
+//                    //populateTable();
+//                }
+//            });
+//            dialog.getContentPane().add(panel);
+            
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+            Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 200,
+            middle.y - (dialog.getHeight() / 2) - 200);
+
+            dialog.setLocation(newLocation);
+            dialog.pack();
+            dialog.setVisible(true);
+    }//GEN-LAST:event_addjudgebtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addjudgebtn;
+    private javax.swing.JTable clerktable;
     private javax.swing.JPanel containerpanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -235,8 +294,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable judgetable;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel usernamelabel;
     private javax.swing.JLabel welcomelabel;
