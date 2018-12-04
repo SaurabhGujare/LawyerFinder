@@ -27,7 +27,7 @@ public class Court extends Organization{
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
-    private ArrayList<Judge> judgeDirectory;
+    private Directory<Integer, Judge> judgeDirectory;
     
     public Court(){
     
@@ -35,6 +35,7 @@ public class Court extends Organization{
         super.admin = new CourtAdmin(this);
         count++;
         id = count;
+        this.judgeDirectory=new Directory<>();
     }
 
     public static int getCount() {
@@ -85,16 +86,13 @@ public class Court extends Organization{
         this.email = email;
     }
 
-    public ArrayList<Judge> getJudgeDirectory() {
+    public Directory<Integer, Judge> getJudgeDirectory() {
         return judgeDirectory;
     }
 
-    public void setJudgeDirectory(ArrayList<Judge> judgeDirectory) {
+    public void setJudgeDirectory(Directory<Integer, Judge> judgeDirectory) {
         this.judgeDirectory = judgeDirectory;
     }
-    
-    
-    
     @Override
     public String toString() {
         return courtName;

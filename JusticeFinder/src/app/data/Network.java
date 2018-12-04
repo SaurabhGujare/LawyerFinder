@@ -11,6 +11,7 @@ import app.data.org.Court;
 import app.data.org.PublicDomain;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Admin;
+import app.entities.user.Judge;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
@@ -62,6 +63,7 @@ public class Network {
     public Directory<Integer, Court> getCOURT() {
         return COURT;
     }
+
     private void initValues(){
         try {
             USER_ACCOUNTS.addNew(new UserAccount("admin", "admin", new Admin())); //super Admin

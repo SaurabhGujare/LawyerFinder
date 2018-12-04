@@ -7,12 +7,12 @@ package app.entities.roles;
 
 import app.userinterface.admin.AdminPanel;
 import app.userinterface.admin.CourtPanel;
-import app.userinterface.clerk.Clerkpanel;
 import app.userinterface.court.CourtWelcomePanel;
 import app.userinterface.judge.JudgePanel;
 import app.userinterface.sba.StateBarAssociationPanel;
 import app.userinterface.lawyer.LawyerPanel;
 import app.userinterface.legalEntity.LegalEntityPanel;
+import app.userinterface.clerk.Clerkpanel;
 
 
 /**
