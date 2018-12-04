@@ -54,5 +54,11 @@ public class Rating implements DirectoryEntry<String>{
     public String getKey() {
         return givenBy.getKey();
     }
+
+    @Override
+    public String toString() {
+        return value+"";
+    }
+    
     
 }

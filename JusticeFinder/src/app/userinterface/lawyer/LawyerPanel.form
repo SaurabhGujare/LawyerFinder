@@ -172,6 +172,14 @@
                     <Property name="text" type="java.lang.String" value="File Case"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JButton" name="viewFeedbackBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="View Feedback"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewFeedbackBtnActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
