@@ -23,9 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -40,6 +42,8 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
     private Lawyer lawyer;
     private File picFile;
     final JFileChooser fc = new JFileChooser();
+    private static final String EMAIL_REGEX = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
+    private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
     /**
      * Creates new form LawyerProfilePanel1
      */
@@ -538,7 +542,9 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        validateandGetLawyer();
+        if(validateandGetLawyer(false)==null){
+            return;
+        }
         
         for (StateBarAssociation sba : lawyer.getRequestedStateBars().getAllEntries()) {
             LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(lawyer.getAccount(), sba.getAdmin().getAccount(), "Request");
@@ -559,7 +565,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
 
         sbaReqList.setModel(model);
-        
+        JOptionPane.showMessageDialog(null, "Data has been saved successfully");
     }//GEN-LAST:event_addSBAActionPerformed
 
     private void addPracticeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPracticeBtnActionPerformed
@@ -577,10 +583,39 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         
     }//GEN-LAST:event_addPracticeBtnActionPerformed
 
-    public Lawyer validateandGetLawyer(){
+    public Lawyer validateandGetLawyer(boolean isCreatedNow){
      
         if(lawyer==null){
             lawyer = new Lawyer();
+        }
+        
+        if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter tje first name");
+            return null;
+        }
+        if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the last name");
+            return null;
+        }
+        if(ssnTxt.getText()== null || ssnTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the social security number (xxx-xx-xxxx)");
+            return null;
+        }
+        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid SSN");
+            return null;
+        }
+        if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter an email address");
+            return null;
+        }
+        if(emailTxt.getText()!=null && !Pattern.matches(EMAIL_REGEX, emailTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid email address");
+            return null;
+        }
+        if(isCreatedNow && sbaNeedApprovalList.size()==0){
+            JOptionPane.showMessageDialog(this, "");
+            return null;
         }
         lawyer.setFirstName(fnameTxt.getText());
         lawyer.setLastName(lnameTxt.getText());
