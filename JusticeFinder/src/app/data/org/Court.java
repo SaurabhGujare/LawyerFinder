@@ -9,9 +9,11 @@ import app.data.directories.Directory;
 import app.entities.user.Address;
 import app.entities.user.ContactDetails;
 import app.entities.user.CourtAdmin;
+import app.entities.user.Judge;
 import app.entities.user.StateBarAssoAdmin;
 import app.entities.workqueues.CourtWorkQueue;
 import app.entities.workqueues.StateBarAssoWorkQueue;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,6 +27,7 @@ public class Court extends Organization{
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
+    private ArrayList<Judge> judgeDirectory;
     
     public Court(){
     
@@ -81,6 +84,16 @@ public class Court extends Organization{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public ArrayList<Judge> getJudgeDirectory() {
+        return judgeDirectory;
+    }
+
+    public void setJudgeDirectory(ArrayList<Judge> judgeDirectory) {
+        this.judgeDirectory = judgeDirectory;
+    }
+    
+    
     
     @Override
     public String toString() {
