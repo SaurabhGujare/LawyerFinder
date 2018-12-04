@@ -64,7 +64,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
         usernamelabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1108, 714));
-        setPreferredSize(new java.awt.Dimension(1108, 714));
+        setPreferredSize(new java.awt.Dimension(1208, 914));
 
         jSplitPane2.setDividerLocation(250);
         jSplitPane2.setMinimumSize(new java.awt.Dimension(7, 3));

@@ -6,34 +6,35 @@
 package app.userinterface.court;
 
 import app.data.Network;
-import app.data.org.Court;
+import app.data.directories.Directory;
 import app.entities.user.Judge;
-import app.entities.user.Lawyer;
 import app.entities.user.UserAccount;
-import app.entities.workqueues.LawyerApprovalRequest;
-import app.userinterface.BasePanel;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author arele
  */
-public class AddJudge extends javax.swing.JPanel {
+public class AddJudgePopUp extends javax.swing.JDialog {
 
     /**
-     * Creates new form AddJudge
+     * Creates new form AddJudgePopUp
      */
-    Court c;
-    Judge j;
-    JDialog dialog;
+    Directory<Integer , Judge> judgeDir;
     private ActionListener saveBtnListner;
     
-    public AddJudge(Judge j, JDialog dialog) {
+    public AddJudgePopUp(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
-        this.j=j;
-        this.dialog= dialog;
+        
+    }
+
+    public AddJudgePopUp(Directory<Integer , Judge> judgeDir,JFrame parent, boolean modal) {
+       super(parent, modal);
+        initComponents();
+        this.judgeDir=judgeDir;
     }
 
     /**
@@ -58,7 +59,10 @@ public class AddJudge extends javax.swing.JPanel {
         passwordtxt = new javax.swing.JTextField();
         savebtn = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(879, 608));
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Add Judge");
+        setPreferredSize(new java.awt.Dimension(879, 533));
+        setSize(new java.awt.Dimension(879, 533));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Enter the Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 2, 29))); // NOI18N
 
@@ -144,15 +148,17 @@ public class AddJudge extends javax.swing.JPanel {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(savebtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, 0)
+                        .addComponent(savebtn))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -164,6 +170,8 @@ public class AddJudge extends javax.swing.JPanel {
                 .addComponent(savebtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void nametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nametxtActionPerformed
@@ -180,25 +188,64 @@ public class AddJudge extends javax.swing.JPanel {
 
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
-        
+
         Judge j = new Judge();
-      
+
         j.setName(nametxt.getText());
         j.setEmail(emailtxt.getText());
         joiningdatetxt.setText(joiningdatetxt.getText());
-                
         UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), j);
-        
         try{
             Network.getInstance().getUSER_ACCOUNTS().addNew(account);
         }
-        catch(Exception e){}       
+        catch(Exception e){}
         JOptionPane.showMessageDialog(this, "Judge Created");
+        this.setVisible(false);
+        this.dispose();
     }//GEN-LAST:event_savebtnActionPerformed
 
-public void setSaveBtnListner(ActionListener saveBtnListner) {
-        this.saveBtnListner = saveBtnListner;
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AddJudgePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AddJudgePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AddJudgePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AddJudgePopUp.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the dialog */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                AddJudgePopUp dialog = new AddJudgePopUp(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
+            }
+        });
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField emailtxt;
     private javax.swing.JLabel jLabel1;
@@ -213,4 +260,5 @@ public void setSaveBtnListner(ActionListener saveBtnListner) {
     private javax.swing.JButton savebtn;
     private javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables
+
 }
