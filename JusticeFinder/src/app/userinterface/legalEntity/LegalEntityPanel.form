@@ -139,10 +139,13 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchLawyersActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="viewCases">
+                <Component class="javax.swing.JButton" name="ViewSentCases">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="View Cases"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSentCasesActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="rateLawyer">
                   <Properties>
