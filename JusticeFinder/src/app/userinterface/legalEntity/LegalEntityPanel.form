@@ -131,12 +131,12 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewProfileBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="searchLawyerBtn">
+                <Component class="javax.swing.JButton" name="searchLawyers">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Search Lawyer"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchLawyerBtnActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchLawyersActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="ViewSentCases">
@@ -145,6 +145,14 @@
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSentCasesActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="rateLawyer">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Rate Lawyer"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rateLawyerActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -8,10 +8,15 @@ package app.entities.user;
 import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.data.org.StateBarAssociation;
+import app.entities.Rating;
 import app.entities.roles.Roles;
 import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import app.utils.CommonUtils;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -30,6 +35,38 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<Integer, StateBarAssociation> requestedStateBars;
     private WorkQueue workqueue;
     private Directory<String, LegalEntity> clientList;
+    private Directory<String,Rating> ratings;
+    private List<String> areaOfPractice;
+    private File picFile;
+    private Double fees;
+
+    public Double getFees() {
+        return fees;
+    }
+
+    public void setFees(Double fees) {
+        this.fees = fees;
+    }
+
+    public File getPicFile() {
+        return picFile;
+    }
+
+    public void setPicFile(File picFile) {
+        this.picFile = picFile;
+    }
+
+    public List<String> getAreaOfPractice() {
+        return areaOfPractice;
+    }
+
+    public void setAreaOfPractice(List<String> areaOfPractice) {
+        this.areaOfPractice = areaOfPractice;
+    }
+
+    public Integer getRating() {
+        return CommonUtils.calulateRating(ratings);
+    }
 
     public Directory<String, LegalEntity> getClientList() {
         return clientList;
@@ -69,6 +106,16 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.requestedStateBars = new Directory<>();
         this.workqueue = new GrievanceRequestWorkQueue();
         this.clientList = new Directory<>();
+        this.areaOfPractice = new ArrayList<>();
+        this.ratings = new Directory<>();
+    }
+
+    public Directory<String,Rating> getRatings() {
+        return ratings;
+    }
+
+    public void setRatings(Directory<String,Rating> ratings) {
+        this.ratings = ratings;
     }
 
     

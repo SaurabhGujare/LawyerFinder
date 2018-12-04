@@ -26,8 +26,12 @@ public class LawyerPanel extends javax.swing.JPanel {
     public LawyerPanel() {
         initComponents();
         userAccount = Session.getUserAccount();
-        containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
+        
         containerPanel.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());
+        containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
+        containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
+        containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
+        
         layout = (CardLayout)containerPanel.getLayout();
     }
 
@@ -50,6 +54,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         viewRequestBtn = new javax.swing.JButton();
         viewClientsBtn = new javax.swing.JButton();
         fileCaseBtn = new javax.swing.JButton();
+        viewFeedbackBtn = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -116,6 +121,14 @@ public class LawyerPanel extends javax.swing.JPanel {
         fileCaseBtn.setText("File Case");
         jPanel2.add(fileCaseBtn);
 
+        viewFeedbackBtn.setText("View Feedback");
+        viewFeedbackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewFeedbackBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(viewFeedbackBtn);
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -170,7 +183,13 @@ public class LawyerPanel extends javax.swing.JPanel {
 
     private void viewClientsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientsBtnActionPerformed
         // TODO add your handling code here:
+        layout.show(containerPanel, ViewClientsPanel.class.getName());
     }//GEN-LAST:event_viewClientsBtnActionPerformed
+
+    private void viewFeedbackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewFeedbackBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, ViewRatingPanel.class.getName());
+    }//GEN-LAST:event_viewFeedbackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -183,6 +202,7 @@ public class LawyerPanel extends javax.swing.JPanel {
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton viewClientsBtn;
+    private javax.swing.JButton viewFeedbackBtn;
     private javax.swing.JButton viewRequestBtn;
     // End of variables declaration//GEN-END:variables
 }
