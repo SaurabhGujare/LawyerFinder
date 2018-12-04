@@ -17,7 +17,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -32,6 +34,8 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     private File picFile;
     final JFileChooser fc = new JFileChooser();
+    private static final String EMAIL_REGEX = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
+    private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
     public ViewLEProfilePanel(LegalEntity legalEntity,boolean readOnly) {
         initComponents();
         this.legalEntity = legalEntity;
@@ -69,6 +73,7 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         emailTxt.setText(legalEntity.getEmail());
         ssnTxt.setText(legalEntity.getSsn());
         dobTxt.setText(legalEntity.getDob().toString());
+        picFile = legalEntity.getPicFile();
         }
         try {
             if(picFile==null){
@@ -200,7 +205,6 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
                     .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(zipTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fnameTxt)
                     .addComponent(lnameTxt)
@@ -212,10 +216,10 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(phoneTxt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(dobTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-                    .addComponent(emailTxt))
+                    .addComponent(phoneTxt)
+                    .addComponent(dobTxt)
+                    .addComponent(emailTxt)
+                    .addComponent(ssnTxt))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -292,6 +296,11 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         jPanel4.setOpaque(false);
 
         saveBtn.setText("Save");
+        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -347,19 +356,48 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 826, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(67, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 589, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(164, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void fnameTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fnameTxtActionPerformed
+        // TODO add your handling code here:       
+    }//GEN-LAST:event_fnameTxtActionPerformed
+
+    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
+        
+        if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter tje first name");
+            return ;
+        }
+        if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the last name");
+            return ;
+        }
+        if(ssnTxt.getText()== null || ssnTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter the social security number(xxx-xx-xxxx)");
+            return ;
+        }
+        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid SSN");
+            return ;
+        }
+        if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
+            JOptionPane.showMessageDialog(this, "Please enter an email address");
+            return ;
+        }
+        if(emailTxt.getText()!=null && !Pattern.matches(EMAIL_REGEX, emailTxt.getText()) ){
+            JOptionPane.showMessageDialog(this, "Please enter a valid email address");
+            return ;
+        }
         legalEntity.setFirstName(fnameTxt.getText());
         legalEntity.setMiddleName(mnameTxt.getText());
         legalEntity.setLastName(lnameTxt.getText());
@@ -370,12 +408,14 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         legalEntity.getPrimaryContact().setContactNumber(phoneTxt.getText());
         legalEntity.setEmail(emailTxt.getText());
         legalEntity.setSsn(ssnTxt.getText());
+        legalEntity.setPicFile(picFile);
         try {
             legalEntity.setDob(sdf.parse(dobTxt.getText()));
         } catch (ParseException ex) {
             Logger.getLogger(ViewLEProfilePanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_fnameTxtActionPerformed
+        JOptionPane.showMessageDialog(null, "Data has been saved successfully");
+    }//GEN-LAST:event_saveBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
