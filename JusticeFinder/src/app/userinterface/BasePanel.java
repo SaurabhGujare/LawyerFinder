@@ -20,7 +20,7 @@ public class BasePanel extends javax.swing.JPanel {
      */
     public BasePanel() {
         initComponents();
-        this.setPreferredSize(new Dimension(1023, 767));
+        this.setPreferredSize(new Dimension(1364, 798));
     }
 
     /**
