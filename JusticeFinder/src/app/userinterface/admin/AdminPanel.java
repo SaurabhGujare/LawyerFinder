@@ -11,6 +11,7 @@ import app.data.Session;
 import app.entities.user.Admin;
 import app.userinterface.BasePanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 /**
@@ -28,6 +29,8 @@ public class AdminPanel extends javax.swing.JPanel {
      */
     public AdminPanel() {
         initComponents();
+        welcomepanel.setBackground(Color.decode("#9fa8da"));
+        menuPanel.setBackground(Color.decode("#b4ffff"));
         admin = (Admin)Session.getUserAccount().getUser();
         welcomelabel.setText("Welcome ");
         usernamelabel.setText(Session.getUserAccount().getUsername());
@@ -48,7 +51,7 @@ public class AdminPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        welcomepanel = new javax.swing.JPanel();
         logoutBtn = new javax.swing.JButton();
         welcomelabel = new javax.swing.JLabel();
         usernamelabel = new javax.swing.JLabel();
@@ -63,8 +66,8 @@ public class AdminPanel extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setOpaque(false);
+        welcomepanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        welcomepanel.setOpaque(false);
 
         logoutBtn.setText("Logout");
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -77,11 +80,11 @@ public class AdminPanel extends javax.swing.JPanel {
 
         usernamelabel.setFont(new java.awt.Font("Tahoma", 3, 30)); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout welcomepanelLayout = new javax.swing.GroupLayout(welcomepanel);
+        welcomepanel.setLayout(welcomepanelLayout);
+        welcomepanelLayout.setHorizontalGroup(
+            welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomepanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(welcomelabel)
                 .addGap(7, 7, 7)
@@ -90,15 +93,15 @@ public class AdminPanel extends javax.swing.JPanel {
                 .addComponent(logoutBtn)
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        welcomepanelLayout.setVerticalGroup(
+            welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomepanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(logoutBtn)
                     .addComponent(welcomelabel))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomepanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -174,13 +177,13 @@ public class AdminPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(welcomepanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(welcomepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -209,7 +212,6 @@ public class AdminPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton courtbtn;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton logoutBtn;
@@ -219,5 +221,6 @@ public class AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton stateBarAssoBtn;
     private javax.swing.JLabel usernamelabel;
     private javax.swing.JLabel welcomelabel;
+    private javax.swing.JPanel welcomepanel;
     // End of variables declaration//GEN-END:variables
 }
