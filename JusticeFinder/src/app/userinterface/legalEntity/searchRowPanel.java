@@ -47,7 +47,7 @@ public class searchRowPanel extends javax.swing.JPanel {
         }
         
         
-        updateRating(lawyer!=null?lawyer.getRating():3);
+        updateRating(lawyer!=null?lawyer.getRating():0);
         if(lawyer!=null){
             lawyerTxt.setText(lawyer.toString());
             feesTxt.setText(lawyer.getFees()+"");
@@ -239,11 +239,11 @@ public class searchRowPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(26, 26, 26))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 

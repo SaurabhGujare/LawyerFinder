@@ -95,15 +95,31 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             sbaList.setModel(model);
             
             model = new DefaultListModel();
-            for (StateBarAssociation s : lawyer.getRequestedStateBars().getAllEntries()) {
+            sbaNeedApprovalList = lawyer.getRequestedStateBars();
+            for (StateBarAssociation s : sbaNeedApprovalList.getAllEntries()) {
                 model.addElement(s);
             }
             sbaReqList.setModel(model);
             
-
             fnameTxt.setText(lawyer.getFirstName());
             lnameTxt.setText(lawyer.getLastName());
             picFile = lawyer.getPicFile();
+            streetAddrTxt.setText(lawyer.getAddress().getStreet());
+            cityTxt.setText(lawyer.getAddress().getCity());
+            stateTxt.setText(lawyer.getAddress().getState());
+            zipcodeTxt.setText(lawyer.getAddress().getZipcode());
+            phnNumberTxt.setText(lawyer.getWorkContact().getContactNumber());
+            emailTxt.setText(lawyer.getEmail());
+            feesTxt.setText(lawyer.getFees().toString());
+            lawSchoolTxt.setText(lawyer.getLawSchool());
+            ssnTxt.setText(lawyer.getSsn());
+            
+            model = new DefaultListModel();
+            areaOfPractice = lawyer.getAreaOfPractice();
+            for(String area: areaOfPractice){
+                model.addElement(area);
+            }
+            practiceList.setModel(model);
         }
         
         
@@ -165,6 +181,8 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         jLabel9 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         ssnTxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        feesTxt = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         lawSchoolTxt = new javax.swing.JTextField();
@@ -253,22 +271,27 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
         ssnTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
 
+        jLabel1.setText("Fees");
+
+        feesTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel3)
                         .addComponent(jLabel2)
                         .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ssnTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -284,7 +307,8 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
                         .addComponent(lnameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(zipcodeTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(phnNumberTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(emailTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(emailTxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(feesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(144, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -308,7 +332,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
                     .addComponent(jLabel7)
                     .addComponent(stateTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(zipcodeTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
@@ -324,6 +348,10 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(feesTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -341,9 +369,11 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -550,9 +580,17 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         for (StateBarAssociation sba : lawyer.getRequestedStateBars().getAllEntries()) {
             LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(lawyer.getAccount(), sba.getAdmin().getAccount(), "Request");
         }
+        
+        JOptionPane.showMessageDialog(this, "Data Updated");
     }//GEN-LAST:event_saveBtnActionPerformed
 
     private void addSBAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSBAActionPerformed
+        
+        if(lawyer!=null && lawyer.getAllowedStateBars().contains((StateBarAssociation) sbaAvailableList.getSelectedItem())){
+            JOptionPane.showMessageDialog(this, "State Bar Already approved");
+            return;
+        }
+        
         try {
             // TODO add your handling code here:
             sbaNeedApprovalList.addNew((StateBarAssociation) sbaAvailableList.getSelectedItem());
@@ -566,12 +604,11 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
 
         sbaReqList.setModel(model);
-        JOptionPane.showMessageDialog(null, "Data has been saved successfully");
     }//GEN-LAST:event_addSBAActionPerformed
 
     private void addPracticeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPracticeBtnActionPerformed
         
-        if(practiceTxt.getText()!=null && practiceTxt.getText().trim().equals("")){
+        if(practiceTxt.getText()!=null && !practiceTxt.getText().trim().equals("")){
             areaOfPractice.add(practiceTxt.getText());
             
             DefaultListModel model = new DefaultListModel();
@@ -621,15 +658,22 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         lawyer.setFirstName(fnameTxt.getText());
         lawyer.setLastName(lnameTxt.getText());
         lawyer.setEmail(emailTxt.getText());
-        lawyer.setAddress(new Address());
         lawyer.getAddress().setStreet(streetAddrTxt.getText());
         lawyer.getAddress().setCity(cityTxt.getText());
         lawyer.getAddress().setState(stateTxt.getText());
         lawyer.getAddress().setZipcode(zipcodeTxt.getText());
+        lawyer.getWorkContact().setContactNumber(phnNumberTxt.getText());
         lawyer.setRequestedStateBars(sbaNeedApprovalList);
         lawyer.setSsn(ssnTxt.getText());
         lawyer.setAreaOfPractice(areaOfPractice);
         lawyer.setPicFile(picFile);
+        lawyer.setLawSchool(lawSchoolTxt.getText());
+        try{
+            lawyer.setFees(Double.parseDouble(feesTxt.getText()));
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Please enter a valid number");
+            return null;
+        }
         return lawyer;
     }
 
@@ -638,7 +682,9 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
     private javax.swing.JButton addSBA;
     private javax.swing.JTextField cityTxt;
     private javax.swing.JTextField emailTxt;
+    private javax.swing.JTextField feesTxt;
     private javax.swing.JTextField fnameTxt;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
