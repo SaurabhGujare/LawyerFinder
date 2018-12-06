@@ -52,7 +52,7 @@ public class CommonUtils {
     public static int calulateRating(Directory<String, Rating> ratings){
         
         if(ratings.size() == 0){
-            return 0;
+            return 1;
         }
         
         int total = 0;

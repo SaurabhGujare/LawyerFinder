@@ -56,25 +56,27 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         sbaNeedApprovalList = new Directory<>();
         areaOfPractice = new ArrayList<>();
         
-        picPanel.addMouseListener(new MouseAdapter() {
+        if(!readOnly){
+            picPanel.addMouseListener(new MouseAdapter() {
 
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                super.mouseClicked(me); 
-                int returnVal = fc.showOpenDialog(LawyerProfilePanel.this);
-                
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        String picFileLoc = fc.getSelectedFile().getAbsolutePath();
-                        CommonUtils.initPicPanel(picFileLoc, picPanel);
-                        picFile = fc.getSelectedFile();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+                @Override
+                public void mouseClicked(MouseEvent me) {
+                    super.mouseClicked(me); 
+                    int returnVal = fc.showOpenDialog(LawyerProfilePanel.this);
+
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        try {
+                            String picFileLoc = fc.getSelectedFile().getAbsolutePath();
+                            CommonUtils.initPicPanel(picFileLoc, picPanel);
+                            picFile = fc.getSelectedFile();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
                     }
                 }
-            }
-            
-        });
+
+            });
+        }
     }
 
     private void initDisplay(boolean readOnly, Lawyer lawyer) {
@@ -586,6 +588,9 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 
     private void addSBAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addSBAActionPerformed
         
+        if(sbaAvailableList.getSelectedItem()==null){
+            return;
+        }
         if(lawyer!=null && lawyer.getAllowedStateBars().contains((StateBarAssociation) sbaAvailableList.getSelectedItem())){
             JOptionPane.showMessageDialog(this, "State Bar Already approved");
             return;
@@ -652,7 +657,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             return null;
         }
         if(isCreatedNow && sbaNeedApprovalList.size()==0){
-            JOptionPane.showMessageDialog(this, "");
+            JOptionPane.showMessageDialog(this, "Please select alteast one State Bar Association");
             return null;
         }
         lawyer.setFirstName(fnameTxt.getText());

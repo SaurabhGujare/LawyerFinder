@@ -23,12 +23,12 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     public LoginPanel() {
         initComponents();
-        heading.setBackground(Color.decode("#9fa8da"));
-        Body.setBackground(Color.decode("#b4ffff"));
-        jLabel2.setForeground(Color.decode("#000000"));
-        loginBtn.setBackground(Color.decode("#b4ffff"));
-        registerBtn.setBackground(Color.decode("#b4ffff"));
-        jPanel1.setBackground(Color.decode("#b4ffff"));
+//        heading.setBackground(Color.decode("#9fa8da"));
+//        Body.setBackground(Color.decode("#b4ffff"));
+//        jLabel2.setForeground(Color.decode("#000000"));
+//        loginBtn.setBackground(Color.decode("#b4ffff"));
+//        registerBtn.setBackground(Color.decode("#b4ffff"));
+//        jPanel1.setBackground(Color.decode("#b4ffff"));
     }
 
     /**
