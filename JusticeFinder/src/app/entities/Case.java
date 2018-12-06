@@ -5,16 +5,23 @@
  */
 package app.entities;
 
+import app.data.directories.interfaces.DirectoryEntry;
+import app.data.org.Court;
+import java.util.Date;
+
 /**
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class Case {
+public class Case implements DirectoryEntry<String>{
+    private String caseName;
     private String caseNumber;
-    private String caseIssue;
     private String caseDesc;
     private String caseDecision;
-    private String caseStatus;
+    private Boolean caseStatus;
+    private String casetype;
+    private Date casefileDate;
+    private Court court;
 
     public String getCaseNumber() {
         return caseNumber;
@@ -22,14 +29,6 @@ public class Case {
 
     public void setCaseNumber(String caseNumber) {
         this.caseNumber = caseNumber;
-    }
-
-    public String getCaseIssue() {
-        return caseIssue;
-    }
-
-    public void setCaseIssue(String caseIssue) {
-        this.caseIssue = caseIssue;
     }
 
     public String getCaseDesc() {
@@ -48,15 +47,48 @@ public class Case {
         this.caseDecision = caseDecision;
     }
 
-    public String getCaseStatus() {
+    public Boolean getCaseStatus() {
         return caseStatus;
     }
 
-    public void setCaseStatus(String caseStatus) {
+    public void setCaseStatus(Boolean caseStatus) {
         this.caseStatus = caseStatus;
     }
+
+    public String getCaseName() {
+        return caseName;
+    }
+
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
+    }
+
+    public String getCasetype() {
+        return casetype;
+    }
+
+    public void setCasetype(String casetype) {
+        this.casetype = casetype;
+    }
+
+    public Date getCasefileDate() {
+        return casefileDate;
+    }
+
+    public void setCasefileDate(Date casefileDate) {
+        this.casefileDate = casefileDate;
+    }
+
+    public Court getCourt() {
+        return court;
+    }
+
+    public void setCourt(Court court) {
+        this.court = court;
+    }
     
-    
-            
-    
+    @Override
+    public String getKey(){
+        return caseNumber;
+    }
 }

@@ -6,10 +6,15 @@
 package app.userinterface.lawyer;
 import app.business.LoginAction;
 import app.data.Session;
+import app.data.org.Court;
 import app.entities.user.Lawyer;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
+import app.userinterface.MainFrame;
 import java.awt.CardLayout;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
 
 /**
  *
@@ -19,6 +24,7 @@ public class LawyerPanel extends javax.swing.JPanel {
     
     private UserAccount userAccount;
     CardLayout layout;
+    Court court;
 
     /**
      * Creates new form LawyerPanel
@@ -31,7 +37,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
         containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
-        containerPanel.add(new FileCasePanel(),FileCasePanel.class.getName());
+        containerPanel.add(new FileCasePanel_donotuse(),FileCasePanel_donotuse.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
     }
@@ -198,8 +204,18 @@ public class LawyerPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_viewFeedbackBtnActionPerformed
 
     private void fileCaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileCaseBtnActionPerformed
-        // TODO add your handling code here:
-        layout.show(containerPanel, FileCasePanel.class.getName());
+        // TODO add your handling code here:        
+        FileCaseDialog dialog = new FileCaseDialog(MainFrame.self, true, court, (Lawyer) Session.getUserAccount().getUser());
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
+                middle.y - (dialog.getHeight() / 2) - 150);
+
+        dialog.setLocation(newLocation);
+        dialog.pack();
+
+        dialog.setVisible(true);
     }//GEN-LAST:event_fileCaseBtnActionPerformed
 
 

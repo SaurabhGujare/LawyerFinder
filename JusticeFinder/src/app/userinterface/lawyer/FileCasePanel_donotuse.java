@@ -13,12 +13,12 @@ import java.awt.event.ComponentEvent;
  *
  * @author arele
  */
-public class FileCasePanel extends javax.swing.JPanel {
+public class FileCasePanel_donotuse extends javax.swing.JPanel {
 
     /**
      * Creates new form FileCasePanel
      */
-    public FileCasePanel() {
+    public FileCasePanel_donotuse() {
         initComponents();
     }
     /**

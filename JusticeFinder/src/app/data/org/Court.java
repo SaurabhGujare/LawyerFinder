@@ -6,6 +6,7 @@
 package app.data.org;
 
 import app.data.directories.Directory;
+import app.entities.Case;
 import app.entities.user.Address;
 import app.entities.user.Clerk;
 import app.entities.user.ContactDetails;
@@ -30,6 +31,7 @@ public class Court extends Organization{
     private String email;
     private Directory<Integer, Judge> judgeDirectory;
     private Directory<Integer, Clerk> clerkDirectory;
+    private Directory<String, Case> caseDirectory;
     
     public Court(){
     
@@ -103,6 +105,14 @@ public class Court extends Organization{
 
     public void setClerkDirectory(Directory<Integer, Clerk> clerkDirectory) {
         this.clerkDirectory = clerkDirectory;
+    }
+
+    public Directory<String, Case> getCaseDirectory() {
+        return caseDirectory;
+    }
+
+    public void setCaseDirectory(Directory<String, Case> caseDirectory) {
+        this.caseDirectory = caseDirectory;
     }
     
     @Override
