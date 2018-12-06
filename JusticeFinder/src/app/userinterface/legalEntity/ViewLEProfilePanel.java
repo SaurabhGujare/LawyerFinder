@@ -45,23 +45,25 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
         this.legalEntity = legalEntity;
         populateText(legalEntity);
         
-        picPanel.addMouseListener(new MouseAdapter() {
-        @Override
-            public void mouseClicked(MouseEvent me) {
-                super.mouseClicked(me); 
-                int returnVal = fc.showOpenDialog(ViewLEProfilePanel.this);
-                
-                if (returnVal == JFileChooser.APPROVE_OPTION) {
-                    try {
-                        String picFileLoc = fc.getSelectedFile().getAbsolutePath();
-                        CommonUtils.initPicPanel(picFileLoc, picPanel);
-                        picFile = fc.getSelectedFile();
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
+        if(!readOnly){
+            picPanel.addMouseListener(new MouseAdapter() {
+            @Override
+                public void mouseClicked(MouseEvent me) {
+                    super.mouseClicked(me); 
+                    int returnVal = fc.showOpenDialog(ViewLEProfilePanel.this);
+
+                    if (returnVal == JFileChooser.APPROVE_OPTION) {
+                        try {
+                            String picFileLoc = fc.getSelectedFile().getAbsolutePath();
+                            CommonUtils.initPicPanel(picFileLoc, picPanel);
+                            picFile = fc.getSelectedFile();
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
                     }
-                }
-            }}
-        );
+                }}
+            );
+        }
         initDisplay(readOnly, legalEntity);
     }
 
