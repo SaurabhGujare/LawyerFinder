@@ -27,7 +27,8 @@ public class Clerk extends User implements DirectoryEntry<Integer> {
     public Clerk(Organization Court) {
         super(Roles.CLERK);
         workContact = new ContactDetails();
-        this.workqueue = new CaseFileRequestWorkQueue();        
+        this.workqueue = new CaseFileRequestWorkQueue();   
+        this.setParent(Court);
     }
     public String getName() {
         return name;

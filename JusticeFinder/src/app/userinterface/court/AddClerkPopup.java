@@ -6,10 +6,12 @@
 package app.userinterface.court;
 
 import app.data.Network;
+import app.data.Session;
 import app.data.directories.Directory;
 import app.data.org.Court;
 import app.data.org.Organization;
 import app.entities.user.Clerk;
+import app.entities.user.CourtAdmin;
 import app.entities.user.UserAccount;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -37,6 +39,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
        super(parent, modal);
         initComponents();
         this.clerkDir=clerkDir;
+        this.c = (Court) ((CourtAdmin) Session.getUserAccount().getUser()).getParent();
     }
 
     /**
