@@ -5,6 +5,7 @@
  */
 package app.utils.email;
 
+import app.utils.ConfigUtil;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 import javax.mail.Message;
@@ -22,6 +23,13 @@ import javax.mail.internet.MimeMessage;
 public class EmailUtil {
 
     public static void sendEmail(String to,String subject, String messageBody) {
+        
+        String sendEmailProp = ConfigUtil.getProp("");
+        
+        if(sendEmailProp.equals("off")){
+            return;
+        }
+        
         final String username = "ninad11302018@gmail.com";
         final String password = "Crazybanana@10";
 
