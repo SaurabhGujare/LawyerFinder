@@ -219,5 +219,10 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     public String toString(){
         return this.firstName+" "+this.lastName;
     }
+
+    @Override
+    public String getName() {
+        return toString();
+    }
     
 }

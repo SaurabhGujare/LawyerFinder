@@ -136,5 +136,10 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     public String toString() {
         return ssn;
     }
+
+    @Override
+    public String getName() {
+        return firstName+" "+lastName;
+    }
             
 }
