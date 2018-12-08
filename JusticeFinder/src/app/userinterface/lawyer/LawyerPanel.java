@@ -38,7 +38,8 @@ public class LawyerPanel extends javax.swing.JPanel {
         containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
         containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
-        //containerPanel.add(new FileCasePanel_donotuse(),FileCasePanel_donotuse.class.getName());
+        //containerPanel.add(new FileCasePanel(),FileCasePanel.class.getName());
+        containerPanel.add(new ViewStatsPanel(),ViewStatsPanel.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
         headerPanel.add(new HeaderPanel(userAccount, this, "Lawyer"));
@@ -63,6 +64,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         viewClientsBtn = new javax.swing.JButton();
         fileCaseBtn = new javax.swing.JButton();
         viewFeedbackBtn = new javax.swing.JButton();
+        viewStatsBtn = new javax.swing.JButton();
 
         headerPanel.setBackground(new java.awt.Color(204, 204, 204));
         headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
@@ -118,6 +120,14 @@ public class LawyerPanel extends javax.swing.JPanel {
             }
         });
         jPanel2.add(viewFeedbackBtn);
+
+        viewStatsBtn.setText("View My Stats");
+        viewStatsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewStatsBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(viewStatsBtn);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -189,6 +199,11 @@ public class LawyerPanel extends javax.swing.JPanel {
         dialog.setVisible(true);
     }//GEN-LAST:event_fileCaseBtnActionPerformed
 
+    private void viewStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStatsBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, ViewStatsPanel.class.getName());
+    }//GEN-LAST:event_viewStatsBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton checkProfileBtn;
@@ -201,5 +216,6 @@ public class LawyerPanel extends javax.swing.JPanel {
     private javax.swing.JButton viewClientsBtn;
     private javax.swing.JButton viewFeedbackBtn;
     private javax.swing.JButton viewRequestBtn;
+    private javax.swing.JButton viewStatsBtn;
     // End of variables declaration//GEN-END:variables
 }

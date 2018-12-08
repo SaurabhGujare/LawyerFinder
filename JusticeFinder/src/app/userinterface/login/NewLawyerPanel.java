@@ -12,8 +12,14 @@ import app.entities.user.UserAccount;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
+import app.utils.ConfigUtil;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -34,7 +40,6 @@ public class NewLawyerPanel extends javax.swing.JPanel {
      */
     public NewLawyerPanel() {
         initComponents();
-        heading.setBackground(Color.decode("#37474f"));
         lawyerProfilePanel = new LawyerProfilePanel(lawyer, false);
         container.add(lawyerProfilePanel,LawyerProfilePanel.class.getName());
         
@@ -58,6 +63,8 @@ public class NewLawyerPanel extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         nextBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+
+        heading.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,9 +135,9 @@ public class NewLawyerPanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 466, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -154,10 +161,22 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             
             for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
                 LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
+
+                String SBA_NAME = sba.getStateBarAssociationName();
+                String body = "";
+                try {
+                    body = EmailTemplateFormatter.getMessage(Templates.LAWYER_REQUEST.getPageName(), SBA_NAME, LAWYER_NAME);
+                } catch (IOException ex) {
+                    Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                EmailUtil.sendMail(sba.getEmail(), "Lawyer Approval Request", body);
+                
             }
             JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
         }
+        
         layout.next(container);
     }//GEN-LAST:event_nextBtnActionPerformed
 

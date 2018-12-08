@@ -13,6 +13,10 @@ import app.data.org.StateBarAssociation;
 import app.entities.user.Address;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
@@ -581,6 +585,16 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         
         for (StateBarAssociation sba : lawyer.getRequestedStateBars().getAllEntries()) {
             LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(lawyer.getAccount(), sba.getAdmin().getAccount(), "Request");
+            
+            String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
+            String SBA_NAME = sba.getStateBarAssociationName();
+            String body = "";
+            try {
+                body = EmailTemplateFormatter.getMessage(Templates.LAWYER_REQUEST.getPageName(), SBA_NAME, LAWYER_NAME);
+            } catch (IOException ex) {
+                Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            EmailUtil.sendMail(sba.getEmail(), "Lawyer Approval Request", body);
         }
         
         JOptionPane.showMessageDialog(this, "Data Updated");
@@ -609,6 +623,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
 
         sbaReqList.setModel(model);
+        
     }//GEN-LAST:event_addSBAActionPerformed
 
     private void addPracticeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPracticeBtnActionPerformed
@@ -633,15 +648,15 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
         
         if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter the first name");
+            JOptionPane.showMessageDialog(this, "Please enter your first name");
             return null;
         }
         if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter the last name");
+            JOptionPane.showMessageDialog(this, "Please enter your last name");
             return null;
         }
         if(ssnTxt.getText()== null || ssnTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter the social security number (xxx-xx-xxxx)");
+            JOptionPane.showMessageDialog(this, "Please enter your social security number (xxx-xx-xxxx)");
             return null;
         }
 //        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
@@ -649,7 +664,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 //            return null;
 //        }
         if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter an email address");
+            JOptionPane.showMessageDialog(this, "Please enter your email address");
             return null;
         }
         if(emailTxt.getText()!=null && !Pattern.matches(EMAIL_REGEX, emailTxt.getText()) ){
@@ -676,7 +691,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         try{
             lawyer.setFees(Double.parseDouble(feesTxt.getText()));
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Please enter a valid number");
+            JOptionPane.showMessageDialog(this, "Please enter a valid number in Fees");
             return null;
         }
         return lawyer;
