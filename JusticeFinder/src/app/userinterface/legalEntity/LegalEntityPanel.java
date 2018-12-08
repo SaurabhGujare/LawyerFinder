@@ -52,15 +52,15 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         viewProfileBtn = new javax.swing.JButton();
         searchLawyers = new javax.swing.JButton();
-        ViewSentCases = new javax.swing.JButton();
         rateLawyer = new javax.swing.JButton();
+        ViewSentCases = new javax.swing.JButton();
 
         setOpaque(false);
 
         headerPanel.setOpaque(false);
         headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
-        jSplitPane1.setDividerLocation(200);
+        jSplitPane1.setDividerLocation(250);
         jSplitPane1.setOpaque(false);
 
         containerPanel.setOpaque(false);
@@ -88,14 +88,6 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         });
         jPanel3.add(searchLawyers);
 
-        ViewSentCases.setText("View Cases");
-        ViewSentCases.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ViewSentCasesActionPerformed(evt);
-            }
-        });
-        jPanel3.add(ViewSentCases);
-
         rateLawyer.setText("Rate Lawyer");
         rateLawyer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +95,14 @@ public class LegalEntityPanel extends javax.swing.JPanel {
             }
         });
         jPanel3.add(rateLawyer);
+
+        ViewSentCases.setText("View Cases");
+        ViewSentCases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ViewSentCasesActionPerformed(evt);
+            }
+        });
+        jPanel3.add(ViewSentCases);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,14 +125,14 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 937, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE))
+                .addComponent(jSplitPane1))
         );
     }// </editor-fold>//GEN-END:initComponents
 

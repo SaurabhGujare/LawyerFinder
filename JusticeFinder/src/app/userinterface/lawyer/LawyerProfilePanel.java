@@ -633,15 +633,15 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
         
         if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter tje first name");
+            JOptionPane.showMessageDialog(this, "Please enter your first name");
             return null;
         }
         if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter the last name");
+            JOptionPane.showMessageDialog(this, "Please enter your last name");
             return null;
         }
         if(ssnTxt.getText()== null || ssnTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter the social security number (xxx-xx-xxxx)");
+            JOptionPane.showMessageDialog(this, "Please enter your social security number (xxx-xx-xxxx)");
             return null;
         }
 //        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
@@ -649,7 +649,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
 //            return null;
 //        }
         if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter an email address");
+            JOptionPane.showMessageDialog(this, "Please enter your email address");
             return null;
         }
         if(emailTxt.getText()!=null && !Pattern.matches(EMAIL_REGEX, emailTxt.getText()) ){
@@ -676,7 +676,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         try{
             lawyer.setFees(Double.parseDouble(feesTxt.getText()));
         }catch(Exception e){
-            JOptionPane.showMessageDialog(this, "Please enter a valid number");
+            JOptionPane.showMessageDialog(this, "Please enter a valid number in Fees");
             return null;
         }
         return lawyer;

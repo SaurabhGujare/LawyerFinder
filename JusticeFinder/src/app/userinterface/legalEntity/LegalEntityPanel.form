@@ -20,7 +20,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="headerPanel" max="32767" attributes="0"/>
-          <Component id="jSplitPane1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jSplitPane1" alignment="0" pref="937" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -28,7 +28,7 @@
           <Group type="102" alignment="0" attributes="0">
               <Component id="headerPanel" min="-2" pref="70" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jSplitPane1" pref="652" max="32767" attributes="0"/>
+              <Component id="jSplitPane1" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -43,7 +43,7 @@
     </Container>
     <Container class="javax.swing.JSplitPane" name="jSplitPane1">
       <Properties>
-        <Property name="dividerLocation" type="int" value="200"/>
+        <Property name="dividerLocation" type="int" value="250"/>
         <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
@@ -116,20 +116,20 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchLawyersActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="ViewSentCases">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="View Cases"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSentCasesActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JButton" name="rateLawyer">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Rate Lawyer"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rateLawyerActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JButton" name="ViewSentCases">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="View Cases"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ViewSentCasesActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

@@ -6,8 +6,10 @@
 package app.userinterface.legalEntity;
 
 import app.data.Network;
+import app.data.Session;
 import app.data.directories.Directory;
 import app.entities.user.Lawyer;
+import app.entities.user.LegalEntity;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
@@ -82,7 +84,9 @@ public class RateLawyerPanel extends javax.swing.JPanel {
         allLawyersPanel.removeAll();
         List<Lawyer> list = LAWYER_DIRECTORY.getAllEntries();
         for(Lawyer l: list){
-            allLawyersPanel.add(new LawyersRowPanel(l));
+            if(((LegalEntity)Session.getUserAccount().getUser()).getLawyers().contains(l)){
+                allLawyersPanel.add(new LawyersRowPanel(l));
+            }
         }
         allLawyersPanel.revalidate();
         allLawyersPanel.repaint();
