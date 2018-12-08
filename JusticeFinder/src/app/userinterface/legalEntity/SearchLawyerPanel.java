@@ -6,22 +6,13 @@
 package app.userinterface.legalEntity;
 
 import app.data.Network;
-import app.data.Session;
-import app.data.analytics.RatingSortor;
 import app.data.analytics.SorterFactory;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
-import app.entities.user.LegalEntity;
-import app.entities.workqueues.LawyerApprovalRequest;
-import app.entities.workqueues.StateBarAssoWorkQueue;
-import app.entities.workqueues.WorkItem;
-import app.userinterface.MainFrame;
 import app.utils.CommonUtils;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -34,7 +25,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
