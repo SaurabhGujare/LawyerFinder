@@ -193,33 +193,36 @@ public class AddJudgePopUp extends javax.swing.JDialog {
 
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
+        if(nametxt.getText()!= null && !nametxt.getText().trim().equals("")&& emailtxt.getText()!= null && !emailtxt.getText().trim().equals("") && usernametxt.getText()!= null && !usernametxt.getText().trim().equals("") && passwordtxt.getText()!= null && !passwordtxt.getText().trim().equals("") ){
+            Judge j = new Judge();
 
-        Judge j = new Judge();
-
-        j.setName(nametxt.getText());
-        j.setEmail(emailtxt.getText());
-        joiningdatetxt.setText(joiningdatetxt.getText());
-        UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), j);
-        try{
-            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
-            if(judgeDir.contains(j)){
+            j.setName(nametxt.getText());
+            j.setEmail(emailtxt.getText());
+            joiningdatetxt.setText(joiningdatetxt.getText());
+            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), j);
+            try{
+                Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            try {
+                if(judgeDir.contains(j)){
                 JOptionPane.showMessageDialog(this, "Judge with this name already present");
                 return;
-            }
+                }
             
-            judgeDir.addNew(j);
+                judgeDir.addNew(j);
             
-        } catch (Exception ex) {ex.printStackTrace();}
-        JOptionPane.showMessageDialog(this, "Judge Created");
+            } catch (Exception ex) {ex.printStackTrace();}
+                JOptionPane.showMessageDialog(this, "Judge Created");
         
-        this.setVisible(false);
-        saveBtnListner.actionPerformed(evt);
-        this.dispose();
+            this.setVisible(false);
+            saveBtnListner.actionPerformed(evt);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Enter all the details first");
+        }
     }//GEN-LAST:event_savebtnActionPerformed
 
     /**

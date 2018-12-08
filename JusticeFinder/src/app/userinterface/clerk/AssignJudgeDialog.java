@@ -53,11 +53,11 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        lblcasename = new javax.swing.JLabel();
+        lblcasenumber = new javax.swing.JLabel();
+        lblcasedate = new javax.swing.JLabel();
+        lblcasetype = new javax.swing.JLabel();
+        lblcasedescription = new javax.swing.JLabel();
         txtcasename = new javax.swing.JTextField();
         txtcasenumber = new javax.swing.JTextField();
         txtcasefiledate = new javax.swing.JTextField();
@@ -67,23 +67,23 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
         jRadioButton2 = new javax.swing.JRadioButton();
         txtcasedescription = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        lblassigntojudge = new javax.swing.JLabel();
         comboboxjudge = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        btnassignment = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Case Details", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 29))); // NOI18N
 
-        jLabel1.setText("CaseName:");
+        lblcasename.setText("CaseName:");
 
-        jLabel2.setText("CaseNumber:");
+        lblcasenumber.setText("CaseNumber:");
 
-        jLabel3.setText("Case File Date:");
+        lblcasedate.setText("Case File Date:");
 
-        jLabel5.setText("Case Type:");
+        lblcasetype.setText("Case Type:");
 
-        jLabel6.setText("Case Description:");
+        lblcasedescription.setText("Case Description:");
 
         txtcasename.setEnabled(false);
 
@@ -113,11 +113,11 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblcasename, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblcasenumber, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblcasedate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblcasetype, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblcasedescription, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -143,16 +143,16 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
+                            .addComponent(lblcasename)
                             .addComponent(txtcasename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
+                            .addComponent(lblcasenumber)
                             .addComponent(txtcasenumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtcasefiledate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
+                            .addComponent(lblcasedate)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
@@ -162,19 +162,24 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtcasetype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                    .addComponent(lblcasetype))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
+                    .addComponent(lblcasedescription)
                     .addComponent(txtcasedescription, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Assign to Judge", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 29))); // NOI18N
 
-        jLabel4.setText("Assign to Judge:");
+        lblassigntojudge.setText("Assign to Judge:");
 
-        jButton1.setText("Request Assignment");
+        btnassignment.setText("Request Assignment");
+        btnassignment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnassignmentActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -182,11 +187,11 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
+                .addComponent(lblassigntojudge)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(comboboxjudge, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(btnassignment)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -194,10 +199,10 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
+                    .addComponent(btnassignment)
                     .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(comboboxjudge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel4)))
+                        .addComponent(lblassigntojudge)))
                 .addContainerGap(72, Short.MAX_VALUE))
         );
 
@@ -249,6 +254,10 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcasefiledateActionPerformed
 
+    private void btnassignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnassignmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnassignmentActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -292,20 +301,20 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnassignment;
     private javax.swing.JComboBox<String> comboboxjudge;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JRadioButton jRadioButton2;
+    private javax.swing.JLabel lblassigntojudge;
+    private javax.swing.JLabel lblcasedate;
+    private javax.swing.JLabel lblcasedescription;
+    private javax.swing.JLabel lblcasename;
+    private javax.swing.JLabel lblcasenumber;
+    private javax.swing.JLabel lblcasetype;
     private javax.swing.JTextField txtcasedescription;
     private javax.swing.JTextField txtcasefiledate;
     private javax.swing.JTextField txtcasename;

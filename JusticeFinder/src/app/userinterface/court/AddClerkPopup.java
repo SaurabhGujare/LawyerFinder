@@ -200,33 +200,38 @@ public class AddClerkPopup extends javax.swing.JDialog {
 
     private void createclerkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createclerkbtnActionPerformed
         // TODO add your handling code here:
-        Clerk cl = new Clerk(c);
+        if(nametxt.getText()!= null && !nametxt.getText().trim().equals("")&& emailtxt.getText()!= null && !emailtxt.getText().trim().equals("") && usernametxt.getText()!= null && !usernametxt.getText().trim().equals("") && passwordtxt.getText()!= null && !passwordtxt.getText().trim().equals("") ){
+            
+            Clerk cl = new Clerk(c);
 
-        cl.setName(nametxt.getText());
-        cl.setEmail(emailtxt.getText());
+            cl.setName(nametxt.getText());
+            cl.setEmail(emailtxt.getText());
         
-        UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl);
+            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl);
 
-        try{
-            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
-            if(clerkDir.contains(cl)){
+            try{
+                Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            try {
+                if(clerkDir.contains(cl)){
                 JOptionPane.showMessageDialog(this, "Clerk with this name already present");
                 return;
             }
             
-            clerkDir.addNew(cl);
+                clerkDir.addNew(cl);
             
-        } catch (Exception ex) {ex.printStackTrace();}
-        JOptionPane.showMessageDialog(this, "Clerk Created");
+            } catch (Exception ex) {ex.printStackTrace();}
+                JOptionPane.showMessageDialog(this, "Clerk Created");
         
-        this.setVisible(false);
-        saveBtnListner.actionPerformed(evt);
-        this.dispose();
+                this.setVisible(false);
+                saveBtnListner.actionPerformed(evt);
+                this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter all the details first");
+        }
     }//GEN-LAST:event_createclerkbtnActionPerformed
 
     /**
