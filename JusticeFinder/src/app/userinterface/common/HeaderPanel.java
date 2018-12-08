@@ -25,7 +25,6 @@ public class HeaderPanel extends javax.swing.JPanel {
      */
     public HeaderPanel(UserAccount account,JPanel parent,String pageTitle) {
         initComponents();
-        loginUserLbl.setText(account.getUsername());
         this.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
         this.parent = parent;
         this.pageTitleLbl.setText(pageTitle);
@@ -43,8 +42,6 @@ public class HeaderPanel extends javax.swing.JPanel {
 
         logoutBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        loginUserLbl = new javax.swing.JLabel();
         pageTitleLbl = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nameLbl = new javax.swing.JLabel();
@@ -58,19 +55,19 @@ public class HeaderPanel extends javax.swing.JPanel {
 
         jPanel1.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("User:");
-
-        loginUserLbl.setBackground(new java.awt.Color(255, 255, 255));
-        loginUserLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-
         pageTitleLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        pageTitleLbl.setForeground(Color.decode(ConfigUtil.getProp("textColor"))
+        );
         pageTitleLbl.setText("<Page Title>");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Name:");
+        jLabel2.setForeground(Color.decode(ConfigUtil.getProp("textColor"))
+        );
+        jLabel2.setText("Welcome, ");
 
         nameLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        nameLbl.setForeground(Color.decode(ConfigUtil.getProp("textColor"))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,32 +76,23 @@ public class HeaderPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pageTitleLbl)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(loginUserLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pageTitleLbl))
-                .addContainerGap(491, Short.MAX_VALUE))
+                        .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(728, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel2)
-                        .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(pageTitleLbl)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(loginUserLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pageTitleLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -136,10 +124,8 @@ public class HeaderPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel loginUserLbl;
     private javax.swing.JButton logoutBtn;
     private javax.swing.JLabel nameLbl;
     private javax.swing.JLabel pageTitleLbl;
