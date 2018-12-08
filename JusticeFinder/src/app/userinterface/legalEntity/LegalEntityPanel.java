@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
+import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
 
 /**
@@ -32,6 +33,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         containerPanel.add(new RateLawyerPanel(),RateLawyerPanel.class.getName());
         containerPanel.add(new ViewSentRequest(),ViewSentRequest.class.getName());
         layout = (CardLayout) containerPanel.getLayout();
+        headerPanel.add(new HeaderPanel(account, this, "Legal Entity"));
     }
 
     /**
@@ -43,9 +45,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
+        headerPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         containerPanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -57,37 +57,8 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
         setOpaque(false);
 
-        jPanel1.setOpaque(false);
-
-        jLabel1.setText("Legal Entity Page");
-
-        logoutBtn.setText("Logout");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(385, 385, 385)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
-                .addComponent(logoutBtn)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(logoutBtn))
-                .addContainerGap(29, Short.MAX_VALUE))
-        );
+        headerPanel.setOpaque(false);
+        headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         jSplitPane1.setDividerLocation(200);
         jSplitPane1.setOpaque(false);
@@ -144,7 +115,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(399, Short.MAX_VALUE))
+                .addContainerGap(411, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(jPanel2);
@@ -153,15 +124,15 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSplitPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSplitPane1))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -169,11 +140,6 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         layout.show(containerPanel, ViewLEProfilePanel.class.getName());
     }//GEN-LAST:event_viewProfileBtnActionPerformed
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
-        ((BasePanel)this.getParent()).unloadPage(this);
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchLawyersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchLawyersActionPerformed
         // TODO add your handling code here:
@@ -195,12 +161,10 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ViewSentCases;
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton logoutBtn;
     private javax.swing.JButton rateLawyer;
     private javax.swing.JButton searchLawyers;
     private javax.swing.JButton viewProfileBtn;

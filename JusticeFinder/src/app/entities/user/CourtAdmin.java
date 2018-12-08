@@ -35,4 +35,10 @@ public class CourtAdmin extends User implements DirectoryEntry<Integer> {
         return parent;
     }
 
+    @Override
+    public String getName() {
+        return parent.toString();
+    }
+
+    
 }
