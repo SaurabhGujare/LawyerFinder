@@ -6,8 +6,12 @@
 package app.userinterface.court;
 
 import app.data.Network;
+import app.data.Session;
 import app.data.directories.Directory;
+import app.data.org.Court;
+import app.data.org.Organization;
 import app.entities.user.Clerk;
+import app.entities.user.CourtAdmin;
 import app.entities.user.UserAccount;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -24,6 +28,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
      */
     Directory<Integer , Clerk> clerkDir;
     private ActionListener saveBtnListner;
+    private Court c;
     
     public AddClerkPopup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -34,6 +39,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
        super(parent, modal);
         initComponents();
         this.clerkDir=clerkDir;
+        this.c = (Court) ((CourtAdmin) Session.getUserAccount().getUser()).getParent();
     }
 
     /**
@@ -197,33 +203,38 @@ public class AddClerkPopup extends javax.swing.JDialog {
 
     private void createclerkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createclerkbtnActionPerformed
         // TODO add your handling code here:
-        Clerk cl = new Clerk();
+        if(nametxt.getText()!= null && !nametxt.getText().trim().equals("")&& emailtxt.getText()!= null && !emailtxt.getText().trim().equals("") && usernametxt.getText()!= null && !usernametxt.getText().trim().equals("") && passwordtxt.getText()!= null && !passwordtxt.getText().trim().equals("") ){
+            
+            Clerk cl = new Clerk(c);
 
-        cl.setName(nametxt.getText());
-        cl.setEmail(emailtxt.getText());
+            cl.setName(nametxt.getText());
+            cl.setEmail(emailtxt.getText());
         
-        UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl);
+            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl);
 
-        try{
-            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        try {
-            if(clerkDir.contains(cl)){
+            try{
+                Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+            }
+            catch(Exception e){
+                e.printStackTrace();
+            }
+            try {
+                if(clerkDir.contains(cl)){
                 JOptionPane.showMessageDialog(this, "Clerk with this name already present");
                 return;
             }
             
-            clerkDir.addNew(cl);
+                clerkDir.addNew(cl);
             
-        } catch (Exception ex) {ex.printStackTrace();}
-        JOptionPane.showMessageDialog(this, "Clerk Created");
+            } catch (Exception ex) {ex.printStackTrace();}
+                JOptionPane.showMessageDialog(this, "Clerk Created");
         
-        this.setVisible(false);
-        saveBtnListner.actionPerformed(evt);
-        this.dispose();
+                this.setVisible(false);
+                saveBtnListner.actionPerformed(evt);
+                this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Please enter all the details first");
+        }
     }//GEN-LAST:event_createclerkbtnActionPerformed
 
     /**

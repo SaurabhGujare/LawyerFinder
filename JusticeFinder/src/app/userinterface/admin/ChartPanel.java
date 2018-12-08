@@ -28,6 +28,8 @@ public class ChartPanel extends javax.swing.JPanel {
         initComponents();
 
         int done=0,pending=0;
+        
+        if(!Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().isEmpty()){
         StateBarAssociation sba = Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().get(0);
         WorkQueue workQueue =  sba.getWorkQueue();
         List<WorkItem> list = workQueue.getWorkList();
@@ -47,6 +49,7 @@ public class ChartPanel extends javax.swing.JPanel {
         dataset.setValue("Resolved Requests", done);
 
         add(ChartUtils.getPieChart("Pending Vs. Closed Requests",dataset));
+        }
     }
 
     /**

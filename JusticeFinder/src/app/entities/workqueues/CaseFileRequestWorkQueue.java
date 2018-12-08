@@ -15,7 +15,7 @@ public class CaseFileRequestWorkQueue extends WorkQueue<CaseFileRequest> {
     
     @Override
     protected WorkItem getNewItem(UserAccount sender, UserAccount receiver, String message) {
-        return new GrievanceRequest(message,sender,receiver);
+        return new CaseFileRequest(message,sender,receiver);
     }
     
 }

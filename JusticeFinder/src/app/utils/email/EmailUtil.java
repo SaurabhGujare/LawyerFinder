@@ -24,7 +24,7 @@ public class EmailUtil {
 
     public static void sendEmail(String to,String subject, String messageBody) {
         
-        String sendEmailProp = ConfigUtil.getProp("");
+        String sendEmailProp = ConfigUtil.getProp("sendEmail");
         
         if(sendEmailProp.equals("off")){
             return;

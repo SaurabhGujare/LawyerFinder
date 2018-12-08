@@ -33,6 +33,14 @@ public abstract class User {
     public Roles getRole() {
         return role;
     }
+
+    public Organization getParent() {
+        return parent;
+    }
+
+    public void setParent(Organization parent) {
+        this.parent = parent;
+    }
     
     public abstract String getName();
 }
