@@ -13,6 +13,10 @@ import app.data.org.StateBarAssociation;
 import app.entities.user.Address;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
@@ -581,6 +585,16 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         
         for (StateBarAssociation sba : lawyer.getRequestedStateBars().getAllEntries()) {
             LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(lawyer.getAccount(), sba.getAdmin().getAccount(), "Request");
+            
+            String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
+            String SBA_NAME = sba.getStateBarAssociationName();
+            String body = "";
+            try {
+                body = EmailTemplateFormatter.getMessage(Templates.LAWYER_REQUEST.getPageName(), SBA_NAME, LAWYER_NAME);
+            } catch (IOException ex) {
+                Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            EmailUtil.sendMail(sba.getEmail(), "Lawyer Approval Request", body);
         }
         
         JOptionPane.showMessageDialog(this, "Data Updated");
@@ -609,6 +623,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
 
         sbaReqList.setModel(model);
+        
     }//GEN-LAST:event_addSBAActionPerformed
 
     private void addPracticeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPracticeBtnActionPerformed

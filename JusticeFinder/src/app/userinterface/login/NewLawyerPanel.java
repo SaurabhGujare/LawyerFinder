@@ -13,8 +13,13 @@ import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.utils.ConfigUtil;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -156,10 +161,22 @@ public class NewLawyerPanel extends javax.swing.JPanel {
             
             for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
                 LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
+
+                String SBA_NAME = sba.getStateBarAssociationName();
+                String body = "";
+                try {
+                    body = EmailTemplateFormatter.getMessage(Templates.LAWYER_REQUEST.getPageName(), SBA_NAME, LAWYER_NAME);
+                } catch (IOException ex) {
+                    Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                EmailUtil.sendMail(sba.getEmail(), "Lawyer Approval Request", body);
+                
             }
             JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
         }
+        
         layout.next(container);
     }//GEN-LAST:event_nextBtnActionPerformed
 
