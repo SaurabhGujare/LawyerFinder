@@ -59,4 +59,11 @@ public class EmailUtil {
             throw new RuntimeException(e);
         }
     }
+    
+    
+    public static void sendMail(String to,String subject, String messageBody){
+        SendMailThread t = new SendMailThread(to, subject, messageBody);
+        Thread thread = new Thread(t, "emailSender");
+        thread.start();
+    }
 }

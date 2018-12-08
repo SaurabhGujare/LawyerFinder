@@ -243,7 +243,7 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
             Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        EmailUtil.sendEmail(lawyer.getEmail(), "Request Approved", body);
+        EmailUtil.sendMail(lawyer.getEmail(), "Request Approved", body);
         
         dialog.setVisible(false);
         saveBtnListner.actionPerformed(evt);
