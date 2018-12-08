@@ -151,6 +151,14 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewFeedbackBtnActionPerformed"/>
                   </Events>
                 </Component>
+                <Component class="javax.swing.JButton" name="viewStatsBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="View My Stats"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewStatsBtnActionPerformed"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
