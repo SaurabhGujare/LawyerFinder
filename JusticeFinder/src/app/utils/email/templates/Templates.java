@@ -10,7 +10,9 @@ package app.utils.email.templates;
  * @author PC
  */
 public enum Templates {
-    LAWYER_APPROVED("lawyerApproved.txt");
+    LAWYER_APPROVED("lawyerApproved.txt"),
+    LEGALENTITY_APPROVED("legalEnityApproved.txt"),
+    LEGALENTITY_REQUEST("legalEnityRequest.txt");
     
     String pageName;
 
