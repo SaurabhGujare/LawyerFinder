@@ -28,5 +28,10 @@ public class Admin extends User implements DirectoryEntry<Integer>{
     public Integer getKey() {
         return id;
     }
+
+    @Override
+    public String getName() {
+        return "System Admin";
+    }
     
 }

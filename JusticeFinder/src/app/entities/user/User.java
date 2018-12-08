@@ -41,4 +41,6 @@ public abstract class User {
     public void setParent(Organization parent) {
         this.parent = parent;
     }
+    
+    public abstract String getName();
 }

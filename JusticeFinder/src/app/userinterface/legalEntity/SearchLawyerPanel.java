@@ -6,21 +6,13 @@
 package app.userinterface.legalEntity;
 
 import app.data.Network;
-import app.data.Session;
-import app.data.analytics.RatingSortor;
+import app.data.analytics.SorterFactory;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
-import app.entities.user.LegalEntity;
-import app.entities.workqueues.LawyerApprovalRequest;
-import app.entities.workqueues.StateBarAssoWorkQueue;
-import app.entities.workqueues.WorkItem;
-import app.userinterface.MainFrame;
 import app.utils.CommonUtils;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Toolkit;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.awt.event.MouseAdapter;
@@ -33,7 +25,6 @@ import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -48,7 +39,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     List<StateBarAssociation> sbaArrList;
     private List<JLabel> starList;
     
-    Comparator sortor = new RatingSortor(Boolean.TRUE);
+    Comparator sortor;
     int selectedRating = 1;
     
     public SearchLawyerPanel(Directory<String, Lawyer> LAWYER_DIRECTORY) {
@@ -66,6 +57,13 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         this.addComponentListener(adapter);
         this.sbaArrList = Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries();
         
+        DefaultComboBoxModel comboModel = new DefaultComboBoxModel();
+        
+        for(SorterFactory s : SorterFactory.values()){
+            comboModel.addElement(s.getSorter());
+        }
+        sorterCombo.setModel(comboModel);
+        sortor = (Comparator) sorterCombo.getSelectedItem();
         
         DefaultComboBoxModel model = new DefaultComboBoxModel();
         
@@ -211,7 +209,6 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
             
         }
         
-        sortor = new RatingSortor(Boolean.TRUE);
         return resultList;
     }
     /**
@@ -240,7 +237,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         rateGrid = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        sorterCombo = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
         resultPanel = new javax.swing.JPanel();
 
@@ -258,12 +255,6 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         jLabel1.setText("Type Of Legal Assistance");
 
         jLabel5.setText("State bar association");
-
-        sbaList.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sbaListActionPerformed(evt);
-            }
-        });
 
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -365,7 +356,11 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
 
         jLabel2.setText("Sort By");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Most Rated Layer", "High to Low Price", "Low to High Price" }));
+        sorterCombo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                sorterComboItemStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -376,7 +371,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(sorterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -386,7 +381,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(sorterCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
@@ -434,15 +429,16 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         populateTable(LAWYER_DIRECTORY);
     }//GEN-LAST:event_clearBtnActionPerformed
 
-    private void sbaListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sbaListActionPerformed
+    private void sorterComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sorterComboItemStateChanged
         // TODO add your handling code here:
-    }//GEN-LAST:event_sbaListActionPerformed
+        sortor = (Comparator) sorterCombo.getSelectedItem();
+        populateTable(LAWYER_DIRECTORY);
+    }//GEN-LAST:event_sorterComboItemStateChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clearBtn;
     private javax.swing.JTextField helpTxt;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -460,5 +456,6 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     private javax.swing.JPanel resultPanel;
     private javax.swing.JComboBox<String> sbaList;
     private javax.swing.JButton searchBtn;
+    private javax.swing.JComboBox<String> sorterCombo;
     // End of variables declaration//GEN-END:variables
 }

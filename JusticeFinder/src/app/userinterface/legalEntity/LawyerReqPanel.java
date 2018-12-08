@@ -8,6 +8,13 @@ package app.userinterface.legalEntity;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,6 +154,18 @@ public class LawyerReqPanel extends javax.swing.JDialog {
         // TODO add your handling code here:
         GrievanceRequest req =  (GrievanceRequest) to.getWorkqueue().createNewWorkItem(from.getAccount(), to.getAccount(), msgTxt.getText());
         from.getWorkqueue().addWorkItem(req);
+        
+        String LAWYER_NAME = to.getFirstName()+" "+to.getLastName();
+        String LE_NAME = from.getFirstName()+" "+from.getLastName();
+        
+        String body = "";
+        try {
+            body = EmailTemplateFormatter.getMessage(Templates.LEGALENTITY_REQUEST.getPageName(),LAWYER_NAME,LE_NAME);
+        } catch (IOException ex) {
+            Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        EmailUtil.sendMail(to.getEmail(), "Grievance Request Approval", body);
+        
         JOptionPane.showMessageDialog(this, "Request Sent");
         this.dispose();
     }//GEN-LAST:event_sendReqBtnActionPerformed

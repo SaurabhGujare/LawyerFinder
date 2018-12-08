@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import app.userinterface.MainFrame;
+import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -40,6 +41,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         //containerPanel.add(new FileCasePanel_donotuse(),FileCasePanel_donotuse.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
+        headerPanel.add(new HeaderPanel(userAccount, this, "Lawyer"));
     }
 
     /**
@@ -51,8 +53,7 @@ public class LawyerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        logoutButton = new javax.swing.JButton();
+        headerPanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         containerPanel = new javax.swing.JPanel();
         menuPanel = new javax.swing.JPanel();
@@ -63,31 +64,8 @@ public class LawyerPanel extends javax.swing.JPanel {
         fileCaseBtn = new javax.swing.JButton();
         viewFeedbackBtn = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
-
-        logoutButton.setText("Logout");
-        logoutButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutButtonActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(729, Short.MAX_VALUE)
-                .addComponent(logoutButton)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        headerPanel.setBackground(new java.awt.Color(204, 204, 204));
+        headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         jSplitPane1.setDividerLocation(200);
 
@@ -151,8 +129,8 @@ public class LawyerPanel extends javax.swing.JPanel {
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(398, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(380, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(menuPanel);
@@ -163,26 +141,19 @@ public class LawyerPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSplitPane1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
-        // TODO add your handling code here:
-        ((BasePanel)this.getParent()).unloadPage(this);     
-    }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void checkProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkProfileBtnActionPerformed
         // TODO add your handling code here:
@@ -223,10 +194,9 @@ public class LawyerPanel extends javax.swing.JPanel {
     private javax.swing.JButton checkProfileBtn;
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton fileCaseBtn;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton logoutButton;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton viewClientsBtn;
     private javax.swing.JButton viewFeedbackBtn;
