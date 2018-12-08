@@ -265,7 +265,7 @@ public class FileCaseDialog extends javax.swing.JDialog {
         
         CaseFileRequest req =  (CaseFileRequest)(((Court)ComboBoxcourt.getSelectedItem()).getWorkQueue().createNewWorkItem(from.getAccount(),null,null));
         req.getCasereq().setLawyer(from);
-        from.getWorkqueue().addWorkItem(req);
+        from.getCasesWorkQueue().addWorkItem(req);
         JOptionPane.showMessageDialog(this, "Request Sent");
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
