@@ -251,7 +251,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }        
-        EmailUtil.sendMail(lawyer.getEmail(), "Request Approved", body);
+        EmailUtil.sendMail(legalEntity.getEmail(), "Request Approved", body);
         
         JOptionPane.showMessageDialog(null, "Request Approved!!");
         dialog.setVisible(false);
