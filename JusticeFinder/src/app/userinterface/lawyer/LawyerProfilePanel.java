@@ -644,10 +644,10 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please enter the social security number (xxx-xx-xxxx)");
             return null;
         }
-        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
-            JOptionPane.showMessageDialog(this, "Please enter a valid SSN");
-            return null;
-        }
+//        if(ssnTxt.getText()!= null && !Pattern.matches(SSN_REGEX, ssnTxt.getText()) ){
+//            JOptionPane.showMessageDialog(this, "Please enter a valid SSN");
+//            return null;
+//        }
         if(emailTxt.getText()== null || emailTxt.getText().trim().equals("")){
             JOptionPane.showMessageDialog(this, "Please enter an email address");
             return null;
