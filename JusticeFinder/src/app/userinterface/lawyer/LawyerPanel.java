@@ -37,7 +37,7 @@ public class LawyerPanel extends javax.swing.JPanel {
         containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
         containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
-        containerPanel.add(new FileCasePanel_donotuse(),FileCasePanel_donotuse.class.getName());
+        //containerPanel.add(new FileCasePanel_donotuse(),FileCasePanel_donotuse.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
     }

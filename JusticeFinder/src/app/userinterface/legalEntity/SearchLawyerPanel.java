@@ -259,6 +259,12 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
 
         jLabel5.setText("State bar association");
 
+        sbaList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sbaListActionPerformed(evt);
+            }
+        });
+
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -427,6 +433,10 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
         updateRating(selectedRating);
         populateTable(LAWYER_DIRECTORY);
     }//GEN-LAST:event_clearBtnActionPerformed
+
+    private void sbaListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sbaListActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sbaListActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

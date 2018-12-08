@@ -7,6 +7,8 @@ package app.userinterface.court;
 
 import app.data.Network;
 import app.data.directories.Directory;
+import app.data.org.Court;
+import app.data.org.Organization;
 import app.entities.user.Clerk;
 import app.entities.user.UserAccount;
 import java.awt.event.ActionListener;
@@ -24,6 +26,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
      */
     Directory<Integer , Clerk> clerkDir;
     private ActionListener saveBtnListner;
+    private Court c;
     
     public AddClerkPopup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -197,7 +200,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
 
     private void createclerkbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createclerkbtnActionPerformed
         // TODO add your handling code here:
-        Clerk cl = new Clerk();
+        Clerk cl = new Clerk(c);
 
         cl.setName(nametxt.getText());
         cl.setEmail(emailtxt.getText());

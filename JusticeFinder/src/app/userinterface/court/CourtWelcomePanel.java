@@ -160,6 +160,11 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         });
 
         viewjudgebtn.setText("View Judge Details");
+        viewjudgebtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewjudgebtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -321,6 +326,10 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             dialog.pack();
             dialog.setVisible(true);
     }//GEN-LAST:event_addclerkbtnActionPerformed
+
+    private void viewjudgebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewjudgebtnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewjudgebtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addclerkbtn;

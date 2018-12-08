@@ -22,6 +22,7 @@ public class CaseFileRequest extends WorkItem{
         super(message, sender, receiver);
         count++;
         id=count;
+        casereq = new Case();
     }
 
     public Case getCasereq() {

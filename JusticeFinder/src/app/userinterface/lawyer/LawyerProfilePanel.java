@@ -633,7 +633,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         }
         
         if(fnameTxt.getText()== null || fnameTxt.getText().trim().equals("")){
-            JOptionPane.showMessageDialog(this, "Please enter tje first name");
+            JOptionPane.showMessageDialog(this, "Please enter the first name");
             return null;
         }
         if(lnameTxt.getText()== null || lnameTxt.getText().trim().equals("")){

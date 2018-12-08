@@ -5,6 +5,11 @@
  */
 package app.userinterface.clerk;
 
+import app.data.Session;
+import app.entities.user.Clerk;
+import app.userinterface.BasePanel;
+import java.awt.CardLayout;
+
 /**
  *
  * @author arele
@@ -14,8 +19,15 @@ public class Clerkpanel extends javax.swing.JPanel {
     /**
      * Creates new form Clerkpanel
      */
+    CardLayout layout;
+    Clerk clerk;
     public Clerkpanel() {
         initComponents();
+        layout = (CardLayout) containerpanel.getLayout();
+        clerk = (Clerk) Session.getUserAccount().getUser();
+        containerpanel.add(new AllCasesPanel(), AllCasesPanel.class.getName());
+        //containerpanel.add(new AllCasesPanel((Case)),AllCasesPanel.class.getName());
+        usernamelabel.setText(Session.getUserAccount().getUsername());
     }
 
     /**
@@ -27,19 +39,138 @@ public class Clerkpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        welcomepanel = new javax.swing.JPanel();
+        logoutButton = new javax.swing.JButton();
+        welcomelabel = new javax.swing.JLabel();
+        usernamelabel = new javax.swing.JLabel();
+        bodypanel = new javax.swing.JPanel();
+        jSplitPane1 = new javax.swing.JSplitPane();
+        menupanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        containerpanel = new javax.swing.JPanel();
+
+        welcomepanel.setBackground(new java.awt.Color(204, 204, 204));
+
+        logoutButton.setText("Logout");
+        logoutButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutButtonActionPerformed(evt);
+            }
+        });
+
+        welcomelabel.setText("Welome");
+
+        javax.swing.GroupLayout welcomepanelLayout = new javax.swing.GroupLayout(welcomepanel);
+        welcomepanel.setLayout(welcomepanelLayout);
+        welcomepanelLayout.setHorizontalGroup(
+            welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, welcomepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(welcomelabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 610, Short.MAX_VALUE)
+                .addComponent(logoutButton)
+                .addContainerGap())
+        );
+        welcomepanelLayout.setVerticalGroup(
+            welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(welcomepanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(welcomepanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(welcomelabel)
+                    .addComponent(logoutButton, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(welcomepanelLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(usernamelabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jSplitPane1.setDividerLocation(200);
+
+        jButton1.setText("All Requests");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout menupanelLayout = new javax.swing.GroupLayout(menupanel);
+        menupanel.setLayout(menupanelLayout);
+        menupanelLayout.setHorizontalGroup(
+            menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menupanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        menupanelLayout.setVerticalGroup(
+            menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(menupanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addContainerGap(583, Short.MAX_VALUE))
+        );
+
+        jSplitPane1.setLeftComponent(menupanel);
+
+        containerpanel.setLayout(new java.awt.CardLayout());
+        jSplitPane1.setRightComponent(containerpanel);
+
+        javax.swing.GroupLayout bodypanelLayout = new javax.swing.GroupLayout(bodypanel);
+        bodypanel.setLayout(bodypanelLayout);
+        bodypanelLayout.setHorizontalGroup(
+            bodypanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1)
+        );
+        bodypanelLayout.setVerticalGroup(
+            bodypanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSplitPane1)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(bodypanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(welcomepanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(welcomepanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(bodypanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
+        // TODO add your handling code here:
+        ((BasePanel)this.getParent()).unloadPage(this);
+    }//GEN-LAST:event_logoutButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerpanel, AllCasesPanel.class.getName());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel bodypanel;
+    private javax.swing.JPanel containerpanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JSplitPane jSplitPane1;
+    private javax.swing.JButton logoutButton;
+    private javax.swing.JPanel menupanel;
+    private javax.swing.JLabel usernamelabel;
+    private javax.swing.JLabel welcomelabel;
+    private javax.swing.JPanel welcomepanel;
     // End of variables declaration//GEN-END:variables
 }
