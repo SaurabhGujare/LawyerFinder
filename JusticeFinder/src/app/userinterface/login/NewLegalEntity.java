@@ -7,10 +7,16 @@ package app.userinterface.login;
 
 import app.data.Network;
 import app.data.org.PublicDomain;
+import app.data.org.StateBarAssociation;
+import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
+import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
+import app.userinterface.lawyer.LawyerProfilePanel;
+import app.userinterface.legalEntity.ViewLEProfilePanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,12 +27,24 @@ import javax.swing.JPanel;
  */
 public class NewLegalEntity extends javax.swing.JPanel {
 
+    LegalEntity legalEntity = null;
+    CardLayout layout;
+    ViewLEProfilePanel viewLEProfilePanel;
+    NewUserAccount newUserAccount;
     /**
      * Creates new form NewLegalEntity
      */
     public NewLegalEntity() {
         initComponents();
-        domains.setModel(new DefaultComboBoxModel(Network.getInstance().getPUBLIC_DOMAIN().getAllEntries().toArray()));
+        heading.setBackground(Color.decode("#37474f"));
+        
+        viewLEProfilePanel = new ViewLEProfilePanel(legalEntity, false);
+        container.add(viewLEProfilePanel,LawyerProfilePanel.class.getName());
+        
+        newUserAccount = new NewUserAccount();
+        container.add(newUserAccount,NewUserAccount.class.getName());
+        layout = (CardLayout) container.getLayout();
+        
     }
 
     /**
@@ -38,117 +56,16 @@ public class NewLegalEntity extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        emailTxt = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        usernameTxt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        passwordTxt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        ssnTxt = new javax.swing.JTextField();
-        domains = new javax.swing.JComboBox<>();
-        jLabel7 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         backBtn = new javax.swing.JButton();
-        saveBtn = new javax.swing.JButton();
+        nextBtn = new javax.swing.JButton();
+        container = new javax.swing.JPanel();
+        heading = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
 
-        setOpaque(false);
+        setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel1.setOpaque(false);
-
-        jLabel1.setText("New Legal Entity");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(307, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap(306, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap())
-        );
-
-        jPanel2.setOpaque(false);
-
-        jLabel2.setText("Name");
-
-        jLabel3.setText("Username");
-
-        jLabel4.setText("Password");
-
-        jLabel5.setText("Email");
-
-        jLabel6.setText("SSN");
-
-        jLabel7.setText("Domain");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(domains, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(nameTxt)
-                    .addComponent(emailTxt)
-                    .addComponent(usernameTxt)
-                    .addComponent(passwordTxt)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ssnTxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(domains, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(usernameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-
-        jPanel3.setOpaque(false);
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -157,10 +74,10 @@ public class NewLegalEntity extends javax.swing.JPanel {
             }
         });
 
-        saveBtn.setText("Save");
-        saveBtn.addActionListener(new java.awt.event.ActionListener() {
+        nextBtn.setText("Next");
+        nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveBtnActionPerformed(evt);
+                nextBtnActionPerformed(evt);
             }
         });
 
@@ -169,90 +86,109 @@ public class NewLegalEntity extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
-                .addContainerGap())
+                .addComponent(nextBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(saveBtn))
+                    .addComponent(nextBtn))
                 .addContainerGap())
+        );
+
+        container.setBackground(new java.awt.Color(255, 255, 255));
+        container.setLayout(new java.awt.CardLayout());
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("New Legal Entity");
+
+        javax.swing.GroupLayout headingLayout = new javax.swing.GroupLayout(heading);
+        heading.setLayout(headingLayout);
+        headingLayout.setHorizontalGroup(
+            headingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headingLayout.createSequentialGroup()
+                .addContainerGap(271, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap(284, Short.MAX_VALUE))
+        );
+        headingLayout.setVerticalGroup(
+            headingLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(headingLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(heading, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        
         // TODO add your handling code here:
-        JPanel parent = (JPanel) this.getParent();
-        CardLayout layout = (CardLayout) parent.getLayout();
-        layout.show(parent, SelectUserType.class.getName());
+        if(viewLEProfilePanel.isVisible()){
+            JPanel parent = (JPanel) this.getParent();
+            CardLayout layout = (CardLayout) parent.getLayout();
+            layout.show(parent, SelectUserType.class.getName());
+        }
+        else{
+            layout.previous(container);
+        }
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
+    private void nextBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nextBtnActionPerformed
         // TODO add your handling code here:
-        LegalEntity legalEntity = new LegalEntity();
-        legalEntity.setFirstName(nameTxt.getText());
-        legalEntity.setEmail(emailTxt.getText());
-        legalEntity.setSsn(ssnTxt.getText());
-                
-        UserAccount account = new UserAccount(usernameTxt.getText(), passwordTxt.getText(), legalEntity);
-        
-        try{
-            Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+        if(viewLEProfilePanel.isVisible()){
+            legalEntity = viewLEProfilePanel.validateandGetLE(true);
+            if(legalEntity==null)
+                return;
         }
-        catch(Exception e){}
-        try{
-            PublicDomain domain = (PublicDomain) domains.getSelectedItem();
-            domain.getDirectory().addNew(legalEntity);
+        if(newUserAccount.isVisible()){
+            UserAccount account = newUserAccount.getUser(legalEntity);
+            try {
+                Network.getInstance().getUSER_ACCOUNTS().addNew(account);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "User already present");
+                return;
+            }
+            
+            JOptionPane.showMessageDialog(this, "Legal Entity Created");
+            ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
         }
-        catch(Exception e){}
+        layout.next(container);
         
-        JOptionPane.showMessageDialog(this, "Legal Entity Created");
-        ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
-    }//GEN-LAST:event_saveBtnActionPerformed
+    }//GEN-LAST:event_nextBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox<String> domains;
-    private javax.swing.JTextField emailTxt;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel container;
+    private javax.swing.JPanel heading;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField nameTxt;
-    private javax.swing.JTextField passwordTxt;
-    private javax.swing.JButton saveBtn;
-    private javax.swing.JTextField ssnTxt;
-    private javax.swing.JTextField usernameTxt;
+    private javax.swing.JButton nextBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,11 +11,17 @@ import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
 import app.userinterface.lawyer.LawyerProfilePanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -228,6 +234,17 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
         }
         
         JOptionPane.showMessageDialog(null, "Request Approved!!");
+        Lawyer lawyer = (Lawyer)request.getSender().getUser();
+        
+        String body = "";
+        try {
+            body = EmailTemplateFormatter.getMessage(Templates.LAWYER_APPROVED.getPageName(), lawyer.getFirstName()+" "+lawyer.getLastName());
+        } catch (IOException ex) {
+            Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        EmailUtil.sendMail(lawyer.getEmail(), "Request Approved", body);
+        
         dialog.setVisible(false);
         saveBtnListner.actionPerformed(evt);
     }//GEN-LAST:event_approveBtnActionPerformed

@@ -23,5 +23,10 @@ public class RatingSortor implements Comparator<Lawyer>{
     public int compare(Lawyer l1, Lawyer l2) {
         return l1.getRating().compareTo(l2.getRating())*(asc?-1:1);
     }
+
+    @Override
+    public String toString() {
+        return "Most Rated Lawyer";
+    }
     
 }

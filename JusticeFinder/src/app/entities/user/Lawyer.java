@@ -31,6 +31,7 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private String qualification;
     private String specialization;
     private String yearsOfPractice;
+    private String lawSchool;
     private Directory<Integer, StateBarAssociation> allowedStateBars;
     private Directory<Integer, StateBarAssociation> requestedStateBars;
     private WorkQueue workqueue;
@@ -40,6 +41,15 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private File picFile;
     private Double fees;
 
+    public String getLawSchool() {
+        return lawSchool;
+    }
+
+    public void setLawSchool(String lawSchool) {
+        this.lawSchool = lawSchool;
+    }
+
+    
     public Double getFees() {
         return fees;
     }
@@ -108,6 +118,8 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.clientList = new Directory<>();
         this.areaOfPractice = new ArrayList<>();
         this.ratings = new Directory<>();
+        this.address = new Address();
+        this.workContact = new ContactDetails();
     }
 
     public Directory<String,Rating> getRatings() {
@@ -206,6 +218,11 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     @Override
     public String toString(){
         return this.firstName+" "+this.lastName;
+    }
+
+    @Override
+    public String getName() {
+        return toString();
     }
     
 }

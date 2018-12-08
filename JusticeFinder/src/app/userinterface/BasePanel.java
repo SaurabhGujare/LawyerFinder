@@ -15,12 +15,14 @@ import javax.swing.JPanel;
  */
 public class BasePanel extends javax.swing.JPanel {
 
+    public static BasePanel self;
     /**
      * Creates new form BasePanel
      */
     public BasePanel() {
         initComponents();
-        this.setPreferredSize(new Dimension(1023, 767));
+        this.setPreferredSize(new Dimension(1364, 798));
+        this.self = this;
     }
 
     /**

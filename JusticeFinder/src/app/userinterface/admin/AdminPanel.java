@@ -10,7 +10,9 @@ import app.data.Network;
 import app.data.Session;
 import app.entities.user.Admin;
 import app.userinterface.BasePanel;
+import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 
 /**
@@ -28,13 +30,14 @@ public class AdminPanel extends javax.swing.JPanel {
      */
     public AdminPanel() {
         initComponents();
+        header.add(new HeaderPanel(Session.getUserAccount(),this,"System Admin"));
+        menuPanel.setBackground(Color.decode("#b4ffff"));
         admin = (Admin)Session.getUserAccount().getUser();
-        welcomelabel.setText("Welcome ");
-        usernamelabel.setText(Session.getUserAccount().getUsername());
         this.setPreferredSize(new Dimension(1023, 767));
         containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(network.getCOURT(),network.getUSER_ACCOUNTS()),CourtPanel.class.getName());
-        containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());    
+        containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
+        containerPanel.add(new ChartPanel(),ChartPanel.class.getName());
      
         layout = (CardLayout) containerPanel.getLayout();
     }
@@ -48,10 +51,7 @@ public class AdminPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        logoutBtn = new javax.swing.JButton();
-        welcomelabel = new javax.swing.JLabel();
-        usernamelabel = new javax.swing.JLabel();
+        header = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         menuPanel = new javax.swing.JPanel();
@@ -59,50 +59,13 @@ public class AdminPanel extends javax.swing.JPanel {
         stateBarAssoBtn = new javax.swing.JButton();
         publicDomainBtn = new javax.swing.JButton();
         courtbtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
         setOpaque(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setOpaque(false);
-
-        logoutBtn.setText("Logout");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-
-        welcomelabel.setText("Welcome");
-
-        usernamelabel.setFont(new java.awt.Font("Tahoma", 3, 30)); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(welcomelabel)
-                .addGap(7, 7, 7)
-                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(491, 491, 491)
-                .addComponent(logoutBtn)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(logoutBtn)
-                    .addComponent(welcomelabel))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(usernamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        header.setOpaque(false);
+        header.setLayout(new javax.swing.BoxLayout(header, javax.swing.BoxLayout.LINE_AXIS));
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setOpaque(false);
@@ -140,6 +103,14 @@ public class AdminPanel extends javax.swing.JPanel {
         });
         mainMenu.add(courtbtn);
 
+        jButton1.setText("View Chart");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        mainMenu.add(jButton1);
+
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
         menuPanelLayout.setHorizontalGroup(
@@ -150,7 +121,7 @@ public class AdminPanel extends javax.swing.JPanel {
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addComponent(mainMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 419, Short.MAX_VALUE))
+                .addGap(0, 429, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(menuPanel);
@@ -163,7 +134,7 @@ public class AdminPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane1)
+            .addComponent(jSplitPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,23 +145,17 @@ public class AdminPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(header, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(header, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        // TODO add your handling code here:
-        loginAction.logout();
-        ((BasePanel)this.getParent()).unloadPage(this);
-    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void stateBarAssoBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stateBarAssoBtnActionPerformed
         layout.show(containerPanel, StateBarAssociationPanel.class.getName());
@@ -205,19 +170,22 @@ public class AdminPanel extends javax.swing.JPanel {
         layout.show(containerPanel,CourtPanel.class.getName());
     }//GEN-LAST:event_courtbtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel,ChartPanel.class.getName());
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton courtbtn;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel header;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JButton logoutBtn;
     private javax.swing.JPanel mainMenu;
     private javax.swing.JPanel menuPanel;
     private javax.swing.JButton publicDomainBtn;
     private javax.swing.JButton stateBarAssoBtn;
-    private javax.swing.JLabel usernamelabel;
-    private javax.swing.JLabel welcomelabel;
     // End of variables declaration//GEN-END:variables
 }

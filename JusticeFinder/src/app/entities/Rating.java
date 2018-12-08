@@ -17,7 +17,7 @@ import app.entities.user.UserAccount;
 public class Rating implements DirectoryEntry<String>{
     
     private String feedBack;
-    private Integer value = 0;
+    private Integer value = 1;
     private LegalEntity givenBy;
 
     public Rating(String feedBack, Integer rating,LegalEntity givenBy) {

@@ -26,8 +26,6 @@ public class AddJudgePopUp extends javax.swing.JDialog {
      */
     Directory<Integer , Judge> judgeDir;
     private ActionListener saveBtnListner;
-//    private Court c;
-    CourtAdmin courtadmin;
     
     public AddJudgePopUp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -39,7 +37,6 @@ public class AddJudgePopUp extends javax.swing.JDialog {
        super(parent, modal);
         initComponents();
         this.judgeDir=judgeDir;
-       // c = (Court) courtadmin.getParent();
     }
 
     /**
@@ -216,9 +213,10 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             }
             
             judgeDir.addNew(j);
-            //judgeDir.addNew(j);
+            
         } catch (Exception ex) {ex.printStackTrace();}
         JOptionPane.showMessageDialog(this, "Judge Created");
+        
         this.setVisible(false);
         saveBtnListner.actionPerformed(evt);
         this.dispose();

@@ -43,7 +43,7 @@ public class MainFrame extends javax.swing.JFrame {
                 middle.y - (this.getHeight() / 2));
         
         this.setLocation(newLocation);
-        this.setPreferredSize(new Dimension(1024, 768));
+        this.setPreferredSize(new Dimension(1366, 800));
         
         BasePanel basePanel = new BasePanel();
         basePanel.loadPage(new LoginPanel());
@@ -82,7 +82,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Justice Finder");
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1025, 769));
+        setPreferredSize(new java.awt.Dimension(1367, 850));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
