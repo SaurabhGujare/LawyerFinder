@@ -15,6 +15,7 @@ import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
+import app.utils.ConfigUtil;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.DefaultComboBoxModel;
@@ -36,7 +37,6 @@ public class NewLegalEntity extends javax.swing.JPanel {
      */
     public NewLegalEntity() {
         initComponents();
-        heading.setBackground(Color.decode("#37474f"));
         
         viewLEProfilePanel = new ViewLEProfilePanel(legalEntity, false);
         container.add(viewLEProfilePanel,LawyerProfilePanel.class.getName());
@@ -105,6 +105,8 @@ public class NewLegalEntity extends javax.swing.JPanel {
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
 
+        heading.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
+
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("New Legal Entity");
@@ -137,10 +139,9 @@ public class NewLegalEntity extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(heading, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+                .addComponent(container, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );

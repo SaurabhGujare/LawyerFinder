@@ -7,22 +7,11 @@ package app.userinterface.sba;
 
 import app.data.Session;
 import app.entities.user.StateBarAssoAdmin;
-import app.userinterface.BasePanel;
-import app.userinterface.BasePanel;
-import app.userinterface.admin.CourtPanel_Corrupt;
-import com.db4o.User;
 import java.awt.CardLayout;
-import javax.swing.table.DefaultTableModel;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
-import app.entities.user.UserAccount;
-import app.entities.workqueues.LawyerApprovalRequest;
-import app.entities.workqueues.StateBarAssoWorkQueue;
-import app.entities.workqueues.WorkItem;
 import app.userinterface.common.HeaderPanel;
-import javax.swing.JOptionPane;
-import app.userinterface.sba.ViewSBARequestsPanel;
 
 /**
  *
