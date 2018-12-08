@@ -11,11 +11,18 @@ import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
 import app.userinterface.MainFrame;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 
@@ -233,9 +240,23 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
             return;
         }
         
+        LegalEntity legalEntity = (LegalEntity)request.getSender().getUser();
+        String LE_NAME = legalEntity.getFirstName()+" "+legalEntity.getLastName();
+        Lawyer lawyer = (Lawyer)Session.getUserAccount().getUser();
+        String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
+        
+        String body = "";
+        try {
+            body = EmailTemplateFormatter.getMessage(Templates.LEGALENTITY_APPROVED.getPageName(),LE_NAME,LAWYER_NAME);
+        } catch (IOException ex) {
+            Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        EmailUtil.sendMail(lawyer.getEmail(), "Request Approved", body);
+        
         JOptionPane.showMessageDialog(null, "Request Approved!!");
         dialog.setVisible(false);
         saveBtnListner.actionPerformed(evt);
+        
     }//GEN-LAST:event_approveBtnActionPerformed
 
     private void viewClientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewClientBtnActionPerformed
