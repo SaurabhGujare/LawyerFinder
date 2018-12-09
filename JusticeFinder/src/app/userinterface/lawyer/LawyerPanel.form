@@ -136,17 +136,9 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="viewClientsBtnActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JButton" name="fileCaseBtn">
-                  <Properties>
-                    <Property name="text" type="java.lang.String" value="File Case"/>
-                  </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fileCaseBtnActionPerformed"/>
-                  </Events>
-                </Component>
                 <Component class="javax.swing.JButton" name="caseUpdatesBtn">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="View Case Updates"/>
+                    <Property name="text" type="java.lang.String" value="View/File Case"/>
                   </Properties>
                   <Events>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="caseUpdatesBtnActionPerformed"/>
