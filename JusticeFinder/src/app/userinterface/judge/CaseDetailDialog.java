@@ -3,57 +3,51 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface.clerk;
+package app.userinterface.judge;
 
-import app.data.Network;
-import app.data.Session;
-import app.data.org.Court;
 import app.entities.Case;
-import app.entities.user.Clerk;
-import app.entities.user.Judge;
 import app.entities.workqueues.CaseFileRequest;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 
 /**
  *
  * @author arele
  */
-public class AssignJudgeDialog extends javax.swing.JDialog {
+public class CaseDetailDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AssignJudgeDialog
      */
-    private Judge to;
-    private Clerk from;
     private CaseFileRequest req;
-    public AssignJudgeDialog(java.awt.Frame parent, boolean modal) {
+
+    public CaseDetailDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
-    public AssignJudgeDialog(JFrame parent, boolean modal, Judge to, Clerk from, CaseFileRequest req) {
+
+    public CaseDetailDialog(JFrame parent, boolean modal, CaseFileRequest req) {
         super(parent, modal);
         initComponents();
-        this.from=from;
-        this.to=to;
         this.req = req;
-        comboboxjudge.removeAllItems();
-        Clerk c= (Clerk)Session.getUserAccount().getUser();
-        comboboxjudge.setModel(new DefaultComboBoxModel(((Court)c.getParent()).getJudgeDirectory().getAllEntries().toArray()));
         Case caseReq = req.getCasereq();
-        
+
         txtcasename.setText(caseReq.getCaseName());
         txtcasenumber.setText(caseReq.getCaseNumber());
-        if(caseReq.getCasefileDate()!=null)
-        txtcasefiledate.setText(caseReq.getCasefileDate().toString());
+        if (caseReq.getCasefileDate() != null) {
+            txtcasefiledate.setText(caseReq.getCasefileDate().toString());
+        }
         txtcasetype.setText(caseReq.getCasetype());
         txtcasedescription.setText(caseReq.getCaseDesc());
-        if(caseReq.getPlaintiff()!=null)
-        plaintTxt.setText(caseReq.getPlaintiff().toString());
-        if(caseReq.getDefendent()!=null)
-        defTxt.setText(caseReq.getDefendent().toString());
-        
+        if (caseReq.getPlaintiff() != null) {
+            plaintTxt.setText(caseReq.getPlaintiff().toString());
+        }
+        if (caseReq.getDefendent() != null) {
+            defTxt.setText(caseReq.getDefendent().toString());
+        }
+
+        closeCaseBtn.setEnabled(!req.getStatus().equals("PENDING"));
+        approveBtn.setEnabled(!req.getStatus().equals("PENDING"));
+        rejBtn.setEnabled(!req.getStatus().equals("PENDING"));
     }
 
     /**
@@ -81,10 +75,10 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
         plaintTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         defTxt = new javax.swing.JTextField();
-        jPanel3 = new javax.swing.JPanel();
-        lblassigntojudge = new javax.swing.JLabel();
-        comboboxjudge = new javax.swing.JComboBox<>();
-        btnassignment = new javax.swing.JButton();
+        jPanel4 = new javax.swing.JPanel();
+        rejBtn = new javax.swing.JButton();
+        approveBtn = new javax.swing.JButton();
+        closeCaseBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -184,40 +178,49 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Assign to Judge", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 29))); // NOI18N
-
-        lblassigntojudge.setText("Assign to Judge:");
-
-        btnassignment.setText("Request Assignment");
-        btnassignment.addActionListener(new java.awt.event.ActionListener() {
+        rejBtn.setText("Reject");
+        rejBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnassignmentActionPerformed(evt);
+                rejBtnActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblassigntojudge)
+        approveBtn.setText("Approve");
+        approveBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                approveBtnActionPerformed(evt);
+            }
+        });
+
+        closeCaseBtn.setText("Close Case");
+        closeCaseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeCaseBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(closeCaseBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(approveBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(comboboxjudge, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnassignment)
+                .addComponent(rejBtn)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnassignment)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(comboboxjudge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblassigntojudge)))
-                .addContainerGap(72, Short.MAX_VALUE))
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rejBtn)
+                    .addComponent(approveBtn)
+                    .addComponent(closeCaseBtn))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -227,11 +230,11 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -239,8 +242,8 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -258,7 +261,7 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -268,11 +271,23 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcasefiledateActionPerformed
 
-    private void btnassignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnassignmentActionPerformed
+    private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         // TODO add your handling code here:
-        req.getCasereq().setJudge((Judge) comboboxjudge.getSelectedItem());
+        req.setStatus("APPROVED");
         this.dispose();
-    }//GEN-LAST:event_btnassignmentActionPerformed
+    }//GEN-LAST:event_approveBtnActionPerformed
+
+    private void rejBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rejBtnActionPerformed
+        // TODO add your handling code here:
+        req.setStatus("REJECTED");
+        this.dispose();
+    }//GEN-LAST:event_rejBtnActionPerformed
+
+    private void closeCaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCaseBtnActionPerformed
+        // TODO add your handling code here:
+        req.setStatus("CLOSED");
+        this.dispose();
+    }//GEN-LAST:event_closeCaseBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -291,20 +306,21 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AssignJudgeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaseDetailDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AssignJudgeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaseDetailDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AssignJudgeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaseDetailDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AssignJudgeDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaseDetailDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AssignJudgeDialog dialog = new AssignJudgeDialog(new javax.swing.JFrame(), true);
+                CaseDetailDialog dialog = new CaseDetailDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -317,21 +333,21 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnassignment;
-    private javax.swing.JComboBox<String> comboboxjudge;
+    private javax.swing.JButton approveBtn;
+    private javax.swing.JButton closeCaseBtn;
     private javax.swing.JTextField defTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblassigntojudge;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblcasedate;
     private javax.swing.JLabel lblcasedescription;
     private javax.swing.JLabel lblcasename;
     private javax.swing.JLabel lblcasenumber;
     private javax.swing.JLabel lblcasetype;
     private javax.swing.JTextField plaintTxt;
+    private javax.swing.JButton rejBtn;
     private javax.swing.JTextField txtcasedescription;
     private javax.swing.JTextField txtcasefiledate;
     private javax.swing.JTextField txtcasename;

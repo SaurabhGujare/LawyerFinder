@@ -45,7 +45,7 @@ public class ViewStatsPanel extends javax.swing.JPanel {
         dataset.addValue( rateArr[3], "4" , "4" ); 
         dataset.addValue( rateArr[4], "5" , "5" ); 
         
-        ratePanels.add(ChartUtils.getBarChart("Ratings", "Ratings", "", dataset));
+        ratePanels.add(ChartUtils.getBarChart("Stars Vs Clients", "Stars", "Clients", dataset));
         
         int pending=0, done=0;
         WorkQueue workQueue =  lawyer.getWorkqueue();
@@ -188,7 +188,7 @@ public class ViewStatsPanel extends javax.swing.JPanel {
 
         jPanel9.setOpaque(false);
 
-        rankLbl.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
+        rankLbl.setFont(new java.awt.Font("Tahoma", 0, 80)); // NOI18N
         rankLbl.setText("<Rank>");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);

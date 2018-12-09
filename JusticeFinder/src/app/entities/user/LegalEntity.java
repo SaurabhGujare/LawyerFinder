@@ -8,6 +8,7 @@ package app.entities.user;
 import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.entities.roles.Roles;
+import app.entities.workqueues.CaseFileRequestWorkQueue;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
 import java.io.File;
@@ -26,6 +27,7 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     private String ssn;
     private String email;
     private WorkQueue workqueue;
+    private WorkQueue caseQueue;
     private Directory<String, Lawyer> lawyers;
     private File picFile;
     
@@ -37,12 +39,21 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
         this.lawyers = lawyers;
     }
 
+    public WorkQueue getCaseQueue() {
+        return caseQueue;
+    }
+
+    public void setCaseQueue(WorkQueue caseQueue) {
+        this.caseQueue = caseQueue;
+    }
+
     public LegalEntity() {
         super(Roles.LEGAL_ENTITY);
         priamryAddress = new Address();
         primaryContact = new ContactDetails();
         dob = new Date();
         this.workqueue = new GrievanceRequestWorkQueue();
+        this.caseQueue = new CaseFileRequestWorkQueue();
         this.lawyers = new Directory<>();
     }
 
@@ -134,7 +145,7 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
 
     @Override
     public String toString() {
-        return ssn;
+        return firstName+" "+lastName;
     }
 
     @Override

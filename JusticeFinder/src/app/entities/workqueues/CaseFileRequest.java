@@ -35,6 +35,6 @@ public class CaseFileRequest extends WorkItem{
     
     @Override
     public String toString() {
-        return id+"";
+        return casereq.getCaseName();
     }
 }
