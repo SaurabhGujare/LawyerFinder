@@ -65,6 +65,7 @@ public class NewLegalEntity extends CustomPanel {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
+        backBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path9663.png"))); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,6 +73,7 @@ public class NewLegalEntity extends CustomPanel {
             }
         });
 
+        nextBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path9096.png"))); // NOI18N
         nextBtn.setText("Next");
         nextBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
