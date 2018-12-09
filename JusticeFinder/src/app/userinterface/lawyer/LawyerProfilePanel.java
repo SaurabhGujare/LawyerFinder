@@ -625,16 +625,17 @@ public class LawyerProfilePanel extends CustomPanel {
             return;
         }
         StateBarAssociation assoc = (StateBarAssociation) sbaAvailableList.getSelectedItem();
-        List<StateBarAssociation> list = lawyer.getAllowedStateBars().getAllEntries();
-        for(StateBarAssociation a:list){
-            if(a.isActive()){
-                if(assoc.getStateBarAssociationName().equals(a.getStateBarAssociationName())){
-                    JOptionPane.showMessageDialog(this, "State Bar Already approved");
-                    return;
+        if(lawyer!=null){
+            List<StateBarAssociation> list = lawyer.getAllowedStateBars().getAllEntries();
+            for(StateBarAssociation a:list){
+                if(a.isActive()){
+                    if(assoc.getStateBarAssociationName().equals(a.getStateBarAssociationName())){
+                        JOptionPane.showMessageDialog(this, "State Bar Already approved");
+                        return;
+                    }
                 }
             }
         }
-        
         try {
             // TODO add your handling code here:
             sbaNeedApprovalList.addNew((StateBarAssociation) sbaAvailableList.getSelectedItem());

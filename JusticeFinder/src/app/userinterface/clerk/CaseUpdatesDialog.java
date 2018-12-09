@@ -133,7 +133,7 @@ public class CaseUpdatesDialog extends javax.swing.JDialog {
         req.getCaseUpdates().add(new CaseUpdate(updatetxt.getText()));
         String body = "";
         try {
-            body = EmailTemplateFormatter.getMessage(Templates.CASE_UPDATES.getPageName(), updatetxt.getText().replace("\n", "<\br>"));
+            body = EmailTemplateFormatter.getMessage(Templates.CASE_UPDATES.getPageName(), updatetxt.getText().replace("\n", "</br>"));
         } catch (IOException ex) {
             Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
