@@ -10,6 +10,7 @@ import app.data.Network;
 import app.data.Session;
 import app.entities.user.Admin;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -19,7 +20,7 @@ import java.awt.Dimension;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class AdminPanel extends javax.swing.JPanel {
+public class AdminPanel extends CustomPanel {
 
     private Admin admin;
     CardLayout layout;
@@ -40,6 +41,7 @@ public class AdminPanel extends javax.swing.JPanel {
         containerPanel.add(new ChartPanel(),ChartPanel.class.getName());
      
         layout = (CardLayout) containerPanel.getLayout();
+        this.makeTransparent(this);
     }
 
     /**

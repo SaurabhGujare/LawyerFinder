@@ -6,6 +6,7 @@
 package app.userinterface.legalEntity;
 
 import app.entities.user.Lawyer;
+import app.userinterface.common.CustomPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
@@ -14,7 +15,7 @@ import java.util.List;
  *
  * @author PC
  */
-public class searchResultPanel extends javax.swing.JPanel {
+public class searchResultPanel extends CustomPanel {
 
     List<Lawyer> lawyerList;
     /**
@@ -22,6 +23,7 @@ public class searchResultPanel extends javax.swing.JPanel {
      */
     public searchResultPanel(List<Lawyer> lawyerList) {
         initComponents();
+        this.makeTransparent(this);
         resultPanel.setBackground(Color.WHITE);
         this.lawyerList = lawyerList;
         for(Lawyer l: lawyerList){

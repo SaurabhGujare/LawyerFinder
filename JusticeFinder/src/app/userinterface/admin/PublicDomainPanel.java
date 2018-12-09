@@ -9,6 +9,7 @@ import app.data.directories.Directory;
 import app.data.org.PublicDomain;
 import app.data.org.StateBarAssociation;
 import app.entities.user.UserAccount;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -19,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class PublicDomainPanel extends javax.swing.JPanel  implements HasTable {
+public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
     Directory<Integer , PublicDomain> publicDomain;
     PublicDomain domain;
@@ -28,6 +29,7 @@ public class PublicDomainPanel extends javax.swing.JPanel  implements HasTable {
      */
     public PublicDomainPanel(Directory<Integer , PublicDomain> publicDomain) {
         initComponents();
+        this.makeTransparent(this);
         this.publicDomain = publicDomain;
          ComponentAdapter adapter = new ComponentAdapter() {
 

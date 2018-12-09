@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
 
@@ -18,7 +19,7 @@ import java.awt.CardLayout;
  *
  * @author PC
  */
-public class LegalEntityPanel extends javax.swing.JPanel {
+public class LegalEntityPanel extends CustomPanel {
 
     /**
      * Creates new form LegalEntityPanel
@@ -27,6 +28,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
     CardLayout layout;
     public LegalEntityPanel() {
         initComponents();
+        this.makeTransparent(this);
         account = Session.getUserAccount();
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser(),false),ViewLEProfilePanel.class.getName());
         containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());

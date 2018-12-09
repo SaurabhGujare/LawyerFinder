@@ -9,6 +9,7 @@ import app.data.Session;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -23,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class ViewClientsPanel extends javax.swing.JPanel {
+public class ViewClientsPanel extends CustomPanel {
 
     /**
      * Creates new form viewClientsPanel
@@ -42,6 +43,7 @@ public class ViewClientsPanel extends javax.swing.JPanel {
         
         this.addComponentListener(adapter);
         populateTable();
+        this.makeTransparent(this);
     }
 
     /**

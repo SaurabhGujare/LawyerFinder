@@ -11,6 +11,7 @@ import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class ApproveRejectRequestPanel extends javax.swing.JPanel {
+public class ApproveRejectRequestPanel extends CustomPanel {
 
     StateBarAssociation sba;
     /**
@@ -35,6 +36,8 @@ public class ApproveRejectRequestPanel extends javax.swing.JPanel {
     public ApproveRejectRequestPanel(StateBarAssociation sba) {
         initComponents();
         this.sba = sba;
+                this.makeTransparent(this);
+
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override

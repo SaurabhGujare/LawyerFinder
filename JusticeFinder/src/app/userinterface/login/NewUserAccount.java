@@ -7,12 +7,13 @@ package app.userinterface.login;
 
 import app.entities.user.User;
 import app.entities.user.UserAccount;
+import app.userinterface.common.CustomPanel;
 
 /**
  *
  * @author PC
  */
-public class NewUserAccount extends javax.swing.JPanel {
+public class NewUserAccount extends CustomPanel {
 
     UserAccount userAccount;
     /**
@@ -20,6 +21,8 @@ public class NewUserAccount extends javax.swing.JPanel {
      */
     public NewUserAccount() {
         initComponents();
+                this.makeTransparent(this);
+
     }
 
     public UserAccount getUser(User user){

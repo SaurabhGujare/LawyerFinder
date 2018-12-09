@@ -14,6 +14,7 @@ import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.WorkItem;
 import app.entities.workqueues.WorkQueue;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.legalEntity.starControl;
 import app.utils.charts.ChartUtils;
 import java.util.Collections;
@@ -25,7 +26,7 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author PC
  */
-public class ViewStatsPanel extends javax.swing.JPanel {
+public class ViewStatsPanel extends CustomPanel {
 
     /**
      * Creates new form ViewStatsPanel
@@ -73,6 +74,7 @@ public class ViewStatsPanel extends javax.swing.JPanel {
         Collections.sort(lawyerList, SorterFactory.RATING_SORTER.getSorter());
         
         rankLbl.setText((lawyerList.indexOf(lawyer)+1)+"");
+        this.makeTransparent(this);
     }
 
     /**

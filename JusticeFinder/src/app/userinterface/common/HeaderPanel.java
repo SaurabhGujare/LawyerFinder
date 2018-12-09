@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author PC
  */
-public class HeaderPanel extends javax.swing.JPanel {
+public class HeaderPanel extends javax.swing.JPanel implements Header{
 
     LoginAction loginAction = new LoginAction();
     JPanel parent;

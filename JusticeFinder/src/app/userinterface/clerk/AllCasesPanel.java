@@ -14,6 +14,7 @@ import app.entities.workqueues.CaseFileRequest;
 import app.entities.workqueues.WorkItem;
 import app.entities.workqueues.WorkQueue;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author arele
  */
-public class AllCasesPanel extends javax.swing.JPanel {
+public class AllCasesPanel extends CustomPanel {
 
     /**
      * Creates new form SelfAssignTicketPanel
@@ -37,6 +38,7 @@ public class AllCasesPanel extends javax.swing.JPanel {
     
     public AllCasesPanel() {
         initComponents();
+        this.makeTransparent(this);
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override

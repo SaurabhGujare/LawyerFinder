@@ -8,6 +8,7 @@ package app.userinterface.admin;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.UserAccount;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -18,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class StateBarAssociationPanel extends javax.swing.JPanel implements HasTable {
+public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
     Directory<Integer , StateBarAssociation> stateBarDir;
     Directory<String, UserAccount> userAccDir;
@@ -30,7 +31,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         initComponents();
         this.stateBarDir = stateBarDir;
         this.userAccDir = userAccDir;
-        
+        this.makeTransparent(this);
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override
@@ -47,6 +48,7 @@ public class StateBarAssociationPanel extends javax.swing.JPanel implements HasT
         emailTxt.setEnabled(false);
         userNameTxt.setEnabled(false);
         passwordTxt.setEnabled(false);
+        this.makeTransparent(this);
     }
 
     /**
