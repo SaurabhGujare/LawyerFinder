@@ -8,13 +8,14 @@ package app.userinterface.clerk;
 import app.data.Session;
 import app.entities.user.Clerk;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import java.awt.CardLayout;
 
 /**
  *
  * @author arele
  */
-public class Clerkpanel extends javax.swing.JPanel {
+public class Clerkpanel extends CustomPanel {
 
     /**
      * Creates new form Clerkpanel
@@ -23,6 +24,7 @@ public class Clerkpanel extends javax.swing.JPanel {
     Clerk clerk;
     public Clerkpanel() {
         initComponents();
+        this.makeTransparent(this);
         layout = (CardLayout) containerpanel.getLayout();
         clerk = (Clerk) Session.getUserAccount().getUser();
         containerpanel.add(new AllCasesPanel(), AllCasesPanel.class.getName());

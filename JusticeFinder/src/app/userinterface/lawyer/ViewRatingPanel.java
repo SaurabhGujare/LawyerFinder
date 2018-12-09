@@ -14,6 +14,7 @@ import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkItem;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -26,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author PC
  */
-public class ViewRatingPanel extends javax.swing.JPanel {
+public class ViewRatingPanel extends CustomPanel {
 
     /**
      * Creates new form RateLawyerPage
@@ -45,6 +46,7 @@ public class ViewRatingPanel extends javax.swing.JPanel {
         
         this.addComponentListener(adapter);
         populateTable();
+        this.makeTransparent(this);
     }
 
     /**

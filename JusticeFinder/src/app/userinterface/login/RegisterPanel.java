@@ -5,17 +5,21 @@
  */
 package app.userinterface.login;
 
+import app.userinterface.common.CustomPanel;
+
 /**
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class RegisterPanel extends javax.swing.JPanel {
+public class RegisterPanel extends CustomPanel {
 
     /**
      * Creates new form RegisterPanel
      */
     public RegisterPanel() {
         initComponents();
+                this.makeTransparent(this);
+
         this.add(new SelectUserType(), SelectUserType.class.getName());
         this.add(new NewLawyerPanel(), NewLawyerPanel.class.getName());
         this.add(new NewLegalEntity(), NewLegalEntity.class.getName());

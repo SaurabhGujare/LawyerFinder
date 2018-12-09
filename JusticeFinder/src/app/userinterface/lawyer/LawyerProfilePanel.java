@@ -13,10 +13,13 @@ import app.data.org.StateBarAssociation;
 import app.entities.user.Address;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.ConfigUtil;
 import app.utils.email.EmailTemplateFormatter;
 import app.utils.email.EmailUtil;
 import app.utils.email.templates.Templates;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
@@ -38,7 +41,7 @@ import javax.swing.JTextField;
  *
  * @author PC
  */
-public class LawyerProfilePanel extends javax.swing.JPanel {
+public class LawyerProfilePanel extends CustomPanel {
 
     private Directory<Integer, StateBarAssociation> sbaNeedApprovalList;
     private List<String> areaOfPractice;
@@ -53,6 +56,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
      */
     public LawyerProfilePanel(Lawyer lawyer,boolean readOnly) {
         initComponents();
+        this.makeTransparent(this);
         this.readOnly = readOnly;
         this.lawyer = lawyer;
         populateForm(lawyer);
@@ -209,9 +213,16 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
         jPanel8 = new javax.swing.JPanel();
         saveBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 102));
+        setName("NA"); // NOI18N
         setOpaque(false);
 
-        jPanel6.setOpaque(false);
+        jScrollPane2.setBackground(new java.awt.Color(255, 255, 255));
+        jScrollPane2.setName(""); // NOI18N
+
+        jPanel6.setBackground(Color.decode(ConfigUtil.getProp("basecolor"))
+        );
+        jPanel6.setName("NA"); // NOI18N
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Profile"));
         jPanel1.setOpaque(false);

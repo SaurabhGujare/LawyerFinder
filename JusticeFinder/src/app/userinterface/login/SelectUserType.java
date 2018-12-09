@@ -6,6 +6,7 @@
 package app.userinterface.login;
 
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -13,14 +14,15 @@ import javax.swing.JPanel;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class SelectUserType extends javax.swing.JPanel {
+public class SelectUserType extends CustomPanel {
 
     /**
      * Creates new form SelectUserType
      */
     public SelectUserType() {
         initComponents();
-        
+                this.makeTransparent(this);
+
     }
 
     /**

@@ -15,6 +15,7 @@ import app.entities.workqueues.CaseFileRequest;
 import app.entities.workqueues.WorkItem;
 import app.userinterface.MainFrame;
 import app.userinterface.clerk.AssignJudgeDialog;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 import java.awt.Dimension;
 import java.awt.Point;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author arele
  */
-public class JudgePanel extends javax.swing.JPanel {
+public class JudgePanel extends CustomPanel {
 
     private UserAccount userAccount;
     /**
@@ -35,7 +36,7 @@ public class JudgePanel extends javax.swing.JPanel {
      */
     public JudgePanel() {
         initComponents();
-        
+        this.makeTransparent(this);
         userAccount = Session.getUserAccount();
         
         pouplateMethod();

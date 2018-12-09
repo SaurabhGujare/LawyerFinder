@@ -11,6 +11,7 @@ import app.entities.workqueues.LawyerApprovalRequest;
 import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
 import app.entities.workqueues.WorkQueue;
+import app.userinterface.common.CustomPanel;
 import app.utils.charts.ChartUtils;
 import java.util.List;
 import org.jfree.data.general.DefaultPieDataset;
@@ -19,14 +20,14 @@ import org.jfree.data.general.DefaultPieDataset;
  *
  * @author PC
  */
-public class ChartPanel extends javax.swing.JPanel {
+public class ChartPanel extends CustomPanel {
 
     /**
      * Creates new form ChartPanel
      */
     public ChartPanel() {
         initComponents();
-
+this.makeTransparent(this);
         int done=0,pending=0;
         
         if(!Network.getInstance().getSTATE_BAR_ASSOCIATIONS().getAllEntries().isEmpty()){

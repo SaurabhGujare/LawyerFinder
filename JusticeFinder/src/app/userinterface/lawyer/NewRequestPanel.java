@@ -11,6 +11,7 @@ import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkItem;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Toolkit;
@@ -27,14 +28,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class NewRequestPanel extends javax.swing.JPanel {
+public class NewRequestPanel extends CustomPanel {
 
     /**
      * Creates new form LawyerConsultationRequest
      */
     public NewRequestPanel() {
         initComponents();
-        
+        this.makeTransparent(this);
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override

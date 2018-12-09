@@ -9,6 +9,7 @@ import app.data.directories.Directory;
 import app.data.org.Court;
 import app.data.org.StateBarAssociation;
 import app.entities.user.UserAccount;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
@@ -20,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author arele
  */
-public class CourtPanel extends javax.swing.JPanel implements HasTable {
+public class CourtPanel extends CustomPanel implements HasTable {
 
     /**
      * Creates new form CourtPanel1
@@ -31,7 +32,7 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
     
     public CourtPanel(Directory<Integer , Court> courtDir,Directory<String, UserAccount> userAccountDir) {
         initComponents();
-        
+        this.makeTransparent(this);
         this.courtDir = courtDir;
         this.userAccountDir = userAccountDir;
         

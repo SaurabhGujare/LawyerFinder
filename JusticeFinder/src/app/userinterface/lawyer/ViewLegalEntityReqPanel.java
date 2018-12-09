@@ -10,6 +10,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.GrievanceRequest;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import app.userinterface.sba.ViewSBARequestsPanel;
 import app.utils.email.EmailTemplateFormatter;
@@ -30,7 +31,7 @@ import javax.swing.JOptionPane;
  *
  * @author Akshay Relekar
  */
-public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
+public class ViewLegalEntityReqPanel extends CustomPanel {
 
     GrievanceRequest request;
     JDialog dialog;
@@ -48,6 +49,7 @@ public class ViewLegalEntityReqPanel extends javax.swing.JPanel {
         reqMsgTxt.setEnabled(false);
         reqNumTxt.setEnabled(false);
         this.dialog = dialog;
+        this.makeTransparent(this);
     }
 
     /**

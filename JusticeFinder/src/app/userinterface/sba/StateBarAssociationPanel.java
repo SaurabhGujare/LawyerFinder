@@ -11,13 +11,14 @@ import java.awt.CardLayout;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 
 /**
  *
  * @author Akshay Relekar
  */
-public class StateBarAssociationPanel extends javax.swing.JPanel {
+public class StateBarAssociationPanel extends CustomPanel {
 
    Directory<String , Lawyer> lawyerDir;
    CardLayout layout;
@@ -25,6 +26,8 @@ public class StateBarAssociationPanel extends javax.swing.JPanel {
     
     public StateBarAssociationPanel() {
         initComponents();
+                this.makeTransparent(this);
+
         headerPanel.add(new HeaderPanel(Session.getUserAccount(),this,"State Bar Association"));
         sba = (StateBarAssoAdmin) Session.getUserAccount().getUser();
 //        containerpanel.add(new ViewSBARequestsPanel(),ViewSBARequestsPanel.class.getName());
