@@ -79,7 +79,7 @@ public class AdminPanel extends CustomPanel {
         mainMenu.setOpaque(false);
         mainMenu.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        stateBarAssoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Handshake_20px.png"))); // NOI18N
+        stateBarAssoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path5694.png"))); // NOI18N
         stateBarAssoBtn.setText("State Bar Associations");
         stateBarAssoBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         stateBarAssoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +89,7 @@ public class AdminPanel extends CustomPanel {
         });
         mainMenu.add(stateBarAssoBtn);
 
-        publicDomainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Public_20px_4.png"))); // NOI18N
+        publicDomainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path5127.png"))); // NOI18N
         publicDomainBtn.setText("Public Domains");
         publicDomainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +98,7 @@ public class AdminPanel extends CustomPanel {
         });
         mainMenu.add(publicDomainBtn);
 
-        courtbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Scales_20px.png"))); // NOI18N
+        courtbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path4562.png"))); // NOI18N
         courtbtn.setText("Court");
         courtbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

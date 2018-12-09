@@ -285,6 +285,10 @@ public class FileCaseDialog extends javax.swing.JDialog {
             
             c.setCourt((Court)ComboBoxcourt.getSelectedItem());
             
+            if(clientList.getSelectedItem()==null){
+                JOptionPane.showMessageDialog(this, "No plaintiff available to file the case");
+                return;
+            }
             c.setPlaintiff((LegalEntity) clientList.getSelectedItem());
             ((LegalEntity) clientList.getSelectedItem()).getCaseQueue().addWorkItem(req);
             LegalEntity defendent = new LegalEntity();

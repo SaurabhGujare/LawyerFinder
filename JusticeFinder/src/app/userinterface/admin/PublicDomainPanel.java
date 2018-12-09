@@ -43,6 +43,8 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         
         this.addComponentListener(adapter);
         populateTableData();
+        nameTxt.setEnabled(false);
+        saveBtn.setEnabled(false);
     }
 
     /**
@@ -106,7 +108,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         });
         jScrollPane1.setViewportView(recordsTable);
 
-        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6261.png"))); // NOI18N
         addBtn.setText("Add New");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,10 +116,10 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             }
         });
 
-        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/round.png"))); // NOI18N
         viewUpdateBtn.setText("View/Update");
 
-        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6826.png"))); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +153,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
         jLabel1.setText("Name:");
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path7395.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -231,6 +233,8 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
+        nameTxt.setEnabled(true);
+       saveBtn.setEnabled(true);
         nameTxt.setText("");
         domain = null;
     }//GEN-LAST:event_addBtnActionPerformed
