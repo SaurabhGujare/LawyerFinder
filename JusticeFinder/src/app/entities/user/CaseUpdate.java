@@ -15,8 +15,8 @@ public class CaseUpdate {
     private Date caseUpdate;
     private String caseDescription;
 
-    public CaseUpdate(Date caseUpdate, String caseDescription) {
-        this.caseUpdate = caseUpdate;
+    public CaseUpdate(String caseDescription) {
+        this.caseUpdate = new Date();
         this.caseDescription = caseDescription;
     }
 

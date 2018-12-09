@@ -6,7 +6,10 @@
 package app.entities.workqueues;
 
 import app.entities.Case;
+import app.entities.user.CaseUpdate;
 import app.entities.user.UserAccount;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -16,6 +19,7 @@ public class CaseFileRequest extends WorkItem{
     
     private Case casereq;
     private static int count = 0;
+    List<CaseUpdate> caseUpdates;
     
     public CaseFileRequest(String message, UserAccount sender, UserAccount receiver){
     
@@ -23,6 +27,15 @@ public class CaseFileRequest extends WorkItem{
         count++;
         id=count;
         casereq = new Case();
+        caseUpdates = new ArrayList<>();
+    }
+
+    public List<CaseUpdate> getCaseUpdates() {
+        return caseUpdates;
+    }
+
+    public void setCaseUpdates(List<CaseUpdate> caseUpdates) {
+        this.caseUpdates = caseUpdates;
     }
 
     public Case getCasereq() {
