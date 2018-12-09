@@ -95,7 +95,15 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             new String [] {
                 "ID", "Name"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(recordsTable);
 
         addBtn.setText("Add New");
