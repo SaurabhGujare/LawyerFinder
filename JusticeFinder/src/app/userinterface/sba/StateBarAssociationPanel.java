@@ -48,7 +48,6 @@ public class StateBarAssociationPanel extends CustomPanel {
         jSplitPane2 = new javax.swing.JSplitPane();
         menupanel = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        viewrequestbtn = new javax.swing.JButton();
         containerpanel = new javax.swing.JPanel();
         headerPanel = new javax.swing.JPanel();
 
@@ -60,14 +59,6 @@ public class StateBarAssociationPanel extends CustomPanel {
         jSplitPane2.setPreferredSize(new java.awt.Dimension(256, 712));
 
         jPanel2.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
-
-        viewrequestbtn.setText("Approve/Reject Requests");
-        viewrequestbtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewrequestbtnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(viewrequestbtn);
 
         javax.swing.GroupLayout menupanelLayout = new javax.swing.GroupLayout(menupanel);
         menupanel.setLayout(menupanelLayout);
@@ -120,11 +111,6 @@ public class StateBarAssociationPanel extends CustomPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void viewrequestbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewrequestbtnActionPerformed
-        // TODO add your handling code here:
-        layout.show(containerpanel, ApproveRejectRequestPanel.class.getName());
-    }//GEN-LAST:event_viewrequestbtnActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodypanel;
     private javax.swing.JPanel containerpanel;
@@ -132,6 +118,5 @@ public class StateBarAssociationPanel extends CustomPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane2;
     private javax.swing.JPanel menupanel;
-    private javax.swing.JButton viewrequestbtn;
     // End of variables declaration//GEN-END:variables
 }

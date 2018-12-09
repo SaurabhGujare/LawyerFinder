@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -96,6 +97,12 @@ public class FileCaseDialog extends javax.swing.JDialog {
         jLabel5.setText("Case Type:");
 
         jLabel6.setText("Case Description:");
+
+        txtcasenumber.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtcasenumber(evt);
+            }
+        });
 
         txtcasefiledate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -237,33 +244,67 @@ public class FileCaseDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+  
+            CaseFileRequest req =  (CaseFileRequest)(((Court)ComboBoxcourt.getSelectedItem()).getWorkQueue().createNewWorkItem(from.getAccount(),null,null));
         
-        
-        CaseFileRequest req =  (CaseFileRequest)(((Court)ComboBoxcourt.getSelectedItem()).getWorkQueue().createNewWorkItem(from.getAccount(),null,null));
-        
-        
-        Case c = req.getCasereq();
-        
-        c.setCaseName(txtcasename.getText());
-        c.setCaseNumber(txtcasenumber.getText());
-        try {
-            c.setCasefileDate(sdf.parse(txtcasefiledate.getText()));
-        } catch (ParseException ex) {
+            Case c = req.getCasereq();
+            if(txtcasename.getText()!= null && !txtcasename.getText().trim().equals("")){
+                c.setCaseName(txtcasename.getText());
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter Case Name");
+            }
+            if(txtcasenumber.getText()!= null && !txtcasenumber.getText().trim().equals("")){
+                c.setCaseNumber(txtcasenumber.getText());
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter Case Number");
+            }
+            try {
+                c.setCasefileDate(sdf.parse(txtcasefiledate.getText()));
+            } catch (ParseException ex) {
          
-        }
-        c.setCasetype(txtcasetype.getText());
-        c.setCaseDesc(txtcasedescription.getText());
-        c.setPlaintiff((LegalEntity) clientList.getSelectedItem());
-        ((LegalEntity) clientList.getSelectedItem()).getCaseQueue().addWorkItem(req);
-        LegalEntity defendent = new LegalEntity();
-        defendent.setFirstName(defTxt.getText());
-        c.setDefendent(defendent);
-        req.getCasereq().setLawyer(from);
+            }
+            if(txtcasetype.getText()!= null && !txtcasetype.getText().trim().equals("")){
+                c.setCasetype(txtcasetype.getText());
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter Case type");
+            }
+            if(txtcasedescription.getText()!= null && !txtcasedescription.getText().trim().equals("")){
+                c.setCaseDesc(txtcasedescription.getText());
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Enter Case Description");
+            }
+            
+            c.setPlaintiff((LegalEntity) clientList.getSelectedItem());
+            ((LegalEntity) clientList.getSelectedItem()).getCaseQueue().addWorkItem(req);
+            LegalEntity defendent = new LegalEntity();
+            defendent.setFirstName(defTxt.getText());
+            c.setDefendent(defendent);
+            req.getCasereq().setLawyer(from);
         
-        from.getCasesWorkQueue().addWorkItem(req);
-        JOptionPane.showMessageDialog(this, "Request Sent");
-        this.dispose();
+            from.getCasesWorkQueue().addWorkItem(req);
+            JOptionPane.showMessageDialog(this, "Request Sent");
+            this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtcasenumber(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtcasenumber
+        // TODO add your handling code here:
+        JTextField field = (JTextField)evt.getComponent();
+        
+        try{   
+            if(field.getText()!=null && !field.getText().equals(""))
+                Double.parseDouble(field.getText());
+        } 
+        catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Enter valid value");
+            field.requestFocus();
+            field.setText("");
+
+        }
+    }//GEN-LAST:event_txtcasenumber
 
     /**
      * @param args the command line arguments
