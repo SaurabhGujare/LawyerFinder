@@ -17,11 +17,13 @@ public  class UserAccount implements DirectoryEntry<String>{
     
     private String username;
     private String password;
+    private String retypedPassword;
     private User user;
     
-    public UserAccount(String username, String password,User user) {
+    public UserAccount(String username, String password,User user, String retypedPassword) {
         this.username = username;
         this.password = password;
+        this.retypedPassword = retypedPassword;        
         this.user = user;
         user.setAccount(this);
     }
@@ -50,6 +52,15 @@ public  class UserAccount implements DirectoryEntry<String>{
         this.user = user;
     }
 
+    public String getRetypedPassword() {
+        return retypedPassword;
+    }
+
+    public void setRetypedPassword(String retypedPassword) {
+        this.retypedPassword = retypedPassword;
+    }
+    
+    
     @Override
     public String getKey() {
         return this.username;

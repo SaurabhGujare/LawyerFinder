@@ -66,6 +66,7 @@ public class AddJudgePopUp extends javax.swing.JDialog {
         joiningdatetxt = new javax.swing.JTextField();
         usernametxt = new javax.swing.JTextField();
         passwordtxt = new javax.swing.JTextField();
+        retypePasswordtxt = new javax.swing.JTextField();
         savebtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -102,6 +103,12 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             }
         });
 
+        retypePasswordtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retypePasswordtxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,20 +116,23 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(usernametxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
-                        .addComponent(joiningdatetxt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(emailtxt, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(nametxt, javax.swing.GroupLayout.Alignment.LEADING))
-                    .addComponent(passwordtxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(retypePasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(usernametxt, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                                .addComponent(joiningdatetxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(emailtxt, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(nametxt, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(passwordtxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +156,9 @@ public class AddJudgePopUp extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(retypePasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         savebtn.setText("Create Profile");
@@ -171,8 +183,8 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(savebtn)
                 .addContainerGap())
         );
@@ -200,7 +212,7 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             j.setName(nametxt.getText());
             j.setEmail(emailtxt.getText());
             joiningdatetxt.setText(joiningdatetxt.getText());
-            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), j);
+            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), j, retypePasswordtxt.getText());
             try{
                 Network.getInstance().getUSER_ACCOUNTS().addNew(account);
             }
@@ -225,6 +237,10 @@ public class AddJudgePopUp extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Enter all the details first");
         }
     }//GEN-LAST:event_savebtnActionPerformed
+
+    private void retypePasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retypePasswordtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retypePasswordtxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -279,6 +295,7 @@ public class AddJudgePopUp extends javax.swing.JDialog {
     private javax.swing.JTextField joiningdatetxt;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
+    private javax.swing.JTextField retypePasswordtxt;
     private javax.swing.JButton savebtn;
     private javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables
