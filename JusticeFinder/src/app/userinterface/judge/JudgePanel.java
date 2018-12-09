@@ -130,6 +130,9 @@ public class JudgePanel extends CustomPanel {
         headerPanel.setBackground(new java.awt.Color(204, 204, 204));
         headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
+        headerPanel.setBackground(new java.awt.Color(204, 204, 204));
+        headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(

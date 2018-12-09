@@ -13,22 +13,20 @@ import app.entities.workqueues.CaseFileRequestWorkQueue;
 import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkItem;
-import app.userinterface.common.CustomPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class ViewSentRequest extends CustomPanel {
+public class ViewFiledCases extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewSentRequest
      */
-    public ViewSentRequest() {
+    public ViewFiledCases() {
         initComponents();
         populateTable();
-        this.makeTransparent(this);
     }
 
     private void populateTable() {

@@ -64,6 +64,7 @@ public class AdminPanel extends CustomPanel {
         jButton1 = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(255, 51, 51));
         setOpaque(false);
 
         header.setOpaque(false);
