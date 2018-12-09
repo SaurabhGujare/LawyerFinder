@@ -10,6 +10,7 @@ import app.data.Session;
 import app.data.directories.Directory;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
+import app.userinterface.common.CustomPanel;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
@@ -18,13 +19,14 @@ import java.util.List;
  *
  * @author PC
  */
-public class RateLawyerPanel extends javax.swing.JPanel {
+public class RateLawyerPanel extends CustomPanel {
 
     /**
      * Creates new form RateLawyerPage
      */
     public RateLawyerPanel() {
         initComponents();
+        this.makeTransparent(this);
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override

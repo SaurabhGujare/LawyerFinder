@@ -39,6 +39,7 @@
         <Property name="background" type="java.awt.Color" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="Color.decode(ConfigUtil.getProp(&quot;headerColor&quot;))" type="code"/>
         </Property>
+        <Property name="name" type="java.lang.String" value="NA" noResource="true"/>
       </Properties>
 
       <Layout>

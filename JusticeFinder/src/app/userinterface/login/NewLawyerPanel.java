@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.UserAccount;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.utils.ConfigUtil;
 import app.userinterface.sba.ViewSBARequestsPanel;
@@ -29,7 +30,7 @@ import javax.swing.JPanel;
  *
  * @author PC
  */
-public class NewLawyerPanel extends javax.swing.JPanel {
+public class NewLawyerPanel extends CustomPanel {
 
     Lawyer lawyer = null;
     CardLayout layout;
@@ -40,12 +41,15 @@ public class NewLawyerPanel extends javax.swing.JPanel {
      */
     public NewLawyerPanel() {
         initComponents();
+        this.makeTransparent(this);
+
         lawyerProfilePanel = new LawyerProfilePanel(lawyer, false);
         container.add(lawyerProfilePanel,LawyerProfilePanel.class.getName());
         
         newUserAccount = new NewUserAccount();
         container.add(newUserAccount,NewUserAccount.class.getName());
         layout = (CardLayout) container.getLayout();
+        this.makeTransparent(this);
     }
 
     /**
@@ -65,6 +69,7 @@ public class NewLawyerPanel extends javax.swing.JPanel {
         backBtn = new javax.swing.JButton();
 
         heading.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
+        heading.setName("NA"); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

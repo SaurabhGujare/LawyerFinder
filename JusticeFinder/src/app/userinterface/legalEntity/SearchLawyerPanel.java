@@ -10,6 +10,7 @@ import app.data.analytics.SorterFactory;
 import app.data.directories.Directory;
 import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
+import app.userinterface.common.CustomPanel;
 import app.utils.CommonUtils;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -30,7 +31,7 @@ import javax.swing.JOptionPane;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class SearchLawyerPanel extends javax.swing.JPanel {
+public class SearchLawyerPanel extends CustomPanel {
 
     /**
      * Creates new form SearchLawyerPanel
@@ -44,6 +45,7 @@ public class SearchLawyerPanel extends javax.swing.JPanel {
     
     public SearchLawyerPanel(Directory<String, Lawyer> LAWYER_DIRECTORY) {
         initComponents();
+        this.makeTransparent(this);
         this.LAWYER_DIRECTORY = LAWYER_DIRECTORY;
         ComponentAdapter adapter = new ComponentAdapter() {
 

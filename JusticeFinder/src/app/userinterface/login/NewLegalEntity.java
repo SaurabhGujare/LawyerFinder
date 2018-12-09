@@ -7,18 +7,15 @@ package app.userinterface.login;
 
 import app.data.Network;
 import app.data.org.PublicDomain;
-import app.data.org.StateBarAssociation;
-import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
-import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import app.utils.ConfigUtil;
 import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -26,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class NewLegalEntity extends javax.swing.JPanel {
+public class NewLegalEntity extends CustomPanel {
 
     LegalEntity legalEntity = null;
     CardLayout layout;
@@ -37,7 +34,8 @@ public class NewLegalEntity extends javax.swing.JPanel {
      */
     public NewLegalEntity() {
         initComponents();
-        
+                this.makeTransparent(this);
+
         viewLEProfilePanel = new ViewLEProfilePanel(legalEntity, false);
         container.add(viewLEProfilePanel,LawyerProfilePanel.class.getName());
         
@@ -106,6 +104,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
         container.setLayout(new java.awt.CardLayout());
 
         heading.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
+        heading.setName("NA"); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,7 +165,15 @@ public class NewLegalEntity extends javax.swing.JPanel {
             legalEntity = viewLEProfilePanel.validateandGetLE(true);
             if(legalEntity==null)
                 return;
+            
+            try {
+                ((PublicDomain) legalEntity.getParent()).getDirectory().addNew(legalEntity);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "User already present in the system.");
+                return;
+            }
         }
+        
         if(newUserAccount.isVisible()){
             UserAccount account = newUserAccount.getUser(legalEntity);
             try {
@@ -175,6 +182,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "User already present");
                 return;
             }
+            
             
             JOptionPane.showMessageDialog(this, "Legal Entity Created");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
