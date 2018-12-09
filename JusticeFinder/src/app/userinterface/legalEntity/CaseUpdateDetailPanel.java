@@ -20,6 +20,7 @@ public class CaseUpdateDetailPanel extends javax.swing.JPanel {
         initComponents();
         jLabel1.setText("Date: "+ update.getCaseUpdate().toString());
         jTextArea1.setText(update.getCaseDescription());
+        jTextArea1.setEditable(false);
     }
 
     /**
