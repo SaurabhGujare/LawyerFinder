@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package app.userinterface.legalEntity;
+package app.userinterface.lawyer;
 
+import app.userinterface.legalEntity.*;
 import app.data.Session;
+import app.entities.Case;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.workqueues.CaseFileRequest;
@@ -38,17 +40,23 @@ public class ViewFiledCases extends javax.swing.JPanel {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) greivanceRequestTbl.getModel();
         model.setRowCount(0);
-        LegalEntity legalEntity = (LegalEntity) Session.getUserAccount().getUser();
-        for(WorkItem i: ((CaseFileRequestWorkQueue) legalEntity.getCaseQueue()).getWorkList()){
-            CaseFileRequest request = (CaseFileRequest) i;
-            Object[] row = new Object[6];
-            row[0] = request;
-            row[1] = request.getCasereq().getCasefileDate();
-            row[2] = request.getCasereq().getCourt();
-            row[3] = request.getCasereq().getLawyer();
-            row[4] = request.getCasereq().getJudge();
-            row[5] = request.getStatus();
-            model.addRow(row);
+        Lawyer lawyer = (Lawyer) Session.getUserAccount().getUser();
+        
+        for(LegalEntity l:lawyer.getClientList().getAllEntries()){
+            for(WorkItem i: ((CaseFileRequestWorkQueue) l.getCaseQueue()).getWorkList()){
+                CaseFileRequest request = (CaseFileRequest) i;
+                Case c = request.getCasereq();
+                if(c.getLawyer()!=null && c.getLawyer().equals(lawyer)){
+                    Object[] row = new Object[6];
+                    row[0] = request;
+                    row[1] = request.getCasereq().getCasefileDate();
+                    row[2] = request.getCasereq().getCourt();
+                    row[3] = request.getCasereq().getLawyer();
+                    row[4] = request.getCasereq().getJudge();
+                    row[5] = request.getStatus();
+                    model.addRow(row);
+                }
+            }
         }
     }
     /**
