@@ -115,7 +115,7 @@
                     <Component class="javax.swing.JButton" name="stateBarAssoBtn">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/app/images/icons8_Handshake_20px.png"/>
+                          <Image iconType="3" name="/app/images/path5694.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="State Bar Associations"/>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -131,7 +131,7 @@
                     <Component class="javax.swing.JButton" name="publicDomainBtn">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/app/images/icons8_Public_20px_4.png"/>
+                          <Image iconType="3" name="/app/images/path5127.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Public Domains"/>
                       </Properties>
@@ -142,7 +142,7 @@
                     <Component class="javax.swing.JButton" name="courtbtn">
                       <Properties>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="3" name="/app/images/icons8_Scales_20px.png"/>
+                          <Image iconType="3" name="/app/images/path4562.png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Court"/>
                       </Properties>

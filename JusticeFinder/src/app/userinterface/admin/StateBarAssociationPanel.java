@@ -110,7 +110,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
         jPanel4.setOpaque(false);
 
-        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6261.png"))); // NOI18N
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +118,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             }
         });
 
-        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/round.png"))); // NOI18N
         viewUpdateBtn.setText("View/Update");
         viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +126,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             }
         });
 
-        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6826.png"))); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,12 +150,13 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addBtn)
-                    .addComponent(viewUpdateBtn)
-                    .addComponent(deleteBtn))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(deleteBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(viewUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 30, Short.MAX_VALUE)
+                        .addComponent(addBtn)))
+                .addContainerGap())
         );
 
         recordsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -189,7 +190,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
         jPanel3.setOpaque(false);
 
-        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path7395.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,7 +258,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
