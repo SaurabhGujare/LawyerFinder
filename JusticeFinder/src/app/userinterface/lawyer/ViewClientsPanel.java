@@ -90,7 +90,7 @@ public class ViewClientsPanel extends CustomPanel {
 
             },
             new String [] {
-                "ssn", "Name"
+                "SSN", "Name"
             }
         ));
         jScrollPane1.setViewportView(clientTbl);
@@ -150,8 +150,8 @@ public class ViewClientsPanel extends CustomPanel {
         model.setRowCount(0);
         for(LegalEntity client: ((Lawyer)Session.getUserAccount().getUser()).getClientList().getAllEntries()){
             Object[] row = new Object[4];
-            row[0] = client;
-            row[1] = client.getFirstName()+" "+client.getLastName();
+            row[0] = client.getSsn();
+            row[1] = client;
             model.addRow(row);
         }
     }

@@ -84,7 +84,6 @@ public class CourtPanel extends CustomPanel implements HasTable {
         detailstbl = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         updatebtn = new javax.swing.JButton();
-        deletebtn = new javax.swing.JButton();
         addbtn = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
@@ -147,14 +146,6 @@ public class CourtPanel extends CustomPanel implements HasTable {
             }
         });
 
-        deletebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
-        deletebtn.setText("Delete");
-        deletebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deletebtnActionPerformed(evt);
-            }
-        });
-
         addbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addbtn.setText("Add New");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -172,8 +163,6 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 .addComponent(addbtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(updatebtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(deletebtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -182,8 +171,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(updatebtn)
-                    .addComponent(addbtn)
-                    .addComponent(deletebtn))
+                    .addComponent(addbtn))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -231,8 +219,8 @@ public class CourtPanel extends CustomPanel implements HasTable {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(emailtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +274,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 809, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -323,83 +311,105 @@ public class CourtPanel extends CustomPanel implements HasTable {
 
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
+        UserAccount oldAccount = null;
+        boolean newCourt = false;
         if(court==null){
             court = new Court();
+            court.setId(courtDir.getAllEntries().size());
+            newCourt = true;
+        }else {
+            oldAccount = court.getAdmin().getAccount();
         }
-        court.setId(courtDir.size());
+        
         court.setCourtName(nametxt.getText());
         court.setCourtemailID(emailtxt.getText());
-        court.getAdmin().setParent(court);
-        UserAccount courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
+        //court.getAdmin().setParent(court);
         
-        try {
-            userAccountDir.addNew(courtaccount);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage());
-            System.out.println(ex.getMessage());
-            return;
-        }
-        try {
-            if(courtDir.contains(court)){
-                JOptionPane.showMessageDialog(this, "Court with this name already present");
+        UserAccount courtaccount = null;
+        if (oldAccount != null) {
+            if (!oldAccount.getUsername().equals(usernametxt.getText())) {
+                    courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
+                    userAccountDir.delete(oldAccount.getUsername());
+                try {
+                    userAccountDir.addNew(courtaccount);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                    System.out.println(ex.getMessage());
+                    clearForm();
+                    return;
+                }
+            }else{
+                    oldAccount.setPassword(passwordtxt.getText());
+            }
+        }else{
+            courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
+            try {
+                userAccountDir.addNew(courtaccount);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage());
+                System.out.println(ex.getMessage());
+                clearForm();
                 return;
             }
-            courtDir.addNew(court);
-        } catch (Exception ex) {
-            
         }
         
-        JOptionPane.showMessageDialog(this, "Court Added Successfully!");
+        if(newCourt){
+            try {
+                
+                if(courtDir.contains(court)){
+                    JOptionPane.showMessageDialog(this, "Court with this name already present");
+                    clearForm();
+                    return;
+                }
+                courtDir.addNew(court);
+            } catch (Exception ex) {
+            
+            }
+            
+            JOptionPane.showMessageDialog(this, "Court Added Successfully!");
+            
+        }else{   
+            JOptionPane.showMessageDialog(this, "Court Updated Successfully!");
+        }
+        populateTableData();
+        clearForm();
+    }//GEN-LAST:event_savebtnActionPerformed
+
+    private void clearForm() {
         nametxt.setEnabled(false);
         emailtxt.setEnabled(false);
         usernametxt.setEnabled(false);
         passwordtxt.setEnabled(false);
-        
-        populateTableData();
+        savebtn.setEnabled(false);
         nametxt.setText("");
         emailtxt.setText("");
         usernametxt.setText("");
         passwordtxt.setText("");
         court = null;
-    }//GEN-LAST:event_savebtnActionPerformed
+    }
 
     private void updatebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatebtnActionPerformed
         // TODO add your handling code here:
+        savebtn.setEnabled(true);
         int selectedRow= detailstbl.getSelectedRow();
       
       if(selectedRow >= 0){
-        Court court;
+        
         nametxt.setEnabled(true);
         emailtxt.setEnabled(true);
         usernametxt.setEnabled(true);
         passwordtxt.setEnabled(true);
         
         court= (Court) detailstbl.getValueAt(selectedRow, 0);
-        nametxt.setText(String.valueOf(court.getCourtName()));
-        usernametxt.setText(String.valueOf(court.getAdmin().getAccount().getUsername()));
-        emailtxt.setText(String.valueOf(court.getCourtemailID()));
+        nametxt.setText(court.getCourtName());
+        usernametxt.setText(court.getAdmin().getAccount().getUsername());
+        emailtxt.setText(court.getCourtemailID());
+        passwordtxt.setText(court.getAdmin().getAccount().getPassword());
         
         }else{
             JOptionPane.showMessageDialog(null, "Please select a record from the table.");
         }
     }//GEN-LAST:event_updatebtnActionPerformed
-
-    private void deletebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deletebtnActionPerformed
-        // TODO add your handling code here:
-        int selectedRow = detailstbl.getSelectedRow();
-        if(selectedRow>=0){
-            int selectionButton = JOptionPane.YES_NO_OPTION;
-            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??","Warning",selectionButton);
-            if(selectionResult == JOptionPane.YES_OPTION){
-                Court c = (Court)detailstbl.getValueAt(selectedRow, 0);
-                courtDir.delete(c.getId());
-                userAccountDir.delete(c.getAdmin().getAccount().getUsername());
-                populateTableData();
-            }
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a Row!!");
-        }
-    }//GEN-LAST:event_deletebtnActionPerformed
 
     private void nametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nametxtActionPerformed
         // TODO add your handling code here:
@@ -408,7 +418,6 @@ public class CourtPanel extends CustomPanel implements HasTable {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addbtn;
-    private javax.swing.JButton deletebtn;
     private javax.swing.JTable detailstbl;
     private javax.swing.JTextField emailtxt;
     private javax.swing.JLabel jLabel1;
