@@ -11,6 +11,8 @@ import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.userinterface.common.CustomPanel;
 import app.utils.CommonUtils;
+import app.utils.ConfigUtil;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
@@ -114,7 +116,13 @@ public class ViewLEProfilePanel extends CustomPanel {
         legalEntity.setEmail(emailTxt.getText());
         legalEntity.setSsn(ssnTxt.getText());
         legalEntity.setPicFile(picFile);
-        legalEntity.setParent((Organization) domainList.getSelectedItem());
+        if(domainList.getSelectedItem()!=null){
+            legalEntity.setParent((Organization) domainList.getSelectedItem());
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Please select a Domain");
+            return null;
+        }
         try {
             legalEntity.setDob(sdf.parse(dobTxt.getText()));
         } catch (ParseException ex) {
@@ -217,6 +225,7 @@ public class ViewLEProfilePanel extends CustomPanel {
         jScrollPane1.setAutoscrolls(true);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setName("NA"); // NOI18N
 
         jPanel4.setBackground(new java.awt.Color(153, 255, 153));
         jPanel4.setOpaque(false);
@@ -245,7 +254,8 @@ public class ViewLEProfilePanel extends CustomPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel5.setBackground(Color.decode(ConfigUtil.getProp("basecolor"))
+        );
         jPanel5.setOpaque(false);
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));

@@ -104,6 +104,7 @@ public class NewLegalEntity extends CustomPanel {
         container.setLayout(new java.awt.CardLayout());
 
         heading.setBackground(Color.decode(ConfigUtil.getProp("headerColor")));
+        heading.setName("NA"); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));

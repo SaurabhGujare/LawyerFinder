@@ -74,6 +74,7 @@ public class LawyerPanel extends CustomPanel {
         jSplitPane1.setDividerLocation(200);
 
         containerPanel.setBackground(new java.awt.Color(255, 255, 255));
+        containerPanel.setOpaque(false);
         containerPanel.setLayout(new java.awt.CardLayout());
         jSplitPane1.setRightComponent(containerPanel);
 
