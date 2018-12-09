@@ -49,18 +49,4 @@ public class CommonUtils {
         
     }
     
-    public static int calulateRating(Directory<String, Rating> ratings){
-        
-        if(ratings.size() == 0){
-            return 1;
-        }
-        
-        int total = 0;
-        for(Rating r: ratings.getAllEntries()){
-            total = total + r.getValue();
-        }
-        total = total / ratings.size();
-        return total;
-    }
-    
 }
