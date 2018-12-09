@@ -98,6 +98,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         ));
         jScrollPane1.setViewportView(recordsTable);
 
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addBtn.setText("Add New");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,8 +106,10 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             }
         });
 
+        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
         viewUpdateBtn.setText("View/Update");
 
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,6 +143,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
         jLabel1.setText("Name:");
 
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,7 +215,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap(49, Short.MAX_VALUE))

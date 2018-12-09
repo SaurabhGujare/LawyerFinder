@@ -48,6 +48,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         emailTxt.setEnabled(false);
         userNameTxt.setEnabled(false);
         passwordTxt.setEnabled(false);
+        btnupdate.setEnabled(false);
         this.makeTransparent(this);
     }
 
@@ -74,6 +75,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         passwordTxt = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         saveBtn = new javax.swing.JButton();
+        btnupdate = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
         viewUpdateBtn = new javax.swing.JButton();
@@ -109,10 +111,19 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
         jPanel3.setOpaque(false);
 
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
+            }
+        });
+
+        btnupdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Available_Updates_20px.png"))); // NOI18N
+        btnupdate.setText("Update");
+        btnupdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnupdateActionPerformed(evt);
             }
         });
 
@@ -121,15 +132,19 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(290, 290, 290)
                 .addComponent(saveBtn)
+                .addGap(46, 46, 46)
+                .addComponent(btnupdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(saveBtn)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(saveBtn)
+                    .addComponent(btnupdate))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -137,29 +152,23 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(nameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 312, Short.MAX_VALUE)
-                            .addComponent(emailTxt)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(userNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
-                            .addComponent(passwordTxt))))
-                .addContainerGap(179, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nameTxt)
+                    .addComponent(emailTxt)
+                    .addComponent(userNameTxt, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,19 +183,20 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                     .addComponent(emailTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(userNameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         jPanel4.setOpaque(false);
 
+        addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addBtn.setText("Add");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -194,6 +204,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             }
         });
 
+        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
         viewUpdateBtn.setText("View/Update");
         viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +212,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             }
         });
 
+        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
         deleteBtn.setText("Delete");
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -294,7 +306,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGap(0, 704, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -365,6 +377,8 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
     private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUpdateBtnActionPerformed
         // TODO add your handling code here:
+        saveBtn.setEnabled(false);
+        btnupdate.setEnabled(true);
         int selectedRow= recordsTable.getSelectedRow();
       
       if(selectedRow >= 0){
@@ -401,6 +415,19 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
+    private void btnupdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnupdateActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = recordsTable.getSelectedRow();
+        //DefaultTableModel model = (DefaultTableModel) recordsTable.getModel();
+        StateBarAssociation sba = (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
+        if(selectedRow>=0){
+            sba.setStateBarAssociationName(nameTxt.getText());
+            sba.setEmail(emailTxt.getText());
+            sba.getAdmin().getAccount().setUsername(userNameTxt.getText());
+            populateTableData();
+        }
+    }//GEN-LAST:event_btnupdateActionPerformed
+
 
     @Override
     public void populateTableData() {
@@ -417,6 +444,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton btnupdate;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JTextField emailTxt;
     private javax.swing.JLabel jLabel1;

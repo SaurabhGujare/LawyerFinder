@@ -111,6 +111,7 @@ public class LoginPanel extends CustomPanel {
 
         jPanel3.setOpaque(false);
 
+        loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Login_20px.png"))); // NOI18N
         loginBtn.setText("Login");
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +119,7 @@ public class LoginPanel extends CustomPanel {
             }
         });
 
+        registerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Registered_Trademark_20px.png"))); // NOI18N
         registerBtn.setText("Register");
         registerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

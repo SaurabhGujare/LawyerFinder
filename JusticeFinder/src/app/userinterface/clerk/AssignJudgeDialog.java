@@ -188,6 +188,7 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
 
         lblassigntojudge.setText("Assign to Judge:");
 
+        btnassignment.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Invite_20px.png"))); // NOI18N
         btnassignment.setText("Request Assignment");
         btnassignment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -258,7 +259,7 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();

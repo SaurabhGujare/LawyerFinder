@@ -425,6 +425,7 @@ public class LawyerProfilePanel extends CustomPanel {
 
         jScrollPane1.setViewportView(sbaList);
 
+        addSBA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addSBA.setText("Add");
         addSBA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,6 +482,7 @@ public class LawyerProfilePanel extends CustomPanel {
 
         jScrollPane3.setViewportView(practiceList);
 
+        addPracticeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addPracticeBtn.setText("Add Area Of Practice");
         addPracticeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,6 +516,7 @@ public class LawyerProfilePanel extends CustomPanel {
                 .addContainerGap())
         );
 
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -578,12 +581,15 @@ public class LawyerProfilePanel extends CustomPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents

@@ -69,6 +69,7 @@ public class NewRequestPanel extends CustomPanel {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setOpaque(false);
 
+        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Open_Envelope_20px.png"))); // NOI18N
         openBtn.setText("Open");
         openBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

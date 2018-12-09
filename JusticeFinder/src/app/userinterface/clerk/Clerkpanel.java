@@ -48,7 +48,6 @@ public class Clerkpanel extends CustomPanel {
         bodypanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         menupanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         containerpanel = new javax.swing.JPanel();
 
         welcomepanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -91,28 +90,15 @@ public class Clerkpanel extends CustomPanel {
 
         jSplitPane1.setDividerLocation(200);
 
-        jButton1.setText("All Requests");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout menupanelLayout = new javax.swing.GroupLayout(menupanel);
         menupanel.setLayout(menupanelLayout);
         menupanelLayout.setHorizontalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menupanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(64, Short.MAX_VALUE))
+            .addGap(0, 199, Short.MAX_VALUE)
         );
         menupanelLayout.setVerticalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(menupanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButton1)
-                .addContainerGap(583, Short.MAX_VALUE))
+            .addGap(0, 617, Short.MAX_VALUE)
         );
 
         jSplitPane1.setLeftComponent(menupanel);
@@ -158,16 +144,10 @@ public class Clerkpanel extends CustomPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        layout.show(containerpanel, AllCasesPanel.class.getName());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodypanel;
     private javax.swing.JPanel containerpanel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel menupanel;

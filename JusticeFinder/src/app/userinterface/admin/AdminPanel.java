@@ -61,7 +61,6 @@ public class AdminPanel extends CustomPanel {
         stateBarAssoBtn = new javax.swing.JButton();
         publicDomainBtn = new javax.swing.JButton();
         courtbtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 51, 51));
@@ -81,6 +80,7 @@ public class AdminPanel extends CustomPanel {
         mainMenu.setOpaque(false);
         mainMenu.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
+        stateBarAssoBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Handshake_20px.png"))); // NOI18N
         stateBarAssoBtn.setText("State Bar Associations");
         stateBarAssoBtn.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         stateBarAssoBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +90,7 @@ public class AdminPanel extends CustomPanel {
         });
         mainMenu.add(stateBarAssoBtn);
 
+        publicDomainBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Public_20px_4.png"))); // NOI18N
         publicDomainBtn.setText("Public Domains");
         publicDomainBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +99,7 @@ public class AdminPanel extends CustomPanel {
         });
         mainMenu.add(publicDomainBtn);
 
+        courtbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Scales_20px.png"))); // NOI18N
         courtbtn.setText("Court");
         courtbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,14 +107,6 @@ public class AdminPanel extends CustomPanel {
             }
         });
         mainMenu.add(courtbtn);
-
-        jButton1.setText("View Chart");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        mainMenu.add(jButton1);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -173,17 +167,11 @@ public class AdminPanel extends CustomPanel {
         layout.show(containerPanel,CourtPanel.class.getName());
     }//GEN-LAST:event_courtbtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        layout.show(containerPanel,ChartPanel.class.getName());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton courtbtn;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel mainMenu;
