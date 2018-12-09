@@ -5,6 +5,7 @@
  */
 package app.entities.user;
 
+import app.data.analytics.AnalyticsHelper;
 import app.data.directories.Directory;
 import app.data.directories.interfaces.DirectoryEntry;
 import app.data.org.StateBarAssociation;
@@ -85,7 +86,7 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     }
 
     public Integer getRating() {
-        return CommonUtils.calulateRating(ratings);
+        return AnalyticsHelper.calulateRating(ratings);
     }
 
     public Directory<String, LegalEntity> getClientList() {

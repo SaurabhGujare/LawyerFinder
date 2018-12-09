@@ -5,9 +5,9 @@
                 <h1>Justice Finder</h1>
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #ffffff;">
-                <p>Dear %s</p>
-                <p>Please note that you have a new grievance request from %s.</p>
-                <p>Thank you </p>
+                
+                <p>Please note that your case %s has been approved by the court %s</p>
+                <p>Thank you. </p>
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #ffffff;font-size: 10px;">
                 <p>[THIS IS AN AUTOMATED MESSAGE - PLEASE DO NOT REPLY DIRECTLY TO THIS EMAIL]</p>
