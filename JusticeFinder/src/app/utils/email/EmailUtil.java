@@ -51,7 +51,7 @@ public class EmailUtil {
 
             Message message = new MimeMessage(session);
             try {
-                message.setFrom(new InternetAddress("ninad11302018@gmail.com", "Application Email"));
+                message.setFrom(new InternetAddress(username, "Application Email"));
             } catch (UnsupportedEncodingException e) {
                 e.printStackTrace();
             }

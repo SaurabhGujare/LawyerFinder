@@ -5,8 +5,8 @@
                 <h1>Justice Finder</h1>
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #ffffff;">
-                <p>Dear %s</p>
-                <p>Please note that your request has been approved by the %s, Esq.</p>
+                <p>To %s</p>
+                <p>Please note that a request from %s, Esq. needs your action.</p>
                 <p>Thank you </p>
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #d9d9d9;">

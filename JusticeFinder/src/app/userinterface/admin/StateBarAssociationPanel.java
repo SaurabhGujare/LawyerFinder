@@ -98,7 +98,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(276, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addContainerGap(276, Short.MAX_VALUE))
+                .addContainerGap(277, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,7 +257,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -270,7 +270,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                     .addComponent(jScrollPane2)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 787, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,7 +280,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -314,7 +314,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         }
         
         association.setStateBarAssociationName(nameTxt.getText());
-        association.setStateBarAssociationID(emailTxt.getText());
+        association.setEmail(emailTxt.getText());
 
         UserAccount account = null;
         if (oldAcc != null) {
@@ -413,7 +413,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
             association = (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
             nameTxt.setText(association.getStateBarAssociationName());
-            emailTxt.setText(association.getStateBarAssociationName());
+            emailTxt.setText(association.getEmail());
             userNameTxt.setText(association.getAdmin().getAccount().getUsername());
             passwordTxt.setText(association.getAdmin().getAccount().getPassword());
         } else {
