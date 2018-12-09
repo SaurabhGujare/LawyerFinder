@@ -38,7 +38,6 @@ public class AdminPanel extends CustomPanel {
         containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(network.getCOURT(),network.getUSER_ACCOUNTS()),CourtPanel.class.getName());
         containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
-        containerPanel.add(new ChartPanel(),ChartPanel.class.getName());
      
         layout = (CardLayout) containerPanel.getLayout();
         this.makeTransparent(this);
@@ -61,7 +60,6 @@ public class AdminPanel extends CustomPanel {
         stateBarAssoBtn = new javax.swing.JButton();
         publicDomainBtn = new javax.swing.JButton();
         courtbtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         containerPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(255, 51, 51));
@@ -105,14 +103,6 @@ public class AdminPanel extends CustomPanel {
             }
         });
         mainMenu.add(courtbtn);
-
-        jButton1.setText("View Chart");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        mainMenu.add(jButton1);
 
         javax.swing.GroupLayout menuPanelLayout = new javax.swing.GroupLayout(menuPanel);
         menuPanel.setLayout(menuPanelLayout);
@@ -173,17 +163,11 @@ public class AdminPanel extends CustomPanel {
         layout.show(containerPanel,CourtPanel.class.getName());
     }//GEN-LAST:event_courtbtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        layout.show(containerPanel,ChartPanel.class.getName());
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton courtbtn;
     private javax.swing.JPanel header;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel mainMenu;

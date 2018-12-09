@@ -150,7 +150,7 @@ public class ViewFiledCases extends javax.swing.JPanel {
         }
         else
         {
-            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+            JOptionPane.showMessageDialog(null, "Please select a record from the table.");
         }
     }//GEN-LAST:event_openBtnActionPerformed
 

@@ -30,7 +30,6 @@ public class FileCaseDialog extends javax.swing.JDialog {
     /**
      * Creates new form FileCaseDialog
      */
-    private Court to;
     private Lawyer from;
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     
@@ -39,11 +38,10 @@ public class FileCaseDialog extends javax.swing.JDialog {
         initComponents();
     }
 
-    public FileCaseDialog(JFrame parent, boolean modal, Court to, Lawyer from) {
+    public FileCaseDialog(JFrame parent, boolean modal, Lawyer from) {
         super(parent, modal);
         initComponents();
         this.from=from;
-        this.to=to;
         
         ComboBoxcourt.removeAllItems();
         
@@ -253,29 +251,34 @@ public class FileCaseDialog extends javax.swing.JDialog {
             }
             else {
                 JOptionPane.showMessageDialog(this, "Enter Case Name");
+                return;
             }
             if(txtcasenumber.getText()!= null && !txtcasenumber.getText().trim().equals("")){
                 c.setCaseNumber(txtcasenumber.getText());
             }
             else {
                 JOptionPane.showMessageDialog(this, "Enter Case Number");
+                return;
             }
             try {
                 c.setCasefileDate(sdf.parse(txtcasefiledate.getText()));
             } catch (ParseException ex) {
-         
+                JOptionPane.showMessageDialog(this, "Enter Date in mm/dd/yyyy format");
+                return;
             }
             if(txtcasetype.getText()!= null && !txtcasetype.getText().trim().equals("")){
                 c.setCasetype(txtcasetype.getText());
             }
             else {
                 JOptionPane.showMessageDialog(this, "Enter Case type");
+                return;
             }
             if(txtcasedescription.getText()!= null && !txtcasedescription.getText().trim().equals("")){
                 c.setCaseDesc(txtcasedescription.getText());
             }
             else {
                 JOptionPane.showMessageDialog(this, "Enter Case Description");
+                return;
             }
             
             c.setPlaintiff((LegalEntity) clientList.getSelectedItem());
@@ -296,7 +299,7 @@ public class FileCaseDialog extends javax.swing.JDialog {
         
         try{   
             if(field.getText()!=null && !field.getText().equals(""))
-                Double.parseDouble(field.getText());
+                Integer.parseInt(field.getText());
         } 
         catch(NumberFormatException e){
             JOptionPane.showMessageDialog(null, "Enter valid value");
