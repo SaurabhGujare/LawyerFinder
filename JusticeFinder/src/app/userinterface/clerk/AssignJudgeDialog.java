@@ -14,6 +14,7 @@ import app.entities.user.Judge;
 import app.entities.workqueues.CaseFileRequest;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -101,8 +102,6 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
         lblcasedescription.setText("Case Description:");
 
         txtcasename.setEnabled(false);
-
-        txtcasenumber.setEnabled(false);
 
         txtcasefiledate.setEnabled(false);
         txtcasefiledate.addActionListener(new java.awt.event.ActionListener() {
@@ -271,6 +270,12 @@ public class AssignJudgeDialog extends javax.swing.JDialog {
 
     private void btnassignmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnassignmentActionPerformed
         // TODO add your handling code here:
+        
+        if(txtcasenumber.getText().equals("")){
+            JOptionPane.showMessageDialog(this, "Enter Case Number");
+            return;
+        }
+        req.getCasereq().setCaseNumber(txtcasenumber.getText());
         req.getCasereq().setJudge((Judge) comboboxjudge.getSelectedItem());
         this.dispose();
     }//GEN-LAST:event_btnassignmentActionPerformed
