@@ -28,6 +28,8 @@ public class Clerkpanel extends CustomPanel {
         layout = (CardLayout) containerpanel.getLayout();
         clerk = (Clerk) Session.getUserAccount().getUser();
         containerpanel.add(new AllCasesPanel(), AllCasesPanel.class.getName());
+        containerpanel.add(new ViewCasesPanel(), ViewCasesPanel.class.getName());
+        
         //containerpanel.add(new AllCasesPanel((Case)),AllCasesPanel.class.getName());
         usernamelabel.setText(Session.getUserAccount().getUsername());
     }
@@ -48,6 +50,9 @@ public class Clerkpanel extends CustomPanel {
         bodypanel = new javax.swing.JPanel();
         jSplitPane1 = new javax.swing.JSplitPane();
         menupanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        viewReqBtn = new javax.swing.JButton();
+        viewCases = new javax.swing.JButton();
         containerpanel = new javax.swing.JPanel();
 
         welcomepanel.setBackground(new java.awt.Color(204, 204, 204));
@@ -90,15 +95,35 @@ public class Clerkpanel extends CustomPanel {
 
         jSplitPane1.setDividerLocation(200);
 
+        jPanel1.setLayout(new java.awt.GridLayout(0, 1, 5, 0));
+
+        viewReqBtn.setText("All Requests");
+        viewReqBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewReqBtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewReqBtn);
+
+        viewCases.setText("View Cases");
+        viewCases.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewCasesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(viewCases);
+
         javax.swing.GroupLayout menupanelLayout = new javax.swing.GroupLayout(menupanel);
         menupanel.setLayout(menupanelLayout);
         menupanelLayout.setHorizontalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 199, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         menupanelLayout.setVerticalGroup(
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 617, Short.MAX_VALUE)
+            .addGroup(menupanelLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(570, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(menupanel);
@@ -144,14 +169,27 @@ public class Clerkpanel extends CustomPanel {
         ((BasePanel)this.getParent()).unloadPage(this);
     }//GEN-LAST:event_logoutButtonActionPerformed
 
+    private void viewReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewReqBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerpanel, AllCasesPanel.class.getName());
+    }//GEN-LAST:event_viewReqBtnActionPerformed
+
+    private void viewCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCasesActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerpanel, ViewCasesPanel.class.getName());
+    }//GEN-LAST:event_viewCasesActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel bodypanel;
     private javax.swing.JPanel containerpanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton logoutButton;
     private javax.swing.JPanel menupanel;
     private javax.swing.JLabel usernamelabel;
+    private javax.swing.JButton viewCases;
+    private javax.swing.JButton viewReqBtn;
     private javax.swing.JLabel welcomelabel;
     private javax.swing.JPanel welcomepanel;
     // End of variables declaration//GEN-END:variables

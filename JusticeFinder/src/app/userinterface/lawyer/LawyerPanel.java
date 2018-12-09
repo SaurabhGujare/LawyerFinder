@@ -40,7 +40,7 @@ public class LawyerPanel extends CustomPanel {
         containerPanel.add(new NewRequestPanel(),NewRequestPanel.class.getName());
         containerPanel.add(new ViewClientsPanel(),ViewClientsPanel.class.getName());
         containerPanel.add(new ViewRatingPanel(),ViewRatingPanel.class.getName());
-        //containerPanel.add(new FileCasePanel(),FileCasePanel.class.getName());
+        containerPanel.add(new ViewFiledCases(),ViewFiledCases.class.getName());
         containerPanel.add(new ViewStatsPanel(),ViewStatsPanel.class.getName());
         
         layout = (CardLayout)containerPanel.getLayout();
@@ -65,6 +65,7 @@ public class LawyerPanel extends CustomPanel {
         viewRequestBtn = new javax.swing.JButton();
         viewClientsBtn = new javax.swing.JButton();
         fileCaseBtn = new javax.swing.JButton();
+        caseUpdatesBtn = new javax.swing.JButton();
         viewFeedbackBtn = new javax.swing.JButton();
         viewStatsBtn = new javax.swing.JButton();
 
@@ -120,7 +121,14 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(fileCaseBtn);
 
-        viewFeedbackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Comments_20px.png"))); // NOI18N
+        caseUpdatesBtn.setText("View Case Updates");
+        caseUpdatesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                caseUpdatesBtnActionPerformed(evt);
+            }
+        });
+        jPanel2.add(caseUpdatesBtn);
+
         viewFeedbackBtn.setText("View Feedback");
         viewFeedbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,8 +156,8 @@ public class LawyerPanel extends CustomPanel {
             menuPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menuPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(380, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(261, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(menuPanel);
@@ -213,8 +221,14 @@ public class LawyerPanel extends CustomPanel {
         layout.show(containerPanel, ViewStatsPanel.class.getName());
     }//GEN-LAST:event_viewStatsBtnActionPerformed
 
+    private void caseUpdatesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_caseUpdatesBtnActionPerformed
+        // TODO add your handling code here:
+        layout.show(containerPanel, ViewFiledCases.class.getName());
+    }//GEN-LAST:event_caseUpdatesBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton caseUpdatesBtn;
     private javax.swing.JButton checkProfileBtn;
     private javax.swing.JPanel containerPanel;
     private javax.swing.JButton fileCaseBtn;
