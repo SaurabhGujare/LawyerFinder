@@ -19,12 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class ViewSentRequest extends javax.swing.JPanel {
+public class ViewFiledCases extends javax.swing.JPanel {
 
     /**
      * Creates new form ViewSentRequest
      */
-    public ViewSentRequest() {
+    public ViewFiledCases() {
         initComponents();
         populateTable();
     }

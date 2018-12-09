@@ -16,8 +16,9 @@ import java.util.Date;
 public class GrievanceRequest extends WorkItem {
 
 
-    public GrievanceRequest(String message, UserAccount sender, UserAccount receiver) {
+    public GrievanceRequest(String message, UserAccount sender, UserAccount receiver,int id) {
         super(message, sender, receiver);
+        this.id = id;
     }
 
     @Override

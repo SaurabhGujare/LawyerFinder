@@ -5,7 +5,9 @@
  */
 package app.userinterface;
 
+import app.utils.ConfigUtil;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 
@@ -34,7 +36,8 @@ public class BasePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setOpaque(false);
+        setBackground(Color.decode(ConfigUtil.getProp("basecolor"))
+        );
         setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
 
