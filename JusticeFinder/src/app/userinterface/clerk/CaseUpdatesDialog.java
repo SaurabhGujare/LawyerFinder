@@ -8,6 +8,13 @@ package app.userinterface.clerk;
 import app.entities.user.CaseUpdate;
 import app.entities.workqueues.CaseFileRequest;
 import app.userinterface.MainFrame;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -124,6 +131,17 @@ public class CaseUpdatesDialog extends javax.swing.JDialog {
             return;
         }
         req.getCaseUpdates().add(new CaseUpdate(updatetxt.getText()));
+        String body = "";
+        try {
+            body = EmailTemplateFormatter.getMessage(Templates.CASE_UPDATES.getPageName(), updatetxt.getText().replace("\n", "</br>"));
+        } catch (IOException ex) {
+            Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        String emailIds = req.getCasereq().getPlaintiff().getEmail() + ", " + req.getCasereq().getLawyer().getEmail();
+        String sub = "Updates for Case: " + req.getCasereq().getCaseName() + " Case No.:" + req.getCasereq().getCaseNumber();
+        EmailUtil.sendMail(emailIds, sub, body);
+
         this.dispose();
     }//GEN-LAST:event_saveBtnActionPerformed
 
