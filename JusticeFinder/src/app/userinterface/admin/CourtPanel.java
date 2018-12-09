@@ -98,7 +98,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
         jPanel4 = new javax.swing.JPanel();
         savebtn = new javax.swing.JButton();
 
-        setPreferredSize(new java.awt.Dimension(1045, 955));
+        setPreferredSize(new java.awt.Dimension(787, 698));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Courts");
@@ -136,8 +136,10 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 return canEdit [columnIndex];
             }
         });
+        detailstbl.setPreferredSize(new java.awt.Dimension(300, 60));
         jScrollPane1.setViewportView(detailstbl);
 
+        updatebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
         updatebtn.setText("View/ Update");
         updatebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +147,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
             }
         });
 
+        deletebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
         deletebtn.setText("Delete");
         deletebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +155,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
             }
         });
 
+        addbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addbtn.setText("Add New");
         addbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,9 +191,15 @@ public class CourtPanel extends CustomPanel implements HasTable {
 
         jLabel3.setText("EmailID:");
 
-        jLabel4.setText("Password");
+        jLabel4.setText("Password:");
 
-        jLabel5.setText("UserName");
+        jLabel5.setText("UserName:");
+
+        nametxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nametxtActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -238,6 +248,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        savebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
         savebtn.setText("Save");
         savebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -315,7 +326,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
         if(court==null){
             court = new Court();
         }
-        court.setId(courtDir.size());//  getAllEntries().size());
+        court.setId(courtDir.size());
         court.setCourtName(nametxt.getText());
         court.setCourtemailID(emailtxt.getText());
         court.getAdmin().setParent(court);
@@ -389,6 +400,10 @@ public class CourtPanel extends CustomPanel implements HasTable {
             JOptionPane.showMessageDialog(null, "Please select a Row!!");
         }
     }//GEN-LAST:event_deletebtnActionPerformed
+
+    private void nametxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nametxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nametxtActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

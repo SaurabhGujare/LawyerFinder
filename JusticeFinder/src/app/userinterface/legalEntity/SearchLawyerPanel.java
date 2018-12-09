@@ -162,6 +162,16 @@ public class SearchLawyerPanel extends CustomPanel {
         for(Lawyer l : list){
             boolean add = true;
             
+            int count = 0;
+            for(StateBarAssociation assoc :l.getAllowedStateBars().getAllEntries()){
+                if(assoc.isActive()){
+                    count++;
+                }
+            }
+            
+            if(count<=0){
+                add = add && false;
+            }
             //fees filter
             if(max!=null && min!=null ){
                 if(l.getFees() ==null){
@@ -197,12 +207,7 @@ public class SearchLawyerPanel extends CustomPanel {
                 }
             }
             
-            if(l.getRating()>=selectedRating){
-                add = add && true;
-            }
-            else{
-                add = add && false;
-            }
+            add = add && (l.getRating()>=selectedRating);
             
             
             if(add){
@@ -258,6 +263,7 @@ public class SearchLawyerPanel extends CustomPanel {
 
         jLabel5.setText("State bar association");
 
+        searchBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Search_20px.png"))); // NOI18N
         searchBtn.setText("Search");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -265,6 +271,7 @@ public class SearchLawyerPanel extends CustomPanel {
             }
         });
 
+        clearBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Clear_Search_20px.png"))); // NOI18N
         clearBtn.setText("Clear");
         clearBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -325,7 +332,7 @@ public class SearchLawyerPanel extends CustomPanel {
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(clearBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))

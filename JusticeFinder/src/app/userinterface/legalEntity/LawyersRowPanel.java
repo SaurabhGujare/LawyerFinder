@@ -130,6 +130,7 @@ public class LawyersRowPanel extends CustomPanel {
         jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Star_Filled_20px.png"))); // NOI18N
         jButton1.setText("Rate Lawyer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

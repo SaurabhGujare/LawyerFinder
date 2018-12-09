@@ -99,7 +99,8 @@ public class LawyerProfilePanel extends CustomPanel {
         if (lawyer != null) {
             DefaultListModel model = new DefaultListModel();
             for (StateBarAssociation s : lawyer.getAllowedStateBars().getAllEntries()) {
-                model.addElement(s);
+                if(s.isActive())
+                    model.addElement(s);
             }
             
             sbaList.setModel(model);
@@ -107,7 +108,8 @@ public class LawyerProfilePanel extends CustomPanel {
             model = new DefaultListModel();
             sbaNeedApprovalList = lawyer.getRequestedStateBars();
             for (StateBarAssociation s : sbaNeedApprovalList.getAllEntries()) {
-                model.addElement(s);
+                if(s.isActive())
+                    model.addElement(s);
             }
             sbaReqList.setModel(model);
             
@@ -425,6 +427,7 @@ public class LawyerProfilePanel extends CustomPanel {
 
         jScrollPane1.setViewportView(sbaList);
 
+        addSBA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addSBA.setText("Add");
         addSBA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -481,6 +484,7 @@ public class LawyerProfilePanel extends CustomPanel {
 
         jScrollPane3.setViewportView(practiceList);
 
+        addPracticeBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_New_20px.png"))); // NOI18N
         addPracticeBtn.setText("Add Area Of Practice");
         addPracticeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -514,6 +518,7 @@ public class LawyerProfilePanel extends CustomPanel {
                 .addContainerGap())
         );
 
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Save_20px.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -578,12 +583,15 @@ public class LawyerProfilePanel extends CustomPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 946, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -616,9 +624,15 @@ public class LawyerProfilePanel extends CustomPanel {
         if(sbaAvailableList.getSelectedItem()==null){
             return;
         }
-        if(lawyer!=null && lawyer.getAllowedStateBars().contains((StateBarAssociation) sbaAvailableList.getSelectedItem())){
-            JOptionPane.showMessageDialog(this, "State Bar Already approved");
-            return;
+        StateBarAssociation assoc = (StateBarAssociation) sbaAvailableList.getSelectedItem();
+        List<StateBarAssociation> list = lawyer.getAllowedStateBars().getAllEntries();
+        for(StateBarAssociation a:list){
+            if(a.isActive()){
+                if(assoc.getStateBarAssociationName().equals(a.getStateBarAssociationName())){
+                    JOptionPane.showMessageDialog(this, "State Bar Already approved");
+                    return;
+                }
+            }
         }
         
         try {

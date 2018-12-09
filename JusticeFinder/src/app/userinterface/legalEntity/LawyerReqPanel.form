@@ -146,6 +146,9 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="sendReqBtn">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/app/images/icons8_Send_20px.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>
           <Events>
