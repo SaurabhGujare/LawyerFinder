@@ -96,6 +96,7 @@ public class FileCaseDialog extends javax.swing.JDialog {
 
         jLabel6.setText("Case Description:");
 
+        txtcasenumber.setEnabled(false);
         txtcasenumber.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtcasenumber(evt);
@@ -254,13 +255,13 @@ public class FileCaseDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Enter Case Name");
                 return;
             }
-            if(txtcasenumber.getText()!= null && !txtcasenumber.getText().trim().equals("")){
-                c.setCaseNumber(txtcasenumber.getText());
-            }
-            else {
-                JOptionPane.showMessageDialog(this, "Enter Case Number");
-                return;
-            }
+//            if(txtcasenumber.getText()!= null && !txtcasenumber.getText().trim().equals("")){
+//                c.setCaseNumber(txtcasenumber.getText());
+//            }
+//            else {
+//                JOptionPane.showMessageDialog(this, "Enter Case Number");
+//                return;
+//            }
             try {
                 c.setCasefileDate(sdf.parse(txtcasefiledate.getText()));
             } catch (ParseException ex) {
@@ -281,6 +282,8 @@ public class FileCaseDialog extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this, "Enter Case Description");
                 return;
             }
+            
+            c.setCourt((Court)ComboBoxcourt.getSelectedItem());
             
             c.setPlaintiff((LegalEntity) clientList.getSelectedItem());
             ((LegalEntity) clientList.getSelectedItem()).getCaseQueue().addWorkItem(req);
