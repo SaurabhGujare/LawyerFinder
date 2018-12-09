@@ -215,7 +215,8 @@ public class AddClerkPopup extends javax.swing.JDialog {
                 Network.getInstance().getUSER_ACCOUNTS().addNew(account);
             }
             catch(Exception e){
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Username already present");
+                return;
             }
             try {
                 if(clerkDir.contains(cl)){
