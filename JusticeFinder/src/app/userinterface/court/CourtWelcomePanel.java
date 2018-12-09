@@ -19,6 +19,7 @@ import app.entities.workqueues.StateBarAssoWorkQueue;
 import app.entities.workqueues.WorkItem;
 import app.userinterface.BasePanel;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 import app.userinterface.sba.ViewSBARequestsPanel;
 import java.awt.CardLayout;
@@ -36,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author arele
  */
-public class CourtWelcomePanel extends javax.swing.JPanel {
+public class CourtWelcomePanel extends CustomPanel {
 
     /**
      * Creates new form CourtPanelNew
@@ -47,6 +48,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
     
     public CourtWelcomePanel() {
         initComponents();
+        this.makeTransparent(this);
         courtadmin = (CourtAdmin) Session.getUserAccount().getUser();
         c = (Court) courtadmin.getParent();
         populateTable();

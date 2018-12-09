@@ -9,6 +9,7 @@ import app.data.Session;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.utils.CommonUtils;
 import java.awt.Color;
@@ -25,7 +26,7 @@ import javax.swing.JLabel;
  *
  * @author PC
  */
-public class LawyersRowPanel extends javax.swing.JPanel {
+public class LawyersRowPanel extends CustomPanel {
 
     private List<JLabel> starList;
     Lawyer lawyer;
@@ -34,6 +35,7 @@ public class LawyersRowPanel extends javax.swing.JPanel {
      */
     public LawyersRowPanel(Lawyer lawyer) {
         initComponents();
+        this.makeTransparent(this);
         this.setBackground(Color.WHITE);
         starList= new ArrayList<>();
         for(int count =1;count <= 5;count++){

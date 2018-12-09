@@ -10,6 +10,7 @@ import app.data.org.StateBarAssociation;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.utils.email.EmailTemplateFormatter;
 import app.utils.email.EmailUtil;
@@ -29,7 +30,7 @@ import javax.swing.JOptionPane;
  *
  * @author Akshay Relekar
  */
-public class ViewSBARequestsPanel extends javax.swing.JPanel {
+public class ViewSBARequestsPanel extends CustomPanel {
 
     LawyerApprovalRequest request;
     StateBarAssociation association;
@@ -41,6 +42,8 @@ public class ViewSBARequestsPanel extends javax.swing.JPanel {
      */
     public ViewSBARequestsPanel(StateBarAssociation association,JDialog dialog) {
         initComponents();
+                this.makeTransparent(this);
+
         //this.request = request;
         this.association= association;
         //populateForm();

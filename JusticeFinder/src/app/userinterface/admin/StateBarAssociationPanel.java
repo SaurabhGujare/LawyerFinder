@@ -31,7 +31,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         initComponents();
         this.stateBarDir = stateBarDir;
         this.userAccDir = userAccDir;
-        
+        this.makeTransparent(this);
         ComponentAdapter adapter = new ComponentAdapter() {
 
             @Override

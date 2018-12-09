@@ -9,6 +9,7 @@ import app.data.Network;
 import app.data.org.Organization;
 import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
+import app.userinterface.common.CustomPanel;
 import app.utils.CommonUtils;
 import java.awt.Component;
 import java.awt.Container;
@@ -30,7 +31,7 @@ import javax.swing.JTextField;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class ViewLEProfilePanel extends javax.swing.JPanel {
+public class ViewLEProfilePanel extends CustomPanel {
 
     /**
      * Creates new form ViewLEProfilePanel
@@ -44,6 +45,7 @@ public class ViewLEProfilePanel extends javax.swing.JPanel {
     private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
     public ViewLEProfilePanel(LegalEntity legalEntity,boolean readOnly) {
         initComponents();
+        this.makeTransparent(this);
         this.readOnly = readOnly;
         this.legalEntity = legalEntity;
         populateText(legalEntity);

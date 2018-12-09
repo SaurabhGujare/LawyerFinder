@@ -10,6 +10,7 @@ import app.data.org.PublicDomain;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import app.utils.ConfigUtil;
@@ -22,7 +23,7 @@ import javax.swing.JPanel;
  *
  * @author Ninad Subhedar (NUID : 001472377)
  */
-public class NewLegalEntity extends javax.swing.JPanel {
+public class NewLegalEntity extends CustomPanel {
 
     LegalEntity legalEntity = null;
     CardLayout layout;
@@ -33,7 +34,8 @@ public class NewLegalEntity extends javax.swing.JPanel {
      */
     public NewLegalEntity() {
         initComponents();
-        
+                this.makeTransparent(this);
+
         viewLEProfilePanel = new ViewLEProfilePanel(legalEntity, false);
         container.add(viewLEProfilePanel,LawyerProfilePanel.class.getName());
         

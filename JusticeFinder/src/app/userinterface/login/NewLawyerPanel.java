@@ -41,6 +41,8 @@ public class NewLawyerPanel extends CustomPanel {
      */
     public NewLawyerPanel() {
         initComponents();
+        this.makeTransparent(this);
+
         lawyerProfilePanel = new LawyerProfilePanel(lawyer, false);
         container.add(lawyerProfilePanel,LawyerProfilePanel.class.getName());
         

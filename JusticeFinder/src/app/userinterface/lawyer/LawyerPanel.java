@@ -11,6 +11,7 @@ import app.entities.user.Lawyer;
 import app.entities.user.UserAccount;
 import app.userinterface.BasePanel;
 import app.userinterface.MainFrame;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.common.HeaderPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -21,7 +22,7 @@ import java.awt.Toolkit;
  *
  * @author Saurabh Gujare (NUID : 001424874)
  */
-public class LawyerPanel extends javax.swing.JPanel {
+public class LawyerPanel extends CustomPanel {
     
     private UserAccount userAccount;
     CardLayout layout;
@@ -32,6 +33,7 @@ public class LawyerPanel extends javax.swing.JPanel {
      */
     public LawyerPanel() {
         initComponents();
+        this.makeTransparent(this);
         userAccount = Session.getUserAccount();
         
         containerPanel.add(new LawyerProfilePanel((Lawyer) userAccount.getUser(),false),LawyerProfilePanel.class.getName());

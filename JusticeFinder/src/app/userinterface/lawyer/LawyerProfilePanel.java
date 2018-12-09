@@ -13,6 +13,7 @@ import app.data.org.StateBarAssociation;
 import app.entities.user.Address;
 import app.entities.user.Lawyer;
 import app.entities.workqueues.LawyerApprovalRequest;
+import app.userinterface.common.CustomPanel;
 import app.userinterface.sba.ViewSBARequestsPanel;
 import app.utils.email.EmailTemplateFormatter;
 import app.utils.email.EmailUtil;
@@ -38,7 +39,7 @@ import javax.swing.JTextField;
  *
  * @author PC
  */
-public class LawyerProfilePanel extends javax.swing.JPanel {
+public class LawyerProfilePanel extends CustomPanel {
 
     private Directory<Integer, StateBarAssociation> sbaNeedApprovalList;
     private List<String> areaOfPractice;
@@ -53,6 +54,7 @@ public class LawyerProfilePanel extends javax.swing.JPanel {
      */
     public LawyerProfilePanel(Lawyer lawyer,boolean readOnly) {
         initComponents();
+        this.makeTransparent(this);
         this.readOnly = readOnly;
         this.lawyer = lawyer;
         populateForm(lawyer);
