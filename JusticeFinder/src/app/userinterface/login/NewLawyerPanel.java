@@ -170,7 +170,7 @@ public class NewLawyerPanel extends CustomPanel {
             
             for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
                
-                LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
                 
                 String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
                 String SBA_NAME = sba.getStateBarAssociationName();

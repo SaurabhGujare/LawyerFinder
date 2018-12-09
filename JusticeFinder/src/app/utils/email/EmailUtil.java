@@ -30,14 +30,14 @@ public class EmailUtil {
             return;
         }
         
-        final String username = "ninad11302018@gmail.com";
-        final String password = "Crazybanana@10";
+        final String username = ConfigUtil.getProp("emailUser");
+        final String password = ConfigUtil.getProp("emailPass");
 
         Properties props = new Properties();
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-        props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "587");
+        props.put("mail.smtp.host", ConfigUtil.getProp("emailSMTP"));
+        props.put("mail.smtp.port", ConfigUtil.getProp("emailPort"));
 
         Session session;
         session = Session.getInstance(props, new javax.mail.Authenticator() {
