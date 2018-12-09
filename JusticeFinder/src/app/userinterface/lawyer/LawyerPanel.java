@@ -64,7 +64,6 @@ public class LawyerPanel extends CustomPanel {
         checkProfileBtn = new javax.swing.JButton();
         viewRequestBtn = new javax.swing.JButton();
         viewClientsBtn = new javax.swing.JButton();
-        fileCaseBtn = new javax.swing.JButton();
         caseUpdatesBtn = new javax.swing.JButton();
         viewFeedbackBtn = new javax.swing.JButton();
         viewStatsBtn = new javax.swing.JButton();
@@ -112,16 +111,8 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(viewClientsBtn);
 
-        fileCaseBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_File_20px.png"))); // NOI18N
-        fileCaseBtn.setText("File Case");
-        fileCaseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fileCaseBtnActionPerformed(evt);
-            }
-        });
-        jPanel2.add(fileCaseBtn);
-
-        caseUpdatesBtn.setText("View Case Updates");
+        caseUpdatesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        caseUpdatesBtn.setText("View/File Case");
         caseUpdatesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 caseUpdatesBtnActionPerformed(evt);
@@ -129,6 +120,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(caseUpdatesBtn);
 
+        viewFeedbackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Comments_20px.png"))); // NOI18N
         viewFeedbackBtn.setText("View Feedback");
         viewFeedbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,21 +193,6 @@ public class LawyerPanel extends CustomPanel {
         layout.show(containerPanel, ViewRatingPanel.class.getName());
     }//GEN-LAST:event_viewFeedbackBtnActionPerformed
 
-    private void fileCaseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fileCaseBtnActionPerformed
-        // TODO add your handling code here:        
-        FileCaseDialog dialog = new FileCaseDialog(MainFrame.self, true, court, (Lawyer) Session.getUserAccount().getUser());
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
-        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
-                middle.y - (dialog.getHeight() / 2) - 150);
-
-        dialog.setLocation(newLocation);
-        dialog.pack();
-
-        dialog.setVisible(true);
-    }//GEN-LAST:event_fileCaseBtnActionPerformed
-
     private void viewStatsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewStatsBtnActionPerformed
         // TODO add your handling code here:
         layout.show(containerPanel, ViewStatsPanel.class.getName());
@@ -231,7 +208,6 @@ public class LawyerPanel extends CustomPanel {
     private javax.swing.JButton caseUpdatesBtn;
     private javax.swing.JButton checkProfileBtn;
     private javax.swing.JPanel containerPanel;
-    private javax.swing.JButton fileCaseBtn;
     private javax.swing.JPanel headerPanel;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSplitPane jSplitPane1;

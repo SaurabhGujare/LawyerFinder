@@ -162,6 +162,16 @@ public class SearchLawyerPanel extends CustomPanel {
         for(Lawyer l : list){
             boolean add = true;
             
+            int count = 0;
+            for(StateBarAssociation assoc :l.getAllowedStateBars().getAllEntries()){
+                if(assoc.isActive()){
+                    count++;
+                }
+            }
+            
+            if(count<=0){
+                add = add && false;
+            }
             //fees filter
             if(max!=null && min!=null ){
                 if(l.getFees() ==null){
@@ -197,12 +207,7 @@ public class SearchLawyerPanel extends CustomPanel {
                 }
             }
             
-            if(l.getRating()>=selectedRating){
-                add = add && true;
-            }
-            else{
-                add = add && false;
-            }
+            add = add && (l.getRating()>=selectedRating);
             
             
             if(add){

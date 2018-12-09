@@ -96,6 +96,11 @@ public class LoginPanel extends CustomPanel {
         userNameTxt.setToolTipText("");
         userNameTxt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true));
         userNameTxt.setPreferredSize(new java.awt.Dimension(2, 50));
+        userNameTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                userNameTxtFocusGained(evt);
+            }
+        });
         jPanel1.add(userNameTxt);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -105,6 +110,11 @@ public class LoginPanel extends CustomPanel {
         passwordTxt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         passwordTxt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         passwordTxt.setPreferredSize(new java.awt.Dimension(2, 50));
+        passwordTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                passwordTxtFocusGained(evt);
+            }
+        });
         jPanel1.add(passwordTxt);
 
         jPanel2.setOpaque(false);
@@ -224,6 +234,16 @@ public class LoginPanel extends CustomPanel {
             JOptionPane.showMessageDialog(this, "Login Failed");
         }
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void passwordTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_passwordTxtFocusGained
+        // TODO add your handling code here:
+        passwordTxt.selectAll();
+    }//GEN-LAST:event_passwordTxtFocusGained
+
+    private void userNameTxtFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_userNameTxtFocusGained
+        // TODO add your handling code here:
+        userNameTxt.selectAll();
+    }//GEN-LAST:event_userNameTxtFocusGained
 
     @Override
     public void setVisible(boolean aFlag) {

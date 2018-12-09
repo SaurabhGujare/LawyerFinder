@@ -171,7 +171,7 @@ public class JudgePanel extends CustomPanel {
         }
         else
         {
-           JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+           JOptionPane.showMessageDialog(null, "Please select a record from the table.");
         }
     }//GEN-LAST:event_openCaseActionPerformed
 

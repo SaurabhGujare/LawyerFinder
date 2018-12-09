@@ -38,7 +38,6 @@ public class AdminPanel extends CustomPanel {
         containerPanel.add(new StateBarAssociationPanel(network.getSTATE_BAR_ASSOCIATIONS(),network.getUSER_ACCOUNTS()),StateBarAssociationPanel.class.getName());
         containerPanel.add(new CourtPanel(network.getCOURT(),network.getUSER_ACCOUNTS()),CourtPanel.class.getName());
         containerPanel.add(new PublicDomainPanel(network.getPUBLIC_DOMAIN()),PublicDomainPanel.class.getName());
-        containerPanel.add(new ChartPanel(),ChartPanel.class.getName());
      
         layout = (CardLayout) containerPanel.getLayout();
         this.makeTransparent(this);

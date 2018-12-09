@@ -23,12 +23,22 @@ public class StateBarAssociation extends Organization{
     private Address workaddress;
     private ContactDetails workphone;
     private String email;
+    private boolean active;
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
     
     public StateBarAssociation() {
         super(new StateBarAssoWorkQueue(), new Directory(),null);
         super.admin = new StateBarAssoAdmin(this);
         count++;
         id = count;
+        this.active =true;
     }
 
     public String getStateBarAssociationName() {

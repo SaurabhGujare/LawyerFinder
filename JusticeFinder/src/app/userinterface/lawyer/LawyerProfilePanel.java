@@ -99,7 +99,8 @@ public class LawyerProfilePanel extends CustomPanel {
         if (lawyer != null) {
             DefaultListModel model = new DefaultListModel();
             for (StateBarAssociation s : lawyer.getAllowedStateBars().getAllEntries()) {
-                model.addElement(s);
+                if(s.isActive())
+                    model.addElement(s);
             }
             
             sbaList.setModel(model);
@@ -107,7 +108,8 @@ public class LawyerProfilePanel extends CustomPanel {
             model = new DefaultListModel();
             sbaNeedApprovalList = lawyer.getRequestedStateBars();
             for (StateBarAssociation s : sbaNeedApprovalList.getAllEntries()) {
-                model.addElement(s);
+                if(s.isActive())
+                    model.addElement(s);
             }
             sbaReqList.setModel(model);
             
@@ -622,9 +624,15 @@ public class LawyerProfilePanel extends CustomPanel {
         if(sbaAvailableList.getSelectedItem()==null){
             return;
         }
-        if(lawyer!=null && lawyer.getAllowedStateBars().contains((StateBarAssociation) sbaAvailableList.getSelectedItem())){
-            JOptionPane.showMessageDialog(this, "State Bar Already approved");
-            return;
+        StateBarAssociation assoc = (StateBarAssociation) sbaAvailableList.getSelectedItem();
+        List<StateBarAssociation> list = lawyer.getAllowedStateBars().getAllEntries();
+        for(StateBarAssociation a:list){
+            if(a.isActive()){
+                if(assoc.getStateBarAssociationName().equals(a.getStateBarAssociationName())){
+                    JOptionPane.showMessageDialog(this, "State Bar Already approved");
+                    return;
+                }
+            }
         }
         
         try {

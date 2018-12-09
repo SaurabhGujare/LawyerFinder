@@ -176,6 +176,8 @@ public class NewLegalEntity extends CustomPanel {
         
         if(newUserAccount.isVisible()){
             UserAccount account = newUserAccount.getUser(legalEntity);
+            if(account==null)
+                return;
             try {
                 Network.getInstance().getUSER_ACCOUNTS().addNew(account);
             } catch (Exception ex) {
