@@ -7,18 +7,14 @@ package app.userinterface.login;
 
 import app.data.Network;
 import app.data.org.PublicDomain;
-import app.data.org.StateBarAssociation;
-import app.entities.user.Lawyer;
 import app.entities.user.LegalEntity;
 import app.entities.user.UserAccount;
-import app.entities.workqueues.LawyerApprovalRequest;
 import app.userinterface.BasePanel;
 import app.userinterface.lawyer.LawyerProfilePanel;
 import app.userinterface.legalEntity.ViewLEProfilePanel;
 import app.utils.ConfigUtil;
 import java.awt.CardLayout;
 import java.awt.Color;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -166,7 +162,15 @@ public class NewLegalEntity extends javax.swing.JPanel {
             legalEntity = viewLEProfilePanel.validateandGetLE(true);
             if(legalEntity==null)
                 return;
+            
+            try {
+                ((PublicDomain) legalEntity.getParent()).getDirectory().addNew(legalEntity);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "User already present in the system.");
+                return;
+            }
         }
+        
         if(newUserAccount.isVisible()){
             UserAccount account = newUserAccount.getUser(legalEntity);
             try {
@@ -175,6 +179,7 @@ public class NewLegalEntity extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "User already present");
                 return;
             }
+            
             
             JOptionPane.showMessageDialog(this, "Legal Entity Created");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());

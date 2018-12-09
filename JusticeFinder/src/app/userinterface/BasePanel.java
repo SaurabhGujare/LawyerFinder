@@ -34,7 +34,7 @@ public class BasePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setOpaque(false);
+        setBackground(new java.awt.Color(255, 153, 153));
         setLayout(new java.awt.CardLayout());
     }// </editor-fold>//GEN-END:initComponents
 
