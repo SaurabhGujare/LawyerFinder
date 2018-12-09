@@ -50,6 +50,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         courtadmin = (CourtAdmin) Session.getUserAccount().getUser();
         c = (Court) courtadmin.getParent();
         populateTable();
+        populateClerkTable();
         headerPanel.add(new HeaderPanel(Session.getUserAccount(), this, "Court"));
     }
     

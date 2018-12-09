@@ -315,7 +315,7 @@ public class CourtPanel extends javax.swing.JPanel implements HasTable {
         court.setId(courtDir.size());//  getAllEntries().size());
         court.setCourtName(nametxt.getText());
         court.setCourtemailID(emailtxt.getText());
-        
+        court.getAdmin().setParent(court);
         UserAccount courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
         
         try {
