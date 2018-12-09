@@ -7,6 +7,7 @@ package app.userinterface.lawyer;
 
 import app.data.Network;
 import app.data.Session;
+import app.data.analytics.AnalyticsHelper;
 import app.data.analytics.SorterFactory;
 import app.entities.Rating;
 import app.entities.user.Lawyer;
@@ -35,45 +36,14 @@ public class ViewStatsPanel extends CustomPanel {
         initComponents();
         Lawyer lawyer = (Lawyer) Session.getUserAccount().getUser();
         
-        int[] rateArr = new int[5];
-        for(Rating r:lawyer.getRatings().getAllEntries()){
-            rateArr[r.getValue()-1]++;
-        }
-        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-        dataset.addValue( rateArr[0], "1" , "1" );
-        dataset.addValue( rateArr[1], "2" , "2" );
-        dataset.addValue( rateArr[2], "3" , "3" ); 
-        dataset.addValue( rateArr[3], "4" , "4" ); 
-        dataset.addValue( rateArr[4], "5" , "5" ); 
+        ratePanels.add(AnalyticsHelper.getStarVsClientChart(lawyer));
         
-        ratePanels.add(ChartUtils.getBarChart("Stars Vs Clients", "Stars", "Clients", dataset));
-        
-        int pending=0, done=0;
-        WorkQueue workQueue =  lawyer.getWorkqueue();
-        List<WorkItem> list = workQueue.getWorkList();
-        for(WorkItem req : list){
-            GrievanceRequest r = (GrievanceRequest) req;
-            
-            if(r.getStatus().equals("PENDING")){
-                pending++;
-            }
-            else{
-                done++;
-            }
-        }
-        
-        DefaultPieDataset datasetPie = new DefaultPieDataset();
-        datasetPie.setValue("Open Requests", pending);
-        datasetPie.setValue("Resolved Requests", done);
-
-        piePanel.add(ChartUtils.getPieChart("Pending Vs. Closed Requests",datasetPie));
+        piePanel.add(AnalyticsHelper.getPieChart(lawyer));
         
         ratingPanel.add(new starControl(lawyer.getRating(), 50, true));
         
-        List<Lawyer> lawyerList = Network.getInstance().getLAWYER_DIRECTORY().getAllEntries();
-        Collections.sort(lawyerList, SorterFactory.RATING_SORTER.getSorter());
+        rankLbl.setText(AnalyticsHelper.getRanking(lawyer).toString());
         
-        rankLbl.setText((lawyerList.indexOf(lawyer)+1)+"");
         this.makeTransparent(this);
     }
 
