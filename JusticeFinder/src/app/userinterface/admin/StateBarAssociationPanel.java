@@ -406,7 +406,6 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         int selectedRow = recordsTable.getSelectedRow();
 
         if (selectedRow >= 0) {
-            StateBarAssociation sba;
             nameTxt.setEnabled(true);
             emailTxt.setEnabled(true);
             userNameTxt.setEnabled(true);
