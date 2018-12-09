@@ -65,6 +65,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
         emailtxt = new javax.swing.JTextField();
         usernametxt = new javax.swing.JTextField();
         passwordtxt = new javax.swing.JTextField();
+        retypePasswordtxt = new javax.swing.JTextField();
         createclerkbtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -98,6 +99,12 @@ public class AddClerkPopup extends javax.swing.JDialog {
             }
         });
 
+        retypePasswordtxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                retypePasswordtxtActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -111,10 +118,11 @@ public class AddClerkPopup extends javax.swing.JDialog {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(passwordtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 225, Short.MAX_VALUE)
+                    .addComponent(passwordtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE)
                     .addComponent(nametxt)
                     .addComponent(emailtxt)
-                    .addComponent(usernametxt))
+                    .addComponent(usernametxt)
+                    .addComponent(retypePasswordtxt, javax.swing.GroupLayout.DEFAULT_SIZE, 212, Short.MAX_VALUE))
                 .addGap(29, 29, 29))
         );
         jPanel2Layout.setVerticalGroup(
@@ -136,7 +144,9 @@ public class AddClerkPopup extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(passwordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(retypePasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         createclerkbtn.setText("Create Profile");
@@ -208,7 +218,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
             cl.setName(nametxt.getText());
             cl.setEmail(emailtxt.getText());
         
-            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl);
+            UserAccount account = new UserAccount(usernametxt.getText(), passwordtxt.getText(), cl,retypePasswordtxt.getText());
 
             try{
                 Network.getInstance().getUSER_ACCOUNTS().addNew(account);
@@ -234,6 +244,10 @@ public class AddClerkPopup extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Please enter all the details first");
         }
     }//GEN-LAST:event_createclerkbtnActionPerformed
+
+    private void retypePasswordtxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_retypePasswordtxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_retypePasswordtxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -288,6 +302,7 @@ public class AddClerkPopup extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
+    private javax.swing.JTextField retypePasswordtxt;
     private javax.swing.JTextField usernametxt;
     // End of variables declaration//GEN-END:variables
 }

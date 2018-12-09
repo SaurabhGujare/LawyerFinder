@@ -95,6 +95,8 @@ public class CourtPanel extends CustomPanel implements HasTable {
         emailtxt = new javax.swing.JTextField();
         usernametxt = new javax.swing.JTextField();
         passwordtxt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        retypePasswordtxt = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         savebtn = new javax.swing.JButton();
 
@@ -190,12 +192,14 @@ public class CourtPanel extends CustomPanel implements HasTable {
 
         jLabel5.setText("UserName");
 
+        jLabel6.setText("Retype Password");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addGap(254, 254, 254)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -212,8 +216,12 @@ public class CourtPanel extends CustomPanel implements HasTable {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(emailtxt)
-                            .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
+                            .addComponent(usernametxt, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(retypePasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(459, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -234,7 +242,11 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(passwordtxt, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(retypePasswordtxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         savebtn.setText("Save");
@@ -286,9 +298,9 @@ public class CourtPanel extends CustomPanel implements HasTable {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -317,7 +329,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
         court.setCourtName(nametxt.getText());
         court.setCourtemailID(emailtxt.getText());
         court.getAdmin().setParent(court);
-        UserAccount courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin());
+        UserAccount courtaccount = new UserAccount(usernametxt.getText(), passwordtxt.getText(), court.getAdmin(),retypePasswordtxt.getText());
         
         try {
             userAccountDir.addNew(courtaccount);
@@ -399,6 +411,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -406,6 +419,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nametxt;
     private javax.swing.JTextField passwordtxt;
+    private javax.swing.JTextField retypePasswordtxt;
     private javax.swing.JButton savebtn;
     private javax.swing.JButton updatebtn;
     private javax.swing.JTextField usernametxt;

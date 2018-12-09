@@ -25,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import java.lang.Exception;
 
 /**
  *
@@ -158,16 +159,23 @@ public class NewLawyerPanel extends CustomPanel {
         if(newUserAccount.isVisible()){
             UserAccount account = newUserAccount.getUser(lawyer);
             try {
+                if(account.getPassword().compareTo(account.getRetypedPassword())==0)
                 Network.getInstance().getUSER_ACCOUNTS().addNew(account);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, "User already present");
                 return;
             }
-            
+            LawyerApprovalRequest req =null;
             for(StateBarAssociation sba: lawyer.getRequestedStateBars().getAllEntries()){
-                LawyerApprovalRequest req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                
+                if(account.getPassword().compareTo(account.getRetypedPassword())!=0){
+                    JOptionPane.showMessageDialog(this, "password does not match");
+                    Network.getInstance().getUSER_ACCOUNTS().delete(lawyer.getKey());
+                    break;
+                }
+                 req = (LawyerApprovalRequest) sba.getWorkQueue().createNewWorkItem(account, sba.getAdmin().getAccount(), "Request");
+                
                 String LAWYER_NAME = lawyer.getFirstName()+" "+lawyer.getLastName();
-
                 String SBA_NAME = sba.getStateBarAssociationName();
                 String body = "";
                 try {
@@ -177,9 +185,12 @@ public class NewLawyerPanel extends CustomPanel {
                 }
                 EmailUtil.sendMail(sba.getEmail(), "Lawyer Approval Request", body);
                 
-            }
+            }                
+            if(req!=null){  
             JOptionPane.showMessageDialog(this, "Lawyer Sent for Approval");
             ((BasePanel)this.getParent().getParent()).loadPage(new LoginPanel());
+            }
+                       
         }
         
         layout.next(container);
