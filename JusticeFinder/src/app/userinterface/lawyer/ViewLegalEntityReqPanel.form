@@ -222,6 +222,9 @@
           <SubComponents>
             <Component class="javax.swing.JButton" name="viewClientBtn">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/app/images/icons8_Customer_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="View Client"/>
               </Properties>
               <Events>
@@ -230,6 +233,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="approveBtn">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/app/images/icons8_Checkmark_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Approve"/>
               </Properties>
               <Events>
@@ -238,6 +244,9 @@
             </Component>
             <Component class="javax.swing.JButton" name="rejectBtn">
               <Properties>
+                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                  <Image iconType="3" name="/app/images/icons8_Delete_20px.png"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Reject"/>
               </Properties>
               <Events>

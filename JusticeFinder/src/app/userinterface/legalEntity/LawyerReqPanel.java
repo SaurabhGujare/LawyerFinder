@@ -102,6 +102,7 @@ public class LawyerReqPanel extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        sendReqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Send_20px.png"))); // NOI18N
         sendReqBtn.setText("Send");
         sendReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

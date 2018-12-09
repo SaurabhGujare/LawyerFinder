@@ -140,6 +140,7 @@ public class searchRowPanel extends CustomPanel {
         jPanel4.setOpaque(false);
         jPanel4.setLayout(new java.awt.GridLayout(1, 0));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Judge_20px.png"))); // NOI18N
         jButton1.setText("View Lawyer");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,6 +149,7 @@ public class searchRowPanel extends CustomPanel {
         });
         jPanel4.add(jButton1);
 
+        sendReqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Send_20px.png"))); // NOI18N
         sendReqBtn.setText("Send Request");
         sendReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

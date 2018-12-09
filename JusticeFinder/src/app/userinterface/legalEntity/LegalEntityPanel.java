@@ -74,6 +74,7 @@ public class LegalEntityPanel extends CustomPanel {
         jPanel3.setOpaque(false);
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 5, 5));
 
+        viewProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
         viewProfileBtn.setText("View Profile");
         viewProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +83,7 @@ public class LegalEntityPanel extends CustomPanel {
         });
         jPanel3.add(viewProfileBtn);
 
+        searchLawyers.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Search_20px.png"))); // NOI18N
         searchLawyers.setText("Search Lawyer");
         searchLawyers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +92,7 @@ public class LegalEntityPanel extends CustomPanel {
         });
         jPanel3.add(searchLawyers);
 
+        rateLawyer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Star_Filled_20px.png"))); // NOI18N
         rateLawyer.setText("Rate Lawyer");
         rateLawyer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +101,7 @@ public class LegalEntityPanel extends CustomPanel {
         });
         jPanel3.add(rateLawyer);
 
+        ViewSentCases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Box_20px.png"))); // NOI18N
         ViewSentCases.setText("View Cases");
         ViewSentCases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

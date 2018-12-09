@@ -102,6 +102,9 @@
               <SubComponents>
                 <Component class="javax.swing.JButton" name="viewProfileBtn">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/app/images/icons8_View_20px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="View Profile"/>
                   </Properties>
                   <Events>
@@ -110,6 +113,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="searchLawyers">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/app/images/icons8_Search_20px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Search Lawyer"/>
                   </Properties>
                   <Events>
@@ -118,6 +124,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="rateLawyer">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/app/images/icons8_Star_Filled_20px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="Rate Lawyer"/>
                   </Properties>
                   <Events>
@@ -126,6 +135,9 @@
                 </Component>
                 <Component class="javax.swing.JButton" name="ViewSentCases">
                   <Properties>
+                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                      <Image iconType="3" name="/app/images/icons8_Box_20px.png"/>
+                    </Property>
                     <Property name="text" type="java.lang.String" value="View Cases"/>
                   </Properties>
                   <Events>
