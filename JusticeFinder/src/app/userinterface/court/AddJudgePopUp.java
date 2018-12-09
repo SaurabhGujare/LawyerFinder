@@ -6,6 +6,7 @@
 package app.userinterface.court;
 
 import app.data.Network;
+import app.data.Session;
 import app.data.directories.Directory;
 import app.data.org.Court;
 import app.entities.user.CourtAdmin;
@@ -26,10 +27,12 @@ public class AddJudgePopUp extends javax.swing.JDialog {
      */
     Directory<Integer , Judge> judgeDir;
     private ActionListener saveBtnListner;
+    private Court court;
     
     public AddJudgePopUp(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         
     }
 
@@ -37,6 +40,7 @@ public class AddJudgePopUp extends javax.swing.JDialog {
        super(parent, modal);
         initComponents();
         this.judgeDir=judgeDir;
+        this.court = (Court) ((CourtAdmin)Session.getUserAccount().getUser()).getParent();
     }
 
     /**
@@ -194,7 +198,7 @@ public class AddJudgePopUp extends javax.swing.JDialog {
     private void savebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebtnActionPerformed
         // TODO add your handling code here:
         if(nametxt.getText()!= null && !nametxt.getText().trim().equals("")&& emailtxt.getText()!= null && !emailtxt.getText().trim().equals("") && usernametxt.getText()!= null && !usernametxt.getText().trim().equals("") && passwordtxt.getText()!= null && !passwordtxt.getText().trim().equals("") ){
-            Judge j = new Judge();
+            Judge j = new Judge(court);
 
             j.setName(nametxt.getText());
             j.setEmail(emailtxt.getText());

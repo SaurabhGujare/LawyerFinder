@@ -5,17 +5,62 @@
  */
 package app.userinterface.judge;
 
+import app.data.Session;
+import app.data.org.Court;
+import app.entities.Case;
+import app.entities.user.Clerk;
+import app.entities.user.Judge;
+import app.entities.user.UserAccount;
+import app.entities.workqueues.CaseFileRequest;
+import app.entities.workqueues.WorkItem;
+import app.userinterface.MainFrame;
+import app.userinterface.clerk.AssignJudgeDialog;
+import app.userinterface.common.HeaderPanel;
+import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author arele
  */
 public class JudgePanel extends javax.swing.JPanel {
 
+    private UserAccount userAccount;
     /**
      * Creates new form JudgePanel
      */
     public JudgePanel() {
         initComponents();
+        
+        userAccount = Session.getUserAccount();
+        
+        pouplateMethod();
+        
+        headerPanel.add(new HeaderPanel(userAccount, this, "Judge"));
+    }
+
+    private void pouplateMethod() {
+        DefaultTableModel model = (DefaultTableModel) caseReqTable.getModel();
+        model.setRowCount(0);
+        Judge j = (Judge) userAccount.getUser();
+        List<WorkItem> list = ((Court) j.getParent()).getWorkQueue().getWorkList();
+        for(WorkItem i: list){
+            CaseFileRequest req = (CaseFileRequest) i;
+            Case c = req.getCasereq();
+            
+            if(c.getJudge()!=null && c.getJudge().equals(j)){
+                Object[] row = new Object[4];
+                row[0] = req;
+                row[1] = c.getLawyer();
+                row[2] = c.getCasefileDate();
+                row[3] = req.getStatus();
+                model.addRow(row);
+            }
+        }
     }
 
     /**
@@ -27,56 +72,111 @@ public class JudgePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        caseReqTable = new javax.swing.JTable();
+        openCase = new javax.swing.JButton();
+        headerPanel = new javax.swing.JPanel();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        caseReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "CaseTitle", "From Clerk", "Date"
+                "CaseTitle", "Lawyer", "Date", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(caseReqTable);
 
-        jButton2.setText("Open Case");
+        openCase.setText("Open Case");
+        openCase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openCaseActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(openCase))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 953, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(openCase)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        headerPanel.setBackground(new java.awt.Color(204, 204, 204));
+        headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(headerPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(headerPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void openCaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openCaseActionPerformed
+        // TODO add your handling code here:
+        int selectedrow= caseReqTable.getSelectedRow();
+        if(selectedrow>=0){
+            CaseFileRequest req = (CaseFileRequest) caseReqTable.getValueAt(caseReqTable.getSelectedRow(),0);
+
+            CaseDetailDialog dialog = new CaseDetailDialog(MainFrame.self,true,req);
+        
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
+        Point newLocation = new Point(middle.x - (dialog.getWidth() / 2) - 150,
+                middle.y - (dialog.getHeight() / 2) - 150);
+
+        dialog.setLocation(newLocation);
+        dialog.pack();
+
+        dialog.setVisible(true);
+        pouplateMethod();
+        }
+        else
+        {
+           JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+        }
+    }//GEN-LAST:event_openCaseActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
+    private javax.swing.JTable caseReqTable;
+    private javax.swing.JPanel headerPanel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton openCase;
     // End of variables declaration//GEN-END:variables
 }
