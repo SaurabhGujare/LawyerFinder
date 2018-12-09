@@ -6,6 +6,7 @@
 package app.entities.user;
 
 import app.data.directories.interfaces.DirectoryEntry;
+import app.data.org.Court;
 import app.data.org.Organization;
 import app.entities.roles.Roles;
 import app.entities.workqueues.CaseFileRequestWorkQueue;
@@ -24,11 +25,12 @@ public class Clerk extends User implements DirectoryEntry<Integer> {
     private WorkQueue workqueue;
     private int id = 0;
 
-    public Clerk(Organization Court) {
+    public Clerk(Organization court) {
         super(Roles.CLERK);
         workContact = new ContactDetails();
         this.workqueue = new CaseFileRequestWorkQueue();   
-        this.setParent(Court);
+        this.setParent(court);
+        this.id = ((Court) court).getClerkDirectory().size();
     }
     public String getName() {
         return name;

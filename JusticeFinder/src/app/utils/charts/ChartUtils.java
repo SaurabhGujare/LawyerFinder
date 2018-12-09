@@ -5,10 +5,13 @@
  */
 package app.utils.charts;
 
+import java.awt.Color;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.BarRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.data.general.DefaultPieDataset;
@@ -31,12 +34,17 @@ public class ChartUtils {
 
     public static JPanel getBarChart(String chartTitle, String xaxis, String yaxis, DefaultCategoryDataset dataset) {
 
-        return new ChartPanel(ChartFactory.createBarChart(
+        JFreeChart chart = ChartFactory.createBarChart(
                 chartTitle,
                 xaxis,
                 yaxis,
                 dataset,
-                PlotOrientation.HORIZONTAL,
-                true, true, false));
+                PlotOrientation.VERTICAL,
+                true, true, false);
+
+//        BarRenderer r = (BarRenderer) chart.getCategoryPlot().getRenderer();
+//        r.setSeriesPaint(0, Color.blue);
+
+        return new ChartPanel(chart);
     }
 }

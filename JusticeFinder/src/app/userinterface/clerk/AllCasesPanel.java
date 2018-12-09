@@ -66,7 +66,7 @@ public class AllCasesPanel extends javax.swing.JPanel {
         for(WorkItem i: l){
             CaseFileRequest request = (CaseFileRequest) i;
             Object[] row = new Object[3];
-            row[0] = request.getCasereq().getCaseName();
+            row[0] = request;
             row[1] = request.getCasereq().getLawyer();
             row[2] = request.getRequestDate();
             model.addRow(row);
@@ -164,7 +164,7 @@ public class AllCasesPanel extends javax.swing.JPanel {
         if(selectedrow>=0){
             CaseFileRequest req = (CaseFileRequest) tblcasefile.getValueAt(tblcasefile.getSelectedRow(),0);
 
-            AssignJudgeDialog dialog = new AssignJudgeDialog(MainFrame.self,true, judge, (Clerk)Session.getUserAccount().getUser());
+            AssignJudgeDialog dialog = new AssignJudgeDialog(MainFrame.self,true, judge, (Clerk)Session.getUserAccount().getUser(),req);
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Point middle = new Point(screenSize.width / 2, screenSize.height / 2);

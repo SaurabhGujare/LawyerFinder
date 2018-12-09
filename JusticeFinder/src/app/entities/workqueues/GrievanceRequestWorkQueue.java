@@ -15,7 +15,8 @@ public class GrievanceRequestWorkQueue extends WorkQueue<GrievanceRequest> {
 
     @Override
     protected WorkItem getNewItem(UserAccount sender, UserAccount receiver, String message) {
-        return new GrievanceRequest(message,sender,receiver);
+        int id = this.getWorkList().size()+1;
+        return new GrievanceRequest(message,sender,receiver,id);
     }
     
 }

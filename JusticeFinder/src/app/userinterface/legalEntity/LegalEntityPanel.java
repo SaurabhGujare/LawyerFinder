@@ -31,7 +31,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
         containerPanel.add(new ViewLEProfilePanel((LegalEntity)account.getUser(),false),ViewLEProfilePanel.class.getName());
         containerPanel.add(new SearchLawyerPanel(Network.getInstance().getLAWYER_DIRECTORY()),SearchLawyerPanel.class.getName());
         containerPanel.add(new RateLawyerPanel(),RateLawyerPanel.class.getName());
-        containerPanel.add(new ViewSentRequest(),ViewSentRequest.class.getName());
+        containerPanel.add(new ViewFiledCases(),ViewFiledCases.class.getName());
         layout = (CardLayout) containerPanel.getLayout();
         headerPanel.add(new HeaderPanel(account, this, "Legal Entity"));
     }
@@ -153,7 +153,7 @@ public class LegalEntityPanel extends javax.swing.JPanel {
 
     private void ViewSentCasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewSentCasesActionPerformed
         // TODO add your handling code here:
-        layout.show(containerPanel, ViewSentRequest.class.getName());
+        layout.show(containerPanel, ViewFiledCases.class.getName());
     }//GEN-LAST:event_ViewSentCasesActionPerformed
                                                   
 

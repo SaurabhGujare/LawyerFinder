@@ -65,6 +65,10 @@ public class Organization implements DirectoryEntry<Integer> {
         return admin;
     }
 
+    public void setAdmin(User admin) {
+        this.admin = admin;
+    }
+
     @Override
     public String toString() {
         return id+"";
