@@ -14,6 +14,7 @@ public enum Templates {
     LAWYER_REQUEST("lawyerRequest.txt"),
     LEGALENTITY_APPROVED("legalEnityApproved.txt"),
     LEGALENTITY_REQUEST("legalEnityRequest.txt"),
+    CASE_APPROVED("caseApproved.txt"),
     CASE_UPDATES("caseUpdates.txt");
     
     String pageName;

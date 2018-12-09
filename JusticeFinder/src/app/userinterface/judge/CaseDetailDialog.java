@@ -7,6 +7,13 @@ package app.userinterface.judge;
 
 import app.entities.Case;
 import app.entities.workqueues.CaseFileRequest;
+import app.userinterface.sba.ViewSBARequestsPanel;
+import app.utils.email.EmailTemplateFormatter;
+import app.utils.email.EmailUtil;
+import app.utils.email.templates.Templates;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -273,6 +280,15 @@ public class CaseDetailDialog extends javax.swing.JDialog {
 
     private void approveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_approveBtnActionPerformed
         // TODO add your handling code here:
+        String body = "";
+        try {
+            body = EmailTemplateFormatter.getMessage(Templates.CASE_APPROVED.getPageName(), 
+                    req.getCasereq().getCaseName(),req.getCasereq().getCourt().getCourtName());
+        } catch (IOException ex) {
+            Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        EmailUtil.sendMail(req.getCasereq().getLawyer().getEmail()+","+req.getCasereq().getPlaintiff().getEmail(), "Case Approved", body);
         req.setStatus("APPROVED");
         this.dispose();
     }//GEN-LAST:event_approveBtnActionPerformed
