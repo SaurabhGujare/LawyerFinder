@@ -380,6 +380,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
             if(selectionResult == JOptionPane.YES_OPTION){
                 Court c = (Court)detailstbl.getValueAt(selectedRow, 0);
                 courtDir.delete(c.getId());
+                userAccountDir.delete(c.getAdmin().getAccount().getUsername());
                 populateTableData();
             }
         }else{
