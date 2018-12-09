@@ -138,7 +138,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
+                .addContainerGap(179, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -152,11 +152,11 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(passwordTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                            .addComponent(userNameTxt))))
-                .addContainerGap(172, Short.MAX_VALUE))
+                            .addComponent(userNameTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 311, Short.MAX_VALUE)
+                            .addComponent(passwordTxt))))
+                .addContainerGap(179, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -182,7 +182,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
                     .addComponent(passwordTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(215, Short.MAX_VALUE))
         );
 
         jPanel4.setOpaque(false);
@@ -195,8 +195,18 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         });
 
         viewUpdateBtn.setText("View/Update");
+        viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewUpdateBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setText("Delete");
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -278,9 +288,9 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
             .addGap(0, 787, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGap(0, 16, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addGap(0, 16, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -335,26 +345,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         association = null;
     }                                       
 
-    private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt){
-    
-      int selectedRow= recordsTable.getSelectedRow();
-      
-      if(selectedRow >= 0){
-        StateBarAssociation sba;
-        nameTxt.setEnabled(true);
-        emailTxt.setEnabled(true);
-        userNameTxt.setEnabled(true);
-        passwordTxt.setEnabled(true);
-        
-        sba= (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
-        nameTxt.setText(String.valueOf(sba.getStateBarAssociationName()));
-        userNameTxt.setText(String.valueOf(sba.getAdmin().getAccount().getUsername()));
-        
-        }else{
-            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
-        }
-    
-    }//GEN-LAST:event_saveBtnActionPerformed
+//GEN-LAST:event_saveBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
@@ -371,6 +362,44 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         passwordTxt.setText("");
         association = null;
     }//GEN-LAST:event_addBtnActionPerformed
+
+    private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUpdateBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow= recordsTable.getSelectedRow();
+      
+      if(selectedRow >= 0){
+        StateBarAssociation sba;
+        nameTxt.setEnabled(true);
+        emailTxt.setEnabled(true);
+        userNameTxt.setEnabled(true);
+        passwordTxt.setEnabled(true);
+        
+        sba= (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
+        nameTxt.setText(String.valueOf(sba.getStateBarAssociationName()));
+        emailTxt.setText(String.valueOf(sba.getStateBarAssociationName()));
+        userNameTxt.setText(String.valueOf(sba.getAdmin().getAccount().getUsername()));
+        
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a Record first!!");
+        }
+    }//GEN-LAST:event_viewUpdateBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        int selectedRow = recordsTable.getSelectedRow();
+        if(selectedRow>=0){
+            int selectionButton = JOptionPane.YES_NO_OPTION;
+            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??","Warning",selectionButton);
+            if(selectionResult == JOptionPane.YES_OPTION){
+                StateBarAssociation sba = (StateBarAssociation)recordsTable.getValueAt(selectedRow, 0);
+                stateBarDir.delete(sba.getId());
+                userAccDir.delete(sba.getAdmin().getAccount().getUsername());
+                populateTableData();
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Please select a Row!!");
+        }
+    }//GEN-LAST:event_deleteBtnActionPerformed
 
 
     @Override
