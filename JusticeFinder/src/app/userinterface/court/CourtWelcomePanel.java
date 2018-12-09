@@ -99,13 +99,11 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         judgetable = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        viewjudgebtn = new javax.swing.JButton();
         addjudgebtn = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         clerktable = new javax.swing.JTable();
         addclerkbtn = new javax.swing.JButton();
-        viewclerkbtn = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(878, 623));
 
@@ -132,13 +130,6 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             .addGap(0, 89, Short.MAX_VALUE)
         );
 
-        viewjudgebtn.setText("View Judge Details");
-        viewjudgebtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewjudgebtnActionPerformed(evt);
-            }
-        });
-
         addjudgebtn.setText("Add Judge to the Court");
         addjudgebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,8 +148,6 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(viewjudgebtn)
-                        .addGap(18, 18, 18)
                         .addComponent(addjudgebtn)))
                 .addContainerGap())
         );
@@ -168,9 +157,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewjudgebtn)
-                    .addComponent(addjudgebtn))
+                .addComponent(addjudgebtn)
                 .addGap(134, 134, 134)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -194,8 +181,6 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             }
         });
 
-        viewclerkbtn.setText("View Clerk Details");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -206,8 +191,6 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 833, Short.MAX_VALUE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(viewclerkbtn)
-                        .addGap(18, 18, 18)
                         .addComponent(addclerkbtn)))
                 .addContainerGap())
         );
@@ -217,9 +200,7 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(viewclerkbtn)
-                    .addComponent(addclerkbtn))
+                .addComponent(addclerkbtn)
                 .addGap(223, 223, 223))
         );
 
@@ -299,11 +280,6 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
             dialog.setVisible(true);
     }//GEN-LAST:event_addclerkbtnActionPerformed
 
-    private void viewjudgebtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewjudgebtnActionPerformed
-        // TODO add your handling code here
-        
-    }//GEN-LAST:event_viewjudgebtnActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addclerkbtn;
     private javax.swing.JButton addjudgebtn;
@@ -317,7 +293,5 @@ public class CourtWelcomePanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable judgetable;
-    private javax.swing.JButton viewclerkbtn;
-    private javax.swing.JButton viewjudgebtn;
     // End of variables declaration//GEN-END:variables
 }
