@@ -45,9 +45,9 @@ public class CaseDetailDialog extends javax.swing.JDialog {
             defTxt.setText(caseReq.getDefendent().toString());
         }
 
-        closeCaseBtn.setEnabled(!req.getStatus().equals("PENDING"));
-        approveBtn.setEnabled(!req.getStatus().equals("PENDING"));
-        rejBtn.setEnabled(!req.getStatus().equals("PENDING"));
+        closeCaseBtn.setEnabled(req.getStatus().equals("PENDING"));
+        approveBtn.setEnabled(req.getStatus().equals("PENDING"));
+        rejBtn.setEnabled(req.getStatus().equals("PENDING"));
     }
 
     /**
