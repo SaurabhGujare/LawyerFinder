@@ -54,8 +54,8 @@ public class searchRowPanel extends CustomPanel {
             lawyerTxt.setText(lawyer.toString());
             feesTxt.setText(lawyer.getFees()+"");
             try {
-                if(lawyer.getPicFile()!=null)
-                    CommonUtils.initPicPanel(lawyer.getPicFile().toString(), picPanel);
+                if(lawyer.getPic()!=null)
+                    CommonUtils.initPicPanel(lawyer.getPic(), picPanel);
             } catch (IOException ex) {
                 
             }

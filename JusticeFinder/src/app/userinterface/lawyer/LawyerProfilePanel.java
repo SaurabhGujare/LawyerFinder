@@ -122,7 +122,6 @@ public class LawyerProfilePanel extends CustomPanel {
             
             fnameTxt.setText(lawyer.getFirstName());
             lnameTxt.setText(lawyer.getLastName());
-            picFile = lawyer.getPicFile();
             pic = lawyer.getPic();
             streetAddrTxt.setText(lawyer.getAddress().getStreet());
             cityTxt.setText(lawyer.getAddress().getCity());
@@ -720,7 +719,6 @@ public class LawyerProfilePanel extends CustomPanel {
         lawyer.setRequestedStateBars(sbaNeedApprovalList);
         lawyer.setSsn(ssnTxt.getText());
         lawyer.setAreaOfPractice(areaOfPractice);
-        lawyer.setPicFile(picFile);
         lawyer.setPic(pic);
         lawyer.setLawSchool(lawSchoolTxt.getText());
         try{
