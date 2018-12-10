@@ -455,10 +455,9 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         DefaultTableModel model = (DefaultTableModel) recordsTable.getModel();
         model.setRowCount(0);
         for (StateBarAssociation s : stateBarDir.getAllEntries()) {
-            Object[] row = new Object[3];
+            Object[] row = new Object[2];
             row[0] = s;
-            row[1] = s.getStateBarAssociationName();
-            row[2] = s.getAdmin().getAccount().getUsername();
+            row[1] = s.getAdmin().getAccount().getUsername();
             model.addRow(row);
         }
     }
