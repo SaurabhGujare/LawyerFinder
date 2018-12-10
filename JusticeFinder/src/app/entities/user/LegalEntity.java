@@ -11,6 +11,7 @@ import app.entities.roles.Roles;
 import app.entities.workqueues.CaseFileRequestWorkQueue;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.Date;
 
@@ -29,7 +30,15 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
     private WorkQueue workqueue;
     private WorkQueue caseQueue;
     private Directory<String, Lawyer> lawyers;
-    private File picFile;
+    private BufferedImage pic;
+
+    public BufferedImage getPic() {
+        return pic;
+    }
+
+    public void setPic(BufferedImage pic) {
+        this.pic = pic;
+    }
     
     public Directory<String, Lawyer> getLawyers() {
         return lawyers;
@@ -128,14 +137,6 @@ public class LegalEntity extends User implements DirectoryEntry<String>{
 
     public void setWorkqueue(WorkQueue workqueue) {
         this.workqueue = workqueue;
-    }
-
-    public File getPicFile() {
-        return picFile;
-    }
-
-    public void setPicFile(File picFile) {
-        this.picFile = picFile;
     }
 
     @Override

@@ -42,7 +42,6 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<String, LegalEntity> clientList;
     private Directory<String,Rating> ratings;
     private List<String> areaOfPractice;
-    private File picFile;
     private BufferedImage pic;
     private Double fees;
 
@@ -79,13 +78,6 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.fees = fees;
     }
 
-    public File getPicFile() {
-        return picFile;
-    }
-
-    public void setPicFile(File picFile) {
-        this.picFile = picFile;
-    }
 
     public List<String> getAreaOfPractice() {
         return areaOfPractice;
