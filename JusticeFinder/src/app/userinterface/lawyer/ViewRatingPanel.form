@@ -87,7 +87,7 @@
         <Component class="javax.swing.JButton" name="viewBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/app/images/icons8_Eye_20px.png"/>
+              <Image iconType="3" name="/app/images/path14203.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="View"/>
           </Properties>

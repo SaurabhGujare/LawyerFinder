@@ -75,7 +75,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="570" max="32767" attributes="0"/>
+                          <EmptySpace pref="558" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -91,6 +91,9 @@
                   <SubComponents>
                     <Component class="javax.swing.JButton" name="viewReqBtn">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/app/images/path19304.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="All Requests"/>
                       </Properties>
                       <Events>
@@ -99,6 +102,9 @@
                     </Component>
                     <Component class="javax.swing.JButton" name="viewCases">
                       <Properties>
+                        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+                          <Image iconType="3" name="/app/images/path13067.png"/>
+                        </Property>
                         <Property name="text" type="java.lang.String" value="View Cases"/>
                       </Properties>
                       <Events>

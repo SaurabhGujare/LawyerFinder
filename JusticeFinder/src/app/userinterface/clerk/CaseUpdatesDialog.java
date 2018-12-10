@@ -76,6 +76,7 @@ public class CaseUpdatesDialog extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        saveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path7395.png"))); // NOI18N
         saveBtn.setText("Save");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

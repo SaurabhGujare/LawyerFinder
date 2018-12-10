@@ -62,8 +62,6 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         recordsTable = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         addBtn = new javax.swing.JButton();
-        viewUpdateBtn = new javax.swing.JButton();
-        deleteBtn = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
@@ -116,22 +114,6 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             }
         });
 
-        viewUpdateBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/round.png"))); // NOI18N
-        viewUpdateBtn.setText("View/Update");
-        viewUpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewUpdateBtnActionPerformed(evt);
-            }
-        });
-
-        deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6826.png"))); // NOI18N
-        deleteBtn.setText("Delete");
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -139,24 +121,13 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(addBtn)
-                .addGap(6, 6, 6)
-                .addComponent(viewUpdateBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(deleteBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(viewUpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addBtn)
-                            .addComponent(deleteBtn))))
+                .addGap(10, 10, 10)
+                .addComponent(addBtn)
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
@@ -270,18 +241,9 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         domain = null;
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_deleteBtnActionPerformed
-
-    private void viewUpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUpdateBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewUpdateBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
-    private javax.swing.JButton deleteBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
@@ -292,7 +254,6 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
     private javax.swing.JTextField nameTxt;
     private javax.swing.JTable recordsTable;
     private javax.swing.JButton saveBtn;
-    private javax.swing.JButton viewUpdateBtn;
     // End of variables declaration//GEN-END:variables
 
     @Override

@@ -97,6 +97,7 @@ public class JudgePanel extends CustomPanel {
         });
         jScrollPane1.setViewportView(caseReqTable);
 
+        openCase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path13067.png"))); // NOI18N
         openCase.setText("Open Case");
         openCase.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,9 +127,6 @@ public class JudgePanel extends CustomPanel {
                 .addComponent(openCase)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        headerPanel.setBackground(new java.awt.Color(204, 204, 204));
-        headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));
 
         headerPanel.setBackground(new java.awt.Color(204, 204, 204));
         headerPanel.setLayout(new javax.swing.BoxLayout(headerPanel, javax.swing.BoxLayout.LINE_AXIS));

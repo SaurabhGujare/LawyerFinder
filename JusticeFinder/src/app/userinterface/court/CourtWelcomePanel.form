@@ -163,7 +163,7 @@
                 <Component class="javax.swing.JButton" name="addjudgebtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Add_User_Male_20px.png"/>
+                      <Image iconType="3" name="/app/images/path6261.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add Judge to the Court"/>
                   </Properties>
@@ -237,7 +237,7 @@
                 <Component class="javax.swing.JButton" name="addclerkbtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Add_User_Male_20px.png"/>
+                      <Image iconType="3" name="/app/images/path6261.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add Clerk to the Court"/>
                   </Properties>

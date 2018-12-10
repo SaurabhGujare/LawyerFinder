@@ -129,16 +129,16 @@ public class ViewSBARequestsPanel extends CustomPanel {
                     .addComponent(statusLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reqNumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reqNumTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(reqByTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reqByTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(reqDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(reqDate, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
@@ -150,7 +150,7 @@ public class ViewSBARequestsPanel extends CustomPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        viewLawyerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        viewLawyerBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path11935.png"))); // NOI18N
         viewLawyerBtn.setText("View Lawyer");
         viewLawyerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +159,7 @@ public class ViewSBARequestsPanel extends CustomPanel {
         });
         jPanel3.add(viewLawyerBtn);
 
-        approveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Approval_20px.png"))); // NOI18N
+        approveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path18172.png"))); // NOI18N
         approveBtn.setText("Approve");
         approveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +168,7 @@ public class ViewSBARequestsPanel extends CustomPanel {
         });
         jPanel3.add(approveBtn);
 
-        rejectBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Cancel_20px.png"))); // NOI18N
+        rejectBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path18737.png"))); // NOI18N
         rejectBtn.setText("Reject");
         rejectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

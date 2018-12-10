@@ -177,7 +177,7 @@ public class FileCaseDialog extends javax.swing.JDialog {
                     .addComponent(txtcasedescription, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Box_20px.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path13067.png"))); // NOI18N
         jButton1.setText("File the Case");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

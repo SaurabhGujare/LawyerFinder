@@ -93,7 +93,7 @@ public class AllCasesPanel extends CustomPanel {
         ));
         jScrollPane1.setViewportView(tblcasefile);
 
-        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Open_Envelope_20px.png"))); // NOI18N
+        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path17036.png"))); // NOI18N
         openBtn.setText("Open");
         openBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
