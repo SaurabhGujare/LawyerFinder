@@ -95,18 +95,18 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="reqNumTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="reqNumTxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="reqByTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="reqByTxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="reqDate" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="reqDate" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -202,7 +202,7 @@
             <Component class="javax.swing.JButton" name="viewLawyerBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_View_20px.png"/>
+                  <Image iconType="3" name="/app/images/path11935.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Lawyer"/>
               </Properties>
@@ -213,7 +213,7 @@
             <Component class="javax.swing.JButton" name="approveBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Approval_20px.png"/>
+                  <Image iconType="3" name="/app/images/path18172.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Approve"/>
               </Properties>
@@ -224,7 +224,7 @@
             <Component class="javax.swing.JButton" name="rejectBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Cancel_20px.png"/>
+                  <Image iconType="3" name="/app/images/path18737.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reject"/>
               </Properties>

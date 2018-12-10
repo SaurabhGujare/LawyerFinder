@@ -91,7 +91,7 @@ public class ViewFiledCases extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(greivanceRequestTbl);
 
-        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Eye_20px.png"))); // NOI18N
+        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path17605.png"))); // NOI18N
         openBtn.setText("View Updates");
         openBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +99,7 @@ public class ViewFiledCases extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_New_20px.png"))); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path13067.png"))); // NOI18N
         jButton1.setText("File New Case");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

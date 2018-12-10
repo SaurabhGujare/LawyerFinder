@@ -223,7 +223,7 @@
             <Component class="javax.swing.JButton" name="viewClientBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Customer_20px.png"/>
+                  <Image iconType="3" name="/app/images/path15902.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="View Client"/>
               </Properties>
@@ -234,7 +234,7 @@
             <Component class="javax.swing.JButton" name="approveBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Checkmark_20px.png"/>
+                  <Image iconType="3" name="/app/images/path18172.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Approve"/>
               </Properties>
@@ -245,7 +245,7 @@
             <Component class="javax.swing.JButton" name="rejectBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Delete_20px.png"/>
+                  <Image iconType="3" name="/app/images/path18737.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Reject"/>
               </Properties>

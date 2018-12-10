@@ -60,7 +60,7 @@ public class ViewClientsPanel extends CustomPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         clientTbl = new javax.swing.JTable();
 
-        viewBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Eye_20px.png"))); // NOI18N
+        viewBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path15902.png"))); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

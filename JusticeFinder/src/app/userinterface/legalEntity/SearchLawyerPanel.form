@@ -35,7 +35,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="462" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" pref="466" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -72,7 +72,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="sorterCombo" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="sorterCombo" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -120,7 +120,7 @@
                               <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="97" max="32767" attributes="0"/>
+                      <EmptySpace pref="99" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="searchBtn" max="32767" attributes="0"/>
                           <Component id="clearBtn" max="32767" attributes="0"/>
@@ -135,10 +135,10 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="helpTxt" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="maxFees" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="helpTxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
+                          <Component id="maxFees" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="minFees" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="minFees" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="clearBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -147,7 +147,7 @@
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                                  <Component id="sbaList" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="sbaList" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                                   <Component id="searchBtn" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -198,7 +198,7 @@
             <Component class="javax.swing.JButton" name="searchBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Search_20px.png"/>
+                  <Image iconType="3" name="/app/images/path12500.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Search"/>
               </Properties>
@@ -211,7 +211,7 @@
             <Component class="javax.swing.JButton" name="clearBtn">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/app/images/icons8_Clear_Search_20px.png"/>
+                  <Image iconType="3" name="/app/images/path13634.png"/>
                 </Property>
                 <Property name="text" type="java.lang.String" value="Clear"/>
               </Properties>

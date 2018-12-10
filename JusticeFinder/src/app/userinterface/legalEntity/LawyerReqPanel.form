@@ -73,7 +73,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="toTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="toTxt" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -81,7 +81,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" pref="154" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" pref="156" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -147,7 +147,7 @@
         <Component class="javax.swing.JButton" name="sendReqBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/app/images/icons8_Send_20px.png"/>
+              <Image iconType="3" name="/app/images/path10795.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Send"/>
           </Properties>

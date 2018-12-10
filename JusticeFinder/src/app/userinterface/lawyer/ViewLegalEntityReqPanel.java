@@ -159,7 +159,7 @@ public class ViewLegalEntityReqPanel extends CustomPanel {
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        viewClientBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Customer_20px.png"))); // NOI18N
+        viewClientBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path15902.png"))); // NOI18N
         viewClientBtn.setText("View Client");
         viewClientBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,7 +168,7 @@ public class ViewLegalEntityReqPanel extends CustomPanel {
         });
         jPanel3.add(viewClientBtn);
 
-        approveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Checkmark_20px.png"))); // NOI18N
+        approveBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path18172.png"))); // NOI18N
         approveBtn.setText("Approve");
         approveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +177,7 @@ public class ViewLegalEntityReqPanel extends CustomPanel {
         });
         jPanel3.add(approveBtn);
 
-        rejectBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Delete_20px.png"))); // NOI18N
+        rejectBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path18737.png"))); // NOI18N
         rejectBtn.setText("Reject");
         rejectBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

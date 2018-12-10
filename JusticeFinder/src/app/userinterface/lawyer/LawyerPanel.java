@@ -83,7 +83,7 @@ public class LawyerPanel extends CustomPanel {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
-        checkProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Profile_20px.png"))); // NOI18N
+        checkProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path16471.png"))); // NOI18N
         checkProfileBtn.setText("View Profile");
         checkProfileBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         checkProfileBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(checkProfileBtn);
 
-        viewRequestBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        viewRequestBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path14203.png"))); // NOI18N
         viewRequestBtn.setText("View Requests");
         viewRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,7 +102,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(viewRequestBtn);
 
-        viewClientsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Customer_20px.png"))); // NOI18N
+        viewClientsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path15902.png"))); // NOI18N
         viewClientsBtn.setText("View Clients");
         viewClientsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,7 +111,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(viewClientsBtn);
 
-        caseUpdatesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_View_20px.png"))); // NOI18N
+        caseUpdatesBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path13067.png"))); // NOI18N
         caseUpdatesBtn.setText("View/File Case");
         caseUpdatesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +120,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(caseUpdatesBtn);
 
-        viewFeedbackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Comments_20px.png"))); // NOI18N
+        viewFeedbackBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path15337.png"))); // NOI18N
         viewFeedbackBtn.setText("View Feedback");
         viewFeedbackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +129,7 @@ public class LawyerPanel extends CustomPanel {
         });
         jPanel2.add(viewFeedbackBtn);
 
-        viewStatsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Combo_Chart_20px_3.png"))); // NOI18N
+        viewStatsBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path14768.png"))); // NOI18N
         viewStatsBtn.setText("View My Stats");
         viewStatsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

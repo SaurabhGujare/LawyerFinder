@@ -78,6 +78,7 @@ public class ViewCasesPanel extends javax.swing.JPanel {
 
         jPanel3.setOpaque(false);
 
+        openBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path19879.png"))); // NOI18N
         openBtn.setText("New update");
         openBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
