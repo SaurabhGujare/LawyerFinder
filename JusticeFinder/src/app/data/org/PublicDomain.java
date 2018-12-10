@@ -13,7 +13,6 @@ import app.data.directories.Directory;
  */
 public class PublicDomain extends Organization{
     
-    private static int count = 0;
     private String name;
 
     public String getName() {
@@ -26,8 +25,6 @@ public class PublicDomain extends Organization{
     
     public PublicDomain() {
         super(null, new Directory(), null);
-        count++;
-        this.id = count;
     }
 
     @Override

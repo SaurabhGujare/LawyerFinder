@@ -17,6 +17,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -24,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -42,6 +44,7 @@ public class ViewLEProfilePanel extends CustomPanel {
     private boolean readOnly;
     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
     private File picFile;
+    private BufferedImage pic;
     final JFileChooser fc = new JFileChooser();
     private static final String EMAIL_REGEX = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
     private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
@@ -61,9 +64,13 @@ public class ViewLEProfilePanel extends CustomPanel {
 
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         try {
-                            String picFileLoc = fc.getSelectedFile().getAbsolutePath();
-                            CommonUtils.initPicPanel(picFileLoc, picPanel);
-                            picFile = fc.getSelectedFile();
+                            BufferedImage img = null;
+                            try {
+                                img = ImageIO.read(fc.getSelectedFile());
+                            } catch (IOException e) {
+                            }
+                            CommonUtils.initPicPanel(img, picPanel);
+                            pic = img;
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -115,7 +122,7 @@ public class ViewLEProfilePanel extends CustomPanel {
         legalEntity.getPrimaryContact().setContactNumber(phoneTxt.getText());
         legalEntity.setEmail(emailTxt.getText());
         legalEntity.setSsn(ssnTxt.getText());
-        legalEntity.setPicFile(picFile);
+        legalEntity.setPic(pic);
         if(domainList.getSelectedItem()!=null){
             legalEntity.setParent((Organization) domainList.getSelectedItem());
         }
@@ -162,14 +169,15 @@ public class ViewLEProfilePanel extends CustomPanel {
         emailTxt.setText(legalEntity.getEmail());
         ssnTxt.setText(legalEntity.getSsn());
         dobTxt.setText(legalEntity.getDob().toString());
-        picFile = legalEntity.getPicFile();
+        pic = legalEntity.getPic();
+        
         }
         try {
-            if(picFile==null){
+            if(pic==null){
                 CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
             }
             else{
-                CommonUtils.initPicPanel(picFile.toString(), picPanel);
+                CommonUtils.initPicPanel(pic, picPanel);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

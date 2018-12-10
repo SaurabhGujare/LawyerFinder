@@ -13,6 +13,7 @@ import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
-    Directory<Integer , PublicDomain> publicDomain;
+    Directory<String , PublicDomain> publicDomain;
     PublicDomain domain;
     /**
      * Creates new form PublicDomainPanel
      */
-    public PublicDomainPanel(Directory<Integer , PublicDomain> publicDomain) {
+    public PublicDomainPanel(Directory<String , PublicDomain> publicDomain) {
         initComponents();
         this.makeTransparent(this);
         this.publicDomain = publicDomain;
@@ -93,11 +94,11 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
             },
             new String [] {
-                "ID", "Name"
+                "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -128,7 +129,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(addBtn)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Name:");
@@ -225,28 +226,27 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             domain = new PublicDomain();
         }
         if(nameTxt.getText()!=null && !nameTxt.getText().trim().equals("")){
-        domain.setId(publicDomain.getAllEntries().size()+1);
+            domain.setId(UUID.randomUUID().toString());
+            domain.setName(nameTxt.getText());
         
-        domain.setName(nameTxt.getText());
-        
-        try {
-            if(publicDomain.contains(domain)){
-                JOptionPane.showMessageDialog(this, "State Bar Asscociation with this name already present");
-                return;
-            }
-            publicDomain.addNew(domain);
-        } catch (Exception ex) {
+            try {
+                if(publicDomain.contains(domain)){
+                    JOptionPane.showMessageDialog(this, "Public Domain with this name already present");
+                    return;
+                }
+                publicDomain.addNew(domain);
+            } catch (Exception ex) {
             
-        }
-        populateTableData();
-        nameTxt.setText("");
-        nameTxt.setEnabled(false);
-        saveBtn.setEnabled(false);
-        domain = null;
-    }
-        else{
+            }
+            populateTableData();
+            nameTxt.setText("");
+            nameTxt.setEnabled(false);
+            saveBtn.setEnabled(false);
+            domain = null;
+        }else{
             JOptionPane.showMessageDialog(this, "Enter the domain name first");
         }
+      
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

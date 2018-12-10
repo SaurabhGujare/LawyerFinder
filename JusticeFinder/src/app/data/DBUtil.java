@@ -10,6 +10,7 @@ import com.db4o.ext.Db4oIOException;
 import com.db4o.ext.IncompatibleFileFormatException;
 import com.db4o.ext.OldFormatException;
 import com.db4o.ta.TransparentPersistenceSupport;
+import java.io.File;
 import java.nio.file.Paths;
 
 
@@ -44,7 +45,12 @@ public class DBUtil {
     }
 
     public synchronized void storeSystem(Network store) {
+        
+        File file = new File(FILENAME); 
+        file.delete();
+        
         ObjectContainer conn = createConnection();
+        conn.commit();
         conn.store(store);
         conn.commit();
         conn.close();

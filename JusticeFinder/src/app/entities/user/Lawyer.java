@@ -35,14 +35,13 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private String specialization;
     private String yearsOfPractice;
     private String lawSchool;
-    private Directory<Integer, StateBarAssociation> allowedStateBars;
-    private Directory<Integer, StateBarAssociation> requestedStateBars;
+    private Directory<String, StateBarAssociation> allowedStateBars;
+    private Directory<String, StateBarAssociation> requestedStateBars;
     private WorkQueue workqueue;
     private WorkQueue casesWorkQueue;
     private Directory<String, LegalEntity> clientList;
     private Directory<String,Rating> ratings;
     private List<String> areaOfPractice;
-    private File picFile;
     private BufferedImage pic;
     private Double fees;
 
@@ -79,13 +78,6 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.fees = fees;
     }
 
-    public File getPicFile() {
-        return picFile;
-    }
-
-    public void setPicFile(File picFile) {
-        this.picFile = picFile;
-    }
 
     public List<String> getAreaOfPractice() {
         return areaOfPractice;
@@ -107,19 +99,19 @@ public class Lawyer extends User implements DirectoryEntry<String>{
         this.clientList = clientList;
     }
 
-    public Directory<Integer, StateBarAssociation> getRequestedStateBars() {
+    public Directory<String, StateBarAssociation> getRequestedStateBars() {
         return requestedStateBars;
     }
 
-    public void setRequestedStateBars(Directory<Integer, StateBarAssociation> requestedStateBars) {
+    public void setRequestedStateBars(Directory<String, StateBarAssociation> requestedStateBars) {
         this.requestedStateBars = requestedStateBars;
     }
 
-    public Directory<Integer, StateBarAssociation> getAllowedStateBars() {
+    public Directory<String, StateBarAssociation> getAllowedStateBars() {
         return allowedStateBars;
     }
 
-    public void setAllowedStateBars(Directory<Integer, StateBarAssociation> allowedStateBars) {
+    public void setAllowedStateBars(Directory<String, StateBarAssociation> allowedStateBars) {
         this.allowedStateBars = allowedStateBars;
     }
 

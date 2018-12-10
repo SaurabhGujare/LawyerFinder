@@ -70,7 +70,6 @@ public class RatePanel extends javax.swing.JDialog {
             saveBtn.setVisible(!readonly);
             jLabel1.setVisible(!readonly);
             nameTxt.setVisible(!readonly);
-            viewProfileBtn.setVisible(!readonly);
         }
         
         this.lawyer = lawyer;
@@ -113,7 +112,6 @@ public class RatePanel extends javax.swing.JDialog {
 
         jLabel1 = new javax.swing.JLabel();
         nameTxt = new javax.swing.JTextField();
-        viewProfileBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         feedBackTxt = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
@@ -127,14 +125,6 @@ public class RatePanel extends javax.swing.JDialog {
         jLabel1.setText("Lawyer Name");
 
         nameTxt.setEnabled(false);
-
-        viewProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path11935.png"))); // NOI18N
-        viewProfileBtn.setText("View Profile");
-        viewProfileBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewProfileBtnActionPerformed(evt);
-            }
-        });
 
         feedBackTxt.setColumns(20);
         feedBackTxt.setRows(5);
@@ -185,14 +175,11 @@ public class RatePanel extends javax.swing.JDialog {
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(nameTxt)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(viewProfileBtn))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(rateGrid, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(nameTxt)))
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -202,9 +189,8 @@ public class RatePanel extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewProfileBtn))
-                .addGap(28, 28, 28)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -212,7 +198,7 @@ public class RatePanel extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addComponent(rateGrid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 30, Short.MAX_VALUE)
+                .addGap(0, 31, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -239,10 +225,6 @@ public class RatePanel extends javax.swing.JDialog {
             ex.printStackTrace();
         }
     }//GEN-LAST:event_saveBtnActionPerformed
-
-    private void viewProfileBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewProfileBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_viewProfileBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -296,6 +278,5 @@ public class RatePanel extends javax.swing.JDialog {
     private javax.swing.JTextField nameTxt;
     private javax.swing.JPanel rateGrid;
     private javax.swing.JButton saveBtn;
-    private javax.swing.JButton viewProfileBtn;
     // End of variables declaration//GEN-END:variables
 }
