@@ -244,7 +244,7 @@ public class ViewSBARequestsPanel extends CustomPanel {
         
         String body = "";
         try {
-            body = EmailTemplateFormatter.getMessage(Templates.LAWYER_APPROVED.getPageName(), lawyer.getFirstName()+" "+lawyer.getLastName());
+            body = EmailTemplateFormatter.getMessage(Templates.LAWYER_APPROVED.getPageName(), lawyer.getFirstName()+" "+lawyer.getLastName(),association.getStateBarAssociationName());
         } catch (IOException ex) {
             Logger.getLogger(ViewSBARequestsPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

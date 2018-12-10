@@ -6,7 +6,7 @@
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #ffffff;">
                 <p>Dear %s</p>
-                <p>Please note that your request has been approved by the state bar association</p>
+                <p>Please note that your request has been approved by the %s</p>
                 <p>Thank you. </p>
             </div>
             <div style="margin: 10 auto; width: 600px;padding: 10px; background: #ffffff;font-size: 10px;">
