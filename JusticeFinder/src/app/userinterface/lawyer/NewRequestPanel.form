@@ -74,7 +74,7 @@
         <Component class="javax.swing.JButton" name="openBtn">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/app/images/icons8_Open_Envelope_20px.png"/>
+              <Image iconType="3" name="/app/images/path17036.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Open"/>
           </Properties>

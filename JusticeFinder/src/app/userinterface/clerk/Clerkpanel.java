@@ -56,6 +56,7 @@ public class Clerkpanel extends CustomPanel {
 
         jPanel1.setLayout(new java.awt.GridLayout(0, 1, 5, 0));
 
+        viewReqBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path19304.png"))); // NOI18N
         viewReqBtn.setText("All Requests");
         viewReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,6 +65,7 @@ public class Clerkpanel extends CustomPanel {
         });
         jPanel1.add(viewReqBtn);
 
+        viewCases.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path13067.png"))); // NOI18N
         viewCases.setText("View Cases");
         viewCases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,7 +84,7 @@ public class Clerkpanel extends CustomPanel {
             menupanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menupanelLayout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(570, Short.MAX_VALUE))
+                .addContainerGap(558, Short.MAX_VALUE))
         );
 
         jSplitPane1.setLeftComponent(menupanel);

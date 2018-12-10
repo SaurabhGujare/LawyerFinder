@@ -33,7 +33,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <Component id="jScrollPane2" pref="946" max="32767" attributes="0"/>
+              <Component id="jScrollPane2" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -511,7 +511,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="sbaAvailableList" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="sbaAvailableList" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
                               <Component id="addSBA" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -562,7 +562,7 @@
                 <Component class="javax.swing.JButton" name="addSBA">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Add_New_20px.png"/>
+                      <Image iconType="3" name="/app/images/path6261.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add"/>
                   </Properties>
@@ -668,7 +668,7 @@
                 <Component class="javax.swing.JButton" name="addPracticeBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Add_New_20px.png"/>
+                      <Image iconType="3" name="/app/images/path6261.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add Area Of Practice"/>
                   </Properties>
@@ -704,7 +704,7 @@
                 <Component class="javax.swing.JButton" name="saveBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Save_20px.png"/>
+                      <Image iconType="3" name="/app/images/path7395.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Save"/>
                   </Properties>

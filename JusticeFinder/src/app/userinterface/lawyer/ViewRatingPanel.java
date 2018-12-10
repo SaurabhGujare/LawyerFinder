@@ -73,7 +73,7 @@ public class ViewRatingPanel extends CustomPanel {
         ));
         jScrollPane1.setViewportView(ratingTbl);
 
-        viewBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Eye_20px.png"))); // NOI18N
+        viewBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path14203.png"))); // NOI18N
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

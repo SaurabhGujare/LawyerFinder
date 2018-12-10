@@ -132,7 +132,7 @@ public class CourtWelcomePanel extends CustomPanel {
             .addGap(0, 89, Short.MAX_VALUE)
         );
 
-        addjudgebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_User_Male_20px.png"))); // NOI18N
+        addjudgebtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6261.png"))); // NOI18N
         addjudgebtn.setText("Add Judge to the Court");
         addjudgebtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -177,7 +177,7 @@ public class CourtWelcomePanel extends CustomPanel {
         ));
         jScrollPane2.setViewportView(clerktable);
 
-        addclerkbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/icons8_Add_User_Male_20px.png"))); // NOI18N
+        addclerkbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path6261.png"))); // NOI18N
         addclerkbtn.setText("Add Clerk to the Court");
         addclerkbtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

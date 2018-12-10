@@ -110,7 +110,7 @@
                 <Component class="javax.swing.JButton" name="checkProfileBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Profile_20px.png"/>
+                      <Image iconType="3" name="/app/images/path16471.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View Profile"/>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -126,7 +126,7 @@
                 <Component class="javax.swing.JButton" name="viewRequestBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_View_20px.png"/>
+                      <Image iconType="3" name="/app/images/path14203.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View Requests"/>
                   </Properties>
@@ -137,7 +137,7 @@
                 <Component class="javax.swing.JButton" name="viewClientsBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Customer_20px.png"/>
+                      <Image iconType="3" name="/app/images/path15902.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View Clients"/>
                   </Properties>
@@ -148,7 +148,7 @@
                 <Component class="javax.swing.JButton" name="caseUpdatesBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_View_20px.png"/>
+                      <Image iconType="3" name="/app/images/path13067.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View/File Case"/>
                   </Properties>
@@ -159,7 +159,7 @@
                 <Component class="javax.swing.JButton" name="viewFeedbackBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Comments_20px.png"/>
+                      <Image iconType="3" name="/app/images/path15337.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View Feedback"/>
                   </Properties>
@@ -170,7 +170,7 @@
                 <Component class="javax.swing.JButton" name="viewStatsBtn">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/app/images/icons8_Combo_Chart_20px_3.png"/>
+                      <Image iconType="3" name="/app/images/path14768.png"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="View My Stats"/>
                   </Properties>
