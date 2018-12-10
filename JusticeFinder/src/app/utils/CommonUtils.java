@@ -5,6 +5,7 @@ package app.utils;
 import app.data.directories.Directory;
 import app.entities.Rating;
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -44,6 +45,17 @@ public class CommonUtils {
         int h = (photoFrame.getHeight()== 0)?photoFrame.getPreferredSize().height:photoFrame.getHeight();
         
         ImageIcon imageIcon = new ImageIcon(fileLoc);
+        imageIcon.setImage(imageIcon.getImage().getScaledInstance(w-2, h-2, Image.SCALE_DEFAULT));
+        photoFrame.setIcon(imageIcon);
+        
+    }
+    
+    public static void initPicPanel(BufferedImage image, JLabel photoFrame) throws IOException {       
+        
+        int w = (photoFrame.getWidth() == 0)?photoFrame.getPreferredSize().width:photoFrame.getWidth();
+        int h = (photoFrame.getHeight()== 0)?photoFrame.getPreferredSize().height:photoFrame.getHeight();
+        
+        ImageIcon imageIcon = new ImageIcon(image);
         imageIcon.setImage(imageIcon.getImage().getScaledInstance(w-2, h-2, Image.SCALE_DEFAULT));
         photoFrame.setIcon(imageIcon);
         

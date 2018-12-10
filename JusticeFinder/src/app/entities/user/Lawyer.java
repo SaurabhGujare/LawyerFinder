@@ -16,6 +16,7 @@ import app.entities.workqueues.GrievanceRequest;
 import app.entities.workqueues.GrievanceRequestWorkQueue;
 import app.entities.workqueues.WorkQueue;
 import app.utils.CommonUtils;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,16 @@ public class Lawyer extends User implements DirectoryEntry<String>{
     private Directory<String,Rating> ratings;
     private List<String> areaOfPractice;
     private File picFile;
+    private BufferedImage pic;
     private Double fees;
+
+    public BufferedImage getPic() {
+        return pic;
+    }
+
+    public void setPic(BufferedImage pic) {
+        this.pic = pic;
+    }
 
     public WorkQueue getCasesWorkQueue() {
         return casesWorkQueue;
