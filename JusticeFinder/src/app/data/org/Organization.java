@@ -16,10 +16,9 @@ import app.entities.workqueues.WorkQueue;
  * @author Ninad Subhedar (NUID : 001472377)
 
  */
-public class Organization implements DirectoryEntry<Integer> {
+public class Organization implements DirectoryEntry<String> {
     
-    private static int count = 0;
-    protected int id;
+    protected String id;
     private WorkQueue workQueue;
     private Directory directory;
     protected User admin;
@@ -27,16 +26,14 @@ public class Organization implements DirectoryEntry<Integer> {
     public Organization(WorkQueue workQueue, Directory directory,User admin) {
         this.workQueue = workQueue;
         this.directory = directory;
-        this.id = count;
         this.admin = admin;
-        count++;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -57,7 +54,7 @@ public class Organization implements DirectoryEntry<Integer> {
     }
 
     @Override
-    public Integer getKey() {
+    public String getKey() {
         return id;
     }
 

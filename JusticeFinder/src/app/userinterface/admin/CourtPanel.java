@@ -14,6 +14,7 @@ import app.userinterface.interfaces.HasTable;
 import java.awt.Dimension;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,11 +27,11 @@ public class CourtPanel extends CustomPanel implements HasTable {
     /**
      * Creates new form CourtPanel1
      */
-    Directory<Integer , Court> courtDir;
+    Directory<String , Court> courtDir;
     Directory<String, UserAccount> userAccountDir;
     private Court court;
     
-    public CourtPanel(Directory<Integer , Court> courtDir,Directory<String, UserAccount> userAccountDir) {
+    public CourtPanel(Directory<String , Court> courtDir,Directory<String, UserAccount> userAccountDir) {
         initComponents();
         this.makeTransparent(this);
         this.courtDir = courtDir;
@@ -314,7 +315,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
         boolean newCourt = false;
         if(court==null){
             court = new Court();
-            court.setId(courtDir.getAllEntries().size());
+            court.setId(UUID.randomUUID().toString());
             newCourt = true;
         }else {
             oldAccount = court.getAdmin().getAccount();

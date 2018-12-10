@@ -45,7 +45,7 @@ import javax.swing.JTextField;
  */
 public class LawyerProfilePanel extends CustomPanel {
 
-    private Directory<Integer, StateBarAssociation> sbaNeedApprovalList;
+    private Directory<String, StateBarAssociation> sbaNeedApprovalList;
     private List<String> areaOfPractice;
     private boolean readOnly;
     private Lawyer lawyer;
