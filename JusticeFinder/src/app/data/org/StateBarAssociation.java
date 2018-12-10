@@ -17,7 +17,6 @@ import app.entities.workqueues.StateBarAssoWorkQueue;
  */
 public class StateBarAssociation extends Organization{
 
-    private static int count = 0;
     private String stateBarAssociationName;
     private String stateBarAssociationID;
     private Address workaddress;
@@ -36,8 +35,6 @@ public class StateBarAssociation extends Organization{
     public StateBarAssociation() {
         super(new StateBarAssoWorkQueue(), new Directory(),null);
         super.admin = new StateBarAssoAdmin(this);
-        count++;
-        id = count;
         this.active =true;
     }
 

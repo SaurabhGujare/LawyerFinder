@@ -13,6 +13,7 @@ import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,14 +23,14 @@ import javax.swing.table.DefaultTableModel;
  */
 public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
-    Directory<Integer, StateBarAssociation> stateBarDir;
+    Directory<String, StateBarAssociation> stateBarDir;
     Directory<String, UserAccount> userAccDir;
     private StateBarAssociation association;
 
     /**
      * Creates new form StateBarAssociationPanel
      */
-    public StateBarAssociationPanel(Directory<Integer, StateBarAssociation> stateBarDir, Directory<String, UserAccount> userAccDir) {
+    public StateBarAssociationPanel(Directory<String, StateBarAssociation> stateBarDir, Directory<String, UserAccount> userAccDir) {
         initComponents();
         this.stateBarDir = stateBarDir;
         this.userAccDir = userAccDir;
@@ -308,7 +309,7 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         boolean newAssoc = false;
         if (association == null) {
             association = new StateBarAssociation();
-            association.setId(stateBarDir.getAllEntries().size());
+            association.setId(UUID.randomUUID().toString());
             newAssoc = true;
         } else {
             oldAcc = association.getAdmin().getAccount();

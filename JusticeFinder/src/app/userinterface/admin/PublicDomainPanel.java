@@ -13,6 +13,7 @@ import app.userinterface.common.CustomPanel;
 import app.userinterface.interfaces.HasTable;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.util.UUID;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,12 +23,12 @@ import javax.swing.table.DefaultTableModel;
  */
 public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
-    Directory<Integer , PublicDomain> publicDomain;
+    Directory<String , PublicDomain> publicDomain;
     PublicDomain domain;
     /**
      * Creates new form PublicDomainPanel
      */
-    public PublicDomainPanel(Directory<Integer , PublicDomain> publicDomain) {
+    public PublicDomainPanel(Directory<String , PublicDomain> publicDomain) {
         initComponents();
         this.makeTransparent(this);
         this.publicDomain = publicDomain;
@@ -224,7 +225,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         if(domain==null){
             domain = new PublicDomain();
         }
-        domain.setId(publicDomain.getAllEntries().size());
+        domain.setId(UUID.randomUUID().toString());
         domain.setName(nameTxt.getText());
         
         try {

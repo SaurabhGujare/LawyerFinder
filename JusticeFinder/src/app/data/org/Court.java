@@ -37,8 +37,6 @@ public class Court extends Organization{
     
         super(new CourtWorkQueue(), new Directory(),null);
         super.admin = new CourtAdmin(this);
-        count++;
-        id = count;
         this.judgeDirectory= new Directory<>();
         this.clerkDirectory= new Directory<>();
     }
