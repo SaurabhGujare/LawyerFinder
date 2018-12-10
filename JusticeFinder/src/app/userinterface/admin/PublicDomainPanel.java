@@ -94,11 +94,11 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
 
             },
             new String [] {
-                "ID", "Name"
+                "Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -129,7 +129,7 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(addBtn)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel1.setText("Name:");
@@ -215,31 +215,38 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         nameTxt.setEnabled(true);
-       saveBtn.setEnabled(true);
+        saveBtn.setEnabled(true);
         nameTxt.setText("");
         domain = null;
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        if(domain==null){
+        if(domain==null) {
             domain = new PublicDomain();
         }
-        domain.setId(UUID.randomUUID().toString());
-        domain.setName(nameTxt.getText());
+        if(nameTxt.getText()!=null && !nameTxt.getText().trim().equals("")){
+            domain.setId(UUID.randomUUID().toString());
+            domain.setName(nameTxt.getText());
         
-        try {
-            if(publicDomain.contains(domain)){
-                JOptionPane.showMessageDialog(this, "State Bar Asscociation with this name already present");
-                return;
-            }
-            publicDomain.addNew(domain);
-        } catch (Exception ex) {
+            try {
+                if(publicDomain.contains(domain)){
+                    JOptionPane.showMessageDialog(this, "Public Domain with this name already present");
+                    return;
+                }
+                publicDomain.addNew(domain);
+            } catch (Exception ex) {
             
+            }
+            populateTableData();
+            nameTxt.setText("");
+            nameTxt.setEnabled(false);
+            saveBtn.setEnabled(false);
+            domain = null;
+        }else{
+            JOptionPane.showMessageDialog(this, "Enter the domain name first");
         }
-        populateTableData();
-        nameTxt.setText("");
-        domain = null;
+      
     }//GEN-LAST:event_saveBtnActionPerformed
 
 
