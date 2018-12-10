@@ -35,7 +35,7 @@ public class MainFrame extends javax.swing.JFrame {
     }
 
     private void initFrame() throws HeadlessException {
-        this.setResizable(false);
+        //this.setResizable(false);
         this.getContentPane().setBackground(Color.decode("#ffffff"));
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Point middle = new Point(screenSize.width / 2, screenSize.height / 2);
