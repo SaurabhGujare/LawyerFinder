@@ -24,6 +24,7 @@ import java.awt.Component;
 import java.awt.Container;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import javax.imageio.ImageIO;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
@@ -48,6 +50,7 @@ public class LawyerProfilePanel extends CustomPanel {
     private boolean readOnly;
     private Lawyer lawyer;
     private File picFile;
+    private BufferedImage pic;
     final JFileChooser fc = new JFileChooser();
     private static final String EMAIL_REGEX = "^([a-zA-Z0-9_\\-\\.]+)@([a-zA-Z0-9_\\-\\.]+)\\.([a-zA-Z]{2,5})$";
     private static final String SSN_REGEX = "^\\d{3}-\\d{2}-\\d{4}$";
@@ -74,9 +77,13 @@ public class LawyerProfilePanel extends CustomPanel {
 
                     if (returnVal == JFileChooser.APPROVE_OPTION) {
                         try {
-                            String picFileLoc = fc.getSelectedFile().getAbsolutePath();
-                            CommonUtils.initPicPanel(picFileLoc, picPanel);
-                            picFile = fc.getSelectedFile();
+                            BufferedImage img = null;
+                            try {
+                                img = ImageIO.read(fc.getSelectedFile());
+                            } catch (IOException e) {
+                            }
+                            CommonUtils.initPicPanel(img, picPanel);
+                            pic = img;
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
@@ -116,6 +123,7 @@ public class LawyerProfilePanel extends CustomPanel {
             fnameTxt.setText(lawyer.getFirstName());
             lnameTxt.setText(lawyer.getLastName());
             picFile = lawyer.getPicFile();
+            pic = lawyer.getPic();
             streetAddrTxt.setText(lawyer.getAddress().getStreet());
             cityTxt.setText(lawyer.getAddress().getCity());
             stateTxt.setText(lawyer.getAddress().getState());
@@ -136,11 +144,11 @@ public class LawyerProfilePanel extends CustomPanel {
         
         
         try {
-            if(picFile==null){
+            if(pic==null){
                 CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
             }
             else{
-                CommonUtils.initPicPanel(picFile.toString(), picPanel);
+                CommonUtils.initPicPanel(pic, picPanel);
             }
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -713,6 +721,7 @@ public class LawyerProfilePanel extends CustomPanel {
         lawyer.setSsn(ssnTxt.getText());
         lawyer.setAreaOfPractice(areaOfPractice);
         lawyer.setPicFile(picFile);
+        lawyer.setPic(pic);
         lawyer.setLawSchool(lawSchoolTxt.getText());
         try{
             lawyer.setFees(Double.parseDouble(feesTxt.getText()));
