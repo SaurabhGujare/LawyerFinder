@@ -214,17 +214,19 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
         // TODO add your handling code here:
         nameTxt.setEnabled(true);
-       saveBtn.setEnabled(true);
+        saveBtn.setEnabled(true);
         nameTxt.setText("");
         domain = null;
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
         // TODO add your handling code here:
-        if(domain==null){
+        if(domain==null) {
             domain = new PublicDomain();
         }
-        domain.setId(publicDomain.getAllEntries().size());
+        if(nameTxt.getText()!=null && !nameTxt.getText().trim().equals("")){
+        domain.setId(publicDomain.getAllEntries().size()+1);
+        
         domain.setName(nameTxt.getText());
         
         try {
@@ -238,7 +240,13 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
         }
         populateTableData();
         nameTxt.setText("");
+        nameTxt.setEnabled(false);
+        saveBtn.setEnabled(false);
         domain = null;
+    }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter the domain name first");
+        }
     }//GEN-LAST:event_saveBtnActionPerformed
 
 

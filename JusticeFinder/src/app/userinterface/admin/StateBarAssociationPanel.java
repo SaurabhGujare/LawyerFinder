@@ -424,11 +424,16 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
+        
         int selectedRow = recordsTable.getSelectedRow();
         if (selectedRow >= 0) {
             int selectionButton = JOptionPane.YES_NO_OPTION;
             int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
+                nameTxt.setText("");
+                emailTxt.setText("");
+                userNameTxt.setText("");
+                passwordTxt.setText("");
                 StateBarAssociation sba = (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
                 sba.setActive(false);
                 stateBarDir.delete(sba.getId());
