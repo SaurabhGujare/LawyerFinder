@@ -120,7 +120,7 @@ public class ViewClientsPanel extends CustomPanel {
         
         int selectedrow= clientTbl.getSelectedRow();
         if(selectedrow>=0){
-            LegalEntity client = (LegalEntity) clientTbl.getValueAt(clientTbl.getSelectedRow(),0);
+            LegalEntity client = (LegalEntity) clientTbl.getValueAt(clientTbl.getSelectedRow(),1);
             JDialog dialog = new JDialog(MainFrame.self, "Client Details",true);
             ViewLEProfilePanel panel = new ViewLEProfilePanel(client, true);
             dialog.getContentPane().add(panel);

@@ -169,7 +169,7 @@ public class ViewLEProfilePanel extends CustomPanel {
                 CommonUtils.initPicPanel("src/app/images/add.png", picPanel);
             }
             else{
-                CommonUtils.initPicPanel(picFile.getAbsolutePath(), picPanel);
+                CommonUtils.initPicPanel(picFile.toString(), picPanel);
             }
         } catch (IOException ex) {
             ex.printStackTrace();

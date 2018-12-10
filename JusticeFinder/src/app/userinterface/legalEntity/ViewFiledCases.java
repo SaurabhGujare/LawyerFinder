@@ -44,8 +44,8 @@ public class ViewFiledCases extends javax.swing.JPanel {
             Object[] row = new Object[6];
             row[0] = request;
             row[1] = request.getCasereq().getCasefileDate();
-            row[2] = request.getCasereq().getCourt();
-            row[3] = request.getCasereq().getLawyer();
+            row[2] = request.getCasereq().getLawyer();
+            row[3] = request.getCasereq().getCourt();
             row[4] = request.getCasereq().getJudge();
             row[5] = request.getStatus();
             model.addRow(row);
