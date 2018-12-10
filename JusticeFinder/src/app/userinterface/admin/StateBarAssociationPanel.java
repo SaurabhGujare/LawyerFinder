@@ -165,11 +165,11 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
             },
             new String [] {
-                "ID", "Name", "Username"
+                "Name", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -314,10 +314,9 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         } else {
             oldAcc = association.getAdmin().getAccount();
         }
-        
-        association.setStateBarAssociationName(nameTxt.getText());
-        association.setEmail(emailTxt.getText());
-
+        if(nameTxt.getText()!=null && !nameTxt.getText().trim().equals("") && emailTxt.getText()!=null && !emailTxt.getText().trim().equals("") && userNameTxt.getText()!=null && !userNameTxt.getText().trim().equals("") && passwordTxt.getText()!=null && !passwordTxt.getText().trim().equals("")){
+            association.setStateBarAssociationName(nameTxt.getText());
+            association.setEmail(emailTxt.getText());
         UserAccount account = null;
         if (oldAcc != null) {
             if (!oldAcc.getUsername().equals(userNameTxt.getText())) {
@@ -368,6 +367,10 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         
         populateTableData();
         clearForm();
+    }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter all the details first");
+        }
     }
 
     private void clearForm() {
@@ -425,11 +428,16 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         // TODO add your handling code here:
+        
         int selectedRow = recordsTable.getSelectedRow();
         if (selectedRow >= 0) {
             int selectionButton = JOptionPane.YES_NO_OPTION;
-            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure to delete??", "Warning", selectionButton);
+            int selectionResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this Association??", "Warning", selectionButton);
             if (selectionResult == JOptionPane.YES_OPTION) {
+                nameTxt.setText("");
+                emailTxt.setText("");
+                userNameTxt.setText("");
+                passwordTxt.setText("");
                 StateBarAssociation sba = (StateBarAssociation) recordsTable.getValueAt(selectedRow, 0);
                 sba.setActive(false);
                 stateBarDir.delete(sba.getId());
