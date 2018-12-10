@@ -73,9 +73,9 @@ public class ViewStatsPanel extends CustomPanel {
         setOpaque(false);
         setLayout(new java.awt.GridLayout(2, 2));
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel1.setOpaque(false);
+        jPanel1.setName("NA"); // NOI18N
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
 
         jPanel5.setOpaque(false);
@@ -129,9 +129,9 @@ public class ViewStatsPanel extends CustomPanel {
 
         add(jPanel1);
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        jPanel2.setOpaque(false);
+        jPanel2.setName("NA"); // NOI18N
         jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
 
         jPanel8.setOpaque(false);
