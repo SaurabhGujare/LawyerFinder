@@ -84,7 +84,7 @@ public class LawyerPanel extends CustomPanel {
         jPanel2.setLayout(new java.awt.GridLayout(0, 1, 0, 5));
 
         checkProfileBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/app/images/path16471.png"))); // NOI18N
-        checkProfileBtn.setText("View Profile");
+        checkProfileBtn.setText("My Profile");
         checkProfileBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         checkProfileBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

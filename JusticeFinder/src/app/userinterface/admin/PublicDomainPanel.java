@@ -269,9 +269,8 @@ public class PublicDomainPanel extends CustomPanel  implements HasTable {
          DefaultTableModel model = (DefaultTableModel) recordsTable.getModel();
         model.setRowCount(0);
         for(PublicDomain p: publicDomain.getAllEntries()){
-            Object[] row = new Object[3];
-            row[0] = p.getId();
-            row[1] = p;
+            Object[] row = new Object[1];
+            row[0] = p.getName();
             model.addRow(row);
         }
     }
