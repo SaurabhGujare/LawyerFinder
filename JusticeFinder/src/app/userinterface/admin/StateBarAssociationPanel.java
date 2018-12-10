@@ -164,11 +164,11 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
 
             },
             new String [] {
-                "ID", "Name", "Username"
+                "Name", "Username"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -313,10 +313,9 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         } else {
             oldAcc = association.getAdmin().getAccount();
         }
-        
-        association.setStateBarAssociationName(nameTxt.getText());
-        association.setEmail(emailTxt.getText());
-
+        if(nameTxt.getText()!=null && !nameTxt.getText().trim().equals("") && emailTxt.getText()!=null && !emailTxt.getText().trim().equals("") && userNameTxt.getText()!=null && !userNameTxt.getText().trim().equals("") && passwordTxt.getText()!=null && !passwordTxt.getText().trim().equals("")){
+            association.setStateBarAssociationName(nameTxt.getText());
+            association.setEmail(emailTxt.getText());
         UserAccount account = null;
         if (oldAcc != null) {
             if (!oldAcc.getUsername().equals(userNameTxt.getText())) {
@@ -367,6 +366,10 @@ public class StateBarAssociationPanel extends CustomPanel implements HasTable {
         
         populateTableData();
         clearForm();
+    }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter all the details first");
+        }
     }
 
     private void clearForm() {

@@ -319,7 +319,7 @@ public class CourtPanel extends CustomPanel implements HasTable {
         }else {
             oldAccount = court.getAdmin().getAccount();
         }
-        
+        if(nametxt.getText()!=null && !nametxt.getText().trim().equals("") && emailtxt.getText()!=null && !emailtxt.getText().trim().equals("") && usernametxt.getText()!=null && !usernametxt.getText().trim().equals("") && passwordtxt.getText()!=null && !passwordtxt.getText().trim().equals("")){
         court.setCourtName(nametxt.getText());
         court.setCourtemailID(emailtxt.getText());
         //court.getAdmin().setParent(court);
@@ -372,6 +372,9 @@ public class CourtPanel extends CustomPanel implements HasTable {
         }
         populateTableData();
         clearForm();
+        }else{
+            JOptionPane.showMessageDialog(this, "Enter all the details first");
+        }
     }//GEN-LAST:event_savebtnActionPerformed
 
     private void clearForm() {
